@@ -1,0 +1,47 @@
+AWS core services :- 
+
+1. AWS Global Infrastructure:
+    i) Regions: contains more than 2 or more AZ
+      its geographyical location. 
+      every region has differnt services.
+      regions are complete seperate entities. Its not easy to move services from one region to another region.
+    
+      link for region based services:--> https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/
+      
+      1. optimize latency
+      2. minimize cost
+      
+    ii) Availability zone: 
+         collection of data centers within regions.
+         every datacenter is isolated to one another but connected with vast low latency network.
+    
+    iii) Edge Location:
+          host Content delivery network - CloudFront Service
+          Deliver fast content to customers/end users
+          they are also isolated 
+          
+          
+2. AWS VPC (Virtual private cloud):
+  A private virtual network on AWS
+  Allows complete control of network configuration.
+  offers several layers of security controls: complete control on incoming and outgoing traffic
+  other security services deploy into VPC
+ 
+ AWS VPC integrates well with AWS other services, like EC2, ELB, S3, EMR, RDS, etc
+ 
+ Features of VPC:
+ AWS VPC living within a Region, multiple VPC per account.
+ One VPC defines one IP addresses --->  need to confirm this point
+ VPC IP address then subdivide into "Subnet" which is used to divide VPC and allows it to span accross multiple AZs
+ you have full control to create as many subnet as needed.
+ same you can create as many route tables as needed to control the traffic.
+ There are 2 types of subnet --> 
+      i) public (direct access to internet) --> uses Internet Gateway (IGW)
+      ii) private (no direct access to internet) --> uses NAT Gateway
+ NACL (Network access control list) --> control access to subnet and stateless
+ 
+ 
+
+ 
+ 
+         
