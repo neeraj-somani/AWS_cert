@@ -41,6 +41,33 @@ AWS core services :-
  NACL (Network access control list) --> control access to subnet and stateless
  
  
+3. Security Groups: we can create security groups and create roles witin it.
+it filtern traffic and allows only from specific ports that you allowed in your roles defination.
+
+4. compute services:
+AWS EC2 instances: its nothing but servers, where we need to configure softwares (AMI - Amazon machine image), hardwares, networks, etc.
+Need to set-up key pair file in-order to log-in to ec2 instanaces through terminal.
+
+5. AWS Lambda:
+Fully managed serverless compute
+event driven execution
+sub-second metering
+multiple languages supported
+
+6. AWS Elastic Beanstalk:
+     Its a PaaS (platform as a service)
+     It allows quick deployment of your application and reduces management complexity.
+     Allows to control as per need
+     support various security features
+     support various languages
+     
+     Below are the components of Elastic Beanstalk: --
+     Application service
+     Http service
+     operating system
+     language interpreter
+     host
+
 
  
  
