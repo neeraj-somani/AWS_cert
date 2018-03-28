@@ -87,5 +87,27 @@ multiple languages supported
         
         Scaling Out --> initiate / launch new EC2 instance
         Scaling In --> terminate EC2 instance.
- 
-         
+        
+        Steps:--
+        Launch Configuration ---> Auto scaling group ---> auto scaling policy
+        Need below items for Launch Configuration: (What to deploy)
+        AMI
+        Instance Type
+        Security groups
+        Roles
+        
+        Need below items for Auto Scaling Groups: (where to deploy)
+        VPCs and Subnet
+        Load Balancer
+        Minimum Instances
+        Maximum Instances
+        Desired Capacity
+        
+        Need below items for Auto Scaling policy: (when to deploy)
+        Scheduled
+        On-Demand
+        Scale-out policy
+        Scale-In policy
+        
+        
+        
