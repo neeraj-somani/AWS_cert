@@ -54,7 +54,7 @@ event driven execution
 sub-second metering
 multiple languages supported
 
-6. AWS Elastic Beanstalk:
+6. AWS Elastic Beanstalk:-- PaaS service
      Its a PaaS (platform as a service)
      It allows quick deployment of your application and reduces management complexity.
      Allows to control as per need
@@ -68,7 +68,24 @@ multiple languages supported
      language interpreter
      host
 
+7. Application Load Balancer:-- 
+    There are 2 types of load balancer in Elastic Load balancer:
+        1) Classic Load balancer
+        2) Network Load Balancer
+        3) Application Load Balancer: It basically allows different request to applications based on port number for same EC2 instances.
+                Different containers has different port number for allow request.
 
- 
+ 8. Elastic load Balacer: which is nothing but Classic Load balancer
+        it also allows you to balance TCP requests. 
+        Health Threashould = 10, means, it will test server 10 successful consecutive times to test the connection 
+                            before considering it as healthy instance.
+        Unhealthy Threashould = 2, means if you consecutive connection test was unscuccessful then consider it as unhealthy instance.
+        
+ 9. Auto Scaling:-- 
+        It ensures the availability of needed EC2 instaces based on load of your application at any given time.
+        it ensures to make your environment scalable and automate is as much as possible.
+        
+        Scaling Out --> initiate / launch new EC2 instance
+        Scaling In --> terminate EC2 instance.
  
          
