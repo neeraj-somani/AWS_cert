@@ -109,5 +109,26 @@ multiple languages supported
         Scale-out policy
         Scale-In policy
         
+  10. Elastic Block Size: Its deciding about SSD (Solid state drive) vs HDD (Hard Disk Drive)
+            Its all about performance, storage, pricing and reliability.
+            SSD is overall better in performance and reliability but HDD is cheaper.
+            So for back-up or sometime usage HDD is preferable, while for fast performance SSD.
+            
+  11. AWS S3 --> Simple Storage Service
+            Stores virtually unlimited number of objects.
+            Access anytime, anywhere
+            Rich Secuirty controls
+            
+            We basically create bucket and copy file to/from buckets.
+  
+  12. AWS Glacier --> Data Archiving Solution
+        Long term storage at low cost
+        Highly durable
+        Access limited to vault policy
+        
+        Archive ---> Any objects, like photo, video, files
+        Vault ----> its a container for storage. 
+        Vault Access Policy --> who can access and what operations can be performed.
+        
         
         
