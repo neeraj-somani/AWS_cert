@@ -19,26 +19,8 @@ https://www.youtube.com/watch?v=BCgQ0Ep0zSk&feature=youtu.be
 2017 re:Invent video Big Data Architectural Patterns
 https://www.youtube.com/watch?v=a3713oGB6Zk&feature=youtu.be
 
-2. 5-11 april, (7 days) --> to complete video series from acloud.guru or from udemy. Need to finish videos in a sequence I am writing below.
-for below needed videos need 30 hours minimum.
-
-https://acloud.guru/learn/aws-certification-preparation --> 2.5 hours
-https://acloud.guru/learn/aws-lambda --> 1 hour
-https://acloud.guru/learn/python-for-beginners --> 5 hours
-https://acloud.guru/learn/aws-certified-developer-associate --> 16.5 hours
-https://acloud.guru/learn/serverless-for-beginners --> 5 hours
-
-https://acloud.guru/learn/serverless-portfolio-with-react  --> only if time permits
-https://acloud.guru/learn/s3-masterclass --> only if time permits
-
-3. 12 april, Revision of all the learnings. Review and revise notes.
-
-4. 13 - 16 april --> work on lab exercises --> 
-      tip for below: --> go through video before attempting to lab exercise. then do it without following video. trouble shoot by urself.
-    on AWS free tier account --> lab exercises mentioned in course without following videos.
-    on Quiklabs --> if possible (total around 6 hours for developers associate labs)
-    
-5. 17 - 19 april --> understand below topics in more detail:
+5. 5 - 7 april --> understand below topics in more detail: 
+https://aws.amazon.com/certification/certification-prep/
    FAQ’s:-
       AWS S3
       AWS lambda
@@ -51,6 +33,25 @@ https://acloud.guru/learn/s3-masterclass --> only if time permits
       AWS Route53
       AWS EBS (Must read, though it is confusing it comes up a lot in exams)
 
+2. 8 - 14 april, (7 days) --> to complete video series from acloud.guru or from udemy. Need to finish videos in a sequence I am writing below.
+for below needed videos need 30 hours minimum.
+
+https://acloud.guru/learn/aws-certification-preparation --> 2.5 hours
+https://acloud.guru/learn/aws-lambda --> 1 hour
+https://acloud.guru/learn/python-for-beginners --> 5 hours
+https://acloud.guru/learn/aws-certified-developer-associate --> 16.5 hours
+https://acloud.guru/learn/serverless-for-beginners --> 5 hours
+
+https://acloud.guru/learn/serverless-portfolio-with-react  --> only if time permits
+https://acloud.guru/learn/s3-masterclass --> only if time permits
+
+3. 15 april, Revision of all the learnings. Review and revise notes.
+
+4. 16 - 19 april --> work on lab exercises --> 
+      tip for below: --> go through video before attempting to lab exercise. then do it without following video. trouble shoot by urself.
+    on AWS free tier account --> lab exercises mentioned in course without following videos.
+    on Quiklabs --> if possible (total around 6 hours for developers associate labs)
+    
 6. 20 - 21 April --> review and revise notes once again.
 
 7. 22 April --> Take the first mock exam and analyse the results on the same day.
