@@ -1,2 +1,43 @@
-Overview:
-1. 
+Overview: Build and Define Information Security Management System (ISMS) using AWS services
+ 
+1. AWS Shared Responsibility Model:  requires AWS and customers to work together towards security objectives.
+  AWS provides secure infrastructure and services
+  the customer, are responsible for secure operating systems, platforms, and data
+ For Example: for EC2 instances
+  AWS manages the security of the following assets:
+    • Facilities
+    • Physical security of hardware
+    • Network infrastructure
+    • Virtualization infrastructure
+
+ while, customer are responsible for the security of the following assets:
+    • Amazon Machine Images (AMIs)
+    • Operating systems
+    • Applications
+    • Data in transit
+    • Data at rest
+    • Data stores
+    • Credentials
+    • Policies and configuration
+
+Different AWS services for security:
+ IAM Service -->  centrally manage users, security credentials such as passwords, access keys, and permissions policies that control 
+    which AWS services and resources users can access.
+    
+ Regions, Availability Zones, and Endpoints --> Use AWS regions to manage network latency and regulatory compliance. When you store
+ data in a specific region, it is not replicated outside that region. It is your responsibility to replicate data across regions and
+ store in different AZ.
+ 
+ Sharing Security Responsibility for AWS Services (check diagram on page 7 of this doc)
+ AWS offers shared responsibility models for each of the different type of service that we offer:
+• Infrastructure services:  Amazon EC2, EBS, Auto Scaling, and Amazon VPC.
+• Container services:  Examples of container services include Amazon RDS, Amazon EMR and AWS Elastic Beanstalk
+• Abstracted services:  Amazon Simple Storage Service (Amazon S3), Amazon Glacier, Amazon DynamoDB, Amazon Simple Queuing Service
+(Amazon SQS), and Amazon Simple Email Service (Amazon SES). You access the endpoints of these abstracted services using AWS APIs, and AWS
+manages the underlying service components or the operating system on which they reside. 
+
+Note: Each user can have multiple Amazon EC2 key pairs, and can launch new
+instances using different key pairs. EC2 key pairs are not related to the AWS
+account or IAM user credentials discussed previously. Those credentials control
+access to other AWS services; EC2 key pairs control access only to your specific
+instance.
