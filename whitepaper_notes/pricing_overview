@@ -1,0 +1,41 @@
+1. Pay as you go model
+2. pay less for reserve
+3. pay as you grow more
+
+AWS CloudFormation:an easy way to create a collection of related AWS resources and provision them in an orderly and predictable fashion.
+provision meaning:- supply or provide specific actions in advance.
+
+three fundamental characteristics you pay for with AWS: compute, storage, and data transfer out
+
+Free Inbound Data Transfer
+There is no charge for inbound data transfer across all Amazon Web Services in all regions. 
+There are no outbound data transfer charges between Amazon Web Services within the same region.
+
+Some pricing fundamentals for different AWS services:
+1. EC2 --> 
+    1. charges based on clock of server timing --> For example, from the time Amazon EC2 instances are launched until they are terminated, 
+    or from the time Elastic IPs are allocated until the time they are de-allocated.
+    2. Based on EC2 configuration --> AWS region, OS, number of cores, and memory.
+    3. Machine (EC2) Purchase Type --> pay-as-you-Go, reserve, spot instances.
+    4. Number of Instances –-> plan before hand based on load expectation.
+    5. Load Balancing –-> The number of hours the ELB runs and the amount of data it processes
+    6. Detailed Monitoring --> Using CloudWatch, basic is free, but detailed is paid services based on some monthly or hourly rates.
+    7. Auto Scaling --> This service is available at no additional charge beyond Amazon CloudWatch fees.
+    8. Elastic IP Addresses --> You can have one Elastic IP (EIP) address associated with a running instance at no charge.
+    9. Operating Systems and Software Packages --> OS prices included in EC2 instance prices but commercial software license prices 
+    are seperate  and individual.
+    
+2. Simple Storage Service (S3) --> 
+  1. Storage Class --> two types
+      1. Standard Infrequent access --> slightly lower cost
+      2. Standard access --> regular cost
+  2. storage --> The number and size of objects stored in S3
+  3. Requests --> number and type of requests. GET requests incur charges at different rates than other requests, 
+    such as PUT and COPY requests.
+  4. Data Transfer – The amount of data transferred out of the Amazon S3 region.
+
+3. Amazon EBS --> provides block level storage volumes for use with Amazon EC2 instances.Amazon EBS volumes are off-instance storage 
+that persists independently from the life of an instance. They are analogous to virtual disks in the cloud. Amazon EBS provides 
+three volume types: General Purpose (SSD), Provisioned IOPS (SSD), and Magnetic. The three volume types differ in performance 
+characteristics and cost, so you can choose the right storage performance and price for the needs of your applications.
+  
