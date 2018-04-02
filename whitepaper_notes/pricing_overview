@@ -38,4 +38,29 @@ Some pricing fundamentals for different AWS services:
 that persists independently from the life of an instance. They are analogous to virtual disks in the cloud. Amazon EBS provides 
 three volume types: General Purpose (SSD), Provisioned IOPS (SSD), and Magnetic. The three volume types differ in performance 
 characteristics and cost, so you can choose the right storage performance and price for the needs of your applications.
+  1. Volumes – Volume storage is charged by the amount you provision in GB per month
+  2. Input Output Operations per Second (IOPS)
+  3. EBS snapshots -- back up snapshots of your data to Amazon S3 for durable recovery, added cost is per GB-month
+  4. Data Transfer – Inbound data transfer is free, and outbound data transfer charges are tiered.
   
+  Amazon RDS -->
+    1. Clock Hours of Server Time
+    2. Database Characteristics – Database characteristics vary depending on the database engine, size, and memory class.
+    3. Database Purchase Type –
+        1. On-Demand DB Instances, pay for compute capacity for each hour
+        2. Reserved DB Instances, you can make a low, one-time, up-front payment
+    4. Number of Database Instances –
+    5. Provisioned Storage – There is no additional charge for backup storage of up to 100% of your provisioned database storage for an 
+        active DB Instance. After the DB Instance is terminated, backup storage is billed per gigabyte per month.
+    6. Additional Storage – is billed per gigabyte per month.
+    7. Requests – The number of input and output requests to the database.
+    8. Deployment Type – Storage and I/O charges vary, depending on the number of Availability Zones you deploy to.
+    9. Data Transfer – Inbound data transfer is free, and outbound data transfer costs are tiered.
+
+
+Amazon CloudFront --> easy way to distribute content to end users with low latency, high data transfer speeds, and 
+    no required minimum commitments.
+    1. Traffic Distribution – Data transfer and request pricing vary across geographic regions, and 
+        pricing is based on the edge location through which your content is served.
+2. Requests – The number and type of requests (HTTP or HTTPS) made and the geographic region in which the requests are made.
+3. Data Transfer Out – The amount of data transferred out of your Amazon CloudFront edge locations.
