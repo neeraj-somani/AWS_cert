@@ -20,6 +20,7 @@ Identities: A User of a service provider like google.
 
 Q: Can you authenticate using AD and What type of Authetication would to do so??
 A: Yes, using SAML (Security Assertion Mark-up Language). SAML basically provides temporary security credential to sign-on to AWS.
+Need to this check  --> AssumeRoleWithSAML is the request that provides these credentials.
 
 Q: Whether you first authenticate with AD or you first provide temporary security credentials.
 A: First you authenticate from AD and then you provide temporary security credentials.
