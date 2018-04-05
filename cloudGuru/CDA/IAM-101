@@ -1,1 +1,48 @@
 IAM is not Region specific. Its a global.
+
+Root Account: is the AWS account that you setup at first time Sign-in. It has complete Admin Access.
+New Users: we can create new users and every new user is asigned with Access Key ID and secret Access key.
+Password: Access Key ID and Secret Access key is not login-id and password to access consol. Thats why we need to setup password.
+     Although, we can use Access Key ID and Secret access key to connect throgh API or CLI or SDKs.
+
+Users: Individual userid who can perform some action
+Groups: Collection of users, on which we can allocate policies or Roles at one shot.
+Role: Collection of policies bundled together as per need.
+Policy Documents: Its a JSON doc, with details about Individual permissions of different services. (rule and regulations, what is allowed and what not). 
+                  It is universal and can be applied directly to users, groups and Roles. 
+
+Multifactor Authentication is recommended always.
+
+Federation: combinig list of users from one domain and join it (federate it) to list of users of another domain like (facebook, google, active directory).
+Identity Broker: service that allows you to take an identity from one domain and join to another domain.
+Identity Store: Google, facebook.
+Identities: A User of a service provider like google.
+
+Q: Can you authenticate using AD and What type of Authetication would to do so??
+A: Yes, using SAML (Security Assertion Mark-up Language). SAML basically provides temporary security credential to sign-on to AWS.
+
+Q: Whether you first authenticate with AD or you first provide temporary security credentials.
+A: First you authenticate from AD and then you provide temporary security credentials.
+
+You can try this using FB or Google credentials at below link:
+Web Identity Federation Playground --> https://web-identity-federation-playground.s3.amazonaws.com/index.html
+
+Steps how it works:
+
+1. you provide or login using your FB or Google userid and password
+2. you will receive one temporary access token that will have some expiry time frame. 
+    means you need to generate new token once it gets expire.
+3. Then using that token you can obtain temporary secuirty credentials. This is done by clicking "Call AssumeRoleWithWebIdentity" button.
+Important thing to remember is RoleArn --> Role Amazon Resource Name
+4. Then you can perform all allowed actions.
+
+
+
+
+
+
+
+
+
+
+
