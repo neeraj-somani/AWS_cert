@@ -1,0 +1,57 @@
+Part 1 -->
+1. EC2 Pricing model --> 
+  On Demand --> By the second for linux and by the hour for Windows
+  Reserved 
+  Spot --> 
+    > If you terminate the instance you will pay for the hour
+    > If AWS terminate the instance because spot price goes above the bid price, then you get the hour it was terminated in for free.
+  
+  Dedicated Hosts
+  
+2. Different EC2 Instance types:-
+DR Mc GIFT PX 
+
+Exam Q: In given scenario which EC2 instance would you choose.
+A: Need to understand "{DR Mc GIFT PX}" .
+
+Part 2 --> EBS (Elastic Block Size) 
+Think of it as Disk on top of CPU. 
+
+It allows you to create storage volume and attach that to EC2 instances.
+Below are different activities that you can perform on these volumes:
+1. you can create your own file systems
+2. run DB
+3. etc... any other way you can use block size
+
+EBS are usually placed in AZ and replication and security is guruantied.
+
+EBS Volume Types:
+1. General Purpose SSD (GP2) 
+    > balance in price and performance
+    > upto 10000 IOPS
+    
+2. Provisioned IOPs SSD (IO1)
+    > designed for I/O intensive applications such as large RDBMS, NoSQL
+    > more than 10000 IOPS (upto 20000)
+    
+Magnetic storage Volume
+3. Throughput Optimized HDD (ST1)
+    > Big Data
+    > Data Warehouse
+    > Log Processing
+    > They cant be bootable
+    > sequnential read/write
+    > frequently accesss workload
+
+4. Cold HDD (SC1)
+    > Low cost storage
+    > file server 
+    > They cant be bootable
+    
+5. Magnetic (Standard)
+    > lowest cost volumes that is bootable
+    
+V V Important:
+  > you can not mount one EBS volume to multiple EC2 instances, instead use EFS.
+  
+    
