@@ -54,4 +54,8 @@ Magnetic storage Volume
 ** V V Important:
   > you can not mount one EBS volume to multiple EC2 instances, instead use EFS.
   
-    
+
+
+Some important points to remember:
+1. subnet = 1. availability zone
+
