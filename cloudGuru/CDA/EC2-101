@@ -51,7 +51,7 @@ Magnetic storage Volume
 5. Magnetic (Standard)
     > lowest cost volumes that is bootable
     
-V V Important:
+** V V Important:
   > you can not mount one EBS volume to multiple EC2 instances, instead use EFS.
   
     
