@@ -58,4 +58,148 @@ Magnetic storage Volume
 Some important points to remember:
 1. subnet = 1. availability zone
 
+Q: what happenes to EBS volume attached to EC2 instance when you terminate the instance?
+A: By default it will delete the volume.
+
+Q: What is Volume in EBS?
+A: Volume is Disk (SSD or HDD) where we perform different type of storage operations.
+
+Q: What are security groups in EC2?
+A: Its a virtual firewall. 
+
+While launching EC2 instances we need to know about two important keys.
+1. public key: that is stored in AWS
+2. private key: that is stored by individual user. There should be only one private key per user for specific EC2 instances.
+
+Task: Need to perform EC2 Lab and access EC2 instance through terminal. 
+Below is the link provided by acloud guru to do the same. but I can find in oniline as well.
+Also, need to undertsnad how to terminate any running EC2 instances. 
+
+https://help.acloud.guru/hc/en-us/articles/115001389874-SSH-on-Linux-syntax-passphrases-
+Below command looks like this:
+ssh ec2-user@public-Key -i private-key-file
+Below is the actual commands:--
+ssh ec2-user@##.##.##.## -i my-key-pair.pem 
+   or 
+sudo ssh ec2-user@##.##.##.## -i my-key-pair.pem 
+   or
+sudo ssh ec2-user@##.##.##.## -i  /path/my-key-pair.pem 
+
+Difference between system Status check vs Instance Status check
+1. System status check: This is to check that instance is reachable and packages are deliving to instances.
+2. Instance Status check: this is to check that operating system installed on that instance (server) accepting traffic.
+
+We cant decrypt the default volume provided by EC2 instances.
+
+Summary so far:
+1. By default EC2 instance terminate option is disabled. Need to check that box to enable it.
+2. Root volume (default) of EC2 instance can't be encrypted directly. means, EBS Root volume of your default AMI's cant be encrypted.
+      For windows need to use third party tools or need to make a copy of the EC2 instance using AMI and encrypt it.
+3. Any other added additional volumes can be encrypted.
+4. On an EBS backed instance, the default action for the root volume to be deleted when instance terminated.
+
+Security Groups:
+This is place where we define what are the ports, and service call that we allow AWS to accept. 
+
+CLI commands:
+1. to login to AWS using terminal
+ssh ec2-user@public-key -i private-key-file
+
+2. sudo su --> only if you want to update anything to instances 
+yum update -y    <--  then run this command
+above command basically updating kernel with all security patches, 
+
+3. yup install httpd -y
+above command install apache on EC2 instance. We dont need to do this every time. its just first time when we create new EC2 instance.
+
+4. service https start
+above command will start the apache service.
+
+5. chkconfig httpd on
+above command will make sure to launch and install apache everytime we start EC2 or reboot EC2.
+
+6. cd var/www/http
+this is directory where everything is publically accessible. So for example if we create a website and keep all our pages here. 
+That website is then publically accessible.
+
+nano index.html
+Above command will create an "index.html" text file, as nano is a text editor api and the type below line into file
+
+<html><h1>Hello Cloud Gurus!</h1></html>
+
+then hit ctrl+x then enter, then yes hit enter.
+
+7. open web browser, place your public ip address and you will be able to see your webpage.
+
+imp points to remeber about security groups:
+1. Any update or changes happen to security group, apply or affect immidiately.
+2. Any rule that you apply to inbound automatically apply to outbound. This is called stateFul.
+    Hence, security groups are STATEFUL.
+    But Newtork Access Control Groups are STATELESS, this will be covered in VPC section.
+3. By default, all inbound traffic is denied, but all outbound traffic is allowed. 
+     But we specifically mention in our security rule, what are the traffics that we allow for inbound. 
+     We can't specify which one (ip address or protocol) to deny in our rules.
+4. you can have any number of EC2 instances within a security groups.
+5. you can have multiple security groups attached to an EC2 instances.
+6. If you can't block any specific IP addresses using security groups then use Newtork Access Control lists.
+7. you can specify allow rules but not deny rules.
+
+
+Volumes and Snapshots:
+Volumes exsits on EBS, and its a virtual hard disk.
+Snapshots: exists on S3. Its nothing but point in time copy of Volumes.
+Snapshots are incremental means, next time when you take snapshot it will copy only blocks of volume that has chnaged.
+
+Recommendation for snapshot:
+Stop the instance before taking snapshot. However, you can do it without stoping the EC2 instance as well.
+
+Points to remember:
+1. you can create AMI's from both volumes and snaps.
+2. you can change volume size and storage type on the fly, while making copy.
+3. Volume should always be in same AZ where EC2 instance is.
+4. To move one EC2 instance from one AZ/Region to another, need to create snap or AMI, then copy it to new AZ/Region.
+
+Volumes and Snapshots security --
+1. snapshots of encrypted volumes are encrypted automatically.
+2. volumes restored from encrypted snapshots are also encrypted automatically.
+3. you can share snapshots but only if they are unencrypted. These can be shared as public or with other AWS accounts.
+
+Elastic File system:
+EFS is a file service for EC2, its a block based service. Its elastic in nature mean, you can add or remove files to add or shrink storage.
+Features:
+1. Supports the Network file system version (NFSv4) protocol
+2. you only pay for the storage you use.
+3. can scale upto the petabytes.
+4. can support thousands of concurrent NFS connections 
+5. data is stored across multiple AZs within a region
+6. read after write consistency
+
+Multiple EC2 instances connecting to same EFS and accessing same files. EFS is basically storing files centrally.
+you can provide access level restrictions to directory and file level.
+Hence, Multiple EC2 can connect to one EFS but one EC2 can connect to only one EBS.
+
+AWS CLI using credentials:
+on terminal --> ssh ec2-user@public-key -i private-key-file
+> sudo su 
+
+once you are in you can use below aws commands to work on different aws services:
+1. aws configure
+  AWS Access Key ID: from csv file / screen shot that you took
+  AWS secrete Access Key: from csv file / screen shot that you took
+  Default region Name: provide region that you want
+  Default Output format: leave blank and hit enter
+
+2. aws s3 ls --> this command will give list of all buckets 
+3. aws s3 help --> this will provide list of commands
+4. to check where credentials are stored:
+  1. cd ~  to go to home directory
+  2. cd .aws --> this is hidden file directory
+  3. ls
+  4. 
+  
+5. aws ec2 describe --> will list all available EC2 instnaces.
+6. aws ec2 terminate-instances --instance-ids i-03f709gjh79
+above command is used to terminate EC2 instance. where "i-03f709gjh79" is intance id that you can get from EC2 instance describve command.
+7. 
+
 
