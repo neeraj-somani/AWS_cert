@@ -197,9 +197,37 @@ once you are in you can use below aws commands to work on different aws services
   3. ls
   4. 
   
-5. aws ec2 describe --> will list all available EC2 instnaces.
+5. aws ec2 describe-instances --> will list all available EC2 instnaces.
 6. aws ec2 terminate-instances --instance-ids i-03f709gjh79
-above command is used to terminate EC2 instance. where "i-03f709gjh79" is intance id that you can get from EC2 instance describve command.
-7. 
+above command is used to terminate EC2 instance. where "i-03f709gjh79" is intance id that you can get from EC2 instance describe command.
+7. aws ec2 describe-images --> all AMI's created by user
+8. aws run instances --> to create or run instances
+9. aws start instances --instance-ids i-03f709gjh79 --> to start already created instances
+10. aws stop instances --instance-ids i-03f709gjh79 --> to stop already created instances
+
+EC2 instances Bash scripting:
+1. These are the scripts that run when you initially launch or start your EC2 instance.
+2. we can put these commands in the EC2 instance, configuration window, under advance settings.
+3. 
+
+Lambda -- its a event driven compute service
+Q: what are the currently available blueprints or integrations that can trigger the Lambda function.
+A: API Gateway, CloudWatch, CloudFront, AWS IOT, etc...
+
+Imp Poimts:
+Every time user sends any request that triggers lambda function, you are going to trigger a new lambda function.
+
+Q: What are the different languages that are supported by Lambda?
+A: Java, Python, Node.js, C#
+
+Q: How Lambda is priced?
+A: 
+Number of requests:-- first 20 million requests are free. After that 20 cents per 1 million requests.
+Duration of function run:-- duration calculation is start of the execution of function till the function returns or terminates 
+      rounded upto 100 ms, and amount of memory you used during function run.
+      
+      
+
+
 
 
