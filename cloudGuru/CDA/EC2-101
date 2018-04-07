@@ -224,7 +224,48 @@ Q: How Lambda is priced?
 A: 
 Number of requests:-- first 20 million requests are free. After that 20 cents per 1 million requests.
 Duration of function run:-- duration calculation is start of the execution of function till the function returns or terminates 
-      rounded upto 100 ms, and amount of memory you used during function run.
+      rounded upto 100 ms, and amount of memory you used during function run. The maximum run time for Lambda function is 5 min.
+
+Lambda Exam Tips:-
+1. Lambda scales out (not up) automatically.
+2. Lambda functions are independent, 1 event = 1 function
+3. Lambda functions can trigger other lambda functions, 1 event can = X lambda functions if functions trigger other functions
+4. Lambda is serverless. Its good to know what services are serverless in AWS, like DynamorDB, API Gateway, etc.
+5. AWS X-Ray service, can allow you to debug code what is happening. Very helpful incase of Architecture gets complicated.
+6. Lambda can operate globally, you can do things like back-up of S3 bucket to another bucket
+7. its good to know what services can triggers Lambda functions.
+
+https://github.com/ACloudGuru/S3
+
+lecture --> EC2 Instance metadata and user data
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+
+In this link we will see how to get EC2 instance public IP address through CLI, while we already login to EC2 instance through CLI.
+>> curl http://169.254.169.254/latest/meta-data
+
+above command will give us details about different directory related to EC2 instance.
+
+>> curl http://169.254.169.254/latest/meta-data/public-ipv4
+
+above command will provide public ip-address of EC2 instance.
+
+Q: How you will get public-ip address while you logedin to EC2 through CLI.
+A: you need to look to meta-data of EC2 using above command and not the user-data.
+
+Elastic Load Balancer -- 
+Its a service that spreads the load of traffic, across different webservice.
+
+Instances monitored by ELB are reported as: InService or OutOfService
+Need to understnad the Health Check and Unhealty check
+ELB has there own DNS name; you will never be given an IP address for ELB 
+ELB FAQ is imp for exam.
+
+
+
+
+
+
+
       
       
 
