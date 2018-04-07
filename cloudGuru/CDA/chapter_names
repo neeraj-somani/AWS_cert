@@ -22,7 +22,7 @@ SAA - cloud guru chapters
 1. Intro to course  -- (90 % same)
 2. AWS - 10,000 Foot Overview -- (100%)
 3. Identity Access Management (IAM) -- (100%)
-4. AWS Object Storage and CDN - S3, Glacier and CloudFront -- 
+4. AWS Object Storage and CDN - S3, Glacier and CloudFront -- (done)
 5. EC2
 6. Route 53 -- (100%)
 7. Databases on AWS 
@@ -31,5 +31,5 @@ SAA - cloud guru chapters
 10. The Real World - Creating a fault tolerant Word Press Site (done)
 11. Preparing for the Exam - White Paper Reviews (done)
 12. Well Architected Framework (done)
-13. Additional Exam Tips
-14. Thank You, Good Luck & Coming Soon
+13. Additional Exam Tips (done)
+14. Thank You, Good Luck & Coming Soon (done)
