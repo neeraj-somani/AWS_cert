@@ -1,0 +1,35 @@
+CDA - cloud guru chapters
+
+1. intro to course 
+2. AWS - 10,000 Foot Overview (done)
+3. Identity Access Management (IAM) (done)
+4. EC2 (done)
+5. S3 (done)
+6. Databases Overview & Concepts (done)
+7. Dynamo DB (done)
+8. SQS (done)
+9. SNS (done)
+10. SWF (done)
+11. ElasticBeanstalk (done)
+12. CloudFormation (done)
+13. AWS Shared Responsibility (done)
+14. Route 53 and DNS (done)
+15. VPC (done)
+16. The Exam (done)
+
+SAA - cloud guru chapters
+
+1. Intro to course  -- (90 % same)
+2. AWS - 10,000 Foot Overview -- (100%)
+3. Identity Access Management (IAM) -- (100%)
+4. AWS Object Storage and CDN - S3, Glacier and CloudFront -- 
+5. EC2
+6. Route 53 -- (100%)
+7. Databases on AWS 
+8. VPC -- (100%)
+9. Application Services -- SQS, SNS, API Gateway, Kinesis, Elastic Transcoder
+10. The Real World - Creating a fault tolerant Word Press Site
+11. Preparing for the Exam - White Paper Reviews
+12. Well Architected Framework
+13. Additional Exam Tips
+14. Thank You, Good Luck & Coming Soon
