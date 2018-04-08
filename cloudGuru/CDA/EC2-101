@@ -260,6 +260,104 @@ Need to understnad the Health Check and Unhealty check
 ELB has there own DNS name; you will never be given an IP address for ELB 
 ELB FAQ is imp for exam.
 
+Q: Below are SDK's available in AWS:
+A: 
+Android, iOS, JavaScript
+JAVA, Node.js, PHP, Python, C++, .net, Ruby, GO
+
+Q: What is Default region in AWS
+A: US-EAST-1
+some SDK has default region (JAVA)
+Some SDK don't have default region (Node.js)
+
+Summary and Exam Tips:
+1. Know the difference between different type of EC2 instances 
+    On-Demand, Reserved, Spot, Dedicated-Host
+Exam question: a scenarion will be given and will ask which of these will suit the scenario and cost efficient.
+
+2. Remember imp for spot instances:
+  if you terminate instances than you pay for the hour
+  if AWS terminate the instance than you get that for free for that hour
+
+EBS Consisted of:
+1. SSD, GP2
+2. SSD, IO1
+3. HDD, ST1 -- not bootable
+4. HDD, SC1 -- not bootable
+5. HDD, Magnetic -- bootable
+
+you can not mount one EBS volume to multiple EC2, as compared to EFS.
+
+Termination protection is turned off by default, you must turn it on.
+The default action for root EBS volume is to delete when EC2 instance is terminated. Although, we can turn-it off.
+Root volumes cant be encrypted by default. you can encrypt root volume by using third party tools
+Any other additional volumes can be encrypted
+
+Volumes exsits on EBS, 
+Snapshots exist on S3
+you can take a snapshot of volume, that will store on S3
+Snapshots are point in time copies of volume
+snapshots are incremental, this means that next time only the block that has changed is going to move since your last snapshot moved to S3.
+
+EBS vs Instnace Store:
+
+1. Instance Store volume is known as Ephemeral storage
+2. Instance Store volumes can not be stopped. If underlying host fails, you will loose data.
+3. EBS backed instances, can be stopped. you will not loose your data while doing this.
+4. you can reboot both EBS and Instance Store and will not loose your data.
+5. By default root volumes will be deleted, on termination. However with EBS volumes, we can configure AWS to keep the EBS volume 
+      on instnace termination.
+      
+Q: How to take the snapshot of RAID array??
+Problem: when you take snapshot, the snapshot excludes data held in chache by application or OS. This tends not to matter in 
+single volume storage, but for multi-volume of the RAID array, its a problem due to interdependencies of the array.
+
+Solution: Take a application consistent snapshot.
+Now how to achieve that:
+Stop application from writing to disk.
+Flush all cache to disk.
+
+How to achieve above steps:
+1. Freeze the file system
+2. Unmount the RAID Array
+3. Shutting down the associated EC2 instances.
+
+
+AMI Exam Tips:
+AMI's are reginal. 
+you can only launch AMI from the region it is stored.
+However you can copy AMI from one region to other.
+
+CloudWatch for EC2:
+By default standard monitoring is every 5 min
+Detailed monitoring 1 min
+
+CloudWatch is for performance monitoring
+CloudTrail is for auditing
+
+Q: What are the thing I can do with Cloudwatch?
+A: 
+Dashboard: for monitoring
+Alarms: notify for perticular threshold
+Events: responde to state chnages of your AWS resources
+Logs: helps in aggregate, monitor and store logs.
+
+Roles:
+1. Roles are more secure than storing your access key and secrete key
+2. Roles are easier to manage
+3. Roles can be assigned to EC2 instance even AFTER it is being provisioned. Also, we can attach policy to any ROLE at any time.
+4. Roles are universal, can be used in any region.
+
+ECS stands for Elastic Container Service. It manages running containers on your EC2 instances. It does not act as a scheduler, 
+and it is neither serverless nor software that you manage. 
+Further information: http://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html
+
+
+
+
+
+
+
 
 
 
