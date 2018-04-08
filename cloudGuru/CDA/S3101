@@ -1,0 +1,30 @@
+S3 (Simple storage Service)
+Secure, durable, scalable, object storage.
+
+Object based vs Block Based:
+Object based: (S3) means storage for text files, photo files, video files, log files, etc.
+Block Based: (EBS - Elastic Block Storage, volumes like HDD, SDD) This is mostly used for OS installation, DB Installation, etc.
+
+S3 basic points to remember:
+1. S3 stirage is object based
+2. it allows to store files of size 0 bytes to 5 TB.
+3. Storage is unlimited. 
+4. S3 bucket is nothing but folders, S3 bucket name is globally unique. Means S3 bucket names shoudl be unique across all regions.
+5. Whenever we create bucket, AWS creates a DNS for it, which looks like below:
+https://s3-region-name.amazonaws.com/bucket_name
+for example:-- https://s3-eu-west-1.amazonaws.com/acloudguru
+6. Whenever S3 bucket file upload was successfull, user will receive 200 code as successful HTTP upload response.
+
+Data Consistency model for S3:
+1. Read after Write consistency for PUT request of new objects
+2. Eventually consistent (can take upto few seconds to propogate) for overwrite PUTs and DELETEs. Means for any update or delete request.
+
+Very very important::
+Updates in S3 are atomic updates.
+Atomic updates: means when ever you update anything on S3, you will either get new data or old data. 
+      you will never get partially updated data.
+
+S3 is simple Key, Value store
+Key: Object Name
+Value: Data, made up of sequence of bytes
+Version ID:
