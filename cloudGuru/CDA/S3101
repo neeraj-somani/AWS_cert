@@ -27,4 +27,51 @@ Atomic updates: means when ever you update anything on S3, you will either get n
 S3 is simple Key, Value store
 Key: Object Name
 Value: Data, made up of sequence of bytes
-Version ID:
+Version ID: for versioning
+meta-data: data about data
+Subresources:
+      1. Access control List and bucket policies: it consist of permission details related to files or buckets
+      2. Torrent: S3 supports bit-torrent protocols
+
+Some design related scenarios and questions:
+Exam Question: how to optimize S3 if we storing files every second, and reading those files.
+Answer: As we know S3 stores objects files based on object name and sort them in alphabatical order. 
+            So, if we can add some random alphabates at the start of each file, that will help S3 to sort and distribute objects 
+            and imporve performance.
+
+---------- important S3 features -----------
+S3 tiered storage: 
+life cycle management:
+versioning:
+encryption:
+security:
+
+S3 - storage tieres/classes:-
+1. S3 standard --> highly durable (11X 9's), highly available (99.99%). concurrent facility fault talarant (2).
+2. S3 - IA (Infrequent Access) --> less frequently access but access requires rapid response. concurrent facility fault talarant (2).
+3. Reduced Redundency Storage --> durability and availability (99.99%). little less durable in case of system failure. 
+          use case screnario: objects which are ok to be lost in case of failure or due to some unknown risk, because data can be lost
+          as less redundency. concurrent facility fault talarant (1).
+4. Glacier --> very cheap, used for archival only. Need 4-5 hours to retrive.
+
+S3 - pricing:
+1. for storage
+2. for each access/ update request
+3. storage management pricing
+4. Data Transfer pricing
+5. Transfer Acceleration: its a service that allows users to accelerate speed of there data flowing accross globe with speed using 
+      AWS edge location, CloudFront technology.
+ 
+S3 FAQs very important.
+
+S3 Encryption:
+1. Client Side Encryption
+2. Server Side Encryption
+      1. Server Side Encryption with Amazon S3 Managed Keys (SSE-S3)
+      2. Server Side Encryption with KMS {Managed Keys/ Key Manages Service} (SSE-KMS)
+      3. Server side encryption with customer provided keys (SSE-C)
+3. Control Access to Buckets using either ACL (Access Control List) or Bucket policies
+4. By default buckets and objects stored in buckets are private.
+
+
+
