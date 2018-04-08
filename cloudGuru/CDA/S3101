@@ -73,5 +73,19 @@ S3 Encryption:
 3. Control Access to Buckets using either ACL (Access Control List) or Bucket policies
 4. By default buckets and objects stored in buckets are private.
 
+Important Exam Question:
+Q: Static Website hosting name within S3 bucket:
+http://bucket-name.s3-website-region-name.amazonaws.com
+
+for example: http://acloudguru.s3-website-us-east-1.amazonaws.com
+
+Q: what exactly you can do with static website hosting.
+A: you can only have static html pages. you can't do dynamic website scripting like PHP, .net, etc.
+
+
+S3 - Cross Origin Resource Sharing (CORS)
+as name specified, this is used to access data from one S3 bucket into another S3 buckets.
+We need to configure the S3 buckets accordingly. This can be done across region as well, as S3 buckets are globally unique.
+
 
 
