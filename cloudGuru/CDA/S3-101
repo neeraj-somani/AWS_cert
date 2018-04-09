@@ -154,8 +154,10 @@ for example:- you basically back-up your data first to storage gateway and then 
         > unlimited storage, although file size should not exceed 5 TB. 
 2. Volume Interface (New Name) --> iSCSI based block storage
       > Gateway-cached Volumes (old Name) --> use this only for frequently accessed files. 
+                  ** Each volume can store upto 32 TB in size, and 32 volumes at max can be stored. 1 PB (32X32)
       > Gateway-stored Volumes (old Name) --> use this to store entire dataset and take back-up asynchronously point in time snapshots 
                   basis. This is used when you need low-latency for your entire dataset.
+                  ** Each volume can store upto 16 TB in size, and 32 volumes at max can be stored. 512 TB (16X32)
       
 3. Tape Interface --> (New Name) --> iSCSI based virtual Tape storage
       > Gateway-Virtual Tape Library (Old Name)
@@ -163,6 +165,41 @@ This is basically used for limitless collection of virtual tapes.
 Need to understand difference between Virtual Tape Library and Virtual Tape Shelf
 Virtual Tape Library --> backed-up by Amazon S3. Access is immidiate.
 Virtual Tape Shelf --> backed-up by amazon Glacier. Need some hours to access these.
+ ** 1500 virtual tapes (1 PB)
+ 
+ General Facts about storage Gateway -->
+      1. Can be deployed on-premises or EC2 instances
+      2. Can schedule snapshots
+      3. can use Storage Gateway with Direct Connect.
+      4. can implement bandwidth throttling
+      5. Need some specific Hardware and softwares. you can check that in documentation.
+
+
+** Need to capture Exam Tips from this lectures.
+
+SnowBall:
+It is used to move/transfer to AWS, using snowBall device. This is designed for high volume of storage in fast speed.
+
+Previously, snowball is known as import/export service. They renamed it to SnowBall.
+
+3 types of snowball:
+1. Snowball which I explained above. Basically, import to S3 and export from S3. it can store up to 80 TB only. No compute capacity.
+2. Snowball Edge: it is same as SnowBall but can store upto 100 TB of data. and with high compute capacity. It can be clustered as well.
+3. Snowmobile: you can move upto 1 XB exa bytes of data. 100 PB of data using AWS truck size snowmobile device. 
+      It has huge compute and storage capacity.
+  
+S3 Transfer Acceleration:
+This is utilized to transfer your uploades to S3 using CloudFront Edge Location. 
+You can use different URL to transfer data to Edge location and then from there to S3.
+
+The URL could be like:
+bucklet-name.s3-accelerate.amazonaws.com
+
+for example:
+acloudguru.s3-accelerate.amazonaws.com
+
+
+      
 
 
 
