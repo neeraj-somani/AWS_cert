@@ -1,0 +1,19 @@
+things Not covered in the course as per discussion from people:
+
+1. Options on authenticating using LDAP together with IAM. LDAP integration, S3 optimization
+2. Know/review limits for S3, DynamoDB, EC2, SNS, and SQS. Understanding the service limits would have helped with at least 5 questions.
+3. which AWS services are key-based and which platforms Elastic Beanstalk supports (in addition to which resources it can create, as mentioned by the OP)
+4. DynamoDB questions about hash and range keys
+5. How do you register devices for Amazon Mobile Devices and SNS Mobile Push notifiations. http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-devicetoken.html
+
+one exam question:
+The exact question was along the line of You have created an app that uses SNS Mobile Push notifications for a number of mobile devices. 
+However the client does not know how to add the large number of devices. You think you should be able to add the devices to 
+Amazon Mobile Devices easy enough: you do (choose one). Let Amazon Mobile Devices and the application take care of it. (Something else). 
+Upload a CSV of all the token serial numbers into the AWS Console. You use the CreatePlatformEndpoint API to upload the device serial 
+numbers (or tokens, can't remember).
+
+Answer:
+use CreatePlatformEndpoint is correct way to do. You can add device tokens and registration IDs to Amazon SNS using the following methods: • Manually add a single token to AWS using the AWS Management Console • Migrate existing tokens from a CSV file to AWS using the AWS Management Console • Upload several tokens using the CreatePlatformEndpoint API • Register tokens from devices that will install your apps in the future
+
+
