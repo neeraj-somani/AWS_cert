@@ -115,6 +115,33 @@ for example:, in-case of some important content that got cached at edge location
 Very important for exam:
 CloudFront can be used for both Download and upload files.
 
+S3 Security and Encryptions:
+Security points:
+1. By default all newly created buckets are PRIVATE.
+2. We can setup buckets security / access controls using below 2 ways:
+      Bucket Policies --> these are access controls at bucket level
+      Access Control List --> these are access controls at individual objects level. 
+3. We can create / configured access logs for S3 buckets. Which basically logs every request made to bucket. This can be saved to another S3 buckets.
+
+Encryptions points:
+1. In-Transit --> when you are transfering data to/from S3 bucket.
+      > SSL/TLS encryption. (https)
+2. At-Rest --> when you encrypt data that is sitting in your buckets.
+      > Server Side Encryption --> 
+            1. S3 Managed Keys -- SSE-S3:- In this each object is encrypted with unique key, applying strong MFA. 
+                  And with addition to this, Amazon additionaly encrypt the key with a master key, and amazon regularly rotate that master key.
+                  In this Amazon handles all the keys for you, that is AES-256.
+            2. AWS Key Management service - Managed Keys -- SSE-KMS:- It's mostly similar to SSE-S3 but It additionally comes with an 
+                        envolop key that protects your data's encryption key. Also, it comes with cloudTrail (Auto Trail) details, means you can 
+                        see who is accessing what.
+                        
+            3. SSE with Customer provided keys -- SSE-C --> customer provides the encryption keys.
+            
+        > Client Side Encryption --> this is basically where client manage encryption/decreption and upload the data to S3.
+        
+
+S3 Storage Gateway --> 
+
 
 
 
