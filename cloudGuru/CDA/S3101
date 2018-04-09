@@ -88,5 +88,12 @@ as name specified, this is used to access data between different services.
 Q: What to do if one Domain Name (DNS) trying to interact with another Domain Name (DNS) and unable to make connection??
 A: Enable CORS for the Domain which is trying to iteract.
 
+S3 objects versioning:
+1. stores all versions of an objects, including writes and delete
+2. great back-up tool
+3. once enabled versioning can't be disabled, it only can suspended.
+4. Integrate with life cycle rules
+5. we can use MFA for deleting an objects.
+
 
 
