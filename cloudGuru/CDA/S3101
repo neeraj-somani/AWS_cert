@@ -95,5 +95,28 @@ S3 objects versioning:
 4. Integrate with life cycle rules
 5. we can use MFA for deleting an objects.
 
+CDN / CloudFront:
+what are 2 options you can choose for CDN:
+TTL (Time to Live) --> always in seconds. Also, upto what time you want that content to stay in Edge Location.
+
+Q: How you will make sure only paid customer view your content? How you will make sure to secure your content on CDN?
+A: In CDN consol --> Restrict viewer access --> Always use signed cookies or signed URL
+
+Geo-Restricts Options:
+we can create Whitelist and Blacklist in cloudFront. 
+Whitelist --> allowed contries
+Blacklist --> restrcited contries
+
+Invalidation option in CloudFront:
+Invalidation basically removes the objects from Edge location cache memory, but it cost money. This is needed when you wants to remove 
+objects before TTL time.
+for example:, in-case of some important content that got cached at edge location due to some mistake, we can remove them using invalidation.
+
+Very important for exam:
+CloudFront can be used for both Download and upload files.
+
+
+
+
 
 
