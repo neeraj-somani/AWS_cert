@@ -141,6 +141,31 @@ Encryptions points:
         
 
 S3 Storage Gateway --> 
+1. This is basically used for back-up purposes. This is an efficient and fast way of backing-up data then coping data directly.
+      Once you set this up, you don't need to write code or copy your data manually.
+for example:- you basically back-up your data first to storage gateway and then its being replicated to all S3. Lets see how??
+
+4 different types of Storage Gateway:-
+
+1. File Interface --> NFS (Network File System Protocol) --> this is used to access files over a network in a secure way.
+        > also consider it as virtual file server, where we are uploading files first using NFS and then AWS will replicate that 
+            to S3 using some encryption. Data access, latency and transfer between data center and gateway is 
+            fully managed and optimized by AWS.
+        > unlimited storage, although file size should not exceed 5 TB. 
+2. Volume Interface (New Name) --> iSCSI based block storage
+      > Gateway-cached Volumes (old Name) --> use this only for frequently accessed files. 
+      > Gateway-stored Volumes (old Name) --> use this to store entire dataset and take back-up asynchronously point in time snapshots 
+                  basis. This is used when you need low-latency for your entire dataset.
+      
+3. Tape Interface --> (New Name) --> iSCSI based virtual Tape storage
+      > Gateway-Virtual Tape Library (Old Name)
+This is basically used for limitless collection of virtual tapes.
+Need to understand difference between Virtual Tape Library and Virtual Tape Shelf
+Virtual Tape Library --> backed-up by Amazon S3. Access is immidiate.
+Virtual Tape Shelf --> backed-up by amazon Glacier. Need some hours to access these.
+
+
+
 
 
 
