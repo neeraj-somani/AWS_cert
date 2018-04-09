@@ -84,8 +84,9 @@ A: you can only have static html pages. you can't do dynamic website scripting l
 
 
 S3 - Cross Origin Resource Sharing (CORS)
-as name specified, this is used to access data from one S3 bucket into another S3 buckets.
-We need to configure the S3 buckets accordingly. This can be done across region as well, as S3 buckets are globally unique.
+as name specified, this is used to access data between different services.
+Q: What to do if one Domain Name (DNS) trying to interact with another Domain Name (DNS) and unable to make connection??
+A: Enable CORS for the Domain which is trying to iteract.
 
 
 
