@@ -1,2 +1,28 @@
-DynamoDB and RDS FAQs
+5 different AWS services in DB world:
+DynamoDB --> Its a NO SQL db
+It contains:
+  Collection == Table
+  Documents  == Rows
+  Key Value pairs == each column value pair (fields)
 
+RDS --> OLTP (mostly)
+Read FAQs
+currently below RDBs are available in AWS: MySQL, PostgreSQL, MS SQL Server, Aurora, MariaDB, Oracle
+
+Elastic Cache --> 
+  A web service that makes it easy to deploy, operate and scale in-memory chache in cloud.
+  chache retrival is faster than disk-based databases.
+  It supports 2 in-memory chache engines:
+  1. Memcached
+  2. Redis
+
+RedShift --> OLAP
+
+Managed DB Migration services --> In memory caching
+  This service allows you to migrate huge production Databases to AWS. AWS takes care of every aspects of migrations like Datatypes 
+  transformation, compression, parallel transfer for faster migration. Even any events happening to Production DB at the time of migration,
+  will reflect to your AWS migration as well.
+  This service even able to convert most of your source custom code like views, stored procedures, schema, triggers, functions, etc 
+  into target.
+  
+  
