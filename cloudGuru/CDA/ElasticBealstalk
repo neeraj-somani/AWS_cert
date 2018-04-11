@@ -1,0 +1,27 @@
+ElasticBeanstalk:
+ >> This is to quickly deploy, scale, and monitor applications, with the ability to provision infrasture as per application need.
+ >> Just upload the code (in zip or war bundle) in any allowed scripting languages, and Beanstalk will take care of infrasture, like EC2, ELB, RDS
+ >> This is build for developers to use AWS without knowing anything about AWS.
+ >> Optionally you get control to configure your complete infrasture as per your need, EC2 instance type, memory (volume) type, AZ, etc
+ >> user pay for services/resources that got provisioned as part of application run but ElasticBeanstalk itself is free.
+ >> Users can have multiple version of application.
+ >> Application can be split into tiers (Web-tier, application-tier, Database-tier) like (backend, front-end)
+ >> Any updates to application can be done 1 instance at a time, or % percentage of instances, immutable updates (which means, all updates
+      will launch new instance and once updates successfull to new instance, it will terminate previous instances)
+ >> if RDS instance created by ElasticBeanstalk, it will be deleted when user delete application. But if you created RDS seperately 
+      and using that RDS instance as part of ElasticBeanstalk application, then RDS instance will stay even if you delete application.
+ >>
+  
+
+Exam Tips:
+  Different kinds of plateforms supported by ElasticBeanstalk:
+  Below are currently available configurations:-
+    1. Preconfigured --> Node.js, PHP, Python, Ruby, Java, Go, .Net, Tomcat, Packer
+    2. Preconfigured Docker --> GlassFish, Go, Python
+    3. Generic --> Docker and multi-container Docker
+  Below are currently available Environment Types:-
+    1. Single instance
+    2. Load Balancing, auto scaling
+    
+ 
+  
