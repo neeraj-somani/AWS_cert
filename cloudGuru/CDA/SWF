@@ -1,0 +1,31 @@
+SWF (Simple Workflow Service):
+ >>  This service makes it easy to co-ordinate work across distributed application components. 
+ >>  This is managed based upon terms like tasks, workers, deciders, domains, brokers
+ >>  workers and deciders can run on EC2 or any firewall secured machines 
+ >>  SWF maintains the application's state durably, workers and deciders run independently, and scale quickly.
+ >>  max TTL (time to live) for SWF workflow is 1 year (value is always mesured in seconds)
+  
+  tasks --> individuals jobs assiged to workers
+  Workers --> program scripts that interact with SWF to get tasks, work on it and return results (completed or pending).
+  Decider --> controls the coordination of tasks. means ordering (need to process in specific order), 
+      concurrency (which tasks can be performed in parallel), scheduling as per application logic.
+  Brokers --> are the programs that manages the interaction between workers and deciders. updates decider programs about the progress of 
+                each task. It ensures that task is assiged only once and never duplicated.
+  Domain (containers) --> isolates set of types (workflows), executions and task lists from others within the same account. This can be 
+  done at management consol or using CLI with RegisterDomain parameter of SWF API
+  
+  
+Exam Tips:
+SWF vs SQS
+1. SWF presented tasks orieneted API vs SQS presented message orieneted API.
+2. SWF assures that a task is assigned only once and its never duplicated, whereas in SQS, need to handle duplicate messages and
+    also need to ensure messaged processed only once.
+3. SWF keeps track of all the tasks and events in an application, In SQS need to implement application-level tracking logic especially 
+    if application uses multiple queue.
+4. max TTL (time to live) for SWF is 1 year whereas SQS 12 hours.
+5. In exam questions, 
+  1. need to think if scenario requires any kind of human interaction then answer is more around --> SWF
+  2. if scenario requires longer time frame than 12 hours then --> SWF
+  3. if questions has terms like, workers, deciders, domain, etc. --> think of SWF
+  
+
