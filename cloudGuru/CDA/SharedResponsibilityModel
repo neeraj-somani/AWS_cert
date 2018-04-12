@@ -1,0 +1,12 @@
+Shared Responsibility Model: mainly 3 category
+1. for infrasture services: 
+    AWS responsible and managing services that provided by AWS to user. like infrasture level. (renting apartment)
+    User responsible for all the works that is done on top of these infrastructure. 
+        (using apartment's room, kitchen, washroom, living room, etc as per wish).
+    
+2. for container services:  (example, AWS RDS, AWS EMR, etc)
+    AWS manage --> underlying infrastructure and foudation service, operating system and application platform. for example, oracle, mysql
+    User manage --> customer data, firewall rules to access the data, configure data back-up and disaster recovery policies.
+
+3. For abstracted Services: 
+  
