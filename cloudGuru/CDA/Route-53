@@ -1,0 +1,16 @@
+1. DNS - 101
+Domain Name Services: This is basically used to convert human friendly name (acloud.guru) into internet protocol Addresses (http://82.124.53.1)
+
+IP address are the computer addresses in the internet world or in network.
+commanly available IPs: 
+IPv4 --> 32 bit field, around 4 billion different addresses
+IPv6 --> 128 bits, around 340 undecillion different addresses
+
+NS Records --> Name Server Records are used by Top Level Domain serversto direct the traffic to the content DNS server.
+A record --> "A" stands for Address record, most fundamental type of DNS record. A Record translates the domain name to IP address.
+TTL --> Time to Live for that domain at client machine cache, before it check at the server again.
+CNAME --> canonical Name, is used to resolve one domain Name with another.
+
+Important to remember --> ELB never uses IP addresses although it always uses Domain Name.
+Route53 is not free service. 
+
