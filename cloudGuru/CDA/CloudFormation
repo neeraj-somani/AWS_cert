@@ -1,0 +1,14 @@
+Need to read CloudFormation FAQs for good understanding 
+
+CloudFormation:- helps users to control complete provision of resources as per need.
+
+1. CloudFormation is free but user pay for resources thats being provisioned.
+2. By default "automatic rollback on error" is enabled. Mean, if due to any issue in JSON or somewhere is stack, 
+    AWS will rollback compolete stack. it wouldn't provide half or incomplete stack. Although, there are charges for these error resources.
+3. Stacks can wait for applications to be provisioned using the "WaitCondition" parameter.
+4. "fn:GetAtt" this function is used to retreive any output from stack.
+5. Route53 is completely supported, this includes creating new hosted zones or update existing one.
+6. user can create A Records, alias, etc using cloudFormation.
+7. IAM role creation and assignment is also support.
+
+Need to understand the limitation , optimization of cloudFormation.
