@@ -7,9 +7,30 @@ Targeting a certification:
 2. Read the exam's Blue Print
 3. Learn all the in-scope topic
 4. shift focus to exam
-5. 
 
 Pocess of elimination is most important
 Exam question wil test you on which AWS services works well together and which services don't.
 Need to undersnatd it very well
+Validating an answer with question is also important. (for example, is question asking about cost optimization, High Availability)
+when you have to choose combination of options, need to check for patterens.
 
+below is one way to solve any exam question:
+1. Understand --> what exact question is all about, "kicker", 
+2. Eliminate --> any conflict with question or fake information needs to be eliminated.
+3. Evaluate --> think about all aspects of the question, in all dimensions generally and then evaluate each option.
+4. Choose --> select best suited option/s, 
+5. Validate --> verify again that our elimination and select best satify all the aspects of question.
+
+1. Its good idea to take AWS official practice exam 7-10 days near your actual exam date.
+Remember to take screen shot of every question with your answer for further analysis. (for max, command + shift + 3)
+take screen shot of overview page before submitting
+
+2. Also, can take acloud.guru final exam also around 7-10 days before your actual exam date to validate your knowledge.
+  Repeat this many times untill you consistently get 100% score in all of your exam.
+  Remember not to memories the question but to understand the question/answer.
+  
+some links:-
+https://www.sunriseidcart.com/AWS/  --> buying AWS tshirt
+https://www.aws.training/ --> AWS training site
+PSI center website --> 
+  
