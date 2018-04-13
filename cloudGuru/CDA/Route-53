@@ -10,7 +10,22 @@ NS Records --> Name Server Records are used by Top Level Domain serversto direct
 A record --> "A" stands for Address record, most fundamental type of DNS record. A Record translates the domain name to IP address.
 TTL --> Time to Live for that domain at client machine cache, before it check at the server again.
 CNAME --> canonical Name, is used to resolve one domain Name with another.
+Alias Record --> allows you to resolve naked domain name (zone APEX address) to ELB's DNS address.
+Naked Domain Name --> domain name that doesn't contain "www" or any other initial letters before it.
 
-Important to remember --> ELB never uses IP addresses although it always uses Domain Name.
-Route53 is not free service. 
+Important to remember --> 
+1. ELB never uses IP addresses although it always uses Domain Name.
+2. Difference between Alias record and CNAME
+3. Always choose Alias record over CNAME.
+  Answer --> why?? because Alias record are free, Alias record allows you to map Naked domain name with ELB's DNS name.
+  
+Route53 is not free a service. 
+Route53 is global service.
+
+Different Routing policies:--
+Simple
+Weighted
+Latency
+Failover 
+GeoLocation
 
