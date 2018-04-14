@@ -42,3 +42,10 @@ we also reserve the base of each subnet range plus two. For VPCs with multiple C
 is located in the primary CIDR. For more information, see Amazon DNS Server.
 10.0.0.3: Reserved by AWS for future use.
 10.0.0.255: Network broadcast address. We do not support broadcast in a VPC, therefore we reserve this address.
+
+Exam Quest:
+  >> you can't have multiple IGW (Internet Gateway) attached to one VPC.
+  >> you can add default security group to custom VPC or you need to create new security group while lauching EC2 instance within VPC. 
+      you can't attach existing security group from other VPC to custome made VPC.
+  >> 
+
