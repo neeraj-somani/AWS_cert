@@ -43,9 +43,66 @@ is located in the primary CIDR. For more information, see Amazon DNS Server.
 10.0.0.3: Reserved by AWS for future use.
 10.0.0.255: Network broadcast address. We do not support broadcast in a VPC, therefore we reserve this address.
 
-Exam Quest:
+Exam Questions:
   >> you can't have multiple IGW (Internet Gateway) attached to one VPC.
   >> you can add default security group to custom VPC or you need to create new security group while lauching EC2 instance within VPC. 
       you can't attach existing security group from other VPC to custome made VPC.
-  >> 
+
+NAT Instances --> https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html
+   You can use a network address translation (NAT) instance in a public subnet in your VPC to enable instances in the private subnet 
+to initiate outbound IPv4 traffic to the Internet or other AWS services, but prevent the instances from receiving inbound traffic 
+initiated by someone on the Internet.
+
+On a very high level this is what I understood:-
+  1. user can't communicat to internet using private subnet, with disable inbound/outbound traffic.
+  2. so NAT instance will allow private subnet to access internet using NAT instance sitting at public subnet.
+  3. Internet will get inbound/outbound traffic request/response from NAT instance and then NAT istance will forward that reponse to 
+      private subnet.
+      
+Exam Tips on NAT instances (type of EC2 instances):-
+  >> Disable source/destination check --> 
+  Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of 
+  any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination 
+  is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+  >> NAT instnace must be in public subnet and connection between private subnet and NAT instance must be established.
+  >> Depending upon the instnace size, it can handle the amount of traffic
+  >> High availability NAT instance can be build by auto scaling groups, multiple subnets in different AZs, script to automate failover.
+  >> NAT instances runs behind a security groups. All allowed traffic ports must be in security groups.
+  
+  
+NAT Gateways:- mostly used by enterprises because of below benefits
+  >> scale automatically upto 10Gbs
+  >> no need to patch
+  >> not associated with security groups
+  >> automatically assigned a public IP address
+  >> Need to update route table 
+  >> no need to diable source/destination checks
+  >> more secure than NAT instances
+  
+  
+defination of some useful terms:
+question 1. Elastic IP address vs public / private IP
+Answer:
+When you launch an EC2 instance, you recieve a Public IP address by which that instance is reachable.
+Once you stop that instance and restart the you get a new Public IP for the same instance's.
+
+So, Public IP get's changed everytime for an instance after stop/start.
+To overcome with this problem, we attach an Elastic IP to an Instance which doesn't change after you stop / start the instance as 
+many times.
+
+Advantage of Having Elastic IP
+-> It is kind of static IP for your Instance.
+-> Doesn't change after stop/start.
+
+>> If you have Elastic IP in your account and  it's not in use, then you will be charged for it.
+>> You can disassociate an Elastic IP address from a resource, and reassociate it with a different resource. Any open connections 
+to an instance continue to work for a time even after you disassociate its Elastic IP address and reassociate it with another instance. 
+We recommend that you reopen these connections using the reassociated Elastic IP address.
+>> A disassociated Elastic IP address remains allocated to your account until you explicitly release it.
+
+2. NAT gateways vs Internet gateways --> https://stackoverflow.com/questions/38690012/aws-vpc-internet-gateway-vs-nat
+Internet gateway is used to connect a vpc to the internet and NAT gateway is used to connect the Private subnet to the internet
+(which means what ever traffic is coming to private subnet instance which will forward to the NAT gateway). you need to forward the 
+traffic in the route table to NAT
+Route table 0.0.0.0/0
 
