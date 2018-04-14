@@ -1,0 +1,29 @@
+VPC --> 
+  >> virtual Data center on cloud.
+  >> consist of IGW (internet Gateways or virtual private gateways), route tables, Network access control lists, subnets, security groups.
+  
+  1 subnet = 1 AZ
+  Security groups are stateful --> means if Inbound is enabled, then outbound is also enabled
+  Network Access control List stateless --> but here Inbound or Outbound needs to be enabled seperately
+
+
+What are the things that we can configure in VPC:
+1. Launch instances into a subnet of your choice
+2. Assign custom IP address range in each subnet
+3. configure route tables between subnets
+4. create internet gateway and attach it to our VPC
+5. Much better security control over your AWS resources
+6. instance security groups
+7. Subnet Network access control list (ACLS)
+
+Difference between Default VPC vs Custom VPC
+1. Default VPC allows you to directly attach EC2 instances and deploy.
+2. Default VPC subnets are public in nature.
+3. All EC2 instances has both public and private IP address.
+
+VPC peering:-
+in one VPC in one subnet in one EC2 instance --> communicate (using private IP add) ---> another VPC in another subnet in another EC2 instances
+Instances behaves as they are in same private network.
+VPC don't do transitive peering. Means one VPC commnicate to other only if they have direct link. not via some other VPC.
+
+VPC consi
