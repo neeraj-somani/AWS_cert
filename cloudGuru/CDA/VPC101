@@ -130,7 +130,7 @@ you must explicitly define filters in both the inbound and outbound rules.
 The scenarios in your question are both good examples of these differences.
 
 Load Balancer and Custom VPCs:
-  >> user must create 2 subnets inorder to allow load balancer to work in custom VPCs.
+  >> user must create 2 public subnets inorder to allow application load balancer to work in custom VPCs.
 
 VPC Flow Logs --> created using CloudWatch, used to capture details about incoming and outgoing traffic
     >> this can be configured at 3 levels:
@@ -153,4 +153,9 @@ Not all IP traffic is monitored:-
 
 
 NAT vs Bations :- 
-  >> 
+  >> NAT is used to allow internet traffic to EC2 instances in private subnet
+  >> Bastion is used to securely administer EC2 instances (using SSH or RDP) in private subnet.
+  
+VPC End Points: Need to understand it from AWS website.
+  >> two types: Interfaces or Gateways
+
