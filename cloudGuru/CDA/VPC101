@@ -26,4 +26,19 @@ in one VPC in one subnet in one EC2 instance --> communicate (using private IP a
 Instances behaves as they are in same private network.
 VPC don't do transitive peering. Means one VPC commnicate to other only if they have direct link. not via some other VPC.
 
-VPC consi
+
+Important point just for AWS understanding purposes:- 
+1. same AZ name (example, us-east-1a) within one account could be different AZ in another account but with same AZ name. Hence, AWS randomize
+    AZ's within different account to distribute the traffic.
+
+Exam Tips:
+1. The first four IP addresses and the last IP address in each subnet CIDR block are not available for you to use, 
+and cannot be assigned to an instance. For example, in a subnet with CIDR block 10.0.0.0/24, 
+the following five IP addresses are reserved:
+10.0.0.0: Network address.
+10.0.0.1: Reserved by AWS for the VPC router.
+10.0.0.2: Reserved by AWS. The IP address of the DNS server is always the base of the VPC network range plus two; however, 
+we also reserve the base of each subnet range plus two. For VPCs with multiple CIDR blocks, the IP address of the DNS server 
+is located in the primary CIDR. For more information, see Amazon DNS Server.
+10.0.0.3: Reserved by AWS for future use.
+10.0.0.255: Network broadcast address. We do not support broadcast in a VPC, therefore we reserve this address.
