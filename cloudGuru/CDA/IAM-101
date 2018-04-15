@@ -1,13 +1,59 @@
 IAM is not Region specific. Its a global.
 
-Root Account: is the AWS account that you setup at first time Sign-in. It has complete Admin Access.
-New Users: we can create new users and every new user is asigned with Access Key ID and secret Access key.
-Password: Access Key ID and Secret Access key is not login-id and password to access consol. Thats why we need to setup password.
-     Although, we can use Access Key ID and Secret access key to connect throgh API or CLI or SDKs.
+Root user Account :-
+     >> is the AWS account that you setup at first time Sign-in. It has complete unrestricted Access to all resources of AWS.
+     >> combination of your email address and password is root user credentials.
+     
+IAM Users: 
+     >> it is an identity, we can create new users in AWS and every new user is asigned with Access Key ID and secret Access key.
+     >> Password: Access Key ID and Secret Access key is not login-id and password to access consol. Thats why we need to setup password.
+         Although, we can use Access Key ID and Secret access key to connect throgh API or CLI or SDKs.
+     >> its possible to assign specific policy to users as well.
+     >> we can copy permissions from other users account.
+     >> we can add user to a group
+     
 
-Users: Individual userid who can perform some action
-Groups: Collection of users, on which we can allocate policies or Roles at one shot.
-Role: Collection of policies bundled together as per need.
+Groups: 
+     >> Collection of users, on which we can allocate collection of policies at one shot.
+     >> group is not truly an identity, It is only a way to attach policies to multiple users at one time.
+
+Role: (very important to understand the importance of this)
+     >> similar to IAM users, it is an identity, with Collection of policies bundled together as per need.
+     >> role does not have any credentials (password or access keys) associated with 
+     >> this is important as user can switch roles in an organiation or a user can take temporary role for specific tasks.
+     >> role can be assigned to a federated user who signs in by using an external identity provider instead of IAM.
+     >> IAM roles are a secure way to grant permissions to entities that you trust. Examples of entities include the following:
+          IAM user in another account
+          Application code running on an EC2 instance that needs to perform actions on AWS resources
+          An AWS service that needs to act on resources in your account to provide its features
+          Users from a corporate directory who use identity federation with SAML
+          IAM roles issue keys that are valid for short durations, making them a more secure way to grant access.
+
+A user can use a Role through CLI and its imprtance: 
+     >> to understand more use this link --> https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-cli.html
+     >> Roles --> set of permissions that can be used to access AWS resources (hence, similar to IAM users) 
+     >> you sign in as a user, you get a specific set of permissions. 
+     >> However, you don't sign in to a role, but once signed in as a user you can switch to a role.
+     >> This temporarily sets aside your original user permissions and instead gives you the permissions assigned to the role. 
+     >> The role can be in your own account or any other AWS account.
+     >> The permissions of your IAM user and any roles that you assume are not cumulative. Only one set of permissions is active at a time. 
+     >> You can use a role to run an AWS CLI command when you are signed in as an IAM user, or as an externally 
+               authenticated user (SAML or OIDC) already using a role.
+     >> By default, your role session lasts for one hour. but this can be increased or decreased
+     >> If you use role chaining, your session duration is limited to a maximum of one hour, operation fails beyond that.
+     >> These roles can be attached to AWS resources and thats how roles are important and works great with IAM users or SAML federated users.
+     >> ** Need to understand limitation or roles.?? on which AWS resource it cant be used??
+     >> 
+     
+     
+     
+     
+     
+     
+Temporary Credentials:
+     >> have a more restricted set of permissions than your standard IAM user.
+     >> A benefit of temporary credentials is that they expire automatically after a set period of time and you can set this duration.
+
 Policy Documents: Its a JSON doc, with details about Individual permissions of different services. (rule and regulations, what is allowed and what not). 
                   It is universal and can be applied directly to users, groups and Roles. 
 
