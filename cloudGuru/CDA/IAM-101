@@ -1,4 +1,6 @@
-IAM is not Region specific. Its a global.
+IAM is not Region specific. Its a global/universal.
+>> It allows us to setup our own password rotation plicies / rules.
+>> it supports PCI DSS compliance
 
 Root user Account :-
      >> is the AWS account that you setup at first time Sign-in. It has complete unrestricted Access to all resources of AWS.
@@ -6,18 +8,20 @@ Root user Account :-
      
 IAM Users: 
      >> it is an identity, we can create new users in AWS and every new user is asigned with Access Key ID and secret Access key.
+     >> New IAM user by default has no access / permissions.
      >> Password: Access Key ID and Secret Access key is not login-id and password to access consol. Thats why we need to setup password.
          Although, we can use Access Key ID and Secret access key to connect throgh API or CLI or SDKs.
      >> its possible to assign specific policy to users as well.
      >> we can copy permissions from other users account.
      >> we can add user to a group
      
-
 Groups: 
      >> Collection of users, on which we can allocate collection of policies at one shot.
      >> group is not truly an identity, It is only a way to attach policies to multiple users at one time.
 
 Role: (very important to understand the importance of this)
+     >> set of policies bundled together and then assign them to AWS resurces. Those AWS resources can the directly be accessed. 
+     >> you choose AWS service that can use that role while creating that role.
      >> similar to IAM users, it is an identity, with Collection of policies bundled together as per need.
      >> role does not have any credentials (password or access keys) associated with 
      >> this is important as user can switch roles in an organiation or a user can take temporary role for specific tasks.
@@ -42,22 +46,47 @@ A user can use a Role through CLI and its imprtance:
      >> By default, your role session lasts for one hour. but this can be increased or decreased
      >> If you use role chaining, your session duration is limited to a maximum of one hour, operation fails beyond that.
      >> These roles can be attached to AWS resources and thats how roles are important and works great with IAM users or SAML federated users.
-     >> ** Need to understand limitation of roles?? on which AWS resource it cant be used??
+     >> ** Need to understand limitation of roles??
      >>     
      
 Temporary Credentials:
      >> have a more restricted set of permissions than your standard IAM user.
      >> A benefit of temporary credentials is that they expire automatically after a set period of time and you can set this duration.
 
-Policy Documents: Its a JSON doc, with details about Individual permissions of different services. 
-                    (rule and regulations, what is allowed and what not). 
-                  It is universal and can be applied directly to users, groups and Roles. 
+Policy Documents: 
+     >> A document that defines one or more permissions.
+     >> Its a JSON doc, with details about Individual permissions of different services (rule and regulations, what is allowed and what not). 
+                  >> It is universal and can be applied directly to users, groups and Roles. 
 
 Multifactor Authentication is recommended always.
 
+Security Token Service (STS) --->
+
 Federation: combinig list of users from one domain and join it (federate it) to list of users of another domain 
                like (facebook, google, active directory).
-Identity Broker: service that allows you to take an identity from one domain and join to another domain.
+Identity Broker:  
+     >> service that allows you to take an identity from one domain and join or use it to another domain. 
+     >> User create their own Identity broker most of the time.
+     >> It mostly validate username and password from the specific domain from LDAP directory
+     >> Identity Broker than calls GetFederationToken function, (which pass/input IAM policy and duration) to get permission to
+              temporary security credentials for that IAM role.
+     >> STS confirms that the IAM user with valid policy making a call to GetFederationToken function and will response following:
+          access key, secret access key, token, and duration (the token's lifetime) as per request. These details then can be used to 
+          access AWS resources.
+     >> Identity Broker sends above information to application that is making call.
+
+Identity Broker -- Exam tips with 2 different scenarios:
+scenario 1:-
+     >> Develop Identity broker to communicate with LDAP and AWS STS
+     >> Identity Broker always authenticate with LDAP first, then with AWS STS
+     >> Application then gets temporary access to AWS resources
+
+scenario 2:-
+      >> Develop Identity broker to communicate with LDAP and AWS STS
+     >> Identity Broker always authenticate with LDAP first, gets an IAM role associated with IAM user
+     >> application then authenticate with STS and assume that IAM role
+     >> Application then uses that IAM role and gets temporary access to AWS resources
+
 Identity Store: Google, facebook.
 Identities: A User of a service provider like google.
 
@@ -72,11 +101,10 @@ You can try this using FB or Google credentials at below link:
 Web Identity Federation Playground --> https://web-identity-federation-playground.s3.amazonaws.com/index.html
 
 Steps how it works:
-
 1. you provide or login using your FB or Google userid and password
 2. you will receive one temporary access token that will have some expiry time frame. 
     means you need to generate new token once it gets expire.
 3. Then using that token you can obtain temporary secuirty credentials. This is done by clicking "Call AssumeRoleWithWebIdentity" button.
 Important thing to remember is RoleArn --> Role Amazon Resource Name
 4. Then you can perform all allowed actions.
-
+ 
