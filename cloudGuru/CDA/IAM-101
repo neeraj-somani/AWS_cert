@@ -42,31 +42,28 @@ A user can use a Role through CLI and its imprtance:
      >> By default, your role session lasts for one hour. but this can be increased or decreased
      >> If you use role chaining, your session duration is limited to a maximum of one hour, operation fails beyond that.
      >> These roles can be attached to AWS resources and thats how roles are important and works great with IAM users or SAML federated users.
-     >> ** Need to understand limitation or roles.?? on which AWS resource it cant be used??
-     >> 
-     
-     
-     
-     
-     
+     >> ** Need to understand limitation of roles?? on which AWS resource it cant be used??
+     >>     
      
 Temporary Credentials:
      >> have a more restricted set of permissions than your standard IAM user.
      >> A benefit of temporary credentials is that they expire automatically after a set period of time and you can set this duration.
 
-Policy Documents: Its a JSON doc, with details about Individual permissions of different services. (rule and regulations, what is allowed and what not). 
+Policy Documents: Its a JSON doc, with details about Individual permissions of different services. 
+                    (rule and regulations, what is allowed and what not). 
                   It is universal and can be applied directly to users, groups and Roles. 
 
 Multifactor Authentication is recommended always.
 
-Federation: combinig list of users from one domain and join it (federate it) to list of users of another domain like (facebook, google, active directory).
+Federation: combinig list of users from one domain and join it (federate it) to list of users of another domain 
+               like (facebook, google, active directory).
 Identity Broker: service that allows you to take an identity from one domain and join to another domain.
 Identity Store: Google, facebook.
 Identities: A User of a service provider like google.
 
 Q: Can you authenticate using AD and What type of Authetication would to do so??
 A: Yes, using SAML (Security Assertion Mark-up Language). SAML basically provides temporary security credential to sign-on to AWS.
-Need to this check  --> AssumeRoleWithSAML is the request that provides these credentials.
+Need to check this  --> AssumeRoleWithSAML is the parameter that provides these credentials.
 
 Q: Whether you first authenticate with AD or you first provide temporary security credentials.
 A: First you authenticate from AD and then you provide temporary security credentials.
@@ -82,14 +79,4 @@ Steps how it works:
 3. Then using that token you can obtain temporary secuirty credentials. This is done by clicking "Call AssumeRoleWithWebIdentity" button.
 Important thing to remember is RoleArn --> Role Amazon Resource Name
 4. Then you can perform all allowed actions.
-
-
-
-
-
-
-
-
-
-
 
