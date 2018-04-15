@@ -1,12 +1,13 @@
 Part 1 -->
 1. EC2 Pricing model --> 
   On Demand --> By the second for linux and by the hour for Windows
-  Reserved 
-  Spot --> 
-    > If you terminate the instance you will pay for the hour
-    > If AWS terminate the instance because spot price goes above the bid price, then you get the hour it was terminated in for free.
+  Reserved --> yearly  or 3 yr basis
+  Spot --> rate based on the availability (market demands) at any specific time in specific region.
+    > If you terminate the instance before allocated time you will pay for that time duration (for example, that hour)
+    > If AWS terminate the instance before allocated time because spot price goes above the bid price, 
+        then you get the hour it was terminated in for free.
   
-  Dedicated Hosts
+  Dedicated Hosts --> you purchase this yearly or longer duration with specific price with no shared resources.
   
 2. Different EC2 Instance types:-
 DR Mc GIFT PX 
@@ -351,22 +352,3 @@ Roles:
 ECS stands for Elastic Container Service. It manages running containers on your EC2 instances. It does not act as a scheduler, 
 and it is neither serverless nor software that you manage. 
 Further information: http://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-
-
-
-
