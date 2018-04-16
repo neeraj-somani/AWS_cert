@@ -203,7 +203,7 @@ scenario 1 -->
 AMI Types:
 >> EBS vs Instance Store
 AMI can be selected based on below points:
->> based on Region (Regions and AZs_
+>> based on Region (Regions and AZs
 >> Operating System 
 >> Architecture (32 bit or 64 bit)
 >> Launch permissions 
@@ -273,6 +273,30 @@ CloudWatch and CloudTrail difference -->
 CloudWatch --> used to log or monitor activities within AWS services
 CloudTrail --> used for Audit purposes of AWS account. Used to log activities with AWS services. Example, creating new IAM user, S3 bucket, etc.
 
+AWS CLI commnds to configure AWS IAM User to access AWS resources under EC2 instances -->
+1. ssh to EC2 instance using below command 
+  ssh ec2-user@public-ip -i ec2KeyPair.pem
+
+2. aws configure --> this command is used to configure IAM user with-in an EC2 instance
+3. above command will ask for following details -->
+    AWS Access Key ID [None]: ###UAYHM2P3J2FZGQA###
+    AWS Secret Access Key [None]: ###LbZM6sHlgXtO62278mol7at#######
+    Default region name [None]: us-west-2 (or some region name)
+    Default output format [None]: (you can leave it blank)
+
+4. aws s3 ls --> this command will list all s3 buckets for that user across globe
+5. aws s3 help --> will print all the available command with help details
+    >> press "q" to come out of help window
+6. In order to view where users credentials are stored, need to follow below commands -->
+    >> cd ~ --> this command is used to go to root directory
+    >> cd .aws --> need to go to ".aws" hidden directory for credentials
+7. aws ec2 describe-instances --> command is used to list all currently running EC2 instances, it describes even terminated instances as well
+8. aws ec2 terminate-instances --instance-ids i-0cbc80aee26f776 --> this command will terminate instances from CLI
+9. aws s3 cp --recusrsive s3://bucket-name/filename /home/ec2-user/ --region us-west-2
+above command will copy specific file from specific S3 bucket to specified target directory in existing EC2 instance.
+
+
+
 Elastic File system:
 EFS is a file service for EC2, its a block based service. Its elastic in nature mean, you can add or remove files to add or shrink storage.
 Features:
@@ -284,8 +308,12 @@ Features:
 6. read after write consistency
 
 Multiple EC2 instances connecting to same EFS and accessing same files. EFS is basically storing files centrally.
-you can provide access level restrictions to directory and file level.
+you can provide access restrictions to directory and file level.
 Hence, Multiple EC2 can connect to one EFS but one EC2 can connect to only one EBS.
+
+Below command is used to mount EFS with EC2 through CLI:
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 fs-e577ea4c.efs.us-west-2.amazonaws.com:/ /var/www/html/
+>> Hence, now whatever file we create in our /var/www/html directory, it will mount to EFS in all AZs.
 
 AWS CLI using credentials:
 on terminal --> ssh ec2-user@public-key -i private-key-file
@@ -316,15 +344,47 @@ above command is used to terminate EC2 instance. where "i-03f709gjh79" is intanc
 
 EC2 instances Bash scripting:
 1. These are the scripts that run when you initially launch or start your EC2 instance.
-2. we can put these commands in the EC2 instance, configuration window, under advance settings.
-3. 
+2. we can put these commands in the EC2 instance --> configuration window --> under advance settings.
 
-Lambda -- its a event driven compute service
-Q: what are the currently available blueprints or integrations that can trigger the Lambda function.
-A: API Gateway, CloudWatch, CloudFront, AWS IOT, etc...
+Below is one sample Bash Shell script -->
+#!/bin/bash
+yum update -y
+yup install httpd -y
+service httpd start
+chkconfig httpd on
+aws s3 cp --recursive s3://bucket-name/filename /var/www/html/
 
-Imp Poimts:
+Load Balancing and Auto Scaling Groups -->
+1. Auto Scaling Group --> we define rules here, how we want to up or down our EC2 instances
+  for example:, based on CPU utilization lauch 1 EC2 instance
+      >>if CPU utilization consistently 90% for more than 5 min launch 1 more EC2 instance
+      >> if CPU utilization less than 20%, down grade (terminate) one instance, etc...
+
+EC2 Placement Groups -->
+  Its a logical groups of instances within Single AZ.
+  Benefit of this, application can achive low latency, on 10Gbps network. Hence, gain high network throughput
+  >> placement groups cant span across multiple AZs
+  >> it should have unique name within AWS account
+  >> only certain type of instnaces can be assigned to it (compute / storage optimized, GPU, memory optimized)
+  >> AWS recommend Homogeneous instances within one placement group
+  >> you can't merge a placement groups
+  >> you can't move existing instance into placement group. Instead, you can create an AMI image and then lauch new instnace into 
+        placement group.
+  
+Lambda -- its a event driven compute service, you can upload the code that interact with different services and it takes care of 
+    provisioning server for those services.
+    
+Q: what are the currently available blueprints or integrations that can trigger the Lambda function. Need to remember all these services.
+A: API Gateway, CloudWatch, CloudFront, AWS IOT, etc... 
+
+Imp Points:
 Every time user sends any request that triggers lambda function, you are going to trigger a new lambda function.
+
+API Gateway -->
+  Amazon API Gateway handles all the tasks involved in accepting and processing up to hundreds of thousands of concurrent API calls, 
+  including traffic management, authorization and access control, monitoring, and API version management. Amazon API Gateway has no 
+  minimum fees or startup costs. You pay only for the API calls you receive and the amount of data transferred out.
+
 
 Q: What are the different languages that are supported by Lambda?
 A: Java, Python, Node.js, C#
@@ -351,23 +411,17 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
 
 In this link we will see how to get EC2 instance public IP address through CLI, while we already login to EC2 instance through CLI.
 >> curl http://169.254.169.254/latest/meta-data
-
 above command will give us details about different directory related to EC2 instance.
 
 >> curl http://169.254.169.254/latest/meta-data/public-ipv4
-
 above command will provide public ip-address of EC2 instance.
+
+>> curl http://169.254.169.254/latest/user-data
+above command is invalid, this is not the way to get user-data
+
 
 Q: How you will get public-ip address while you logedin to EC2 through CLI.
 A: you need to look to meta-data of EC2 using above command and not the user-data.
-
-Elastic Load Balancer -- 
-Its a service that spreads the load of traffic, across different webservice.
-
-Instances monitored by ELB are reported as: InService or OutOfService
-Need to understnad the Health Check and Unhealty check
-ELB has there own DNS name; you will never be given an IP address for ELB 
-ELB FAQ is imp for exam.
 
 Q: Below are SDK's available in AWS:
 A: 
@@ -389,8 +443,8 @@ Exam question: a scenarion will be given and will ask which of these will suit t
   if AWS terminate the instance than you get that for free for that hour
 
 EBS Consisted of:
-1. SSD, GP2
-2. SSD, IO1
+1. SSD, GP2  -- bootable
+2. SSD, IO1  -- bootable
 3. HDD, ST1 -- not bootable
 4. HDD, SC1 -- not bootable
 5. HDD, Magnetic -- bootable
