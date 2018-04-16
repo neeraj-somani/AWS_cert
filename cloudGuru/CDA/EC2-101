@@ -198,6 +198,27 @@ scenario 1 -->
 1. user can create an snapshot of an unencrypted root volume from EC2 instance and copy it to another region in with encryption.
 2. then user can create an AMI (or image) from this snapshot in another region and launch it as EC2 instance.
 
+AMI Types:
+>> EBS vs Instance Store
+AMI can be selected based on below points:
+>> based on Region (Regions and AZs_
+>> Operating System 
+>> Architecture (32 bit or 64 bit)
+>> Launch permissions 
+>> Storage or Root Device Volume: have 2 types
+    1. Instance Store (Ephemeral Storage)
+    2. EBS Backed Volumes
+
+Few points to remember about Instance Store type:
+  >> While launching EC2 instance user can attach more Instance Store volumes but not after launching EC2 instnace.
+  >> On the contrary, user can attach EBS volume while launching as well as after launching EC2 instance.
+  >> Also, Instance Store volumes can be encrypted.
+  >> user can't start or stop Instnace store based EC2. But user can only reboot or terminate these kinds of instance.
+      If underlying host fails, user will loose data.
+  >> User can't even detach Instnace store volume but in case of EBS volume, user can detach from one EC2 and attach to another EC2.
+  >> by default, root volume will be deleted if we terminate the instance. But, in case of EBS backed instance we can uncheck the 
+        deletion option, but its not possible in case of Ephemeral Storage (Instance Storage)
+
 Elastic File system:
 EFS is a file service for EC2, its a block based service. Its elastic in nature mean, you can add or remove files to add or shrink storage.
 Features:
