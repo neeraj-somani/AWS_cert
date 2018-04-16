@@ -48,7 +48,14 @@ A user can use a Role through CLI and its imprtance:
      >> These roles can be attached to AWS resources and thats how roles are important and works great with IAM users or SAML federated users.
      >> ** Need to understand limitation of roles??
      >>     
-     
+
+Roles:
+1. Roles are more secure than storing your access key and secrete key
+2. Roles are easier to manage
+3. Roles can be assigned to EC2 instance even AFTER it is being provisioned. Also, we can attach policy to any ROLE at any time.
+4. Roles are universal, can be used in any region.
+
+
 Temporary Credentials:
      >> have a more restricted set of permissions than your standard IAM user.
      >> A benefit of temporary credentials is that they expire automatically after a set period of time and you can set this duration.
