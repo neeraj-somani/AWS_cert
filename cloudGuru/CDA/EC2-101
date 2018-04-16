@@ -116,7 +116,7 @@ Difference between system Status check vs Instance Status check
 1. System status check: This is to check that instance is reachable and packages are deliving to instances.
 2. Instance Status check: this is to check that operating system installed on that instance (server) accepting traffic.
 
-Summary so far:
+Summary so far (EC2 - labs):
 1. By default EC2 instance terminate option is disabled. Need to check that box to enable it.
 2. By Default, EBS volume of EC2 instance will be checked for deletion while you terminate your EC2 instance. User can uncheck it if needed.
 3. Root volume (default) of EC2 instance can't be encrypted directly. means, EBS Root volume of your default AMI's cant be encrypted.
@@ -168,21 +168,31 @@ Security Groups --> This is place where we define what are the ports, and servic
 6. You can't block any specific IP addresses using security groups, for that you need to use Newtork Access Control lists.
 7. you can specify allow rules but not deny rules.
 
-Volumes and Snapshots:
+Volumes and Snapshots: Exam Tips (this will bring 4-5 questions in exam)
 Volumes exsits on EBS, and its a virtual hard disk.
 Snapshots: exists on S3. Its nothing but point in time copy of Volumes.
-Snapshots are incremental means, next time when you take snapshot it will copy only blocks of volume that has chnaged.
-
-Recommendation for snapshot:
-Stop the instance before taking snapshot. However, you can do it without stoping the EC2 instance as well.
-
-Points to remember:
+Snapshots are incremental. means, next time when you take snapshot it will copy only blocks of volume that has chnaged.
 1. you can create AMI's from both volumes and snaps.
 2. you can change volume size and storage type on the fly, while making copy.
 3. Volume should always be in same AZ where EC2 instance is.
 4. To move one EC2 instance from one AZ/Region to another, need to create snap or AMI, then copy it to new AZ/Region.
 
-Volumes and Snapshots security --
+Recommendation for snapshot:
+To create a snapshot for EBS volume that servers as root, user should Stop the instance before taking snapshot. 
+    However, you can do it without stoping the EC2 instance as well.
+
+Exam Question:- 
+
+Q: How can you copy EBS volume from one AZ to another AZ.
+Answer: 
+1. first, you need to create snapshot.
+2. you need to create an image of that snapshot into needed AZ and you can change the volume type as well.
+3. Then attach that to needed EC2 instance.
+
+Q. How can you copy EBS from one region to another??
+A. you can copy snapshot and that will allow you to change the region.
+
+Volumes and Snapshots security -- (this will bring 4-5 questions in exam)
 1. snapshots of encrypted volumes are encrypted automatically.
 2. volumes restored from encrypted snapshots are also encrypted automatically.
 3. you can share snapshots but only if they are unencrypted. These can be shared as public or with other AWS accounts.
