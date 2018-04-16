@@ -1,16 +1,36 @@
+Elastic Compute Cloud (EC2) --> webservice that allows resizable compute capacity, scale up or down in minutes or instantly.
+
 Part 1 -->
 1. EC2 Pricing model --> 
-  On Demand --> By the second for linux and by the hour for Windows
-  Reserved --> yearly  or 3 yr basis
-  Spot --> rate based on the availability (market demands) at any specific time in specific region.
-    > If you terminate the instance before allocated time you will pay for that time duration (for example, that hour)
-    > If AWS terminate the instance before allocated time because spot price goes above the bid price, 
+  On Demand --> By the second for linux and by the hour for Windows with no commitment.
+  Reserved Instances (RI) --> yearly  or 3 yr basis, pay upfront for that duration
+    types:-
+      1. Standard RI --> upto 75% sale
+      2. Convertible RI's --> upto 54% sale, you can change the attribute of RI, and its use should be equal or greater. 
+            like you can change linux OS to Windows OS.
+      3. Scheduled RI's --> this can be used at specific time as per need.
+  Spot --> rate based on the availability (market demands) at any specific time in specific region. (user bid for EC2 prices)
+    >> bid price must be more than spot price, hence user will get that instnace. If spot price goes up then the bid price 
+            then AWS terminates the instance.
+    > If you terminate the instance before allocated time you will pay for that time duration either way (for example, that hour)
+    > If AWS terminate the instance before the allocated time because spot price goes above the bid price, 
         then you get the hour it was terminated in for free.
+    > it is used when application is flexible with start and end time.
   
   Dedicated Hosts --> you purchase this yearly or longer duration with specific price with no shared resources.
   
 2. Different EC2 Instance types:-
-DR Mc GIFT PX 
+DR Mc GIFT PX ------> 
+D --> Dense Storage (Data Warehouse)
+R --> Memory (RAM) optimize
+M --> (Main / default) General purpose
+C --> compute optimize
+G --> Graphics Intensive (Game/3D)
+I --> I/Ops (High I/O speed storage)
+F --> Field Programmable Gate Array (Hardware Acceleration for your code)
+T --> Low cost , General purpose
+P --> Graphics, General purpose (ML, Blockchain)
+X --> extreme memory optimized (SAP/Spark)
 
 Exam Q: In given scenario which EC2 instance would you choose.
 A: Need to understand "{DR Mc GIFT PX}" .
@@ -24,10 +44,10 @@ Below are different activities that you can perform on these volumes:
 2. run DB
 3. etc... any other way you can use block size
 
-EBS are usually placed in AZ and replication and security is guruantied.
+EBS are usually placed in AZ and replication and security is guaranted.
 
-EBS Volume Types:
-1. General Purpose SSD (GP2) 
+** EBS Volume Types:
+1. General Purpose SSD (GP2) --> solid state drive
     > balance in price and performance
     > upto 10000 IOPS
     
@@ -35,12 +55,12 @@ EBS Volume Types:
     > designed for I/O intensive applications such as large RDBMS, NoSQL
     > more than 10000 IOPS (upto 20000)
     
-Magnetic storage Volume
-3. Throughput Optimized HDD (ST1)
+Magnetic storage Volume (Harddisk drive)
+3. Throughput Optimized HDD (ST1) --> 
     > Big Data
     > Data Warehouse
     > Log Processing
-    > They cant be bootable
+    > They can't be bootable
     > sequnential read/write
     > frequently accesss workload
 
@@ -49,18 +69,18 @@ Magnetic storage Volume
     > file server 
     > They cant be bootable
     
-5. Magnetic (Standard)
+5. Magnetic (Standard) --> same as cold but bootable
     > lowest cost volumes that is bootable
     
 ** V V Important:
   > you can not mount one EBS volume to multiple EC2 instances, instead use EFS.
+  > only bootable volumes (GP2, IO1, magnetic HDD) can be assigned as Root volume.
   
-
 Some important points to remember:
 1. subnet = 1. availability zone
 
 Q: what happenes to EBS volume attached to EC2 instance when you terminate the instance?
-A: By default it will delete the volume.
+A: By default it will delete the volume, as delete option is checked by default but we can uncheck it.
 
 Q: What is Volume in EBS?
 A: Volume is Disk (SSD or HDD) where we perform different type of storage operations.
@@ -68,8 +88,14 @@ A: Volume is Disk (SSD or HDD) where we perform different type of storage operat
 Q: What are security groups in EC2?
 A: Its a virtual firewall. 
 
+Q: why Ryan was installing apache?
+A: to make EC2 instance our webserver, for hosting websites, etc.
+    command to install apache ---> yum install httpd -y
+    command to update security patches --> sudo yum update 
+    command to start apache (server) service --> service httpd start 
+
 While launching EC2 instances we need to know about two important keys.
-1. public key: that is stored in AWS
+1. public key: that is stored in AWS. User can have one public key across all EC2 instances. but user can create multiple private key as per need.
 2. private key: that is stored by individual user. There should be only one private key per user for specific EC2 instances.
 
 Task: Need to perform EC2 Lab and access EC2 instance through terminal. 
@@ -342,12 +368,6 @@ Dashboard: for monitoring
 Alarms: notify for perticular threshold
 Events: responde to state chnages of your AWS resources
 Logs: helps in aggregate, monitor and store logs.
-
-Roles:
-1. Roles are more secure than storing your access key and secrete key
-2. Roles are easier to manage
-3. Roles can be assigned to EC2 instance even AFTER it is being provisioned. Also, we can attach policy to any ROLE at any time.
-4. Roles are universal, can be used in any region.
 
 ECS stands for Elastic Container Service. It manages running containers on your EC2 instances. It does not act as a scheduler, 
 and it is neither serverless nor software that you manage. 
