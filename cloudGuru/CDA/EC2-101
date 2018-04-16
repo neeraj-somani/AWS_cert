@@ -148,6 +148,8 @@ Above command will create an "index.html" text file, as nano is a text editor ap
 then hit ctrl+x then enter, then yes hit enter.
 
 7. open web browser, place your public ip address and you will be able to see your webpage.
+8. to check apache is running or not (means status check)
+service https status
 
 imp points to remeber about security groups:
 Security Groups --> This is place where we define what are the ports, and service call that we allow AWS to accept. 
@@ -218,6 +220,58 @@ Few points to remember about Instance Store type:
   >> User can't even detach Instnace store volume but in case of EBS volume, user can detach from one EC2 and attach to another EC2.
   >> by default, root volume will be deleted if we terminate the instance. But, in case of EBS backed instance we can uncheck the 
         deletion option, but its not possible in case of Ephemeral Storage (Instance Storage)
+
+ELB --> Elastic Load Balancer
+In simple words, it spreads the load across different web-services.
+Defination:- A load balancer serves as the single point of contact for clients. The load balancer distributes incoming application traffic 
+across multiple targets, such as EC2 instances, in multiple Availability Zones. This increases the availability of your application. 
+You add one or more listeners to your load balancer. A listener checks for protocol and port that you configure, forward traffic accordingly.
+
+type of ELB:
+1. Application Load Balancer (HTTP / HTTPs)
+2. Classic Load Balancer (previous generation for HTTP, HTTPs, TCP, SSL)
+3. Network Load Balancer (TCP)  
+
+ELB Exam Tips:
+ELB do consistent health check for EC2 instance and route traffic accordingly.
+ELB only have DNS url, no public IP address.
+Instances monitored by ELB are reported as:: InService or OutOfService
+
+Cloud Watch -->
+  is used to create events or alarm for any event alerts.
+ Question:- What are the default metrics available for EC2 instances??
+ Answer:- under EC2 there are 2 categoris of metrics --> 1. By Auto Scaling Group    2. Per-Instance Metrics 
+    under these categories 4-5 different types are available:
+      >> Network related
+      >> StatusCheck Related
+      >> Disk Related
+      >> CPU Related
+ >> All other are custom metric, like memory related. Need to write some code for it.
+
+Different functionality in CloudWatch -->
+1. Dashboard --> has all your below listed 4 things in nicely display.
+2. Alarms --> user create this to track any activity with AWS services
+3. Events --> 
+    >> CloudWatch Events helps you to respond to state changes in your AWS resources. When your resources change state they automatically 
+    send events into an event stream. You can create rules that match selected events in the stream and route them to targets to take 
+    action. You can also use rules to take action on a pre-determined schedule. For example, you can configure rules to:
+        >> Automatically invoke an AWS Lambda function to update DNS entries when an event notifies you that Amazon EC2 instance enters 
+              the Running state
+        >> Direct specific API records from CloudTrail to a Kinesis stream for detailed analysis of potential security or availability risks
+        >> Take a snapshot of an Amazon EBS volume on a schedule
+4. Logs --> CloudWatch Logs helps you to aggregate, monitor, and store logs. For example, you can:
+        >> Monitor HTTP response codes in Apache logs
+        >> Receive alarms for errors in kernel logs
+        >> Count exceptions in application logs
+5. Metrics --> this is based on different AWS services
+
+CloudWatch Exam Tips --> 
+1. Standard Monitoring = 5 mins
+2. Detailed Monitoring = 1 min
+
+CloudWatch and CloudTrail difference -->
+CloudWatch --> used to log or monitor activities within AWS services
+CloudTrail --> used for Audit purposes of AWS account. Used to log activities with AWS services. Example, creating new IAM user, S3 bucket, etc.
 
 Elastic File system:
 EFS is a file service for EC2, its a block based service. Its elastic in nature mean, you can add or remove files to add or shrink storage.
