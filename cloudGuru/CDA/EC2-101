@@ -116,17 +116,13 @@ Difference between system Status check vs Instance Status check
 1. System status check: This is to check that instance is reachable and packages are deliving to instances.
 2. Instance Status check: this is to check that operating system installed on that instance (server) accepting traffic.
 
-We cant decrypt the default volume provided by EC2 instances.
-
 Summary so far:
 1. By default EC2 instance terminate option is disabled. Need to check that box to enable it.
-2. Root volume (default) of EC2 instance can't be encrypted directly. means, EBS Root volume of your default AMI's cant be encrypted.
+2. By Default, EBS volume of EC2 instance will be checked for deletion while you terminate your EC2 instance. User can uncheck it if needed.
+3. Root volume (default) of EC2 instance can't be encrypted directly. means, EBS Root volume of your default AMI's cant be encrypted.
       For windows need to use third party tools or need to make a copy of the EC2 instance using AMI and encrypt it.
-3. Any other added additional volumes can be encrypted.
-4. On an EBS backed instance, the default action for the root volume to be deleted when instance terminated.
-
-Security Groups:
-This is place where we define what are the ports, and service call that we allow AWS to accept. 
+4. Any other added additional volumes can be encrypted by clicking encrypt checkbox.
+5. On an EBS backed instance, the default action for the root volume to be deleted when instance terminated.
 
 CLI commands:
 1. to login to AWS using terminal
@@ -159,6 +155,7 @@ then hit ctrl+x then enter, then yes hit enter.
 7. open web browser, place your public ip address and you will be able to see your webpage.
 
 imp points to remeber about security groups:
+Security Groups --> This is place where we define what are the ports, and service call that we allow AWS to accept. 
 1. Any update or changes happen to security group, apply or affect immidiately.
 2. Any rule that you apply to inbound automatically apply to outbound. This is called stateFul.
     Hence, security groups are STATEFUL.
@@ -168,9 +165,8 @@ imp points to remeber about security groups:
      We can't specify which one (ip address or protocol) to deny in our rules.
 4. you can have any number of EC2 instances within a security groups.
 5. you can have multiple security groups attached to an EC2 instances.
-6. If you can't block any specific IP addresses using security groups then use Newtork Access Control lists.
+6. You can't block any specific IP addresses using security groups, for that you need to use Newtork Access Control lists.
 7. you can specify allow rules but not deny rules.
-
 
 Volumes and Snapshots:
 Volumes exsits on EBS, and its a virtual hard disk.
