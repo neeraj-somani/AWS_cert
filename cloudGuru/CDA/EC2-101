@@ -98,11 +98,6 @@ While launching EC2 instances we need to know about two important keys.
 1. public key: that is stored in AWS. User can have one public key across all EC2 instances. but user can create multiple private key as per need.
 2. private key: that is stored by individual user. There should be only one private key per user for specific EC2 instances.
 
-Task: Need to perform EC2 Lab and access EC2 instance through terminal. 
-Below is the link provided by acloud guru to do the same. but I can find in oniline as well.
-Also, need to undertsnad how to terminate any running EC2 instances. 
-
-https://help.acloud.guru/hc/en-us/articles/115001389874-SSH-on-Linux-syntax-passphrases-
 Below command looks like this:
 ssh ec2-user@public-Key -i private-key-file
 Below is the actual commands:--
@@ -195,7 +190,13 @@ A. you can copy snapshot and that will allow you to change the region.
 Volumes and Snapshots security -- (this will bring 4-5 questions in exam)
 1. snapshots of encrypted volumes are encrypted automatically.
 2. volumes restored from encrypted snapshots are also encrypted automatically.
-3. you can share snapshots but only if they are unencrypted. These can be shared as public or with other AWS accounts.
+3. you can share snapshots but only if they are unencrypted. because encryption key is tied to your account.
+4. These snapshots can be shared as public or with other AWS accounts.
+
+points from chapter --> Encrypt root device volume and create AMI from it
+scenario 1 -->
+1. user can create an snapshot of an unencrypted root volume from EC2 instance and copy it to another region in with encryption.
+2. then user can create an AMI (or image) from this snapshot in another region and launch it as EC2 instance.
 
 Elastic File system:
 EFS is a file service for EC2, its a block based service. Its elastic in nature mean, you can add or remove files to add or shrink storage.
