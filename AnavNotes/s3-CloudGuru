@@ -1,0 +1,105 @@
+S3 Notes Cloud Guru
+
+1. Content delivery network is the system of distributed servers (network) which will provide the web content to the users (very fast ,reduce the latency based on the user location) based on the geographical location, origin of the web content and a content delivery sever .
+
+2. Edge location - location where content will be cached.
+
+3. Origin- it is location where all the web content are stored like s3 ,EC2 ,r53 ,elf etc
+
+4. CDN or distribution- it is the collection of edge location
+
+5. Amazon Cloud front can work with non AWS servers also .
+
+6. Web distribution - is for the Web content or websites
+
+7. RTMP distribution- for Streaming for Adobe flash etc
+
+8. Edge location can also be write not only read
+
+9. Object are cached for the TTL and it can be cleared by paying extra charge
+
+10. If you wanna restrict the user to use cloud front not s3 bucket then Click yes on Restrict Bucket access and create Origin Access Identity fr the calling bucket (create new identity) and then Grant read access on bucket(yes ,update bucket policy)
+
+11. Protocols: http or https ,https only and http to https
+
+12. Http Method - Get,Put,Post,delete,head,patch,option
+
+13. Min TTL in Edge Cached -0 sec ,Max- 365 days in secs and default -24hours in secs
+
+14. Pre signed urls is the signed url for private user who paid or if you want to give access to certain ppl
+
+15. IPv6 is supported in cloud fronting
+
+16. Geo Location in cloud front is use give access to countries to cloud front .basically Whitelist (Allow Countries)and Blacckllst (deny Countries)
+
+17. You can invalidate the TTL but paid to remove the cached
+
+18. Also disable the Cloud front and then delete
+
+19. All the bucket and object are private by default
+
+20. S3 access : Bucket policy (bucket level) and ACL (object level)
+
+21. S3 Access log can used in bucket to get the logs of the request to bucket and store logs in another s3 or another account
+
+22. Encryption at Transit -SSL/TSL
+
+23. Server side encryption at rest :
+
+SSE-s3(S3 managed key)- Where it is encrypted by MFA and amazon is managing a master key which keeps on rotating and using AES 256 standard
+
+SSE -KMS- Where Amazon added few extra advantages like envelop key to store the encryption key and also audit trail who is trying to decrypt .
+
+Aslo you can create managed key or use default key but it bit costly
+
+SSE-C- where you managed the key and amazon managed the encryption and decryption etc
+
+24. Client Side encryption where you encrypt and decrypt by your own
+
+25. Stored Gateway - to securely copy data to S3
+
+26. File Interface -NFS
+
+27. Volume Interface -(Gateway Volume Cached) and Gateway Volume Stored
+
+28. Tape Interface - Gateway Virtual Tape Library
+
+29. File Interface is the Virtual server to store the data on s3 .You can red and write into S3 using NFS mount point . You can add you object into virtual server using your bucket name which is mount point and it automatically store into s3 and most usable content will be cached in the virtual server for low latency and AWS will take care of the encryption and optimising th gateway .It is for file based application
+
+30. Gateway Cached Volumes - You can store your primary data to S3 and retain your frequently access to on premises like SAN for low latency and save cost and also you can access the data that is stored in s3 ,it will also save cost for scaling locally
+
+31. GateWay Stored Volumes - You need all the data set to on premises because of low latency or compliance reason then use stored gateway and put point in time snapshot to S3 async
+
+32. Gateway Virtual Tape Library - AWS will manage you virtual tape and rotation with Amazon Virtual Tape library backed by s3 or with Virtual Tape Shelf backed by Glacier.
+
+33. Limits you can store :
+
+File Gateway -5Tb
+
+Gateway Cached Volumes- 32 Tb per volume and 32 volumes .total 1petabyte
+
+GateWay Stored Volumes- 16 TB per Volumes and 32 volumes and total 512 TB
+
+Gateway Virtual Tape Library- Virtual tape Library(1500 virtual tapes- 1PB) and Virtual Tape Self(Unlimited)
+
+34. Storage Gateway can be deployed on premise or as EC2 instances
+
+35. You can use storage gateway with Direct Connect and you can apply throttling on top of bandwidth so bandwidth will disturbed to ppl or employee while replication of data
+
+36. On premises needs EXSI’s or Hyper-V
+
+37. 4or 8VCPU ,75 GB storage for installation of VM images and system data and 7.5 GB RAM
+
+38. Open port 443,80 ,3260 to connect to iscsi to connect to gateway and port 53 UDP
+
+39. Encryption at transit is SSL and rest is AES 256
+
+40. You can point in time snapshot and stored in S3 and also schedule the snapshot or ad hoc basis in Gateway Volumes interface
+
+41. In Stored Volumes ,you can take Snapshot for backup an durability and also yo can get the gateway stored volumes in the event of recovering the backup and use as EBS volumes to attach to Ec2
+
+42. In Cached ,yo can take snapshot and go back to previous version if required as it is point in time snapshot and use as new Cached Volume
+
+43. Virtual tape contains your data must be in Virtual tape library to access and it is instant access but to access data from Virtual tape shelf it will take 24 hours to receive from shelf to selected virtual tape library
+
+44. Use transfer acc which use CDN or edge location to fast data transfer to s3 and url is http://bucket.s3-accleration-region.amazonawa.com
