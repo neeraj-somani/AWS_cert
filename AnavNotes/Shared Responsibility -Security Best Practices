@@ -1,0 +1,46 @@
+Shared Responsibility -Security Best Practices
+
+1. In IAAS ,
+
+AWS has to manage :
+
+*Global infrastructure like Regions ,AV's etc.
+
+*Foundation Services like Compute,Storage,DB and Networking
+
+example if hyper visor issue in Compute AWS will fix
+
+Customer has to manage :
+
+*Operating sys,Network firewalls,Encryption,Platform
+
+*app management and user data
+
+2. In Container services like RDS and EMR
+
+AWS has to mange:
+
+*Global infrastructure like Regions ,AV's etc.
+
+*Foundation Services like Compute,Storage,DB and Networking
+
+*Operating sys,Platform and app management
+
+Customer has to manage :
+
+*Network firewalls,Client side Encryption and user data
+
+In Abstract Services like S3 and dynamo
+AWS has to manage:
+
+Global infrastructure like Regions ,AV's etc.
+
+Foundation Services like Compute,Storage,DB and Networking
+
+Operating sys,Platform and app management
+
+Network firewalls,
+
+Customer has to manage :
+
+Client side Encryption and user data
