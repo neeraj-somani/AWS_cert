@@ -1,0 +1,64 @@
+Security ---> most imp whitepaper
+
+What is cloud computing? --> on-demand compute and storage capacity, pay-as-you-go model.
+
+6 Advantages of cloud -->
+  1. trade capital expense for variable expense
+  2. benfit from massive economics of scale
+  3. stop guessing about capacity
+  4. increase speed and agility
+  5. stop spending money in running and managing data centers
+  6. Go global in minutes
+
+Data Center Security --> 
+  Done as per national authorized standards. Guards, survelliance, etc.
+  Various security compliance (HIPAA, CSA, MPAA)
+  
+
+1. Shared Responsibility model -->
+    AWS responsible for Infrastructure security
+    User responsible for what they put on infrastructure
+    
+Need to understand 
+  AWS security responsibility -->
+  Customer security responsibility -->
+  
+
+2. Storage Decomission --> How AWS takes care of data security when storage device life is over.
+      All decomissioned magnetic storage devices are degaussed and physically destroyed as per industry standards.
+
+3. Network Security --> 
+      Transmission protection --> 
+          1. user can access AWS resources over HTTP or HTTPs using protocols SSL/TLS, cryptographic prolocols to protect against any harm.
+          2. for additional layer of security user can use VPC that gives ability to use IPsec VPN to provide encrypted tunnel between 
+                AWS VPC and data center.
+      
+      Amazon Corporate Segregation -->
+          Logically AWS production network is segregated from Amazon coporate network.
+   
+   Network monitoring and protection -->
+      1. IP Spoofing --> due to AWS secure firewall, An instance can't send traffic other than its own IP.
+            If needed customer can request in adavance about vulnerability scan to meet compliance requirement.
+  
+  AWS credentials -->
+      password, MFA, Access Key, Key-pair, etc
+      
+ AWS Trusted Advisor --> 
+    makes recommendation about opportunities to save money (cost optimization), improve system performance, close security gaps and 
+        fault tolerance.
+ 
+ Instance Isolation -->
+    Different Instances running on same physical machine are isolated from each other via the Xen Hypervisor. Also, AWS firewall 
+        resides within the Hypervisor layer, between physical network interface and instance's virtual interface.
+        
+    Customer instnaces has no access to raw disk devices, but instead presented with virtualized disks.
+    
+    Guest Operating System --> Virtual instnaces are completely controlled by customer, OS, antivirus or any application on machine.
+    Firewall --> Amazon EC2 instance provides complete firewall protection, by default deny-all traffic. Cutomer explicitely specify
+        allowed ports.
+    Encryption --> is allowed with AES-256 standards. 
+    ELB --> SSL termination on ELB is supported. So, that you can use more advanced security like TLS.
+        Also, you can get info of client IP address.
+    Direct Connect --> is one way to securely transfer data to AWS directly to nearest AWS facility.
+          
+  Risk and Compliance - Whitpaper
