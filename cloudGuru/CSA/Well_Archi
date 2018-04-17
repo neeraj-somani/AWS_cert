@@ -28,5 +28,7 @@ Well Architected Framework Summary -->
         --> How are you planning network topology on AWS
         --> Do you have any escalation path to deal with technical issues
     >> Change Management
-        --> 
+        --> How does your system adapt to changes in demand
+        --> How are you monitoring AWS resources
+        --> How are you executing change management
     >> Failure Management
