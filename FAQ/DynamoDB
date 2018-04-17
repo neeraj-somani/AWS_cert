@@ -35,7 +35,8 @@ Few DynamoDB APIs -->
     Scan – Gets all items and attributes by performing a full scan across the table or a secondary index. You can limit the return set by specifying filters against one or more attributes.
     ConditionExpression --> to specify conditional aurguments
     KeyConditionExpression --> to filter out records based on key values
-  
+    ProjectionExpression --> to determine which attributes should be retrieved from the table. 
+    
 DynamoDB vs RDS -->
   DynamoDB fits --> 
        --> fully managed and grow as per application requirment.
@@ -61,7 +62,23 @@ DynamoDB vs S3 -->
  DynamoDB data model -->
     Table --> collection of data items. No limit on number of items in a table. Schema-less table. Must have Primary Key.
     Item --> composed of primary key or composite key, with flexible number of attributes. An Item size can't exceed 400 KB.
-    
-    
+
+Scan operation --> works like an iterator, each call will return max of 1 MB result.
+      --> read capacity unit = { number of bytes fetched by scan (rounded of, in multiple of 4KB) } / 4 KB
+      --> Consistent reads consumes twice the read capacity as compared to evetually consistent reads.
+      
+      consistency model for Scan opration --> default eventual consistent
+            --> using ConsistentRead = True, parameter will make it Strongly Consistent read.
+            
+DynamoDB supported Data types --> Number, String, Binary, and Boolean. collection data types: Number Set, String Set, Binary Set, heterogeneous List and heterogeneous Map. DynamoDB also supports NULL values.
+
+ DynamoDB supported data structure -->  key-value and document data structures.
+           Key-Value store -->  Key identifing specific data item and Value as actual data content
+           document format -->  such as JSON, XML, and HTML.
+
+JSON is not DynamoDB data type but it supports JSON data documents.
+Querying JSON Data --> Need to create LSI or GSI on top on JSON Data file. to access it using queries.
+
+Document SDK is a datatypes wrapper for JavaScript that allows easy interoperability between JS and DynamoDB datatypes. 
     
   
