@@ -1,0 +1,53 @@
+ElasticBeanStalk Notes
+
+1. Applications can have multiple env. like prod,non-prod,dev or functional type like Frontend ,Backend etc.
+
+2. Application can have many versions 1:M relationship
+
+3. Application versions can be deployed to the environment with an application
+
+4. By creating environment you allow the AWS ElasticBeanStalk to manage resources and permission on your behalf
+
+5. Platform : Java,.net(window/IIS),node.js,php,phython,Go,ruby,Packer
+
+6. Preconfigure Docker platform - Phython,Go,Glassfish
+
+7. Generic Docker -Docker and multiple container Docker
+
+8. You can stream logs into CloudWatch and set the retention period upto 10 years.Default 7 days
+
+9. If you delete the elesticbeanstalk app your associated database will be deleted ,so start your own database outside EB
+
+10. Immutable deployments when new version app will deployed as separate instance and autoscaling group
+
+11. AWS Elastic Beanstalk has two types of environment tiers to support different types of web applications. Web servers are standard applications that listen for and then process HTTP requests, typically over port 80.
+
+12. Workers are specialised applications that have a background processing task that listens for messages on an Amazon SQS queue. Worker applications post those messages to your application by using HTTP.
+
+13. Connection draining timeout - 20 sec ,Maximum time that the load balancer maintains connections to an Amazon EC2 instance before forcibly closing connections.
+
+14. In EB ,you can do App and configuration changes both
+
+15. EB is free but resources in the background will be charged
+
+16. Updates on application can at once,1 Instance at a time ,20% if EC2 fleet or immutable
+
+17. Language Supported :
+
+Apache tomcat for java
+
+Apache Http Server for php
+
+Apache Http Server for Physthon
+
+Nginx or Apache Http Server for Node.js
+
+Passenger or Puma fro Ruby
+
+Microsoft IIS for .Net
+
+Java SE
+
+Docker
+
+Go
