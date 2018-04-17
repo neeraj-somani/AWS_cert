@@ -1,0 +1,67 @@
+DynamoDB --> NoSQL Db
+Benfits --> No management of DB, provisioning of Software and Hardware. 
+      --> Automatically scales throughput capacity
+      --> Synchronously replicates data across 3 facilities
+      --> supports in-place atomic updates (means for any data update, you will either get new data or old data. you will never get partially updated data.) 
+      --> supports automic increment / decrement operation on scalar values.
+      --> low latency read and write access from 0 bytes to 400 KB.
+      
+Data Consistency Model -->
+  1. Eventually consistent reads (default) --> maximizes read throughput. within a second data will be write and reflected to all copies.
+  2. Strongly Consistent reads --> read only after successfull write across all.
+
+what are the things reflects Cost of Dynamodb --> 
+    1. build on SSD , 2. three replication copies , 3. Fault tolerant, highly scalable and available
+
+Is DynamoDB only for High-scale application --> No, it offer seemless scaling for any size of applications. But it also depends on type of application for suitability.
+
+What kind of Query functionality supported 
+  --> "GET/PUT" oprations, with Primary Key as required field input.
+  --> allows query based on LSI (Local secondary index) and GSI (Global Secondary Index)
+
+Few DynamoDB APIs -->
+    CreateTable – Creates a table and specifies the primary index used for data access.
+    UpdateTable – Updates the provisioned throughput values for the given table.
+    DeleteTable – Deletes a table.
+    DescribeTable – Returns table size, status, and index information.
+    ListTables – Returns a list of all tables associated with the current account and endpoint.
+    PutItem – Creates a new item, or replaces an old item with a new item (including all the attributes). If an item already exists in the specified table with the same primary key, the new item completely replaces the existing item. You can also use conditional operators to replace an item only if its attribute values match certain conditions, or to insert a new item only if that item doesn’t already exist.
+    BatchWriteItem – Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
+    UpdateItem – Edits an existing item's attributes. You can also use conditional operators to perform an update only if the item’s attribute values match certain conditions.
+    DeleteItem – Deletes a single item in a table by primary key. You can also use conditional operators to perform a delete an item only if the item’s attribute values match certain conditions.
+    GetItem – The GetItem operation returns a set of Attributes for an item that matches the primary key. The GetItem operation provides an eventually consistent read by default. If eventually consistent reads are not acceptable for your application, use ConsistentRead.
+    BatchGetItem – The BatchGetItem operation returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
+    Query –  Gets one or more items using the table primary key, or from a secondary index using the index key. You can narrow the scope of the query on a table by using comparison operators or expressions. You can also filter the query results using filters on non-key attributes. Supports both strong and eventual consistency. A single response has a size limit of 1 MB.
+    Scan – Gets all items and attributes by performing a full scan across the table or a secondary index. You can limit the return set by specifying filters against one or more attributes.
+    ConditionExpression --> to specify conditional aurguments
+    KeyConditionExpression --> to filter out records based on key values
+  
+DynamoDB vs RDS -->
+  DynamoDB fits --> 
+       --> fully managed and grow as per application requirment.
+       --> Highly scalable (no schema based), Highy available, etc.
+       --> Customer simply store and request data as per application need.
+       --> Running adhoc query on DynamoDB is inefficient.
+      --> no limit on request (read/write per sec) capacity and storage capacity. Customer can manage as per need.
+      
+  RDS -->
+      --> is useful for robust feature and functionality. means running adhoc queries, etc. 
+      --> for query flexibility (OLAP)
+
+DynamoDB vs S3 -->
+    DynamoDB --> 
+        --> stores structured data, indexed with primary key
+        --> low latency read and write access from 0 bytes to 400 KB.
+        --> S3 file pointers can also stored in DynamoDB to access fast 
+    S3 -->
+      --> suitable for unstriutured data 
+      --> storing large objects upto 5TB.
+      --> large objects and infrequent accessed data sets, needs to be stored in S3
+ 
+ DynamoDB data model -->
+    Table --> collection of data items. No limit on number of items in a table. Schema-less table. Must have Primary Key.
+    Item --> composed of primary key or composite key, with flexible number of attributes. An Item size can't exceed 400 KB.
+    
+    
+    
+  
