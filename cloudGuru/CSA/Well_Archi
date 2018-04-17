@@ -1,0 +1,32 @@
+Well Architected Framework Summary -->
+  5 pillars --> 
+1. Security 
+2. Reliability
+3. Performance Efficiency
+4. Cost Optimization
+5. Oprational Excellence
+
+1. Security --> 4 areas
+  >> Data Protection 
+        --> How encrypting data at rest
+        --> how encrypting data at transit (SSL/TLS)
+  >> Priviledge Management
+        --> How are you protecting access to and use of AWS root account credentials
+        --> How are you defining roles and responsibilities of system users to access AWS CLI/SDK or management consol
+        --> How are you limiting automated access to AWS resources (like, by roles, etc)
+        --> how are you managing keys and credentials
+  >> Infrastructure Protection (around VPC)
+        --> How are you enforcing network and host-level boundary protection
+        --> how are you enforing AWS service level protection
+        --> How are you protecting integrity of OS on EC2 instance.
+  >> Detective Controls (around CloudTrail)
+        --> How are you capturing and analyzing logs
+  
+2. Reliability ---> 3 area
+    >> Foundation 
+        --> How are you managing AWS service limits in AWS account
+        --> How are you planning network topology on AWS
+        --> Do you have any escalation path to deal with technical issues
+    >> Change Management
+        --> 
+    >> Failure Management
