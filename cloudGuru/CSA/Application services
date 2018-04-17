@@ -1,0 +1,59 @@
+Elastic Transcoder:-
+    Amazon Elastic Transcoder lets you convert media files that you have stored in Amazon S3 into media files in the formats required 
+    by consumer playback devices. For example, you can convert large, high-quality digital media files into formats that users can 
+    play back on mobile devices, tablets, web browsers, and connected televisions.
+
+Pricing --> based on minutes and resolution at which you transcode.
+
+API Gateway -->
+  Amazon API Gateway handles all the tasks involved in accepting and processing up to hundreds of thousands of concurrent API calls, 
+  including traffic management, authorization and access control, monitoring, and API version management. Amazon API Gateway has no 
+  minimum fees or startup costs. You pay only for the API calls you receive and the amount of data transferred out.
+
+API Gateway Caching --> 
+  It basically cache response for few requestes that users are frequently accessing. This will gove low latency response to all users.
+  Because, when first user make request --> API Gateway chache response of that request (only for few seconds {TTL} )
+        ---> when second user makes same request --> API Gateway takes the cache response and deliver to user quickly as it doesn't 
+            have to make request call again.
+            
+API Gateways Benefits -->
+1. Low cost and efficient
+2. Scale effortlessly
+3. user can Throttle request to prevent attacks
+4. Connect to cloudWatch to log all requests
+
+Same Origin Policy --> 
+    Web browser permits scripts contained in first webpage to access data in second web page, but only if both webpages have same origin.
+    This is known as same origin policy.
+
+Cross Origin Resource Sharing (CROS) -->
+    CROS is one way -->  the server can relax the same origin policy.
+    
+    CORS is a mechanism that allows restricted resources on a web page to be requested from another domain outside the original domain.
+    
+    Error --> "Origin policy can't be read at remote resource"
+    Solution --> You need to enable CORS at API Gateway.
+
+Kinesis 101 -->
+  Streaming Data --> It is continously generated data in/by applications in small size (i.e, in KBs), through thousands of data resources 
+      at same time.
+  Kinesis --> AWS service for easily load and analyze streaming data.
+  3 category of Kinesis service -->
+    1. Kinesis stream
+    2. K Firehose
+    3. K Analytics
+  1. Kinesis Stream -->
+      All incoming data are stored in multiple Shard for default 24 hours (and can be increased to 7 days) --> Data retention period
+      Shards --> high read/write throughput with distributed environment
+  2. Kinesis Firehose -->
+      Its more automated way of Kinesis Streams.
+      >> In this we don't need to manage shards 
+      >> data in automaticaly stored to S3 after processing. Consumer services can access from S3 anytime
+      >> you can't directly send data to RedShift or RDS or DynamoDB, it has to go to S3 first then to any other services.
+      >> Firehose can send data directly to S3, ESC (ElasticSearch Cluster)
+  3. Kinesis Analytics -->
+      >> Allows user to write SQLs and analyze data that exists in FireHose or Stream.
+ 
+ CloudFormation -->
+    Allows user to quickly and easily deploy infrastructure resources and applications on AWS.
+    Users can also use templates for few famous applications like wordPress, Drupal
