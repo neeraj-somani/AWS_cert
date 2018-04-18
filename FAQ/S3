@@ -90,3 +90,28 @@ Answer --> combination of Content-MD5 checksums and cyclic redundancy checks (CR
         
         
 S3 "Query in Place" functionality -->
+        Amazon S3 allows customers to run sophisticated queries against data stored without the need to move data into a separate analytics platform.
+        multiple query options:
+        S3 Select --> SQL expressions, like SELECT and WHERE, from delimited text files and JSON objects in Amazon S3. 
+            use S3 Select with AWS Lambda to build serverless applications that use S3 Select to efficiently and easily retrieve data from Amazon S3 instead of retrieving and processing entire object.
+        
+        Amazon Athena --> easy to analyze data in Amazon S3 using standard SQL queries. 
+            Athena is serverless
+            works with a variety of standard data formats, including CSV, JSON, ORC, Apache Parquet and Avro. 
+        
+        Amazon Redshift Spectrum --> 
+                enables you to run queries against exabytes of unstructured data in Amazon S3 with no loading or ETL required.
+                Redshift Spectrum lets you separate storage and compute, allowing you to scale each independently.
+                
+        S3 Event Notifications -->
+            actions in Amazon S3 like PUTs, POSTs, COPYs, or DELETEs. Notification messages can be sent through either Amazon SNS, Amazon SQS, or directly to AWS Lambda.
+            event notifications enable you to run workflows, send alerts, or perform other actions in response to changes in your objects stored in S3.
+         
+         S3 Transfer Acceleration -->
+                enables fast, easy, and secure transfers of files over long distances, leverages Amazon CloudFront’s globally distributed AWS Edge Locations.
+                point your Amazon S3 PUT and GET requests to the s3-accelerate endpoint domain name. 
+                two types of endpoints: .s3-accelerate.amazonaws.com or .s3-accelerate.dualstack.amazonaws.com
+         
+         
+         
+         
