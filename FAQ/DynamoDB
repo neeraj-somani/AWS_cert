@@ -80,5 +80,128 @@ JSON is not DynamoDB data type but it supports JSON data documents.
 Querying JSON Data --> Need to create LSI or GSI on top on JSON Data file. to access it using queries.
 
 Document SDK is a datatypes wrapper for JavaScript that allows easy interoperability between JS and DynamoDB datatypes. 
-    
-  
+
+Scalability, availability, and durability sections -->
+
+
+DynamoDB Streams --> time-ordered sequence of item-level data changes in a table in the last 24 hours
+      --> have to be enabled on a per-table basis
+      --> stream is managed automatically in DynamoDB
+      --> DescribeStream API to check status of stream. "ENABLED" means active status
+      
+Benefits of DynamoDB Streams -->
+     --> help developers to consume updates and receive the item-level data before and after items are changed.
+     --> DynamoDB Streams read capacity is twice of the provisioned write capacity of your DynamoDB table. 
+     --> DynamoDb stream will be available for next 24 hours even after deletion of DynamoDB table to consume updated data.
+     --> there will be no gap in the data updates in DynamoDB stream
+     --> DynamoDB stream contains information about both the previous value and the changed value of the item, with Primary Key and change type (INSERT, REMOVE, and MODIFY)
+     
+Limitation of Stream -->
+      --> infomration defination (type) cant be changed in a stream after it has been created. you need to create new stream defination in that case.
+      --> 
+     
+few additional terms -->
+Elasticsearch --> is a popular open source search and analytics engine designed to simplify real-time search and big data analytics. 
+Logstash --> is an open source data pipeline that works together with Elasticsearch 
+
+Use Dynamodb as Storage backend for Titan --> plug-in that allows you to use DynamoDB as the underlying storage layer for Titan graph database. 
+
+A graph database is a store of vertices and directed edges that connect those vertices. Both vertices and edges can have properties stored as key-value pairs.
+
+Benefit of Using Dynamodb as Storage backend for Titan --> Dynamodb is storage managed service for titan. Hence, no hustle on cluster conf.
+
+DynamoDB supports cloudWatch monitoring and these matrics are reported in either 1-minute or 5 min intervals
+
+Tagging --> A tag is a label you assign to an AWS resource. Its a Key-Value type, each key should be unique.
+      --> AWS uses tags as a mechanism to organize your resource costs on your cost allocation report. 
+      --> DynamoDB Streams usage cannot be tagged at present.
+      --> DynamoDB Reserved Capacity charges per table will show up under relevant tags.
+      --> data usage charges are not tagged. This is because data usage is billed at an account level and not at table level.
+      --> tag values can be null.
+      --> You can add up to 50 tags to a single DynamoDB table. prefix “aws:” cannot be manually created
+
+Time-To-Live (TTL)
+      --> DynamoDB Time-to-Live (TTL) is a mechanism that lets you set a specific timestamp to delete expired items from your tables.
+      --> no manual interaction needed for few data screnarios. That works on timely basis.
+      Note: TTL requires a numeric DynamoDB table attribute populated with an epoch timestamp to specify the expiration criterion for the data. 
+      --> this attribute can be projected as index attribute.
+      --> Updating items with an older TTL values is allowed.
+      --> if you try to read items that have expired but haven’t yet been deleted, the returned result will include the expired items.
+      --> DynamoDB stream entry will be written at the point of deletion, not the TTL expiration time
+      --> Expired items are not backed up before deletion.
+      --> The scan and delete operations needed for TTL are carried out by the system and does not count toward your provisioned throughput or usage.
+      
+Delete operation vs TTL -->
+     --> If you want to delete item immidiately apply delete operation.
+     -->  TTL doesn't guarantee on the actual deletion timeframe
+     
+Limitation of TTL
+      --> this is for item level deletion not table level
+      --> do not support specifying a TTL attribute in a JSON document
+
+DynamoDB Accelerator (DAX) -->
+      --> in-memory cache for DynamoDB for fast in-memory performance (fully managed, highly available, fault-tolerant and scalable)
+      --> application needs to make DAX client call, instead of direct DynamoDB call
+      --> All read API calls will be cached by DAX, with strongly consistent requests being read directly from DynamoDB, while eventually consistent reads will be read from DAX if the item is available. 
+   --> Within a DAX cluster, there are two different caches: 
+  1) item cache --> The item cache manages GetItem, PutItem, and DeleteItem requests for individual key-value pairs. 
+  2) query cache --> The query cache manages the result sets from Scan and Query requests.
+   --> supported languages, Java, Node.js, Python, and .NET 
+  Benefits -->
+      --> repeat reads of cached data can be served immediately with extremely low latency
+      --> DAX is DynamoDB compatible, means DAX engine is designed to support the DynamoDB APIs for reading and modifying data in DynamoDB.
+      --> Data is aged or evicted from DAX by specifying a Time-to-Live (TTL) value or evicted based on the Least Recently Used (LRU) algorithm.
+      --> supports both eventually consistent or strongly consistent:
+      --> DAX supports using AWS CloudFormation
+      --> high availability (multi-AZs)
+      
+    DAX TTL vs DynamoDB TTL -->
+      DynamoDB TTL --> user specify expiration time of item
+      DAX TTL --> user specify upto what duration item should be cached, once it gets cache.
+      
+  Limitation -->
+      --> Operations for table management such as CreateTable/DescribeTable/UpdateTable/DeleteTable are not supported.
+      --> no support for cross-region replication
+      
+DynamoDB Global Tables -->
+      DynamoDB Global Tables is a new multi-master, cross-region replication capability
+      --> perform reads and writes to DynamoDB in AWS regions around the world, 
+      --> one replica table per region
+      --> 
+      Limitation --> Global Tables does not support cross-account access. Multi-region access within same account.
+
+DynamoDB Backup and restore --> 
+      two ways -->
+           1. point-in-time recovery (PITR) --> continuous backups of your table up to the last 35 days
+           2. on-demand backup --> custom, and long-term archival requirements for regulatory compliance. you can retain, until you delete those backups.
+      --> backup process always writes to a new table.
+    Benefits --> backups does not consume provisioned read or write capacity
+    Limitation --> Currently, you must recover a table from backup to the same AWS Region within the same AWS account where you took the backup.
+      
+DynamoDB encryption at rest -->
+      --> Encryption at rest automatically integrates with AWS Key Management Service (KMS) for managing the keys used for encrypting your tables.
+      --> managed server side encryption feature using AWS KMS keys stored in your AWS account, using 256-bit AES encryption.
+      --> DynamoDB On-Demand Backups can be encrypted
+      --> DynamoDB uses a single service default key for encrypting all of your DynamoDB tables.
+      --> Encryption at Rest works at a table level granularity.
+      
+      pricing --> No additional DynamoDB charges, but KMS charges will apply for using a service default key. 
+      
+      Limitation --> 
+            --> cannot enable encryption at rest for DynamoDB Streams.
+            --> Encryption at Rest works at a table level granularity.
+            --> you cannot disable encryption at rest on an encrypted table.
+            
+VPC endpoints for Amazon DynamoDB -->
+      VPC endpoints --> logical entities within a VPC that create a private connection between a VPC and DynamoDB,
+                  without requiring access over the internet, through a network address translation (NAT) device, or a VPN connection.
+          
+      
+      
+      
+      
+      
+      
+      
+      
+      
