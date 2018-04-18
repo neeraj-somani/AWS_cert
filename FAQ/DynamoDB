@@ -195,10 +195,19 @@ DynamoDB encryption at rest -->
 VPC endpoints for Amazon DynamoDB -->
       VPC endpoints --> logical entities within a VPC that create a private connection between a VPC and DynamoDB,
                   without requiring access over the internet, through a network address translation (NAT) device, or a VPN connection.
-          
-      
-      
-      
+          --> supports same AWS Region as the VPC.
+     Benfits -->
+            --> support AWS Identity and Access Management (IAM) policies
+            --> data packets between DynamoDB and your VPC will remain in the Amazon network.
+            --> each VPC endpoint supports one service.
+            --> VPC endpoints for DynamoDB support all fine-grained access control access keys.
+            
+     Limitation --> cannot access Amazon DynamoDB Streams using VPC endpoints
+              --> Amazon DynamoDB does not support resource-based policies pertaining to individual tables, items, and the like S3.
+              
+              
+  Q. Can I have multiple VPC endpoints for DynamoDB in a single VPC?
+   Answer:- Yes, you can have multiple VPC endpoints for Amazon DynamoDB in a single VPC. Individual VPC endpoints can have different VPC endpoint policies. For example, you could have a VPC endpoint that is read-only and one that is read/write. However, a single route table in a VPC can only be associated with a single VPC endpoint for DynamoDB, because that route table will route all traffic to DynamoDB through the specified VPC endpoint.
       
       
       
