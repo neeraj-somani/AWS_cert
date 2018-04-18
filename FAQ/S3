@@ -1,0 +1,55 @@
+S3 (simple storage service) --> object storage
+You can store virtually any kind of data in any format.
+objects size 0 bytes to 5 TB
+simple key-based object storage service
+REST web services interface
+Pay-as-you-go pricing and unlimited capacity 
+objects are automatically stored across multiple AZ (3) within specified region
+Region is a geographic location, which contains one or more AZ (which is isolated location, which are connected with low latency, high throughput, and highly redundant networking.)
+
+
+
+S3 Storage Classes --> 4 types:
+    1. S3 Standard --> high durability, availability, and performance. S3 Lifecycle management offers configurable policies to 
+              automatically migrate objects to the most appropriate storage class.
+    2. S3 Standard-Infrequent Access --> accessed less frequently, but requires rapid access when needed.
+          high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval fee. 
+          Lifecycle management offers
+    3. S3 One Zone-Infrequent Access --> stores data in a single AZ. accessed less frequently, but requires rapid access when needed.
+              costs 20% less than Standard-Infrequent Access
+    4. Amazon Glacier --> secure, durable, and extremely low-cost storage service for data archiving. 
+              provides three options for access to archives, from a few minutes to several hours.
+  
+S3 Billing --> Pay-as-you-go
+      Billing prices are based on the location of your bucket.
+      no Data Transfer charge within Region
+      COPY request between AWS Regions is charged at standard rates
+      Billing calculation based on following -->
+          a. storage used
+          b. Network Data Transferred In:
+          c. Network Data Transferred Out:
+          d. Data Requests: (Get/ PUT/ Delete requests)
+          e. Data Retrieval: only applies to --> S3 Standard-IA and S3 One Zone-IA storage classes
+      
+      Normal Amazon S3 rates apply for every version of an object stored or requested.
+      There is option to configure your bucket as a Requester Pays bucket, in which case the requester will pay the cost of requests and downloads of your Amazon S3 data.
+      
+ Security --> S3 is secure by default. 
+      --> User can do SSE (server side encryption)
+      --> user can enable encryption option -- S3 buckets to automatically encrypt objects before storing them. (SSL encryption)
+    
+    control access to S3 --> 4 ways:
+            Identity and Access Management (IAM) policies, --> users, groups, roles access
+            bucket policies, --> customers can define rules which apply broadly across all requests
+            Access Control Lists (ACLs), --> customers can grant specific permissions (i.e. READ, WRITE, FULL_CONTROL) to specific users for an individual bucket or object
+            and Query String Authentication. --> customers can create a URL to an Amazon S3 object which is only valid for a limited time.
+ 
+     auditing controls --> 
+          configure S3 bucket to create access log records for all requests
+          
+     S3 Data Encryption at Rest --> 4 ways
+          SSE-S3 --> Amazon handles key management and key protection
+          SSE-C --> if you want to maintain your own encryption keys, but don’t want to implement or leverage a client-side encryption library.
+          SSE-KMS --> usage master key on top of encryption key providing an additional layer of control. AWS KMS provides an audit trail logs.
+          encryption client library --> you retain control of the keys and complete the encryption and decryption of objects client-side
+      
