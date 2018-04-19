@@ -103,15 +103,51 @@ S3 "Query in Place" functionality -->
                 enables you to run queries against exabytes of unstructured data in Amazon S3 with no loading or ETL required.
                 Redshift Spectrum lets you separate storage and compute, allowing you to scale each independently.
                 
-        S3 Event Notifications -->
+S3 Event Notifications -->
             actions in Amazon S3 like PUTs, POSTs, COPYs, or DELETEs. Notification messages can be sent through either Amazon SNS, Amazon SQS, or directly to AWS Lambda.
             event notifications enable you to run workflows, send alerts, or perform other actions in response to changes in your objects stored in S3.
          
-         S3 Transfer Acceleration -->
-                enables fast, easy, and secure transfers of files over long distances, leverages Amazon CloudFront’s globally distributed AWS Edge Locations.
-                point your Amazon S3 PUT and GET requests to the s3-accelerate endpoint domain name. 
-                two types of endpoints: .s3-accelerate.amazonaws.com or .s3-accelerate.dualstack.amazonaws.com
-         
-         
+S3 Transfer Acceleration -->
+     enables fast, easy, and secure transfers of files over long distances, leverages Amazon CloudFront’s globally distributed AWS Edge Locations.
+     point your Amazon S3 PUT and GET requests to the s3-accelerate endpoint domain name. 
+     two types of endpoints: .s3-accelerate.amazonaws.com or .s3-accelerate.dualstack.amazonaws.com
+     At back end, AWS monitor for any specific task, if S3 Transfer Acceleration is not faster than Standard S3, then AWS will not charge client and may bypass S3 Transfer Acceleration.
+     
+     Q: choose between S3 Transfer Acceleration and Amazon CloudFront’s PUT/POST??
+     Answer: for less than 1GB transfer prefer Amazon CloudFront’s PUT/POST
+     
+     Q: choose between S3 Transfer Acceleration and AWS Snow Family (Snowball, Snowball Edge, and Snowmobile)?
+     Answer:- AWS Snow Family is ideal for customers moving large batches of data at once.
+     
+    Q: Can S3 Transfer Acceleration complement AWS Direct Connect?
+    Answer: AWS Direct Connect is a good choice for customers who have a private networking requirement or who have access to AWS Direct Connect exchanges.
+                S3 Transfer Acceleration is best for submitting data from distributed client locations over the public Internet, or where variable network conditions make throughput poor. Some AWS Direct Connect customers use S3 Transfer Acceleration to help with remote office transfers, where they may suffer from poor Internet performance.
+    
+    Q: Can S3 Transfer Acceleration complement the AWS Storage Gateway or a 3rd party gateway? -- same answer as below
+    Q: Can S3 Transfer Acceleration complement 3rd party integrated software? -- same answer as below
+    Answer: yes, client will see some benefit.
+    
+S3 Storage Management --> Using object tagging.
+        --> Object tags can be replicated across AWS Regions using Cross-Region Replication. 
+        --> Object tags are priced based on the quantity of tags and a request cost for adding tags.
+   --> Storage Class Analysis, you can analyze storage access patterns and transition the right data to the right storage class. 
+   --> its a daily update and there is price associated with it
+   --> S3 Inventory report provides a scheduled alternative to Amazon S3’s synchronous List API. There is some price associated with it
+   
+   --> You can use CloudWatch to set thresholds on any of the storage metrics counts, timers, or rates and trigger an action when the threshold is breached. 
+   
+   --> CloudWatch storage metrics are provided for free. Cloudwatch custom request metrics are price
+
+S3 Lifecycle management    --> 
+    --> provides the ability to define the lifecycle of your object storage policy
+    --> you can move objects from one storage class to another or remove completely from any storage.
+    --> 
+    
+    Q:    Why would I use an S3 Lifecycle policy to expire incomplete multipart uploads?
+        Answer: - The S3 Lifecycle policy that expires incomplete multipart uploads allows you to save on costs by limiting the time non-completed multipart uploads are stored. For example, if your application uploads several multipart object parts, but never commits them, you will still be charged for that storage. This policy can lower your S3 storage bill by automatically removing incomplete multipart&nbsp;uploads and the associated storage after a predefined number of days.
+
+--> Amazon S3 supports all features of Cross-Region Replication (CRR).
+
+
          
          
