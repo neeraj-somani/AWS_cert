@@ -131,6 +131,41 @@ Different Types of EC2 instances -->
               Regional RI --> when RI is scoped to specific region and all AZ within that Region 
                       --> If you do not require the capacity reservation then use Regional RI. 
                       --> provide AZ and instance size flexibility, which offers broader applicability of the RI’s discounted rate.
-                        -->  instance size flexibility means it applies your RI’s discounted rate to usage of any EC2 instnace size within an instance family. (two m5.xlarge instances in us-east-1a or four m5.large instances in us-east-1b.)
-                        
-  
+                        -->  instance size flexibility means it applies your RI’s discounted rate to usage of any instnace size within an instance family. (two m5.xlarge instances in us-east-1a or four m5.large instances in us-east-1b.)
+      very imp point --->  Only Linux/Unix based Regional RI provides instance size flexibility. Not other OS based.
+      Limitation --->
+          --> RIs do not apply to Spot instances or instances running on Dedicated Hosts.
+      
+      Convertible RI in Detail -->
+          --> Instances  that can be changed during the term.
+          -->  can select a new instance type, operating system, tenancy, or payment option
+          --> you dont need to pay any fee for the service, but need to pay the price difference between different type of instances
+          --> You cannot convert your Convertible RI for Convertible RI(s) of a lesser total value.
+          --> different payment options, like all-upfront, no-upfront (hourly), partial-upfront
+      Reserved Instance Marketplace
+         --> place where People can sell their customized EC2
+         --> this is a good place for people you purchased with some plan in mind but half-way through decided not needed and sell it to others to cover the cost
+
+    2. Spot Instance ---> 
+            --> its AWS spare capacity EC2 available at any give point in time
+            --> can save upto 90% as compared to on-Demand EC2
+            --> AWS can interrupt with a 2-minute notification and can be used along with On-Demand and Reserved Instances.
+            --> there is a limit for no of spot instances per customer per region (depends of customer to customer basis)
+            --> Each spot capacity pool can have a different price based on supply and demand.
+            -->
+        Limitation -->
+              Linux/UNIX and Windows Server are available. Windows Server with SQL Server is not currently available.
+              you can't use Spot instance with a paid AMI for third-party software (such as IBM’s software packages)
+              Q. When would my Spot instance get interrupted?
+              Answwer: - two possible reasons, with the primary one being Amazon EC2 capacity requirements (e.g. On Demand or Reserved Instance usage). Secondarily, if you have chosen to set a “maximum Spot price” and the Spot price rises above this, your instance will be reclaimed with a two-minute notification. 
+              Hibernate vs Stop Spot Instances --> 
+              --> In the case of Hibernate, your instance gets hibernated and the RAM data persisted. In the case of Stop, your instance gets shutdown and RAM is cleared.
+              --> In both cases EBS volume persists, also you need to choose proper EBS volume for Hibernation option
+              --> Stop-start and hibernate-resume cycles are controlled by Amazon EC2.
+              --> Spot Fleet allows you to automatically request and manage multiple Spot instances
+              --> No, we do not support multi-region Fleet requests. But user can lauch multi-AZ spot fleet request.
+              --> RequestSpotFleet API provides two allocation strategies: lowestPrice and diversified ( for needed target capacity).
+
+    3. Micro Instances -->
+              
+         
