@@ -1,0 +1,37 @@
+Elastic Compute Cloud (EC2) --> web service that provides resizable compute capacity
+  default limit of EC2 instances --> total 20 
+      for On-demand --> 20
+      for reserved --> 20
+      for spot --> dynamic sport limit
+
+Benefits --> Scale up and down as per demand (auto scaling)
+  --> pay for only for you use (pay-as-you-go model)
+  --> Different instances has differnt price (based on compute resources capacity)
+  --> Amazon EC2 use ECC memory
+  --> complete control on compute configuration, intiation and shutdown, 
+  
+  
+CLI API for initiating (running) an EC2 instance --> RunInstances API call
+for status or info about EC2 --> DescribeInstances
+for terminating EC2 -> TerminateInstances
+
+If EC2 instances using Amazon EBS boot partition --> 
+    StopInstances --> to stop EC2 and release compute resources but keep EBS volume
+    StartInstances --> to restart EC2
+
+difference between using the local instance store and Amazon Elastic Block Store (Amazon EBS) for the root device??
+Answer:- for Amazon EBS -->  data persist even if you stop or restart instances
+         for local store --> you will loose data even if you restart or stop 
+
+Amazon Machine Image (AMI) --> packaged-up environment, includes OS, applications etc (e.g., webservers, appservers, and databases)
+
+User can access EC2 by using DNS provided. or Public IPs.
+
+Limitations --> 
+    --> In sending number of emails, because of performace impact
+    --> 20 limit of EC2 instances
+
+EC2 billing --> charged as per instnace usage and data transfer
+    --> charges intiates when EC2 initiates the boot sequence of an AMI instance, and till instnace stopped or terminated
+    --> if data is transferred between these two instances, it is charged at "Data Transfer Out from EC2 to Another AWS Region" for the first instance and at "Data Transfer In from Another AWS Region" for the second instance. 
+    --> charges calculated based on a per second basis
