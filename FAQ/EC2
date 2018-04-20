@@ -202,4 +202,48 @@ Different Types of EC2 instances -->
               
      8. General Purpose Instnaces --> 
           --> good choice for running development and test environments (M5 Instnaces)
-          --> 
+          -->  no local storage option for M5 instances.
+          
+           Fixed Performance Instances (e.g. C, M and R instance families) --> 
+                  ---> but these instnaces doesn't have burst capacity. (comes only in specific version, like M5, C4, R2, etc)
+                  --> Hence you choose M and C categories when you need consistent CPU usage / performance
+                  --> Here you specify throughput and get performance accordingly. No baseline usage of CPU limitation.
+                  
+                  
+           Burstable Performance Instances (e.g. T2) --> 
+                 --> CPU capacity can increase based on CPU Credits and performance (mean, nano, micro, small, medium, etc..)
+                --> If your workload can manages CPU usage Ups and downs like our laptop, etc... T2 could be cost effective
+                --> In this you specify a baseline usage of your CPU and little up and down are ok and can be burstable accordingly
+                --> hence its performance majorly depends on the baseline CPU credits allocated at the time of assignment, it can be burstable best on credits
+                --> T2 instance is not available for dedicated host category of instances
+      9. Storage Optimized Instances --> 
+            --> Dense-storage Instance (D) --> used for  high sequential read and write access to very large data sets
+            --> offer the best price/GB-storage and price/disk-throughput across other EC2 instances.
+            
+            Q. How do Dense-storage and HDD-storage instances compare to High I/O instances? 
+            Answer --> High I/O instances (I2) are targeted at workloads that demand low latency and high random I/O in addition to 
+              moderate storage density and provide the best price/IOPS across other EC2 instance types. Dense-storage instances (D2) 
+              and HDD-storage instances (H1) are optimized for applications that require high sequential read/write access and 
+              low cost storage for very large data sets and provide the best price/GB-storage and price/disk-throughput across
+              other EC2 instances.
+              
+              --> EBS offers simple, elastic, reliable (replicated), and persistent block level storage
+              -->  Dense-storage and HDD-storage instances provides non-persistent but high sequential read/write access to large data sets on local storage
+              
+              Dense Storage Instance (D2) --> d2.8xlarge, can deliver up to 3.5 GBps read and 3.1 GBps write disk throughput with a 2 MiB block size.
+                    --> Can be launched in both EC2-Classic and EC2-VPC
+              HDD-storage instances (H1) -->  largest H1 instances size, h1.16xlarge, can deliver up to 1.15 GBps read and write
+                    --> H1 instance is only avilable in EC2-VPC
+                    
+        10. Memory Optimized Instances -->
+                  Memory-optimized instances offer large memory size for memory intensive applications
+                  X1 instance --> extra memory --> ideal for in-memory databases like SAP HANA, big data processing engines
+                  --> only support SSD based storage
+    
+    --> VM Import/Export enables customers to import Virtual Machine (VM) images in order to create Amazon EC2 instances.
+    --> VM Import/Export to leverage customer's previous investments in building VMs by migrating their VMs to Amazon EC2.
+    --> VHD (Virtual Hard Disk) is a file format that that specifies a virtual machine hard disk encapsulated within a single file. The VHD image format is used by virtualization platforms such as Microsoft Hyper-V and Citrix Xen.
+    
+    
+    --> some CLI --> ec2-import-instance, ec2-create-instance-export-task
+    
