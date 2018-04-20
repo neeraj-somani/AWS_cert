@@ -110,7 +110,27 @@ Limitation -->
       --> EBS offers seamless encryption of data volumes and snapshots. 
  
  EC2 and Elastic File Storage (EFS) -->
+      --> you can mount the file system on EC2 using Linux mount command and the file system’s DNS name
+      --> Amazon EFS supports one to thousands of Amazon EC2 instances connecting to a file system concurrently.
       
+      Q. How do I access my file system from outside my VPC?
+      Answer:- Amazon EC2 instances within your VPC can access your file system directly, and Amazon EC2 Classic instances outside your VPC can mount a file system via ClassicLink. On-premises servers can mount your file systems via an AWS Direct Connect connection to your VPC.
     
-    
+ EC2 and Amazon CloudWatch --> 
+    --> 1 min granularity
+    --> user can get EC2 instance matric data up to 2 weeks from the time you started to monitor it
+    --> monitoring data can be archived beyond 2 weeks using "mon-get-stats" command, inot S3 or SimpleDB
+    --> CloudWatch stores metrics for terminated Amazon EC2 instances or deleted Elastic Load Balancers for 2 weeks.
+    --> CloudWatch monitoring charge does not vary by Amazon EC2 instance type.
+
+Different Types of EC2 instances --> 
+    1. Reserved Instances --> resevation and discount available based on 1year or 3 year terms
+              Standard RI --> discount on regular Resevred Instance
+              Convertible RI --> discounted reserved instance with capability to change your instance configuration during the term
+              Zonal RI --> when RI is scoped to a specific AZ (advantage of the capacity reservation)
+              Regional RI --> when RI is scoped to specific region and all AZ within that Region 
+                      --> If you do not require the capacity reservation then use Regional RI. 
+                      --> provide AZ and instance size flexibility, which offers broader applicability of the RI’s discounted rate.
+                        -->  instance size flexibility means it applies your RI’s discounted rate to usage of any EC2 instnace size within an instance family. (two m5.xlarge instances in us-east-1a or four m5.large instances in us-east-1b.)
+                        
   
