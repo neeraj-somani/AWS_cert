@@ -35,3 +35,82 @@ EC2 billing --> charged as per instnace usage and data transfer
     --> charges intiates when EC2 initiates the boot sequence of an AMI instance, and till instnace stopped or terminated
     --> if data is transferred between these two instances, it is charged at "Data Transfer Out from EC2 to Another AWS Region" for the first instance and at "Data Transfer In from Another AWS Region" for the second instance. 
     --> charges calculated based on a per second basis
+
+EC2 Hardware Information --> 
+  EC2 Instance Types --> 
+    a. General purpose --> T, M
+    b. Compute Optimized --> c
+    c. Memory Optimized --> R, X
+    d. Accelerated computing --> G, P, F
+    e. storage optimized --> H, I, D
+    
+
+    What is an “EC2 Compute Unit” -->
+        The amount of CPU that is allocated to a particular instance is expressed in terms of these EC2 Compute Units. 
+
+EC2 Security -->
+    You can create arbitrary groups and even control over which IP subnets on the Internet may talk to which groups. 
+
+EC2 and Elastic IP -->
+    By default, all accounts are limited to 5 Elastic IP addresses per region. 
+    --> for efficiently using the Elastic IP addresses, we impose a small hourly charge for each address when it is not associated to a running instance.
+  
+  Q: Do I need one Elastic IP address for every instance that I have running?
+  Answer:- No. You do not need an Elastic IP address for all your instances. By default, every instance comes with a private IP address 
+  and an internet routable public IP address. The private address is associated exclusively with the instance and is only returned 
+  to Amazon EC2 when the instance is stopped or terminated. The public address is associated exclusively with the instance until it 
+  is stopped, terminated or replaced with an Elastic IP address. 
+  
+
+EC2 and AZs --> 
+    --> We do not currently support the ability to coordinate launches into the same Availability Zone across AWS developer accounts. One Availability Zone name (for example, us-east-1a) in two AWS customer accounts may relate to different physical Availability Zones.
+
+EC2 -- Nitro Hypervisor -->
+    C5 instances introduced Nitro Hypervisor. 
+    Benefit --> 
+      --> primarily provides CPU and memory isolation
+      --> provides consistent performance and increased compute and memory resources 
+      
+  Many EC2’s use of its Xen-based hypervisor as well.
+  
+  Q: How many EBS volumes and Elastic Network Interfaces (ENIs) can be attached to instances running on the Nitro Hypervisor
+  Answer: 27 in total including EBS and ENI
+  
+EC2 and Enhanced Networking -->
+    --> using SR-IOV (Single Root I/O Virtualization) 
+        --> provides higher I/O performance and lower CPU utilization
+        --> higher packet per second (PPS) performance, lower inter-instance latencies, and very low network jitter.
+        --> no additional charges for this
+        --> its is supported only EC2-VPC type
+    --> to enable this feature, you must launch an HVM AMI with the appropriate drivers. 
+    --> For AMIs that do not contain these drivers, you will need to download and install the appropriate drivers based on the instance types you plan to use. 
+    --> many advance networking features are not supported by EC2-Classic
+
+EC2 and Amazon Elastic Block Store (EBS) -->
+      data store on EC2-local instnace will not persist after you terminate or stop instance.
+      EBS backed EC2 instances can keep your data even after you terminate or stop instance, by setting Delete On Terminate flag to "N".
+      --> four EBS volume types and divided into two categories: 
+         1. --> SSD-backed storage for transactional workloads (performance depends primarily on IOPS)
+         2. --> HDD-backed storage for throughput intensive workloads. (performance depends primarily on throughput, measured in MB/s)
+
+Throughput Optimized HDD (st1) --> ideal for frequently accessed, throughput intensive workloads with large datasets and large I/O sizes
+Cold HDD (sc1) --> ideal for less frequently accessed workloads with large, cold datasets. lowest cost per GB
+
+Limitation --> 
+    --> multiple instances to one volume is not supported 
+    --> EBS snapshots are only available through the Amazon EC2 APIs.
+    
+ EBS Snapshots --> point in time copy of EBS volume
+      --> snapshots can be done in real time while the volume is attached and in use.
+      --> we recommend shutting down the machine to take a clean snapshot. So, that snapshots don't miss any unwritten data at any point in time.
+      snapshots versioned --> Each snapshot is given a unique identifier, and customers can create volumes based on any of their existing snapshots.
+      --> If you share a snapshot, you won’t be charged when other users make a copy of your snapshot. If you make a copy of another user’s shared volume, you will be charged normal EBS rates.
+      --> find snapshots that have been shared with you by selecting “Private Snapshots”
+      --> find snapshots that have been shared globally by selecting “Public Snapshots”
+      --> EBS offers seamless encryption of data volumes and snapshots. 
+ 
+ EC2 and Elastic File Storage (EFS) -->
+      
+    
+    
+  
