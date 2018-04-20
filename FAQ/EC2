@@ -3,7 +3,11 @@ Elastic Compute Cloud (EC2) --> web service that provides resizable compute capa
       for On-demand --> 20
       for reserved --> 20
       for spot --> dynamic sport limit
-
+      
+    two type of virtualization in EC2 -->
+         Hardware Virtual Machine (HVM) --> 
+          Paravirtual Machine (PVM) --> 
+          
 Benefits --> Scale up and down as per demand (auto scaling)
   --> pay for only for you use (pay-as-you-go model)
   --> Different instances has differnt price (based on compute resources capacity)
@@ -167,5 +171,35 @@ Different Types of EC2 instances -->
               --> RequestSpotFleet API provides two allocation strategies: lowestPrice and diversified ( for needed target capacity).
 
     3. Micro Instances -->
+              -->  provide a small amount of consistent CPU resources
+              --> if you have a relatively low throughput application or web site with an occasional need to consume significant compute cycles, we recommend using Micro instances.
+    
+    4. Compute Optimized -->
+        --> high compute power
+        --> C5 and C4
+        
+    5. Accelerated Computing Instances --> 
+          --> use hardware accelerators, or co-processors, to perform some functions, with better performance
+          --> three types
+              – GPU compute instances for general-purpose computing --> for massive parallel processing
+              -- GPU graphics instances for graphics intensive applications
+              -- FPGA programmable hardware compute instances for advanced scientific workloads.
+         --> P3 / G3 / 
+         --> P3 instances will support EC2-VPC only.
+         --> EC2 F1 is a compute instance with programmable hardware. F instances --> FPGA
+      
+     6. Cluster compute Instance -->
+          --> specifically engineered to provide high performance networking with high performance
+          --> Cluster GPU Instances provide general-purpose graphics processing units (GPUs) with proportionally high CPU and increased network performance
+          High Memory Cluster Instances  --> large amounts of memory and CPU capabilities with networking capabilities
+            ---> cluster placement group is a logical entity that enables creating a cluster of instances and launching in group
+            
+     7. High I/O Instances -->
+              --> deliver very high, low latency, I/O capacity to applications
+              --> Cluster instances, High I/O instances can be clustered via cluster placement groups for low latency networking.
+              --> High I/O instances are not available as decicated host instances.
+              --> best suited for OLTP applications,
               
-         
+     8. General Purpose Instnaces --> 
+          --> good choice for running development and test environments (M5 Instnaces)
+          --> 
