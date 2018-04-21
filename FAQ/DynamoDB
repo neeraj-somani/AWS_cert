@@ -166,6 +166,7 @@ Global Secondary Index (GSI) -->
         
         --> UpdateTable or PutScalingPolicy CLI can be used
         --> 
+         
 
 DynamoDB FGAC --> Fine Grained Access Control (FGAC)
       --> owner can indicate who (caller) can access which items or attributes of the table and perform what actions (read / write capability). 
@@ -186,6 +187,9 @@ DynamoDB pricing -->
           -->   Provisioned throughput capacity (read-throughput and write-throughput)
           -->  indexed data storage
           -->   standard internet data transfer fees
+
+    --> Need to understand calculation for DynamoDB Pricing
+      --> Not sure 
 
 DynamoDB Streams --> time-ordered sequence of item-level data changes in a table in the last 24 hours
       --> have to be enabled on a per-table basis
