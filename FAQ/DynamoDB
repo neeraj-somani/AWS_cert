@@ -107,12 +107,27 @@ Global Secondary Index (GSI) -->
                   --> allows retrieve attributes that are not part of the projection list.
                   --> All scalar data types (Number, String, Binary, and Boolean) can be used for the sort key element of the local secondary index key. Set, list, and map types cannot be indexed.
                  --> LSI must consiste of 3 entries (1) the table partition key value, (2) an attribute to serve as the index sort key, and (3) the table sort key value.
-                 --> LSI total can consist upto 20 attributes including key and non-key attributes
                  --> supports both strong and eventually consistent read options.
                  --> LSI supports only QUERY operation.
                  --> LSI must be defined at time of table creation. Not possible to create LSI on existing table.
                  --> maximum of 5 LSI per table
                  --> 20 projected non-key attributes, in total across all local secondary indexes within the table
+                 --> an index cannot be modified once it is created.
+                 --> local secondary indexes cannot be removed from a table once they are created at this time. 
+                 --> they are deleted if you also decide to delete the entire table. 
+                 --> No additinal provision capacity needed for LSI
+                 --> if you are exceeding 10 GB limit, then you can remove items or reduce item sizes in the collection. Alternatively, introduce new items under a new partition key value
+                 --> in-order to SCAN LSI, need to explicitly refrence the index in addition to table name. SCAN on LSI support non-projected attributes.
+                 
+                 
+              Provision Capacity --> 
+                 --> Read from LSI consume capacity by the standard formula of 1 unit per 1KB of data
+                 --> write capacity will be consumed for each relevant LSI.
+                 --> updates can result in two operations– delete and insert. Hence, extra units of write capacity per 1KB of data. (so total twice write capacity)
+                 --> When a read query requests attributes that are not projected into the LSI, DynamoDB will fetch those attributes from the primary index. This implicit GetItem request consumes one read capacity unit per 4KB of item data fetched.
+            --> item collection is any group of items that have the same partition key, across a table and all of its local secondary indexes.
+            --> Item collection must not exceed 10 GB.
+            
                  
                  
                  
@@ -142,7 +157,8 @@ Global Secondary Index (GSI) -->
             Throttled read events
             Throttled write events
             
-      projected attributes --> secondary index consists of attributes copied 
+      projected attributes --> secondary index consists of attributes. Project attributes can be of any data type.
+      
      
      GSI and provisioned capacity of table -->
             --> GSI item will consume write capacity units based on the size of the update. The capacity consumed by the GSI write is in addition to that needed for updating the item in the table.
@@ -151,7 +167,25 @@ Global Secondary Index (GSI) -->
         --> UpdateTable or PutScalingPolicy CLI can be used
         --> 
 
-
+DynamoDB FGAC --> Fine Grained Access Control (FGAC)
+      --> owner can indicate who (caller) can access which items or attributes of the table and perform what actions (read / write capability). 
+      --> IAM is supported
+      --> useful to restrict access to your data based on top-level attributes in your document.
+      --> With FGAC, an application requests a security token that authorizes the application to access only specific items in a specific DynamoDB table.
+      --> recommended, principle of least privilege, and Allow access to only specific attributes.
+      --> Deny policy is not recommended.
+      --> AM policy language supports a rich set of comparison operations, including StringLike, StringNotLike, etc
+      
+     --> Certain information cannot currently be blocked from the caller about the items in the table:
+           --> Item collection metrics. 
+           -->  Consumed throughput --> provisioned throughput consumed by operations.
+           -->  Validation cases  --> user can use some validation cases against the table and get some validation case details.
+  CloudTrail --> records AWS API calls for your account and delivers log files to you
+  
+DynamoDB pricing --> 
+          -->   Provisioned throughput capacity (read-throughput and write-throughput)
+          -->  indexed data storage
+          -->   standard internet data transfer fees
 
 DynamoDB Streams --> time-ordered sequence of item-level data changes in a table in the last 24 hours
       --> have to be enabled on a per-table basis
