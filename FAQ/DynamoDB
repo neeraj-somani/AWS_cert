@@ -108,7 +108,12 @@ Global Secondary Index (GSI) -->
                   --> All scalar data types (Number, String, Binary, and Boolean) can be used for the sort key element of the local secondary index key. Set, list, and map types cannot be indexed.
                  --> LSI must consiste of 3 entries (1) the table partition key value, (2) an attribute to serve as the index sort key, and (3) the table sort key value.
                  --> LSI total can consist upto 20 attributes including key and non-key attributes
-                 --> 
+                 --> supports both strong and eventually consistent read options.
+                 --> LSI supports only QUERY operation.
+                 --> LSI must be defined at time of table creation. Not possible to create LSI on existing table.
+                 --> maximum of 5 LSI per table
+                 --> 20 projected non-key attributes, in total across all local secondary indexes within the table
+                 
                  
                  
            GSI --> contain a partition or partition-and-sort keys that can be different from the table's primary key.
