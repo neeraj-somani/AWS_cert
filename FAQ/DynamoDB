@@ -189,8 +189,76 @@ DynamoDB pricing -->
           -->   standard internet data transfer fees
 
     --> Need to understand calculation for DynamoDB Pricing
-      --> Not sure 
+      --> Below is the pricing calculation 
+                 = ((write_unit / 10) X 0.01) + ((read_unit / 50) X 0.01) = $X/hour
+      --> Understand the calculation for read capacity unit and write capacity unit
+            1. Units of Capacity required for writes = Number of item writes per second x item size in 1KB blocks
+            2. Units of Capacity required for reads* = Number of item reads per second x item size in 4KB blocks
+            3. * If you use eventually consistent reads you’ll get twice the throughput in terms of reads per second.
+            4. If size is less than 1 KB, than 1 strongly consistent read/second and 1 write/second 
+            Notes:- required number of units of Read Capacity is determined by the number of items being read per second, not the number of API calls. 
+     
+     
+   provisioned throughput --> 
+            --> Auto Scaling adjusts throughput capacity automatically as request volumes change, desired target utilization and minimum 
+            and maximum capacity limits, service handles the provisioning of resources to achieve the requested throughput rate.
+            This is the provisioned throughput model of service.
+         --> DynamoDB divides a table into multiple partitions and distributes the data based on the partition key element of the primary key.
+                  this is the way auto scaling is achived.
+   DynamoDB maximum provision throughput --> 
+         maximum default allowed throughput for individual table --> 10,000 write capacity units or 10,000 read capacity units
+         minimum default allowed throughput for individual table --> 1 write capacity units or 1 read capacity units
+         maximum default allowed throughput for individual account --> 20,000 write capacity units or 20,000 read capacity units
+    Q: How often can I change my provisioned throughput?
+    Answer:- increase your provisioned throughput as often as you want. You can decrease up to four times any time per day.
+           if there was no decrease in the past four hours, an additional dial down is allowed, effectively bringing maximum number of decreases in a day to 9 (4 decreases in the first 4 hours, and 1 decrease for each of the subsequent 4 hour windows in a day).
 
+DynamoDB Reserve Capacity --> 
+        Reserved Capacity is a billing feature that allows discount based on 2 ways (1 year or 3 year) -->
+           -->  A one-time up-front payment
+           -->  A commitment to a minimum monthly usage level for the duration of the term of the agreement.
+         Cancelation is not allowed.
+         minimum is 100 capacity unit (read or write)
+         can be applied within a region for one consolidated account 
+                  --> on multiple linked accounts and multiple dynamoDB tables.
+         
+Cross Region Replication (CRR) -->         
+      --> allows you to maintain identical copies (called replicas) of a DynamoDB table (called master table) in one or more AWS regions. 
+      --> supports One master table and one or more replicas (no limit on number of replica)
+      --> When status becomes "ACTIVE" means replica is ready
+     Very important --> Amazon EC2 Auto scaling is not enabled for CRR, need to configure EC2 size as per need.
+      --> replication is fault tolerant. 
+      --> After the replication has been created, any changes to the provisioned capacity on the master table will not result in an update in throughput capacity on the replica table.
+      --> secondary indexes on the master table will NOT be automatically created on the replica table. 
+      --> while creating replica table, user need to configure read and write throughput capacity as per need.
+      --> Replicas are updated asynchronously, means eventually consistent model
+      --> deleting the replication group will delete the EC2 instance for the group. However, you will have to delete the DynamoDB metadata table.
+      
+    Benefitial -->
+      Efficient disaster recovery: 
+      Faster reads: 
+      Easier traffic management: 
+      Easy regional migration: 
+      Live data migration: 
+   
+   CRR billed based on following factors -->
+      Provisioned throughput (Writes and Reads) and storage for the replica tables.
+      Data Transfer across regions.
+      Reading data from DynamoDB Streams to keep the tables in sync.
+      The EC2 instances provisioned to host the replication process. The cost of the instances will depend on the instance type you 
+            choose and the region hosting the instances.
+ 
+DynamoDB Triggers -->
+      --> allows you to execute custom actions based on item-level updates 
+      --> use cases include sending notifications, updating an aggregate table, and connecting DynamoDB tables to other data sources.
+      --> It works with the AWS Lambda function and DynamoDB Stream
+      --> Triggers can only be created using Lambda function, not any other CLI API
+      
+   Trigger Pricing -->  
+      --> number of request for Lambda function
+      --> and execute run time of Lambda function
+      --> not charged for AWS lambda function reads from Stream
+      
 DynamoDB Streams --> time-ordered sequence of item-level data changes in a table in the last 24 hours
       --> have to be enabled on a per-table basis
       --> stream is managed automatically in DynamoDB
@@ -313,11 +381,5 @@ VPC endpoints for Amazon DynamoDB -->
               --> Amazon DynamoDB does not support resource-based policies pertaining to individual tables, items, and the like S3.
               
               
-  Q. Can I have multiple VPC endpoints for DynamoDB in a single VPC?
-   Answer:- Yes, you can have multiple VPC endpoints for Amazon DynamoDB in a single VPC. Individual VPC endpoints can have different VPC endpoint policies. For example, you could have a VPC endpoint that is read-only and one that is read/write. However, a single route table in a VPC can only be associated with a single VPC endpoint for DynamoDB, because that route table will route all traffic to DynamoDB through the specified VPC endpoint.
-      
-
-      
-      
-      
-      
+    Q. Can I have multiple VPC endpoints for DynamoDB in a single VPC?
+   Answer:- Yes, you can have multiple VPC endpoints for Amazon DynamoDB in a single VPC. Individual VPC endpoints can have different VPC endpoint policies. For example, you could have a VPC endpoint that is read-only and one that is read/write. However, a single route table in a VPC can only be associated with a single VPC endpoint for DynamoDB, because that route table will route all traffic to DynamoDB through the specified VPC endpoint.      
