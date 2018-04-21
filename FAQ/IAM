@@ -2,8 +2,11 @@ IAM to securely control individual and group access to your AWS resources.
 Every IAM users are provided with security credentials
 Users are global entities, not region specific
 
-
-
 Benefits --> 
   provide multiple users secure access
   Manage access for federated users: 
+  
+Roles --> allow to delegate access with defined permissions to trusted entities without having to share long-term access keys
+user can assume role by calling the AWS Security Token Service (STS) AssumeRole APIs (in other words, AssumeRole, AssumeRoleWithWebIdentity, and AssumeRoleWithSAML)
+
+
