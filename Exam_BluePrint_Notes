@@ -1,0 +1,26 @@
+Major Pillars -->
+  Fundamentals, Designing, Developing, Deploying, Security, Debugging
+
+Topics related to Develop and maintain application written for below listed services -->
+
+Amazon Simple Storage Services (S3), 
+Amazon DynamoDB, 
+Amazon Simple Queue Service (SQS), 
+Amazon Simple Notification Service (SNS), 
+Amazon Simple Workflow Service (SWF), 
+AWS Elastic Beanstalk, and 
+AWS CloudFormation
+VPC
+IAM
+CIA and AAA models, ingress vs. egress filtering, and which AWS services and features fit
+
+--> How to automate process
+--> How to deploy tools for above services
+--> security best practices
+--> storage options and underlying consistency model
+--> AWS SDK's (atleast one)
+--> stateless , stateful and loosely coupled distributed applications
+--> RESTFul API usage and working knowledge
+--> DB knowledge
+--> messaging and queueing service
+--> Elasticity and scalability
