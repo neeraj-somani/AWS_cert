@@ -1,0 +1,9 @@
+IAM to securely control individual and group access to your AWS resources. 
+Every IAM users are provided with security credentials
+Users are global entities, not region specific
+
+
+
+Benefits --> 
+  provide multiple users secure access
+  Manage access for federated users: 
