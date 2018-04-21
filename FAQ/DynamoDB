@@ -82,6 +82,70 @@ Querying JSON Data --> Need to create LSI or GSI on top on JSON Data file. to ac
 Document SDK is a datatypes wrapper for JavaScript that allows easy interoperability between JS and DynamoDB datatypes. 
 
 Scalability, availability, and durability sections -->
+            --> no storage limit
+            --> no throughtput limit, but If you wish to exceed throughput rates of 10,000 writes/second or 10,000 reads/second, then talk to AWS
+            --> 100% sever failure and fault tolerant , AZ outage
+Auto Scaling --> 
+            --> ensure application availability and reduces costs from unused provisioned capacity.
+            --> deally suited for request patterns that are uniform, predictable, with sustained high and low throughput usage that lasts for several minutes to hours.
+            --> By default it is enabled, else you can confugure target utilization and minimum and maximum capacity. 
+            --> Configuration settings are available at "Capacity" and "Indexes" tab
+            --> Every chnage in auto scaling policy creates an CloudWatch alarm which activates auto scaling activity 
+            --> Auto Scaling policy can only be set to a single table or a global secondary indexes within a single region.
+            --> scaling up and down to maximum / minimum capacity is not supported. Instead temporary disable Auto scaling for those scenarios and allocate needed capacity.
+            --> reserved capacity will be billed at discounted rate and any extra capacity used at regular price
+
+Global Secondary Index (GSI) --> 
+      --> contain a partition or partition-and-sort keys that can be different from the table's primary key.
+      --> Amazon DynamoDB creates and maintains indexes for the primary key attributes
+      --> User can create Secondary indexes --> 
+           LSI --> same partition key as the table, but a different sort key
+                  --> this increases query efficiency
+                  --> overs items that are stored together (on the same partition) but different sort key
+                  --> total size limit 10 GB per partition key value
+                  --> LSI affected items are atomically updates (means either user will see new data or old data, not partially updated data)
+                  --> allows retrieve attributes that are not part of the projection list.
+                  --> All scalar data types (Number, String, Binary, and Boolean) can be used for the sort key element of the local secondary index key. Set, list, and map types cannot be indexed.
+                 --> LSI must consiste of 3 entries (1) the table partition key value, (2) an attribute to serve as the index sort key, and (3) the table sort key value.
+                 --> LSI total can consist upto 20 attributes including key and non-key attributes
+                 --> 
+                 
+                 
+           GSI --> contain a partition or partition-and-sort keys that can be different from the table's primary key.
+                  --> increases query flexibility by enabling queries against any non-key attributes (non-unique attribute)
+                  --> GSI does not need to have a sort key element.
+                  --> useful for tracking relationships between attributes that have a lot of different values
+                  --> maximum of 5 global secondary indexes per table
+                  --> GSI not limited to any attibute of table, it span across table
+                  --> GSIs do not enforce data co-location, and have no size restriction.
+                  --> GSI is eventually consistent, means updates within few sec in all tables. (updates are asynchronous)
+                  --> not allows retrieve attributes that are not part of GSI
+                  --> GSIs manage (provision) throughput independently of the table they are based on.
+                  --> One query can use only one GSI
+                  --> GSI supports both Query and Scan operation. but scan operation will not fetch not projected GSI attributes.
+                  ---> For GSI, ConsistentRead parameter can't be used as it support eventual consistency.
+                  --> GSI can be chnaged at any time
+                  --> Auto scling is recommended for GSI, Adding or deleting index also require additional throughput if setup manually.
+                  --> DescribeTable API will show status of Index. "ACTIVE" means Index has been created.
+                  --> Index creation process can't be canceled.
+                  --> Composite attribute Index are not possible
+                  --> GSI support all data types (including set types)
+      
+      CloudWatch metrics that are supported by a table. These include:
+            Read Capacity (Provisioned Read Capacity, Consumed Read Capacity)
+            Write Capacity (Provisioned Write Capacity, Consumed Write Capacity)
+            Throttled read events
+            Throttled write events
+            
+      projected attributes --> secondary index consists of attributes copied 
+     
+     GSI and provisioned capacity of table -->
+            --> GSI item will consume write capacity units based on the size of the update. The capacity consumed by the GSI write is in addition to that needed for updating the item in the table.
+            --> If GSI attributes are not impact by table operation then, GSI wouldnt consume any capacity.
+        
+        --> UpdateTable or PutScalingPolicy CLI can be used
+        --> 
+
 
 
 DynamoDB Streams --> time-ordered sequence of item-level data changes in a table in the last 24 hours
@@ -209,7 +273,7 @@ VPC endpoints for Amazon DynamoDB -->
   Q. Can I have multiple VPC endpoints for DynamoDB in a single VPC?
    Answer:- Yes, you can have multiple VPC endpoints for Amazon DynamoDB in a single VPC. Individual VPC endpoints can have different VPC endpoint policies. For example, you could have a VPC endpoint that is read-only and one that is read/write. However, a single route table in a VPC can only be associated with a single VPC endpoint for DynamoDB, because that route table will route all traffic to DynamoDB through the specified VPC endpoint.
       
-      
+
       
       
       
