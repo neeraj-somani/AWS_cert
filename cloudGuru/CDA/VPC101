@@ -44,7 +44,8 @@ Custom VPC - Lab
         
 Some Definitions-->
   Route Table --> specifies how packts are forwarded between the subnets within your VPC, internet and VPN connection.
-  
+  Internet Gateway --> is a virtual router that connects a VPC to the internet. 
+
 Exam Tips:
 1. The first four IP addresses and the last IP address in each subnet CIDR (Classless Inter-Domain Routing) block are not available for you to use, 
 and cannot be assigned to an instance. For example, in a subnet with CIDR block 10.0.0.0/24, 
