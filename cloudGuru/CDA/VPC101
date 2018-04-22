@@ -4,38 +4,49 @@ VPC -->
   
   1 subnet = 1 AZ
   Security groups are stateful --> means if Inbound is enabled, then outbound is also enabled
-  Network Access control List stateless --> but here Inbound or Outbound needs to be enabled seperately
-
+  Network Access control List stateless --> In this Inbound or Outbound needs to be enabled seperately
 
 What are the things that we can configure in VPC:
-1. Launch instances into a subnet of your choice
+1. Launch instances into a subnet of your choice (by creating custom subnet, with our chioce of IPs)
 2. Assign custom IP address range in each subnet
 3. configure route tables between subnets
 4. create internet gateway and attach it to our VPC. (One Internet Gateway in One VPC, you can't have more than one IG in one VPC)
 5. Much better security control over your AWS resources
-6. instance security groups (can be used across multiple AZ)
-7. Subnet Network access control list (ACLS)
+6. Ec2 instance security groups (can be used across multiple AZ)
+7. Subnet Network access control list (ACLS) -- (Inbound or Outbound needs to be enabled seperately)
 
 Difference between Default VPC vs Custom VPC
-1. Default VPC allows you to directly attach EC2 instances and deploy.
+1. Default VPC allows you to directly attach EC2 instances and deploy. In custom VPC, we need to configure VPC from scratch and then launch our EC2.
 2. Default VPC subnets are public in nature. We need to setup any needed private subnet in default VPC.
 3. All EC2 instances has both public and private IP address for default VPC.
     for custom VPC with Private Subnet, we will get only private IP address.
 
-VPC peering:-
+VPC peering:- (NO TRANSITIVE PEERING)
 Allows you to connect one VPC with another via Direct network route using private IP address.
 in one VPC in one subnet in one EC2 instance --> communicate (using private IP add) ---> another VPC in another subnet in another EC2 instances
 Instances behaves as they are in same private network.
 VPC peering can be done using another AWS account or with other VPCs in same account.
 VPC don't do transitive peering. Means one VPC commnicate to other only if they have direct network link. not via some other VPC.
 
-
 Important point just for AWS understanding purposes:- 
 1. same AZ name (example, us-east-1a) within one account could be different AZ in another account but with same AZ name. Hence, AWS randomize
     AZ's within different account to distribute the traffic.
 
+Custom VPC - Lab
+  Tenancy --> 
+        Default --> means using AWS hardware with sharing feature.
+        Dedicated --> means seperate dedicated AWS hardware, not sharing with other customers.
+  
+  Default things that gets created by default when we create custom VPC -->
+        1. route Table
+        2. NACL
+        3. security groups
+        
+Some Definitions-->
+  Route Table --> specifies how packts are forwarded between the subnets within your VPC, internet and VPN connection.
+  
 Exam Tips:
-1. The first four IP addresses and the last IP address in each subnet CIDR block are not available for you to use, 
+1. The first four IP addresses and the last IP address in each subnet CIDR (Classless Inter-Domain Routing) block are not available for you to use, 
 and cannot be assigned to an instance. For example, in a subnet with CIDR block 10.0.0.0/24, 
 the following five IP addresses are reserved:
 10.0.0.0: Network address.
@@ -48,8 +59,9 @@ is located in the primary CIDR. For more information, see Amazon DNS Server.
 
 Exam Questions:
   >> you can't have multiple IGW (Internet Gateway) attached to one VPC.
-  >> you can add default security group to custom VPC or you need to create new security group while lauching EC2 instance within VPC. 
-      you can't attach existing security group from other VPC to custome made VPC.
+  >> security groups are attached to one VPC. security groups can't span across multiple VPCs. Each VPC has one default 
+      security group created at VPC launch.
+  
 
 NAT Instances --> https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html
    You can use a network address translation (NAT) instance in a public subnet in your VPC to enable instances in the private subnet 
@@ -57,21 +69,21 @@ to initiate outbound IPv4 traffic to the Internet or other AWS services, but pre
 initiated by someone on the Internet.
 
 On a very high level this is what I understood:-
-  1. user can't communicat to internet using private subnet, with disable inbound/outbound traffic.
+  1. user can't communicate to internet using private subnet, with disable inbound/outbound traffic.
   2. so NAT instance will allow private subnet to access internet using NAT instance sitting at public subnet.
   3. Internet will get inbound/outbound traffic request/response from NAT instance and then NAT istance will forward that reponse to 
-      private subnet.
+      private subnet as per inbound rule of private subnet.
       
-Exam Tips on NAT instances (type of EC2 instances):-
+Exam Tips on NAT instances :- (Similar, like EC2 instance)
   >> Disable source/destination check --> 
   Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of 
   any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination 
-  is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+  is not itself, (as we discussed earlier, NAT instnaces are used to communicate for private subnet instnaces). Therefore, you must
+  disable source/destination checks on the NAT instance.
   >> NAT instnace must be in public subnet and connection between private subnet and NAT instance must be established.
   >> Depending upon the instnace size, it can handle the amount of traffic
   >> High availability NAT instance can be build by auto scaling groups, multiple subnets in different AZs, script to automate failover.
   >> NAT instances runs behind a security groups. All allowed traffic ports must be in security groups.
-  
   
 NAT Gateways:- mostly used by enterprises because of below benefits
   >> scale automatically upto 10Gbs
@@ -79,15 +91,15 @@ NAT Gateways:- mostly used by enterprises because of below benefits
   >> not associated with security groups
   >> automatically assigned a public IP address
   >> Need to update route table 
-  >> no need to diable source/destination checks
+  >> no need to disable source/destination checks
   >> more secure than NAT instances
   
   
-defination of some useful terms:
+definition of some useful terms:
 question 1. Elastic IP address vs public / private IP
 Answer:
-When you launch an EC2 instance, you recieve a Public IP address by which that instance is reachable.
-Once you stop that instance and restart the you get a new Public IP for the same instance's.
+When you launch an EC2 instance, you recieve a Public IP address by which that instance is reachable in public through internet.
+Once you stop that instance and restart then you get a new Public IP for the same instance's.
 
 So, Public IP get's changed everytime for an instance after stop/start.
 To overcome with this problem, we attach an Elastic IP to an Instance which doesn't change after you stop / start the instance as 
@@ -117,7 +129,7 @@ NACL (Network Access control list) and Security Groups:-
   >> each subnet in VPC must associate with a NACL, if user dont do it that subnet will automatically associate with default NACL.
   >> One NACL can have multiple subnets but one subnet can associate with only one NACL at a time.
   >> Rules in NACL are validated in sort order by Rule number.
-  >> NACL is stateless, you need individual rules for Inbound and outbound.
+  >> NACL is stateless, you need individual rules for Inbound and outbound, by default all traffice is denyied for Inbound/Outbound.
   >> User can block IP address using NACL but not using Security groups.
 
 ** Ephemeral port --> 1024 - 65535
@@ -126,8 +138,8 @@ security groups - used for instance level control - do not have outbound rules. 
 denying all inbound traffic unless explicitly allowed. once allowed, security groups use stateful filtering to manage traffic 
 flow - an inbound connection will have its related outbound traffic allowed automatically.
 
-NACLs - used for subnet level control - do not care about state, and thus, have both inbound and outbound rules. by default, 
-they are configured to allow all traffic at ingress and egress. as NACLs are stateless, if you wish to deny traffic at the NACL layer,
+NACLs - used for subnet level control - Stateless, have both inbound and outbound rules. by default, 
+they are configured to allow all traffic at ingress and egress. as NACLs are stateless, if you wish to deny/allow traffic at the NACL layer,
 you must explicitly define filters in both the inbound and outbound rules.
 
 The scenarios in your question are both good examples of these differences.
@@ -153,7 +165,6 @@ Not all IP traffic is monitored:-
   >> Traffic to and from from 169.254.169.254 for instance metadata.
   >> DHCP traffic
   >> Traffic to the reserved IP address for a default VPC router.
-
 
 NAT vs Bations :- 
   >> NAT is used to allow internet traffic to EC2 instances in private subnet
