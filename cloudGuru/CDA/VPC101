@@ -11,20 +11,23 @@ What are the things that we can configure in VPC:
 1. Launch instances into a subnet of your choice
 2. Assign custom IP address range in each subnet
 3. configure route tables between subnets
-4. create internet gateway and attach it to our VPC
+4. create internet gateway and attach it to our VPC. (One Internet Gateway in One VPC, you can't have more than one IG in one VPC)
 5. Much better security control over your AWS resources
-6. instance security groups
+6. instance security groups (can be used across multiple AZ)
 7. Subnet Network access control list (ACLS)
 
 Difference between Default VPC vs Custom VPC
 1. Default VPC allows you to directly attach EC2 instances and deploy.
-2. Default VPC subnets are public in nature.
-3. All EC2 instances has both public and private IP address.
+2. Default VPC subnets are public in nature. We need to setup any needed private subnet in default VPC.
+3. All EC2 instances has both public and private IP address for default VPC.
+    for custom VPC with Private Subnet, we will get only private IP address.
 
 VPC peering:-
+Allows you to connect one VPC with another via Direct network route using private IP address.
 in one VPC in one subnet in one EC2 instance --> communicate (using private IP add) ---> another VPC in another subnet in another EC2 instances
 Instances behaves as they are in same private network.
-VPC don't do transitive peering. Means one VPC commnicate to other only if they have direct link. not via some other VPC.
+VPC peering can be done using another AWS account or with other VPCs in same account.
+VPC don't do transitive peering. Means one VPC commnicate to other only if they have direct network link. not via some other VPC.
 
 
 Important point just for AWS understanding purposes:- 
