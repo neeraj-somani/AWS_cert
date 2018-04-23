@@ -75,27 +75,42 @@ On a very high level this is what I understood:-
   3. Internet will get inbound/outbound traffic request/response from NAT instance and then NAT istance will forward that reponse to 
       private subnet as per inbound rule of private subnet.
       
-Exam Tips on NAT instances :- (Similar, like EC2 instance)
+Exam Tips on NAT instances :- (Similar, like EC2 instance but its community available instances)
   >> Disable source/destination check --> 
   Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of 
   any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination 
-  is not itself, (as we discussed earlier, NAT instnaces are used to communicate for private subnet instnaces). Therefore, you must
+  is not itself, (as we discussed earlier, NAT instnaces are used to communicate for private subnet instances). Therefore, you must
   disable source/destination checks on the NAT instance.
   >> NAT instnace must be in public subnet and connection between private subnet and NAT instance must be established.
   >> Depending upon the instnace size, it can handle the amount of traffic
   >> High availability NAT instance can be build by auto scaling groups, multiple subnets in different AZs, script to automate failover.
   >> NAT instances runs behind a security groups. All allowed traffic ports must be in security groups.
-  
+  >> Bastion servers are supported.
+
+Limitation of NAT Instnaces that can be mitigated by NAT Gateway -->
+1. NAT Instnaces are specific to one AZ. Hence, for auto scaling we need to launch multiple NAT Instnaces to connect to multiple AZ.
+2. we need to do multi-AZ to make it fault taulerant and auto scaling possible.
+3. Limited Network throughput as individual NAT instnace is associated with one AZ only.
+
+Google Search --> NAT Gateway vs NAT Instances
+  1. NAT Gateway are also specific to each AZ, but when you configure your route table, failure handle can be done automatically.
+
 NAT Gateways:- mostly used by enterprises because of below benefits
-  >> scale automatically upto 10Gbs
+  >> operates on IPv4
+  >> must create Elastic IP address for NAT Gateways
+  >> scale automatically upto 10Gbps
   >> no need to patch
   >> not associated with security groups
   >> automatically assigned a public IP address
   >> Need to update route table 
   >> no need to disable source/destination checks
   >> more secure than NAT instances
+  >> Bastion server not supported
   
+Egress-Only Internet Gateway --> 
+  >> operates on IPv6 
   
+
 definition of some useful terms:
 question 1. Elastic IP address vs public / private IP
 Answer:
@@ -123,17 +138,15 @@ traffic in the route table to NAT
 Route table 0.0.0.0/0
 
 
-NACL (Network Access control list) and Security Groups:-
-
-  >> VPC comes with default NACL, and by default it allows outbound / inbound traffic.
+NACL (Network Access control list) and Security Groups:- 
+  >> NACL are stateless, VPC comes with default NACL, and by default it allows outbound / inbound traffic.
   >> but with custom NACL, by default it denies all outbound / inbound traffic. We can explicitely add rules to allow traffic.
   >> each subnet in VPC must associate with a NACL, if user dont do it that subnet will automatically associate with default NACL.
   >> One NACL can have multiple subnets but one subnet can associate with only one NACL at a time.
-  >> Rules in NACL are validated in sort order by Rule number.
-  >> NACL is stateless, you need individual rules for Inbound and outbound, by default all traffice is denyied for Inbound/Outbound.
-  >> User can block IP address using NACL but not using Security groups.
+  >> NACL contains list of rules, Rules in NACL are validated in sort order by Rule number.
+  >> block IP address using NACL but not using Security groups.
 
-** Ephemeral port --> 1024 - 65535
+** Ephemeral port --> short loved TCP / SCTP --> 1024 - 65535
 
 security groups - used for instance level control - do not have outbound rules. they follow a least privilege model, by default 
 denying all inbound traffic unless explicitly allowed. once allowed, security groups use stateful filtering to manage traffic 
