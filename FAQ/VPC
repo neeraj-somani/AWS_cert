@@ -43,5 +43,125 @@ Connectivity -->
    Instances without public IP addresses can access the Internet in one of two ways:
     >> through a NAT gateway or a NAT instance to access
     >> hardware VPN connection or Direct Connect connection, instances can route their Internet traffic down the virtual private gateway to your existing datacenter
-    
+  Q: factors affect the throughput of my VPN connection
+  Answer: depends on, such as the capability of your Customer Gateway (CGW), the capacity of your connection, average packet size, the protocol being used (TCP vs. UDP), and the network latency between your CGW and the Virtual Private Gateway (VGW).
    
+  Q: can i NAT my CGW behind a router or firewall
+  A: Yes, you will need to enable NAT-T and open UDP port 4500 on your NAT device. public IP address of your NAT device.
+  Q: to have multiple CGWs behind a NAT
+  A: use the public IP address of your NAT device for the CGW for each of your connections. 
+
+IP Addressing: -
+  each VPC --> block range of CIDR (for primary CIDR bock)
+  user can add up to 4 secondary CIDR blocks
+   Classless Internet Domain Routing (CIDR)
+   ** note that while you can create multiple VPCs with overlapping IP address ranges, doing so will prohibit you from connecting these VPCs to a common home network via the hardware VPN connection.
+  one VPC can support upto 5 IP address ranges, one primary CIDR block and 4 scondary CIDR blocks
+  Current, we can create 200 subnet per VPC
+  Minimum, size of subnet is /28 (14 IP address)
+  
+  Amazon reserves the first four (4) IP addresses and the last one (1) IP address of every subnet for IP networking purposes. 
+  ** Primary private IP addresses are retained for the instance's or interface's lifetime. Secondary private IP addresses can be assigned, unassigned, or moved between interfaces or instances at any time.
+  
+  You can assign any IP address to your instance as long as it is:
+      Part of the associated subnet's IP address range
+      Not reserved by Amazon for IP networking purposes
+      Not currently assigned to another interface
+
+You can assign one or more secondary private IP addresses to an Elastic Network Interface or an EC2 instance in Amazon VPC. It also depends on instnace type.
+
+Q. Can I assign one or more Elastic IP (EIP) addresses to VPC-based Amazon EC2 instances?
+Answer: Yes, however, the EIP addresses will only be reachable from the Internet (not over the VPN connection). EIPs cannot be used on instances in subnets configured to use a NAT gateway or a NAT instance to access the Internet. 
+
+Routing and Topology :-
+  VPC router enables Amazon EC2 instances within subnets to communicate with Amazon EC2 instances in other subnets within the same VPC. The VPC router also enables subnets, Internet gateways, and virtual private gateways to communicate with each other. 
+  VPC currently does not support broadcast or multicast.
+  
+Security and Filtering:-
+  Security groups in a VPC enable you to specify both inbound and outbound network traffic that is allowed to or from each Amazon EC2 instance.
+  All not specified traffic is by default denied.
+  
+  Q. What are the differences between security groups in a VPC and network ACLs in a VPC?
+  Answer: Security groups in a VPC specify which traffic is allowed to or from an Amazon EC2 instance. Network ACLs operate at the 
+  subnet level and evaluate traffic entering and exiting a subnet. Network ACLs can be used to set both Allow and Deny rules. Network ACLs
+  do not filter traffic between instances in the same subnet. In addition, network ACLs perform stateless filtering while security 
+  groups perform stateful filtering.
+  
+  Stateful vs Stateless filtering:-
+    Stateful filtering tracks the origin of a request and can automatically allow the reply to the request to be returned to the originating computer. 
+    The filtering device maintains a state table that tracks the origin and destination port numbers and IP addresses. Only one rule is required on the filtering device: Allow traffic inbound.
+    
+    Stateless filtering, on the other hand, only examines the source or destination IP address and the destination port, ignoring whether the traffic is a new request or a reply to a request.
+    Requires both inbound / outbound rules.
+    
+    Q. Within Amazon VPC, can I use SSH key pairs created for instances within Amazon EC2, and vice versa?
+    Answer:- Yes.
+  
+    Q. Can Amazon EC2 instances within a VPC communicate with Amazon EC2 instances not within a VPC?
+    Answer:- Yes, if Internet Gateway is configure, through internet.
+             Yes, if virtual private gateway is configured, through VPN.
+    
+    Q: communication between VPCs in different regions:
+    Answer:- using Inter-Region VPC Peering, public IP addresses, NAT gateway, NAT instances, VPN Connections or Direct Connect connections.
+    
+    Ping (ICMP Echo Request and Echo Reply) requests to the router in your VPC is not supported. Ping between Amazon EC2 instances within VPC is supported as long as your operating system's firewalls, VPC security groups, and network ACLs permit such traffic.
+    
+    If the instances reside in subnets in different Availability Zones, you will be charged $0.01 per GB for data transfer.
+    
+    EC2-Classic vs EC2-VPC:-
+      You can differentiate EC2-Classic instances from EC2-VPC instances by an entry in the subnet field. If there is a subnet ID listed, the instance is within a VPC. 
+  
+    Initially, you can launch 20 EC2 per VPC
+    
+    Q: Can I boot an Amazon EC2 instance from an Amazon EBS volume within Amazon VPC?
+    Answer:- Yes, however, an instance launched in a VPC using an Amazon EBS-backed AMI maintains the same IP address when stopped and restarted. This is in contrast to similar instances launched outside a VPC, which get a new IP address. The IP addresses for any stopped instances in a subnet are considered unavailable.
+
+Default VPCs :- 
+  Its a logically isolated virtual network in AWS cloud.
+  When you launch an instance without specifying a subnet-ID, it will be launched in default VPC.
+  It features advanced networking functionalities.
+  
+  Need to understand differences between EC2-Classic and EC2-VPC
+  
+  IP range for Default VPC --> CIDR is 172.31.0.0/16. Default subnets use /20 CIDRs
+  
+  One account can have either EC2-Classic or EC2-VPC. Its can't keep both at same time.
+  
+Elastic Network Interfaces:-
+  Network interfaces can only be attached to instances residing in the same Availability Zone. Also, same VPC as the interface.
+  
+  Q. Can I use Elastic Network Interfaces as a way to host multiple websites requiring separate IP addresses on a single instance?
+  Answer:- Yes, however, this is not a use case best suited for multiple interfaces. Instead, assign additional private IP addresses to the instance and then associate EIPs to the private IPs as needed.
+
+  Q. Will I get charged for an Elastic IP Address that is associated to a network interface but the network interface isn’t attached to a running instance?
+  Answer:- Yes.
+
+Peering connections:- 
+  Peered VPCs must have non-overlapping IP ranges.
+  There are charges associated with data transfer.
+  “Edge to Edge routing” isn’t supported in Amazon VPC, hence can not use AWS Direct Connect or hardware VPN connections to access VPCs.
+  VPC peering connections do not require an Internet Gateway.
+  VPC peering traffic is private and isolated in network.
+  Transitive peering relationships are not supported. peer VPC A to VPC B and peer VPC B to VPC C, does not mean that VPCs A and C are peered.
+  Security groups cannot be referenced across an Inter-Region VPC Peering connection.
+  Inter-Region VPC Peering cannot be used with EC2-ClassicLink.
+  Network Load Balancers, AWS PrivateLink and Elastic File System cannot be used over Inter-Region VPC Peering.
+  
+ClassicLink -->
+  allows EC2 instances in the EC2-Classic platform to communicate with instances in a VPC using private IP addresses. 
+  enable classLink for a VPC in your account, and associate a Security Group from that VPC with an instance in EC2-Classic. 
+  The EC2-Classic instance does not become a member of the VPC. It becomes a member of the VPC Security Group that was associated with the instance. 
+  The EC2 public DNS hostname will not resolve to the private IP address of the EC2-VPC instance when queried from an EC2-Classic instance, and vice-versa.
+  
+Virtual Private Gateway --> Bring your own Autonomous System Number (ASN) and this is useful for for VPNs and AWS Direct Connect private VIFs .
+
+AWS PrivateLink enables customers to access services hosted on AWS in a highly available and scalable manner, while keeping all the network traffic within the AWS network. 
+
+  Q: How many?? VPC limits and numbers for different components: You can have:
+      Five Amazon VPCs per AWS account per region
+      Two hundred subnets per Amazon VPC
+      Five Amazon VPC Elastic IP addresses per AWS account per region
+      One Internet gateway per VPC
+      Five virtual private gateways per AWS account per region
+      Fifty customer gateways per AWS account per region
+      Ten IPsec VPN Connections per virtual private gateway
