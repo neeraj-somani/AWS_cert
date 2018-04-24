@@ -33,3 +33,49 @@ SQS different from Amazon Kinesis Streams -->
     By grouping messages into batches (Batch operations), you can reduce your Amazon SQS costs.
 
 Features, Functionality, and Interfaces -->
+   
+    Q: How does Amazon SQS handle unsuccessfully-processed messages?
+    Answer: If you make a queue into a dead letter queue, it receives messages after a maximum number of processing attempts cannot be completed. You can use dead letter queues to isolate messages that can't be processed for later analysis.
+    
+    The visibility timeout is a period of time during which Amazon SQS prevents other consuming components from receiving and processing a message. maximum visibility timeout 12 hours.
+    A message is not visible to any other reader for a designated amount of time when it is read from a message queue. Hence, multiple reader can process queue messages simultaneously.
+    
+    SQS support message metadata, up to 10 metadata attributes. Application can use this metadata to decide about the processing of queue messages.
+    time-in-queue value can be calculated by, Subtracting SentTimestamp attribute from the current time results.
+    
+    When the AWS account ID is not available (for example, when an anonymous user sends a message), Amazon SQS provides the IP address.
+    
+    Two approach can be used to cost efficient SQS:-
+    Short Polling (Pulling) --> short polling returns response immediately, either message is available in queue or not.
+    Long Polling (Pulling) --> doesn’t return a response until a message arrives in the message queue, or the long poll times out
+        By default, long-polling is 20 sec, but it can go to min 1 sec. (and max is 20 sec)
+        
+    Amazon SNS is designed such that each message is delivered at least once to Amazon SQS standard queues
+    You can delete all messages in an Amazon SQS message queue without deleting the message queue itself.
+ 
+ FIFO Queues -->    
+ SQS supports both standard and FIFO queues.
+ Standard Queues --> Unlimited Throughput, At-Least-Once Delivery, Best-Effort Ordering
+ FIFO Queues --> High Throughput , Exactly-Once Processing, First-In-First-Out Delivery.
+    FIFO throughput --> 3,000 messages per second with batching, or up to 300 messages per second without batching
+ 
+ Q: Are the Amazon SQS queues I used previously changing to FIFO queues?
+  Answer:- No. Amazon SQS standard queues (the new name for existing queues) remain unchanged, and you can still create standard queues. 
+
+Important: You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue.
+
+  The following features of AWS services aren't currently compatible with FIFO queues:
+      Amazon CloudWatch Events
+      Amazon S3 Event Notifications
+      Amazon SNS Topic Subscriptions
+      Auto Scaling Lifecycle Hooks
+      AWS IoT Rule Actions
+      AWS Lambda Dead Letter Queues
+  
+  FIFO Queue Limitations -->
+  >>  FIFO queues aren't currently compatible with the Amazon SQS Buffered Asynchronous Client.
+  >> FIFO queues are compatible with the Amazon SQS Extended Client Library for Java and the Amazon SQS Java Message Service (JMS) client.
+  >> SQS FIFO queues support multiple producers but not multiple consumers
+ 
+ Security and Reliability --> 
+    
