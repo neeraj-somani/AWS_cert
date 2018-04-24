@@ -18,4 +18,18 @@ SQS, provide at-least-once delivery. FIFO queues provide exactly-once processing
 Duplicates not allowed.
 
 SQS different from Amazon Kinesis Streams -->
-  
+  Use Amazon SQS when you need each unique message to be consumed only once and for below like use cases:
+      Decoupling the components of an application
+      Configuring individual message delay:
+      Dynamically increasing concurrency or throughput at read time
+      Scaling transparently
+  Use Amazon Kinesis Streams when you need multiple consumers to be able to process each record and for below like use cases:
+      Routing related records to the same record processor
+      Allowing multiple applications to consume the same stream concurrently
+ 
+ SQS Billing --> Pay only for what you use
+    SQS is calculated by per request, plus data transfer charges for data transferred out of Amazon SQS (unless data is transferred to
+      Amazon EC2 instances or to AWS Lambda functions within the same region)(means, no charges for SQS to EC2 or Lambda in same region).
+    By grouping messages into batches (Batch operations), you can reduce your Amazon SQS costs.
+
+Features, Functionality, and Interfaces -->
