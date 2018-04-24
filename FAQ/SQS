@@ -1,0 +1,21 @@
+SQS (Simple Queue Service) -->
+  offers a reliable, highly-scalable, hosted queue for storing messages in transit between computers.
+  helps you focus on building robust, sophisticated message-based applications, without worring about loosing any messages.
+  user can build message based workflow process applications.
+
+Amazon SQS different from Amazon SNS -->
+   Amazon SNS allows applications to send time-critical messages to multiple subscribers through a “push” mechanism
+   Amazon SQS is a message queue service used by distributed applications to exchange messages through a polling model, and can be used to decouple sending and receiving components
+
+Example:- A common pattern is to use SNS to publish messages to Amazon SQS queues to reliably send messages to one or many system components asynchronously. 
+
+Amazon SQS different from Amazon MQ -->
+  If you're using messaging with existing applications, and want to move your messaging to the cloud quickly and easily, we recommend you consider Amazon MQ. 
+  for any new cloud based application SQS and SNS are recommened.
+
+message queuing ordering --> FIFO (first-in-first-out)
+SQS, provide at-least-once delivery. FIFO queues provide exactly-once processing, message is delivered once and remains available until a consumer processes it and deletes it.
+Duplicates not allowed.
+
+SQS different from Amazon Kinesis Streams -->
+  
