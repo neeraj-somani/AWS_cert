@@ -1,0 +1,43 @@
+CloudFormation -->
+  gives ability to developers and businesses an easy way to create a collection of related AWS resources and provision them in 
+  an orderly and predictable fashion.
+  --> you retain full control of all elements of your infrastructure.
+  
+  By this you can club predictable AWS resources and automate configuration process in single shot. NO need to repeate same step of 
+    configuring and launching.
+  
+  Q: How is AWS CloudFormation different from AWS Elastic Beanstalk?
+  Answer: 
+     AWS Elastic Beanstalk provides an environment to easily deploy and run applications in the cloud.Its a one-stop experience for your 
+      entrie application lifecycle.
+     AWS CloudFormation is a convenient provisioning mechanism for a broad range of AWS resources. CloudFormation supports Elastic Beanstalk 
+      application environments as one of the AWS resource types.
+  
+  CloudFormation introduces two concepts:
+    The template --> a JSON or YAML-format, text-based file that describes all the AWS resources you need to deploy to run your application
+    The stack --> a JSON or YAML-format, text-based file that describes the set of AWS resources that are created and managed as a single 
+        unit, based out of template.
+    
+  Q: How does AWS CloudFormation choose actual resource names?
+  Answer:- You can assign logical names to AWS resources in a template. When a stack is created, AWS CloudFormation binds the logical name to the name of the corresponding actual AWS resource. Actual resource names are a combination of the stack and logical resource name. This allows multiple stacks to be created from a template without fear of name collisions between AWS resources.
+  
+  Naming resources restricts the reusability of templates and results in naming conflicts when an update causes a resource to be replaced. To minimize these issues, CloudFormation will support resource naming on a case by case basis.
+  
+  you can use few resources with bootstrapping scripts, that enables installing softwares, files, etc at the lauch of cloudFormation.
+  
+  By default, the “automatic rollback on error” feature is enabled. This feature enables you to rely on the fact that stacks are either fully created, or not at all, which simplifies system administration and layered solutions built on top of AWS CloudFormation.
+  
+  no additional charge for AWS CloudFormation. You only pay for the AWS resources that are created
+ 
+  Q: Will I be charged for resources that were rolled back during a failed stack creation attempt?
+  Answer:- Yes. Charges for AWS resources created during template instantiation apply irrespective of whether the stack as a whole could be created successfully or not.
+  
+  Limitation and Restriction -->
+    no limits to the number of templates
+    limited to a maximum of 200 stacks
+    Template, Parameter, Output, and Resource description fields are limited to 4096 characters
+    You can include up to 60 parameters and 60 outputs in a template
+  
+  Regions and EndPoints -->
+    Endpoints for each region are available inorder to connect to CloudFormation.
+    
