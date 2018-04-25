@@ -66,13 +66,23 @@ Automated Backups and Database Snapshots --> You can identify them using the "au
     Automated backups are deleted when the DB instance is deleted. Only manually created DB Snapshots are retained after the DB Instance is deleted.
     
 Security --> 
-         DB Subnet Group is a collection of subnets that you may want to designate for your RDS DB Instances in a VPC
+    DB Subnet Group is a collection of subnets that you may want to designate for your RDS DB Instances in a VPC
          
-        for security reasons, Migration of DB Instances from inside to outside VPC is not supported. but vice versa is supported.
+    for security reasons, Migration of DB Instances from inside to outside VPC is not supported. but vice versa is supported.
         
-        A master user account is different from an AWS developer account and used only within the context of Amazon RDS to control access to your DB Instance(s).
-            master user account is a native database user account with individual user has their own userID and Password, to access DB.
-            
-            
+    A master user account is different from an AWS developer account and used only within the context of Amazon RDS to control 
+                access to your DB Instance(s).
+           --> master user account is a native database user account with individual user has their own userID and Password, to access
+                specific DB instance. YOu can provide DDL, DML, etc permissions.
+    
+    >> RDS supports encryption at rest for all database engines, using AWS KMS.
+    >> You can also add encryption to a previously unencrypted DB instance or DB cluster by creating a DB snapshot and then 
+    creating a copy of that snapshot and specifying a KMS encryption key. You can then restore an encrypted DB instance or DB 
+    cluster from the encrypted snapshot. 
+    
+    
+    Limitation -->
+        encrypt connections between my application and my DB Instance using SSL, is currently supported for the MySQL, MariaDB, 
+                SQL Server, PostgreSQL, and Oracle engines.
             
             
