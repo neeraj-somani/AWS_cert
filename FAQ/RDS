@@ -53,3 +53,26 @@ CreateDBInstance API --> to specify which supported DB engine version I would li
         Please note that for SQL Server, because of the extensibility limitations of striped storage attached to a Windows Server environment, 
             RDS does not currently support increasing storage. we recommend you to provision storage 
             based on anticipated future storage growth.
+
+Automated Backups and Database Snapshots --> You can identify them using the "automated" Snapshot Type, in description of snapshot.
+    automated backup feature --> RDS automatically performs a full daily snapshot of your data and captures transaction logs.
+                         -->   can be used for point-in-time recovery.
+                         -->  retention period, which by default is 7 days but can be set to up to 35 days.
+    DB Snapshots are user-initiated, can eb done as frequently as you wish, and then restore to that specific state at any time.
+                --> and are kept until you explicitly delete them.
+    
+    RDS DB snapshots and automated backups are stored in S3.
+    
+    Automated backups are deleted when the DB instance is deleted. Only manually created DB Snapshots are retained after the DB Instance is deleted.
+    
+Security --> 
+         DB Subnet Group is a collection of subnets that you may want to designate for your RDS DB Instances in a VPC
+         
+        for security reasons, Migration of DB Instances from inside to outside VPC is not supported. but vice versa is supported.
+        
+        A master user account is different from an AWS developer account and used only within the context of Amazon RDS to control access to your DB Instance(s).
+            master user account is a native database user account with individual user has their own userID and Password, to access DB.
+            
+            
+            
+            
