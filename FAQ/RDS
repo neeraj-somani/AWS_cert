@@ -85,4 +85,17 @@ Security -->
         encrypt connections between my application and my DB Instance using SSL, is currently supported for the MySQL, MariaDB, 
                 SQL Server, PostgreSQL, and Oracle engines.
             
-            
+ (DB Parameter Group) acts as a “container” for engine configuration values that can be applied to one or more DB Instances.
+ 
+ 
+ Multi-AZ Deployments and Read Replicas -->
+        Multi-AZ deployment, Amazon RDS will automatically provision and manage a “standby” replica in a different Availability Zone
+         Multi-AZ deployments utilize synchronous replication, making database writes concurrently on both the primary and standby 
+            so that the standby will be up-to-date in the event a failover occurs. 
+       
+       Read Replicas --> to scale beyond the capacity constraints of a single DB Instance for read-heavy database workloads
+                    Read Replicas are supported by Amazon Aurora and Amazon RDS for MySQL, MariaDB and PostgreSQL
+    few definitions -->
+            the “primary” serves database writes and reads
+            Amazon RDS provisions and maintains a “standby” behind the scenes, which is an up-to-date replica of the primary. 
+                    The standby is “promoted” in failover scenarios and it becomes primary. new standby will be created automatically.
