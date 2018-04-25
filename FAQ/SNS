@@ -38,3 +38,53 @@ Users can receive notifications from Amazon SNS in two ways:
     >> Other users: Topic owners can subscribe and register end-points on behalf of users without AWS IDs.
     
  Token included in the confirmation message sent to end-points on a subscription request are valid for 3 days.
+ 
+ SNS will sign all notification deliveries using a cryptographically secure, asymmetric mechanism (private-public key pair based on certificates).
+   Developers can use this certificate to verify authenticity of SNS.
+ 
+ Although rare, should a failure occur in one zone, the operation of SNS and the durability of your messages continue without disruption. 
+ 
+ SNS messages delivered to your application exactly once, occasional, duplicate messages in case of some network issues.
+ 
+ once a message has been successfully published to a topic, it cannot be recalled. message cant be deleted after being published
+ 
+ If a message cannot be successfully delivered on the first attempt, 
+ SNS implements a 4-phase retry policy: 
+ 1) retries with no delay in between attempts, 
+ 2) retries with some minimum delay between attempts,
+ 3) retries with some back-off model (linear or exponential), and 
+ 4) retries with some maximum delay between attempts. 
+ 
+ Worldwide SMS -->
+   SNS supports SMS (text) messages to 200+ countries. You must obtain prior permission from recipients as per national laws.
+  
+  SNS does not currently support two-way SMS capabilities
+  You no longer need to subscribe a phone number to an Amazon SNS topic before you publish messages to it.
+  
+  By enabling the Delivery Status feature, you can get status of messages.
+  
+Limitation --> 
+Currently, Amazon SNS does not detect whether a phone number is mobile, landline, or VoIP.
+ SNS does not currently support time-based or scheduled delivery.
+ SNS does not support MMS messages.
+ Opt-outs do not unsubscribe a number from an Amazon SNS topic, but rather disable the subscription.
+
+Limits and Restrictions --> 
+ SNS offers 10 million subscriptions per topic, and 100,000 topics per account
+ SNS messages can contain up to 256 KB of text data
+ 100 filter policies per account per region can be applied to a topic
+ ports supported by cross-region communication between SNS and EC2 --> 80/443/4080/8443
+ We currently do not allow an AWS account owner to subscribe (a SNS topic) an AWS Lambda function that belongs to another account. 
+ 
+other pricing points:-
+  You may be charged for failed deliveries
+  length of a message impact the price I pay
+
+SNS Mobile Push notification --> supported to most popular mobile OS devices. Its mobile pop-up notifications when even app is closed.
+  Direct addressing allows you to deliver notifications directly to a single endpoint.
+  Direct addressing is currently only available for push notifications endpoints.
+  Message attributes --> structured metadata items about the message. Message attributes are optional and separate from message body.
+
+Amazon SNS now allows you to set a TTL (Time to Live) value for each message. default is 4 weeks.
+
+AWS Lambda currently supports 100 concurrent requests per AWS account.
