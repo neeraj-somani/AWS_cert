@@ -30,4 +30,5 @@ Simple Workflow Service (SWF) -->
       >> In addition to a core SDK that calls service APIs, Amazon SWF provides the AWS Flow Framework with which you can write distributed applications using programming constructs that structure asynchronous interactions.
       
  SWF Functionality -->
- 
+        Registration --> is a one-time step, need to provide unique type-ids for each activity and workflow type.
+         such as timeout values and task distribution parameters.
