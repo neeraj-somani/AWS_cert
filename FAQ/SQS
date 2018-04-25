@@ -78,4 +78,16 @@ Important: You can't convert an existing standard queue into a FIFO queue. To ma
   >> SQS FIFO queues support multiple producers but not multiple consumers
  
  Security and Reliability --> 
-    
+    SQS is compplytely secure and encryption of messages are allowed. (client side or server side)
+   
+    Note:- When you issue a DeleteMessage request on a previously-deleted message, Amazon SQS returns a success response.
+
+Server-Side Encryption (SSE) NEW -->
+  Not available in many regions as new service.
+  must configure AWS KMS key policies to allow encryption of queues.
+
+Limits and Restrictions --> 
+  How long can I keep my messages in Amazon SQS --> from 60 seconds (1 minute) to 1,209,600 seconds (14 days). The default is 4 days.
+  
+  message size restrictions --> between 1,024 bytes (1 KB), and 262,144 bytes (256 KB).
+  
