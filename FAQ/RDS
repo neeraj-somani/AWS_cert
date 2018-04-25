@@ -1,0 +1,17 @@
+Relational Database Service (Amazon RDS) -->
+    makes it easy to set up, operate, and scale a relational database in the cloud
+    RDS supports Amazon Aurora, MySQL, MariaDB, Oracle, SQL Server, and PostgreSQL database engines.
+    
+    RDS manages the work involved in setting up a relational database
+    RDS automates common administrative tasks such as performing backups and patching the software 
+    With optional Multi-AZ deployments, Amazon RDS also manages synchronous data replication across Availability Zones with automatic failover.
+    
+    Client is responsible for managing the database settings, schema / DB designing, performance tuning.
+    
+    Some limitations -->
+      RDS for Oracle: 1 database per instance; no limit on number of schemas per database imposed by software
+      RDS for SQL Server: 30 databases per instance
+      for all other DB's there is no limitation
+      maintenance events that require Amazon RDS to take your DB instance offline: this happen as per request or requirement
+        >> scale compute operations (requires few min)
+        >> required software patching
