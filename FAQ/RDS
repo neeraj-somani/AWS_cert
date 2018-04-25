@@ -4,7 +4,8 @@ Relational Database Service (Amazon RDS) -->
     
     RDS manages the work involved in setting up a relational database
     RDS automates common administrative tasks such as performing backups and patching the software 
-    With optional Multi-AZ deployments, Amazon RDS also manages synchronous data replication across Availability Zones with automatic failover.
+    With optional Multi-AZ deployments, Amazon RDS also manages synchronous data replication across Availability Zones with automatic 
+    failover.
     
     Client is responsible for managing the database settings, schema / DB designing, performance tuning.
     
@@ -12,6 +13,43 @@ Relational Database Service (Amazon RDS) -->
       RDS for Oracle: 1 database per instance; no limit on number of schemas per database imposed by software
       RDS for SQL Server: 30 databases per instance
       for all other DB's there is no limitation
-      maintenance events that require Amazon RDS to take your DB instance offline: this happen as per request or requirement
+      RDS instance offline scenarios, maintenance events: this happen as per request or requirement
         >> scale compute operations (requires few min)
         >> required software patching
+
+CreateDBInstance API --> to specify which supported DB engine version I would like my DB instance to run
+ ModifyDBInstance --> to request for upgrade (this will happen during next maintainance window)
+ 
+ RDS Billing -->
+    >> DB instance hours
+    >> Storage (per GB per month)
+    >> I/O requests per month
+    >> Provisioned IOPS (storage volume) per month
+    >> Backup Storage
+    >> Data transfer
+ 
+ For some scenario, if you choose to keep your DB instance in single AZ, storage provisioned bill will be for single AZ but back-up
+        replicated across multiple Availability Zones and accoringly billed for backup storage.
+ 
+ Reserved Instance --> One or three year reservation option with significant discount
+    three RI payment options  -- No Upfront, Partial Upfront, All Upfront
+  ** RI benefits --> are purchased for a Region rather than for a specific Availability Zone. As RIs are not specific to an 
+        Availability Zone, they are not capacity reservations.
+        Capacity Reservation is specific to AZ and hence if your application uses MAZ, then discount applies to account.
+        
+     AWS automatically apply discount to your usage as per RI.
+     Each reservation is associated with the following set of attributes: DB engine, DB instance class, Multi-AZ deployment option, license model and Region.
+     you cannot cancel your reserved DB instance in between contract term and the one-time payment (if applicable) is not refundable.
+ 
+ RDS Hardware and Scaling -->
+    instance class and storage capacity depends on your application’s compute, memory and storage needs. 
+    
+    Keep in mind points -->
+        Please note that when you modify your DB Instance class or allocated storage, your requested changes will be applied during your
+        specified maintenance window. Alternately, you can use the “apply-immediately” flag to apply your scaling requests immediately. 
+        Bear in mind that any other pending system changes will be applied as well.
+    
+    Limitation -->
+        Please note that for SQL Server, because of the extensibility limitations of striped storage attached to a Windows Server environment, 
+            RDS does not currently support increasing storage. we recommend you to provision storage 
+            based on anticipated future storage growth.
