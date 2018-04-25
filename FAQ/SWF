@@ -32,3 +32,7 @@ Simple Workflow Service (SWF) -->
  SWF Functionality -->
         Registration --> is a one-time step, need to provide unique type-ids for each activity and workflow type.
          such as timeout values and task distribution parameters.
+        Domain --> logical containers, created at the level of your AWS account and may not be nested.
+            Each application resource, such as a workflow type, an activity type, or an execution, belongs to exactly one domain.
+            During registration, you specify the domain under which a workflow or activity type should be registered
+            you may reuse identifiers (e.g. type-ids, execution ID) across different domains.
