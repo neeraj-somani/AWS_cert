@@ -1,0 +1,21 @@
+ElasticBeanStalk -->
+  makes it easier, quickly deploy and manage applications on AWS.
+  Developers simply upload their application code, EB takes care of infrasture.
+  No AWS experience required.
+  creating an environment that runs a version of your application.
+  
+  AWS Elastic Beanstalk vs existing application containers vs platform-as-a-service solutions 
+  --> Most PAAS solutions, while reducing the amount of programming required, significantly diminish developers’ flexibility and control. 
+  --> However, with AWS Elastic Beanstalk, developers retain full control over the AWS resources powering their application.
+
+EB - Databases and Storage --> 
+  EB stores your application files and, optionally, server log files in Amazon S3.\
+  By default, your application is available publicly.
+  You can use VPCs network features to make it private.
+  
+  You can allow or deny permissions to specific AWS Elastic Beanstalk resources, such as applications, application versions, and environments.
+  you can use IAM functionality to control over accessibility of application.
+  
+  you pay only for the AWS resources, no additional charges for EB.
+  
+  
