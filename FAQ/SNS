@@ -1,0 +1,40 @@
+Simple Notification Service (Amazon SNS) -->  it supports “push” mechanism
+
+Billing is based on per request basis, pay as you go model.
+ 
+Few common SNS operations -->
+  Owner operations:
+
+  CreateTopic – Create a new topic.
+  DeleteTopic – Delete a previously created topic.
+  ListTopics – List of topics owned by a particular user (AWS ID).
+  ListSubscriptionsByTopic – List of subscriptions for a particular topic
+  SetTopicAttributes – Set/modify topic attributes, including setting and modifying publisher/subscriber permissions, transports supported, etc.
+  GetTopicAttributes – Get/view existing attributes of a topic
+  AddPermission – Grant access to selected users for the specified actions
+  RemovePermission – Remove permissions for selected users for the specified actions
+  
+  Subscriber operations:
+
+  Subscribe – Register a new subscription on a particular topic, which will generate a confirmation message from Amazon SNS
+  ConfirmSubscription – Respond to a subscription confirmation message, confirming the subscription request to receive notifications from the subscribed topic
+  UnSubscribe – Cancel a previously registered subscription
+  ListSubscriptions – List subscriptions owned by a particular user (AWS ID)
+  
+  Publisher operations:
+
+  Publish: Publish a new message to the topic.
+  
+Topic names should typically be available for reuse approximately 30-60 seconds after the previous topic with the same name has been deleted. 
+
+Imp points to remember -->
+Using the SQS console, users should create the SQS queue prior to subscribing it to a SNS Topic. 
+Amazon SNS does not currently support forwarding messages to Amazon SQS FIFO queues. You can use SNS to forward messages to standard queues.
+SNS for deliveries over HTTP, HTTPS, Email-JSON and SQS transport protocols will consist of a simple JSON object,
+
+Users can receive notifications from Amazon SNS in two ways: 
+  In both cases, the owner of the subscription endpoint needs to explicitly opt-in and confirm the subscription by replying to confirmation message sent by Amazon SNS.
+    >> Users with AWS IDs:
+    >> Other users: Topic owners can subscribe and register end-points on behalf of users without AWS IDs.
+    
+ Token included in the confirmation message sent to end-points on a subscription request are valid for 3 days.
