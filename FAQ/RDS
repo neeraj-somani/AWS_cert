@@ -94,8 +94,29 @@ Security -->
             so that the standby will be up-to-date in the event a failover occurs. 
        
        Read Replicas --> to scale beyond the capacity constraints of a single DB Instance for read-heavy database workloads
-                    Read Replicas are supported by Amazon Aurora and Amazon RDS for MySQL, MariaDB and PostgreSQL
+            Read Replicas are supported by Amazon Aurora and Amazon RDS for MySQL, MariaDB and PostgreSQL.
+             Read Replication are asynchronous replication
+             RDS supports cross-region Read Replicas.
+             If an existing Read Replica has fallen too far behind to meet your requirements, you can delete it and create a new one 
+             with the same endpoint by using the same DB Instance Identifier and Source DB Instance Identifier as the deleted Read 
+             Replica.
+        Limitation --> DB Snapshots or automated backups can't be taken of Read Replicas. because you can deploy your application using 
+                multi-AZ feature.
+        
+        Deletion functionality of Read Replica --> as a standard practice owner has to explicitly delete Read Replica, considering it as independent DB instance. 
+        Below are few scenarios:
+            --> Amazon RDS for Aurora, MySQL or MariaDB Read Replica will stay active and continue accepting read traffic even 
+                    after its corresponding source DB Instance has been deleted.
+            --> for PostgreSQL DB Instance, all Read Replicas will be promoted to standalone DB Instances and will be able to accept both read and write traffic.
+    
     few definitions -->
-            the “primary” serves database writes and reads
-            Amazon RDS provisions and maintains a “standby” behind the scenes, which is an up-to-date replica of the primary. 
-                    The standby is “promoted” in failover scenarios and it becomes primary. new standby will be created automatically.
+            primary Db --> the “primary” serves database writes and reads
+            standBy DB --> Amazon RDS provisions and maintains a “standby” behind the scenes, which is an up-to-date replica of the primary. 
+                    --> The standby is “promoted” in failover scenarios and it becomes primary. new standby will be created automatically.
+                    --> the standby replica cannot serve read requests. 
+  
+     --> Amazon RDS provides an option to initiate a "forced failover" when rebooting your instance.
+     
+Enhanced Monitoring for RDS  --> deeper visibility into the health of your RDS instances
+
+     
