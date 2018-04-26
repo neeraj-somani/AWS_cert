@@ -72,4 +72,13 @@ Encryption --> can be done at rest or in-transit
             --> Your data and associated keys are encrypted using the industry-standard AES-256 algorithm.
             --> EBS encryption support boot volumes
 
+Billing and Pricing -->
+    billed for the IOPS provisioned even when it is disconnected from an instance.
+    When a volume is detached, we recommend creating a snapshot and deleting the volume to reduce costs
 
+Trusted Advisor includes four categories:
+
+Cost Optimization – recommendations that can potentially save you money by highlighting unused resources and opportunities to reduce your bill.
+Security – identification of security settings that could make your AWS solution less secure.
+Fault Tolerance – recommendations that help increase the resiliency of your AWS solution by highlighting redundancy shortfalls, current service limits, and overutilized resources.
+Performance – recommendations that can help to improve the speed and responsiveness of your applications.
