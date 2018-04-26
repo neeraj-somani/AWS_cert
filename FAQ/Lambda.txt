@@ -60,7 +60,16 @@ Q: How is AWS Lambda@Edge different from using AWS Lambda behind Amazon API Gate
 Answer:- 
 The difference is that API Gateway and Lambda are regional services. Using Lambda@Edge and Amazon CloudFront allows you to execute logic across multiple AWS locations based on where your end viewers are located.
 
+On failure, 
+    Lambda functions being invoked synchronously will respond with an exception
+    invoked asynchronously are retried at least 3 times., you can configure a “dead letter queue” (DLQ) to handle it if needed.
 
+Security and Access controls -->
+    Lambda function uses IAM role to access other resources.
+    
+    ** Lambda functions provide access only to a single VPC. If multiple subnets are specified, they must all be in the same VPC. You           can connect to other VPCs by peering your VPCs.
+    
+    ** Lambda functions configured to access resources in a particular VPC will not have access to the internet as a default configuration, but using NAT & security groups this can be done.
 
 
 
