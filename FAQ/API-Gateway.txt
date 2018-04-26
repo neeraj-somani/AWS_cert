@@ -1,0 +1,3 @@
+API-Gateway --> 
+    fully managed service that acts as a “front door” for applications to access AWS resources.
+    You pay only for the API calls you receive and the amount of data transferred out.
