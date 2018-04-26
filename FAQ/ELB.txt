@@ -1,0 +1,12 @@
+Elastic Load Balancing supports three types :- 
+    ALB (Application Load Balancer) --> flexible application management and TLS termination
+        --> Supports HTTP and HTTPs protocols
+        --> TCP ports: 1-65535
+        --> HTTP/2 support is enabled natively
+    NLB (Network Load Balancer) --> for extreme performance and static IP need
+              --> support only TCP (Layer 4) listeners.
+    CLB (Classic Load Balancer) --> recommanded only for EC2-Classic based applications
+    
+by creating VPC Endpoints --> privately access ELB from VPC without public IP address. This uses Private IP addresses powered by AWS PrivateLink.
+User can migrate from CLB to ALB but can't convert it directly.
+
