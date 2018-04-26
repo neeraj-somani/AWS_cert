@@ -1,0 +1,29 @@
+** EBS Volume Types:
+1. General Purpose SSD (GP2) --> solid state drive
+    > balance in price and performance
+    > upto 10000 IOPS
+    
+2. Provisioned IOPs SSD (IO1)
+    > designed for I/O intensive applications such as large RDBMS, NoSQL
+    > more than 10000 IOPS (upto 20000)
+    
+Magnetic storage Volume (Harddisk drive)
+3. Throughput Optimized HDD (ST1) --> 
+    > Big Data
+    > Data Warehouse
+    > Log Processing
+    > They can't be bootable
+    > sequnential read/write
+    > frequently accesss workload
+
+4. Cold HDD (SC1)
+    > Low cost storage
+    > file server 
+    > They cant be bootable
+    
+5. Magnetic (Standard) --> same as cold but bootable
+    > lowest cost volumes that is bootable
+
+
+SSD-backed storage for transactional workloads (performance depends primarily on IOPS)
+HDD-backed storage for throughput workloads (performance depends primarily on throughput, measured in MB/s)
