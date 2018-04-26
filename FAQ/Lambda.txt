@@ -29,3 +29,20 @@ Few Points to know about Lambda -->
     for outbound connections only TCP/IP sockets are supported, TCP port 25 traffic is also blocked as an anti-spam measure. 
     ptrace (debugging) system calls are blocked. 
 
+Q: How are compute resources assigned to an AWS Lambda function?
+Answer --> Users are allowed to choose memory and based on that AWS assign compute power to Lambda.
+        You can set your memory in 64MB increments from 128MB to 3GB.
+
+AWS Lambda to process AWS events -->
+
+    The default timeout for Lambda is 3 seconds, you can reset between 1 and 300 seconds.
+    Lambda support versioning, Clients who make calls can call specific version or by default will get latest version.
+    Events are passed to a Lambda function as an event input parameter. The event parameter may contain multiple events in a single             call, based on the batch size you request. This is for streaming events.
+    
+
+
+
+
+
+
+
