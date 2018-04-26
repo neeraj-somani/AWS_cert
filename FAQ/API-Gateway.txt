@@ -1,3 +1,18 @@
 API-Gateway --> 
     fully managed service that acts as a “front door” for applications to access AWS resources.
     You pay only for the API calls you receive and the amount of data transferred out.
+    API Gateway expose HTTPS endpoints only, (HTTP not supported).
+  
+  features --> 
+    >> Metering --> quota limits on a per API key basis, restrict unauthorized users
+    >> Security --> IAM, Amazon Cognito and other services are used for permissions.
+    >> Resiliency --> manage traffic with throttling, caching the output of API calls 
+    >> Operations Monitoring --> API Gateway Dashboard with integration of cloudWatch
+    >> Lifecycle Management --> lets you operate multiple API versions and multiple stages for each version simultaneously
+    >> Designed for Developers --> using API static content, Teams who depend on your APIs can begin development while you build your              backend processes.
+
+a REST API is a group of resources and methods, or endpoints.
+CloudWatch --> Monitor and alarms, visualization of AWS resources usage.
+CloudTrail --> Only logs Inbound and Outbound traffic for specific AWS resources.
+
+
