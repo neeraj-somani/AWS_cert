@@ -1,0 +1,48 @@
+Exam questions from below topics:
+
+Lambda
+
+Question(s) about Lambda - Need to understand that Lambda scales code in parallel.
+There was also a question about what services were serverless (EC2, Lambda, DynamoDB, API Gateway).
+
+VPC
+-Subnet can not span AZs.
+
+Disable source/destination check on NAT Gateway
+
+EC2
+
+Troubleshooting connectivity / Elastic IP usage
+EC2 connectivity troubleshooting
+-Snapshots are region specific
+-DescribeImage API call
+
+S3
+-Hosted Website URL
+
+Know how to change settings index/error pages on websites hosted on S3
+Default encryption - AES 256
+
+CORS question
+-Logging data from 1000s of EC2 webservers to a bucket, what is the best naming schema for the logs.
+Reduced Redundancy Storage scenario question
+Cloud Formation
+-Need to understand correct format
+-What happens when Could Formation Fails?
+
+DynamoDB
+-Had 5-8 questions on the exam that were DynamoDB.
+-Hash and Range index
+-Usage question: store picture data in S3 not in DynamoDB.
+
+AWS RDS
+-Read Replica
+-MySQL on RDS has automated backups as an option.
+
+Security
+-What is Amazons Responsibility / Shared Responsibility model.
+-NACLs vs Security Groups
+
+SNS
+-What makes up a message
+-SNS + SQS
