@@ -1,0 +1,31 @@
+Lambda -->
+    Lambda lets you run code without provisioning or managing servers. (Zero administration on code)
+    Lambda takes care of Auto scaling, high availability, etc. 
+    Lambda makes it easy to execute code in response to events
+
+Billing --> only for the time code is executing/running in environment and AWS resources used.
+
+Serverless computing --> build and run applications and services without thinking about servers
+                     --> server management is done by AWS.
+
+Other services vs Lamda -->
+
+Amazon EC2 --> for provisioning capacity, monitoring fleet health and performance, and designing for fault tolerance and scalability.
+AWS Elastic Beanstalk --> offers an easy-to-use service for deploying and scaling web applications with full control over the underlying EC2 instances ownership. 
+Amazon EC2 Container Service --> is a scalable management service that supports Docker containers and allows you to easily run distributed applications on a managed cluster of Amazon EC2 instances.
+
+AWS Lambda makes it easy to execute code in response to events, with no worry about provisioning AWS resources as per your need.
+
+Few Points to know about Lambda -->
+    you can't access the infrastructure that AWS Lambda runs on. Thats for AWS management.
+    Lambda stores code in Amazon S3 and encrypts it at rest.
+    code must be written in a “stateless” style i.e. it should assume there is no relationship to the underlying compute infrastructure.
+    Lambda’s programming model is stateless, but your code can access stateful data from web services.
+    Lambda must be stateless, so that it can rapidly launch as many copies of the function as needed to scale
+    normal programming language and operating system features are allowed, like threads, processes, etc.
+
+ few activities that are disabled for Lambda -->
+    Inbound network connections are blocked 
+    for outbound connections only TCP/IP sockets are supported, TCP port 25 traffic is also blocked as an anti-spam measure. 
+    ptrace (debugging) system calls are blocked. 
+
