@@ -1,8 +1,8 @@
 1. Pay as you go model
 2. pay less for reserve
-3. pay as you grow more
+3. pay less as you grow more
 
-AWS CloudFormation:an easy way to create a collection of related AWS resources and provision them in an orderly and predictable fashion.
+AWS CloudFormation: an easy way to create a collection of related AWS resources and provision them in an orderly and predictable fashion.
 provision meaning:- supply or provide specific actions in advance.
 
 three fundamental characteristics you pay for with AWS: compute, storage, and data transfer out
