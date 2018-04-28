@@ -19,7 +19,28 @@ AWS API Gateway -->
       f. code-on-demand paatern (like Lambda function), No change at client side.
   API Gateway -->
       consist of defined resources, associated methods (GET, POST, PUT, etc), backend target
-      
+      Below are few features:-
+        1. Transform the body and header of incoming API request to match with backend system
+        2. Transform the body and header of outgoing API responses to match with API requirement
+        3. control API access via IAM
+        4. create and apply API keys for 3rd-party dev
+        5. Enable cloudWatch integration with API
+        6. Cache API responses via cloudFront for faster responses
+        7. code can be deployed in multiple stages
+        8. connect custom domains to an API
+        9. define models to standarize API request / response transformations
+  
+  Terminologies (API Gateway and Lambda) -->
+    Resources --> URL endpoint and path
+    Method --> based on combination of Resource URL and HTTP verb (GET, POST, PUT, DELETE)
+    Method Request --> stores method Authorization settings, define URL query string parameters and HTTP request header that are required         from client.
+    Integration Request --> Backend target used with the method, can define mapping templates for request / response transformation
+    Integration Responses --> define mapping templates for response from backend target and method response in API Gateway. This also
+        ensures the need of client expectation.
+    Method Response --> defines the method response type, header, content type.
+    Model --> defines format / schema / shape of needed data. This is used to create mapping templates. JSON-schema format.
+    Stage --> URL / path, through which deployment is accessible
+    
     
 
   
