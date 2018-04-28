@@ -39,7 +39,7 @@ AWS API Gateway -->
         ensures the need of client expectation.
     Method Response --> defines the method response type, header, content type.
     Model --> defines format / schema / shape of needed data. This is used to create mapping templates. JSON-schema format.
-    Stage --> URL / path, through which deployment is accessible
+    Stage --> URL / path, through which deployment is accessible. (means URL to access your API)
     
     
 
