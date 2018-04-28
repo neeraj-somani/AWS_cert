@@ -2,6 +2,24 @@ AWS Lambda -->
   compute service that runs code in response to an event and manage compute resources full responsibility.
   
   Lab --> Serverless Image Thumbnail Application. (Thumbnail means small description or summary, is used to identify file content)
+
+AWS API Gateway -->
+  Microservies Architecture --> Each service in itself an individual application, fully automated and often HTTP API.
   
+  Lab --> Build, deliver and maintain simple microservice, using Lambda and API Gateway.
+  API --> Set of instructions how developers interface with an application.
+  API First-Strategy --> Every service must be an individual API. This is becoming industry standard approach now.
+  RESTful API --> 
+    Representational State Transfer (REST) --> it mainly contain 6 imp architecture concepts
+      a. seperation of concerns via client-server model.
+      b. State is entirely stored at client, and clinet-server communication is stateless.
+      c. client will cache data to improve network efficiency
+      d. between client-server an uniform interface API is created
+      e. it can handle multiple layers of components
+      f. code-on-demand paatern (like Lambda function), No change at client side.
+  API Gateway -->
+      consist of defined resources, associated methods (GET, POST, PUT, etc), backend target
+      
+    
 
   
