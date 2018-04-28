@@ -1,0 +1,7 @@
+AWS Lambda --> 
+  compute service that runs code in response to an event and manage compute resources full responsibility.
+  
+  Lab --> Serverless Image Thumbnail Application. (Thumbnail means small description or summary, is used to identify file content)
+  
+
+  
