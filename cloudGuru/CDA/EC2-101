@@ -21,16 +21,17 @@ Part 1 -->
   
 2. Different EC2 Instance types:-
 DR Mc GIFT PX ------> 
-D --> Dense Storage (Data Warehouse)
+D --> Dense Storage (MPP Data Warehouse, HDD, High Disk throughput)
 R --> Memory (RAM) optimize
 M --> (Main / default) General purpose
 C --> compute optimize
-G --> Graphics Intensive (Game/3D)
-I --> I/Ops (High I/O speed storage)
+G --> Graphics Intensive (Game/3D) -- Accelerated compute optimize
+I --> I/Ops (High I/O speed storage, SSD)
 F --> Field Programmable Gate Array (Hardware Acceleration for your code)
 T --> Low cost , General purpose
-P --> Graphics, General purpose (ML, Blockchain)
+P --> Graphics, General purpose (ML, Blockchain) -- Accelerated compute optimize
 X --> extreme memory optimized (SAP/Spark)
+H --> High Disk throughput (I/O Storage Optimized, HDD)
 
 Exam Q: In given scenario which EC2 instance would you choose.
 A: Need to understand "{DR Mc GIFT PX}" .
