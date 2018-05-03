@@ -1,0 +1,6 @@
+Amazon Glacier purpose Data Archive, Infreequent Access of data
+The ELB stops sending traffic to the instance that failed its health check
+An Origin Access Identity is a special user that you will set up the CloudFront service to use to access you restricted content,
+S3 versioning means that all versions of a file are kept and retrievable at a later date (by making a request to the bucket, using the object ID and also the version number). The only charge for having this enabled is from the fact that you will incur more storage. When an object is deleted, it will still be accessible just not visible.
+
+https://markosrendell.wordpress.com/2013/12/12/aws-certified-solutions-architect-sample-questions-answered-and-discussed/
