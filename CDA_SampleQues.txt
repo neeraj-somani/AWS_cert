@@ -1,0 +1,36 @@
+General points -->
+  1. AMIs are stored in a region and cannot be accessed in other regions. To use the AMI in another region, you must copy it to that region. 
+  2. IAM roles are valid across the entire account.
+  
+  3. Delay Queue (DelaySeconds API) --> let you postpone the delivery of new messages to a queue for a number of seconds, invisible for that number of seconds.
+  4. Dead Letter Queue --> to isolate messages that can't be processed for later analysis. Dead letter queue, it receives messages after a maximum number of processing attempts cannot be completed.
+  
+ 5. IAM roles are based on temporary security tokens, so they are rotated automatically. 
+6. Active Directory authorization will not grant access to AWS resources.
+
+7. S3 has eventual consistency for overwrite PUTS and DELETES
+8. Must understand cloudFormation template Anatomy.
+  https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html
+9. – Optimistic concurrency depends on checking a value upon save to ensure that it has not changed, and
+conditional writes are perfect for implementing optimistic concurrency.
+10. Pessimistic concurrency prevents a value from changing by locking the item or row in the database. DynamoDB
+does not support item locking.
+11. There are two challenges here: the command must be “fanned out” to a variable pool of partners, and your
+app must be decoupled from the partners because they are not highly available. Sending the command as an
+SNS message achieves the fan-out via its publication/subscribe model, and using an SQS queue for each partner
+decouples your app from the partners. Writing the message to each queue directly would cause more latency for
+your app and would require your app to monitor which partners were active. It would be difficult to write an
+Amazon SWF workflow for a rapidly changing set of partners.
+12. The Support Center in the AWS Management Console allows customers to request limit increases by
+creating a case.
+13. Security groups block all network traffic by default, so if a group is not correctly configured, it can lead to a
+timeout error. MySQL security, not IAM, controls MySQL security. All subnets in an Amazon VPC have routes to
+all other subnets. Internal traffic within an Amazon VPC does not require public IP addresses.
+
+SQS --> Messages will be delivered one or more times and message delivery order is indeterminate 
+AMI can only be used to launch EC2 instances in the same AWS region as the AMI is stored AMI are region based, but they can be copied to any other region. 
+VisibilityTimeout --> This is the property for how long a task should take to process
+ReceiveMessageWaitTimeSeconds --> This is the command needed for long polling
+MessageRetentionPeriod --> This is how long an object will live in the queue
+DelaySeconds --> This is how long it holds the message before sending the message off to the new queue, invisible for that number of seconds.
+
