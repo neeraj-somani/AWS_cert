@@ -1,1 +1,24 @@
-sigma scripts
+good features --> sigma scripts
+
+Access and Services layer --> 
+Physical and Networking Layer --> Regions, AZ, Edge Locations
+
+Edge Location --> It's used to deliver content all over the world. ie. Cloudfront.
+Regions --> Geographycal location, consist of multi AZ
+AZ --> Data Centers, provides foudation for high availability and Fault tolerance
+
+Shared Responsibility Model -->
+
+AWS Responsibility -->
+  >> Physical server level and below
+  >> physical env security and protection (firewall/power/climate/management)
+  >> storage device decomissioning as per inductry standards
+  
+  Need to take notes from lecture (sigma scripts)
+  
+Customer Responsibility -->
+  Need to take notes from lecture (sigma scripts)
+  
+   
+
+IAM --> Global service, AWS access control service
