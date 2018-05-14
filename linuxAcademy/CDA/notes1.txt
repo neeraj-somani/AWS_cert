@@ -1,26 +1,67 @@
 good features --> sigma scripts
+14-may --> (am) --> IAM and EC2 , (pm) VPC
+15-may --> (am) --> lambda, server based compute services , (pm) S3
+16-may --> (am) --> S3 remaining and DynamoDB, (pm) other AWS DB services
+17-may --> (am) --> SNS, SQS, SWF , (pm) step functions, API gateways
+18-may --> all remaining
+19-may --> revision
+20-may --> exams
 
-Access and Services layer --> 
-Physical and Networking Layer --> Regions, AZ, Edge Locations
+Access and Services layer --> how you create, access and manage aws account and its services.
+Root User --> full account access. Not recommanded for daily use puporse. (email address and password)
 
-Edge Location --> It's used to deliver content all over the world. ie. Cloudfront.
+Physical and Networking Layer --> all about how aws is organized and how internal and external communication with aws works.
+where aws resources are physically located and how data flows around the world through aws network.
+Regions, AZ, Edge Locations
+
+Edge Location --> It's used to deliver content all over the world. ie. Cloudfront. example, used for caching objects, etc.
 Regions --> Geographycal location, consist of multi AZ
-AZ --> Data Centers, provides foudation for high availability and Fault tolerance
+AZ --> Data Centers, provides foudation for high availability and Fault tolerance. low latency network between AZs.
 
 Shared Responsibility Model -->
-
-AWS Responsibility -->
+  AWS Responsibility -->
   >> Physical server level and below
   >> physical env security and protection (firewall/power/climate/management)
   >> storage device decomissioning as per inductry standards
+  >> personnel security
+  >> Network Device security and ACL
+  >> AWS API endpoints - SSL
+  >> DDOS protection
+  >> EC2 instances and spoofing protection (Ingress / Egress filtering)
+  >> EC2 instances hypervisor isolation (instances on the same physical device are still independent, shared physical device between instances)
   
-  Need to take notes from lecture (sigma scripts)
-  
-Customer Responsibility -->
-  Need to take notes from lecture (sigma scripts)
-  
-   
+  Customer Responsibility -->
+  >> IAM
+  >> MFA
+  >> Password/ Key Rotation
+  >> Access Advisor
+  >> Trusted Advisor
+  >> security groups
+  >> Resource based policies
+  >> ACL
+  >> VPC
+  >> Port scanning is against the rules even on your own environment (ask AWS if needed)
+  >> OS level patches
 
+Some responsibility differs based on services -->
+  AWS Lambda -->  Generally, OS patches are customer responsibilty
+      Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations.
+
+AWS Compute Overview -->
+  EC2 --> Virtual server based service
+  Lambda --> Serverless based service
+  ECS --> Elastic container based service
+  Elastic BeanStalk --> PAAS
+
+AWS Storage Overview -->
+  S3 --> Object based stirage
+  Glacier --> Archive object based storage
+  DataBase services -->
+    DynamoDB --> serverless NoSQL DB
+    RDS --> mully-managed SQL DBs
+    Elastic Cache --> In-memory Cache Engine
+    Redshift --> PetaBytes managed DW
+    
 IAM --> Global service, AWS access control service
 ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
   example --> arn:aws:iam::575876987:user/admin
