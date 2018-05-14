@@ -22,3 +22,12 @@ Customer Responsibility -->
    
 
 IAM --> Global service, AWS access control service
+ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
+  example --> arn:aws:iam::575876987:user/admin
+  means --> arn:aws:service-name:region_name:account_number:aws_resource_type_name/user_name
+
+By Default --> All IAM users has non-explicit deny policy for all AWS services.
+But if you attach allow access policy for any AWS services to a specific USER and also attach deny policy for any AWS services to the same user, then this explicit deny policy always overrides explicit allow policy.
+
+  
+  
