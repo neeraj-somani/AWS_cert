@@ -61,14 +61,40 @@ AWS Storage Overview -->
     RDS --> mully-managed SQL DBs
     Elastic Cache --> In-memory Cache Engine
     Redshift --> PetaBytes managed DW
+
+IAM    
+IAM Essentials --> Global service, AWS access control service
+  core components --> Users, groups, roles, policies, API Keys, password policy and MFA
+  IAM provides access and access permission to AWS resources (like EC2, S3 etc)
+  Best Practice --> always follow "Principle of Least Priviledge"
+
+IAM Policies -->
+  A policy is a document that formally states one or more permissions.
+  By default, an explicit deny overrides an explicit allow.
+  Few category:
+    Admin Access: full access to AWS resource
+    power user access: admin access but not allowed user/group management
+    Read Only access: only view inside of AWS resource
+  Policies can't directly be attached to AWS resources (Such as an EC2) 
+
+IAM Users -->
+  By Default, all IAM users has non-explicit deny policy means NO access to any AWS services.
+  But if you attach allow access policy for any AWS services to a specific USER and also attach deny policy for any AWS services to the       same user, then this explicit deny policy always overrides explicit allow policy.
+  Each user will receive unique access Key ID and Secrete access key (credentials), that must not be shared or pass to EC2 directly
+IAM Groups -->
+  multiple policies can be assigned to multiple users at a time
+IAM Roles -->
+  A role is something another entity can assume and acquires specific permissions defined by roles
+  Here, entity mean AWS resources (such as EC2) or Non-AWS account holder who may need temp access to AWS (using AD, etc)
+  role is better way to attach policy to AWS resources
+    example:- an EC2 instnace requires access to S3 buckets
     
-IAM --> Global service, AWS access control service
+
 ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
   example --> arn:aws:iam::575876987:user/admin
   means --> arn:aws:service-name:region_name:account_number:aws_resource_type_name/user_name
 
-By Default --> All IAM users has non-explicit deny policy for all AWS services.
-But if you attach allow access policy for any AWS services to a specific USER and also attach deny policy for any AWS services to the same user, then this explicit deny policy always overrides explicit allow policy.
+
 
   
   
