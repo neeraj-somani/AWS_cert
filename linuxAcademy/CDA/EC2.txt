@@ -55,8 +55,33 @@ EC2 Instance Configuration -->
       --> However, one EBS volumes can be attached to one instnace at a time
       --> SnapShots can be created from EBS, that can be used to create new EBS volume
       --> By default, EBS volumes replicated within AZ
+      --> All EBS volumes gets initilized, first time a storage block is read
   EBS Performance -->
     EBS volumes measures in IOPS (means input/output operations per sec, in 256kb chunks, {512 kb operations = 2 IOPS})
+  
+  EBS Types -->
+    General Purpose SSD --> Used for dev/test env, smaller DB instance, Volume size (1 GB to 16 TB), performace 3 IOPS/GB
+    Provisioned IOPS SSD --> used for critical applications/envs, High IOPS performance (upto 30000 IOPS per volume), perfoms at provision level, volume size (4GB to 16TB) 
+    ThroughPut Optimized HDD and Cold HDD --> cheaper than SSD, less performant, Volume size 500GB to 16 TB, not bootable, (Cold HDD -- designed for less frequent access)
+    EBS Magnetic (previous generation) --> low storage cost, 1GB to 1 TB, used for no performance impact envs
+ 
+ EC2 instance Store volumes --> volume hardware physically attached to host machine, 
+  used for ephemeral data, means (once the instnace stopped/shutdown, data is erased)
+   Benefits --> when instance rebooted, still can maintain its ephemeral data
+ 
+ EBS Snapshots --> point-in-time backup of EBS volumes stored on S3
+  Snapshots properties -->
+    snapshots are incremental in nature, means only stores the changes since the most recent snapshot, thus reduce cost
+    However, if original snapshots are deleted, still data can be ratined from other snapshots. Because, even though snapshots charges you only for incremental data, all prior data is still there. Hence, fully restored EBS volume is possible.
+    snapshots can degrade the performance, hence needs to be done in less load time, and should do frequently to increase data durability.
+    
+  EFS --> fully managed storage service, supports NFSv4 protocols, and best performance with linux
+    scalable storage option:
+    Elastic storage option: 
+      --> storage capacity increase/decrease as you add or remove files 
+      --> application will always have needed storage, unlike EBS, without having to worry about attach additional larger storage device
+    Benefits of EFS -->
+      --> multiple EC2 instance can connect to same EFS (centralized storage)
     
     
     
