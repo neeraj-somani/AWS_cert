@@ -88,9 +88,23 @@ EC2 Instance Configuration -->
     Security On EFS --> VPC for NACLs, IAM for API access control, encrypt data at-rest using AWS-KMS
     EFS is useful for Big Data, Analytics, Web-serving and content manament, media serving
     
-    
-    
-   
+EC2 Key-Pair -->
+  Each Key-Pair consist of public key and private key. AWS stores public key at instance level and user save private key.
+  user must save key-pair.pem file with chmod 400 permission.
+  to login to EC2 instance user use this key-pair.pem file:- ssh ec2-user@public-ip -i key-pair.pem file.
+
+ELB and Session state -->
+  Load Balancing --> means distributing incoming traffic across servers
+  ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs
+  ELB maintain session state -->
+    option 1 --> ELB generates cookies stickiness
+    option 2 --> application generated cookies stickiness
+    Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
+
+EC2 Shared Responsibility Model -->
+  customer responsible for software level security on instnaces, using security groups, firewalls, EBS Encryption, apply SSL certificate to ELB
+  AWS is responsible for Hypervisor and physical layer of security on instnaces, DDOS protection and port scanning protection.
+      DDOS (Distributed Denial of Service)
       
       
       
