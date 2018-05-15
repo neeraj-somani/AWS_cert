@@ -81,7 +81,12 @@ EC2 Instance Configuration -->
       --> storage capacity increase/decrease as you add or remove files 
       --> application will always have needed storage, unlike EBS, without having to worry about attach additional larger storage device
     Benefits of EFS -->
-      --> multiple EC2 instance can connect to same EFS (centralized storage)
+      --> multiple EC2 instances can connect to same EFS (centralized storage)
+      --> EFS can be moutned to On-premises servers (connect through VPC via DirectConnect)
+      --> highly scalable (in petabytes), with low latency and high throughput
+      --> pay as you go benefit
+    Security On EFS --> VPC for NACLs, IAM for API access control, encrypt data at-rest using AWS-KMS
+    EFS is useful for Big Data, Analytics, Web-serving and content manament, media serving
     
     
     
