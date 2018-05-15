@@ -85,11 +85,70 @@ IAM Groups -->
   multiple policies can be assigned to multiple users at a time
 IAM Roles -->
   A role is something another entity can assume and acquires specific permissions defined by roles
-  Here, entity mean AWS resources (such as EC2) or Non-AWS account holder who may need temp access to AWS (using AD, etc)
+  Here, entity mean AWS resources (such as EC2) or Non-AWS account holder who may need temp access to AWS (using AD, SSO - (fb, google) etc)
   role is better way to attach policy to AWS resources
     example:- an EC2 instnace requires access to S3 buckets
-    
+  you can now change or assign role that is assigned to EC2 instances.
+  An EC2 instance can have only ONE role attached at a time.
+  Roles are useful for "Cross Account" access
+IAM STS --> Security Token Service
+  STS allows to create temporary security credential to access AWS resources.
+  for short term use, from few min to few hours
+  Once expired, can't reuse. Need to create new.
+  when an API call requested, credentials are returned with 3 components: (Security token, access key ID , secrete access key)
+  
+  STS Benefits --> 
+    No distributing or embedding long term AWS credentials into applications
+    Grant access to AWS with IAM identity/user. (but with IAM roles and identity federation)
+  When to Use STS -->
+    1. Identity Federation
+      a) Enterprise Identity Federation (using Microsoft Windows AD). STS supports SAML (Security Assertion Markup Language)
+      b) Web-identity Federation (using FB, google, amazon)
+    2. Roles for Cross Account Access (Cross Origin Resource Sharing)
+    3. Roles for AWS Services (such as EC2, EBS)
+  
+  STS API Calls -->
+    AssumeRole --> Cross account delegation and federation through a custom identity broker
+    AssumeRoleWithWebIdentity --> Federation through a web based Identity provider
+    AssumeRoleWithSAML --> Federation through an ENterprise Identity Provider compatible with SAML
+    GetFederationToken --> Federation through a custom identity broker
+    GetSessionToken --> Temporary credentials for users in untrusted environment
+ 
+ IAM API Keys -->
+  API Keys are useful to make programmatic calls to AWS, using CLI, SDKs, DirectHttp calls
+  Facts -->
+    An API key must be associated with individual users and can have only one active API key at a time
+    Roles doesn't have API key credentials
 
+IAM KMS (Key Management Service) --> Create and control encryption keys used to encrypt user data
+  Customer Master Keys (CMK) --> used to encrypt/decrypt 4KB of data and primary resource of KMS
+  2 types of KMS --> 
+    Customer Managed --> customer create, enable/disable, rotate and manage the policies that allow access to CMKs
+    AWS Managed --> created, managed and used by AWS, integrates with KMS
+  Data Keys --> 
+    Encryption keys for encyption of data
+    CMKs can generate, encrypt and decrept data keys
+    KMS doesn't use Data Keys to encrypt data, hence KMS doesn't manage or store data keys
+  Envolope Encryption -->
+    PlainText data is encrypted using data key
+    Data Keys are encrypted with KEK (Key encryption key)
+    KEK may be enrypted by another KEK, but eventually there will be one master key that can be used to decrypt 
+ KMS API actions -->
+  Encrypt plaintext using CMK
+  GenerateDataKey --> uses a CMK to return a plainText, and cipherText version of data encryption key
+  Decrypt --> Decrypt cipherText that are encrypted by API 
+    Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext
+  
+    
+Amazon Congnito -->
+  Superset of wbe-Identity Federation
+  --> create uniue indentity for application users from Google, fb
+  --> supports unauthenticated identity (signup after application usage)
+  --> save mobile user data
+  --> can sync user data cross devices, mobile and web
+  --> cache data locally at client
+  
+  
 ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
   example --> arn:aws:iam::575876987:user/admin
   means --> arn:aws:service-name:region_name:account_number:aws_resource_type_name/user_name
