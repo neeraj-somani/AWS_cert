@@ -1,0 +1,69 @@
+EC2 Essentials -->
+  scalable virtual server on cloud, runs on Linux/Windows, 
+  very similar as on-premises servers, with flexibility of on-demand scalabale
+  
+  Components -->
+    AMI --> OS, software packages, and other setting image (preconfigured packages)
+    Instance type --> hardware compute power, RAM, network bandwidth
+    Network Interface --> public, private, elastic IP address
+    instances storage --> "hard-drive"
+      EBS (Elastic Block Storage) --> network persistent storage
+      EFS (Elastic File storage) --> scalable, elastic file storage
+      Instance storage --> "ephemeral storage" -- temporary / short time storage
+ Facts --> 
+  1. security groups must be assigned at time of creation
+  2. Each instance must be placed into an existing VPC, AZ, and subnets
+  3. custom launch command (bootstarping) can be passed at the launch
+  4. "Tags" used to name and organize
+  5. Encrypted Key-Pair used to login
+  6. there is limit on number of instnaces running at specific time within a region
+
+EC2 instnace types -->
+  1. compute power (processor/CPU) {C}, {P, G, F}
+  2. memory (RAM) {X, R}
+  3. Storage Optimized (Hard-drive) {H, I, D}
+  4. Network Performance (bandwidth)
+ General purpose {T, M}
+
+EC2 Purchasing Options -->
+  On-Demand --> 
+    choose, provision and terminate any instnaces type at any time
+    most expensive, most flexible
+  Reserved Instances -->
+    purchase for set time period (one or 3 year) with significant discount (pay upfront, partial upfront, no upfront)
+    Regional RI and AZ specific RI
+  Spot Instance -->
+    bid for specific instance type, substantial discount, terminate at anytime
+  Dedicated Instnaces --> dedicated machine with full control, save money and works with specific regulatory compliance
+  
+EC2 Instance Configuration --> 
+  IP Addresses -->
+    Public --> Have option to enable/assign public IPs, used to access EC2 over the open internet, IPs assigned as per selected subnet
+    Private --> By Default, all EC2 created with Private IPs, used for internal inside VPC communication
+    Elastic --> Static but public IP address designed for dynamic cloud computing, 
+      with EIP, you can attach an public IP to EC2 that was created with private IP
+      attaching an EIP will replace default public IP, as long as EIP is attached.
+   
+   Bootstrapping --> set of independent commands run at the time of instnace launch
+   User-Data --> custom commands can be used at time of launch for specific user (i.e, bash scripts)
+   Below command to view user-data & meta-data  -->
+      curl http://169.254.169.254/latest/user-data   (displays bootstrapping commands)
+      curl http://169.254.169.254/latest/meta-data   (displays AMI, instance types, etc)
+ 
+ EC2 Storage Basics -->
+  EBS Basics --> EBS volumes are persistent, network attached storage (meaning attach/detach to/from EC2 instances)
+      --> However, one EBS volumes can be attached to one instnace at a time
+      --> SnapShots can be created from EBS, that can be used to create new EBS volume
+      --> By default, EBS volumes replicated within AZ
+  EBS Performance -->
+    EBS volumes measures in IOPS (means input/output operations per sec, in 256kb chunks, {512 kb operations = 2 IOPS})
+    
+    
+    
+   
+      
+      
+      
+      
+      
+      
