@@ -1,0 +1,15 @@
+Elastic Container Service (ECS) -->
+  This container service supports Docker.
+  This is used to create and manage a fleet of Docker container on a cluster of EC2 instances.
+  
+Purpose / Benefits -->
+  create distributed application and microservices -->
+    microservices --> create application architecture comprised of independent task.
+    example, seperate container for different componenet of application -->
+      Webserver
+      application server
+      message queue
+      backend servers
+    This allows to start, stop, manage, monitor, and scale each container independently
+    
+    Batch and ETL jobs -->
