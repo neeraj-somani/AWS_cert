@@ -18,11 +18,11 @@ VPC Essentials -->
       Instance level security groups (firewall on the instance level)
       subnet level network ACLs (firewall on the subnet level)
    
-   Default VPC features -->
+Default VPC features -->
       preconfigured VPC will be created at the time of AWS account creation
       Default VPC and non-default VPC has significate differences
       In default VPC, all subnet have a route to inetrnet via route table and attached IGW.
-  VPC Limits -->
+VPC Limits -->
     5 VPC per region (more can be requested)
     5 Internet Gateway per region (this is equal to VPC, because one VPC can have One IG)
     50 customer Gateways per region
@@ -31,3 +31,20 @@ VPC Essentials -->
     5 Elastic IP address per region
     500 Security groups per VPC / 50 rules per security groups
     5 security groups per network interface (or considered 
+
+VPC Networking -->
+  Internet Gateway -->
+    allows the communication between instances and Internet.
+    it can scale horizontally, highly available and redundant
+    there is a risk of no availability and risk bandbwidth constraints on network
+    Provides NAT translation for instances that have public IP address assigned (public IP to private IP)
+    Default VPC always comes with IGW attahced.
+  IGW rules -->
+    one IGW per VPC at a time
+    IGW cant be detached from VPC while there is any active AWS resources on VPC (like EC2, RDS)
+    IGW is must when communication needed between internet and AWS resources on VPC
+  Route Tables -->
+    it contains set of rules that used to determine where netwrok traffic is directed, called routes.
+    2 major components -->
+      Destination --> CIDR block range of target
+      Target -->
