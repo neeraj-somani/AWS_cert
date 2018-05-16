@@ -15,5 +15,14 @@ Lambda Functions --> nothing but application code
 Lambda Function Configuration -->
   Lambda requires significatly less configuration and managment, but you can 
   
+Lambda Versions and Aliases -->
+  labmda versions are stored as unique code function with their own unique ARN
+  $LATEST --> this represents latest lambda function version, rest all with version number
+  Lambda Aliases --> are pointer to specific version
+      Alias have static ARN and can be used to point to any version
+      Alias can also be used to split traffic between lambda functions
+  Benefits of both --> ease deployment workflow and management of stages
+
+Lambda API actions --> need to visit on AWS website if needed.
   
     
