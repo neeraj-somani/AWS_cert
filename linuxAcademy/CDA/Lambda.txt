@@ -1,0 +1,19 @@
+Lambda Essentials -->
+  Serverless computing platform --> means run code without managing servers
+  pay only for compute time code consume, in millisec
+  Lambda, highly available, scalable, fault tolerant, cost effective, elastic
+  Lambda Functions and Lambda function packages are core of it
+  Lambda easily integrates with other AWS services
+  Lambda supported languages --> Node.js, JAVA, C#, Python, GO
+  
+Lambda Events -->
+  Lambda functions are triggered by events. example, like S3 file upload, DynamoDB changes, cloudWatch scheduled events, etc.
+Lambda Functions --> nothing but application code
+  lambda functions can invokes as:
+    Synchronous : wait for return value and return it
+    Asynchronous: Don't wiat for return value, discard it
+Lambda Function Configuration -->
+  Lambda requires significatly less configuration and managment, but you can 
+  
+  
+    
