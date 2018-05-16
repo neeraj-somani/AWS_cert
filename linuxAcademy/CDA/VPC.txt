@@ -1,0 +1,33 @@
+VPC Essentials -->
+  VPC enable you to launch AWS resources into virtual network. This is very similar to on-premises data center but scalable.
+  
+  Private and public features of VPC -->
+    private and public subnets, scalable architecture
+  
+  Important VPC facts -->
+    A VPC spans across multiple AZs within a Region. High availability and fault tolerant architecture.
+    Each VPC has its own hostname.
+  Benefits of VPC --> 
+    Ability to launch instances into subnet
+    Ability to define custom CIDR inside each subnet
+    Ability to configure routes between subnets
+    Ability to configure Internet Gateway to provide route to internet
+    Ability to create layered network of resources
+    Ability to extend corporate/on-premise network to cloud via VPN/VPG
+    Layered Security -->
+      Instance level security groups (firewall on the instance level)
+      subnet level network ACLs (firewall on the subnet level)
+   
+   Default VPC features -->
+      preconfigured VPC will be created at the time of AWS account creation
+      Default VPC and non-default VPC has significate differences
+      In default VPC, all subnet have a route to inetrnet via route table and attached IGW.
+  VPC Limits -->
+    5 VPC per region (more can be requested)
+    5 Internet Gateway per region (this is equal to VPC, because one VPC can have One IG)
+    50 customer Gateways per region
+    50 VPN connections per region
+    200 route tables / 50 entries in each table
+    5 Elastic IP address per region
+    500 Security groups per VPC / 50 rules per security groups
+    5 security groups per network interface (or considered 
