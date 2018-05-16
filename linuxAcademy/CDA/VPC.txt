@@ -47,4 +47,20 @@ VPC Networking -->
     it contains set of rules that used to determine where netwrok traffic is directed, called routes.
     2 major components -->
       Destination --> CIDR block range of target
-      Target -->
+      Target --> a name identifier where data is directed
+    By default, all subnet traffic is allowed to each other within VPC, and its can't be modified.
+    Can have more than one route table
+    can't delete route table if it has dependencies, (associated subnets)
+    Default VPC always comes with one default route table.
+    Best practice, is to untouch default route table and create new needed route table.
+ Subnets -->
+    can add one or more subnet in each AZ
+    subnet doesn't span across AZs
+    A subnet must be associated with route tables
+    A public subnet has a route to internet, means that public subnet is associated with a route table that has an IGW attached.
+    A private subnet doesn't have a route to internet, means private subnet associated with a route table doesn't have an IGW attached.
+ NACLs -->
+    ACL operates at network and subnet level
+    supports both DENY and ALLOW rules
+    NACLs are stateless
+    NACLs process rules in sequencial orders
