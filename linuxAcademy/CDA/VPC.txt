@@ -63,4 +63,21 @@ VPC Networking -->
     ACL operates at network and subnet level
     supports both DENY and ALLOW rules
     NACLs are stateless
-    NACLs process rules in sequencial orders
+    NACLs process rules in sequencial orders for allow or Deny on same port
+    Last rule in every NACL is catch all "DENY" rule
+    NACL is optional layer of security for VPC, that controls in and out traffic of one or more subnets.
+    Best practice to incremenet rules by 10 numbers, so that if needed some rule can be fit in between.
+    Note: Default VPC already have a NACL and that is associated with default subnets.
+ Security Groups -->
+    are security at instnace level, as oppose to NACL which is at subnet level.
+    Security groups also has allow/deny rules, same as NACL, but works differently:
+      security groups supports only allow rules, by default everything is denied.
+      They are stateful, means return traffic is by default allowed regardless of rules
+      all rules are evaluted before deciding to allow traffic.
+    Best practice is to allow only those trafffic that is required.
+    
+      
+      
+    
+    
+    
