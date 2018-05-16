@@ -1,4 +1,4 @@
-Elastic Container Service (ECS) -->
+Elastic Container Service (ECS) --> Server based service
   This container service supports Docker.
   This is used to create and manage a fleet of Docker container on a cluster of EC2 instances.
   
@@ -13,3 +13,12 @@ Purpose / Benefits -->
     This allows to start, stop, manage, monitor, and scale each container independently
     
     Batch and ETL jobs -->
+      package batch and ETL jobs into container and deploy them into EC2 clusters
+      run different versions of the same job or multiple jobs on the same cluster
+      share cluster capacity with other processes and/or grow jobs dynamically to improve resource utilization
+    Continous Integration and Deployment -->
+
+AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instance
+
+
+      
