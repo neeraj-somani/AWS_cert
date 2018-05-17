@@ -70,11 +70,11 @@ S3 Permissions --> By default all buckets and objects are private.
   S3 ACL Policies --> {XML} permissions at bucket and object level
     ACLs can't deny permissions and can't grant conditional permissions
     
-S3 Encryption --> 
+S3 Encryption --> All handled by AWS SDK in background
   In-transit --> SSL or client side
-    Client Side Master Key (CMK) --> 
+    Client Side Master Key (CSMK) --> 
       client manage master key and never shares with AWS.
-      upload/download steps with CMK --> 
+      upload/download steps with CSMK --> 
           Random Data key generated at S3 client
           data key is encrypted with client CSMK
           encrypt the data with data key
@@ -82,9 +82,20 @@ S3 Encryption -->
           download file and metadata
           decrypt data key with CSMK
           data key used to decrypt objects
-    AWS KMS-managed          
+    AWS KMS-managed customer master key (CMK) --> 
+      client gets a unique encryption key for each object ({(1)application request}, {(2) response: key and cipherText Blob})
+          --> a plaintext key used to encrypt objet data
+          --> a cipherText blob to upload to S3 as object Metadata
+      (3) Encrypt the file --> plainText key used to encrypt file
+      (4) upload file and metadata --> client uploads the encrypted file to S3 with cipherText blob as object MetaData.
+      (5) Download file and metadata
+      (6) KMS decrypts ciphertext for client, to get the plaintext
+      (7) plaintext key is used to decrypt the object
   At rest --> S3 encrypt data for user
-  
+    SSE-S3 --> AES-256 (Advanced Encryption Standards), encryption before saving to disk
+      each object gets a unique key that is encrypted by regulatory-rotated master key
+    SSE-KMS --> similar as SSE-S3, but key managed by KMS
+    SSE-C --> customer provides and manages master key, S3 encrypts and decrypts using that key
   
     
     
