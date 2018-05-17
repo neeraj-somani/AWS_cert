@@ -1,0 +1,14 @@
+Redshift Essential --> petabyte scale datawarehouse service, fully-managed and scalable
+
+Amazon Elastic Cache and Caching stretegy -->
+  Elastic Cache Essentials --> 
+    fully managed, in-memory cache engine used to improve DB performance by caching frequently query results
+    great for lrage, high-performance DB.
+    currently available engines plugins are (Memcached & Redis)
+  Caching stretegies -->
+    Lazy Loading --> cache will be loaded only when already not exists and avoid to load unwanted query requested data
+    write through --> cache will always be updated with new write and update requests to keep it up-to-date, usually implement it with TTL
+    TTL --> time-to-live, TTL not guarantee fresh information, but helps in cleanup and implemented with any of above 2 options
+    
+
+  
