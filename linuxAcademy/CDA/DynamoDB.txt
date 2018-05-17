@@ -25,12 +25,23 @@ DynamoDB core concepts -->
 
 DynamoDb provision throughput --> Read and Write Capacity
   its maximum amount of capacity that application can consume, after that request are throttled
-  throughput sets at table level, but split-up and consumed at partition level. Means, one partition can lack capacity but others are fine
-  
+  throughput sets at table level, but split-up and consumed at partition level. Means, one partition can lack capacity but others are fine.
   Exam tips --> 
     seconds vs minutes vs hours - WCU and RCU are number of writes and reads per second. always calculate troughput per sec
     rounding --> round-up to nearest 1 KB (for WCU) and nearest 4 KB (for RCU)
+
+DynamoDB Partitions --> partitions are SSD allocation of storage for tables, replicated across AZs.
+  number of partition determines by provisioned capacity and storage size of partition
+  
+  Provisioned Capacity writes --> WCU consumed when creating, deleting, updating items
+    1 WCU = 1 write of item of size 1 KB or less per second
+   example:- how many WCU needed for a table to have 120 writes per min for each item of size 2.5 KB
+   Answer:- WCU = 120 item/min * 2.5 KB = 120 item/60 sec * 3 KB (nearest 1 KB) = 6 WCU
+ 
+ Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
+ Hence, conditional writes are introduced.
     
+  
   
   
 
