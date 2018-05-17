@@ -38,7 +38,52 @@ S3 Errors -->
   500 --> server error
 S3 Event Notification --> AWS services like SNS, Lambda, SQS
 
+Moving Data to S3 --> Single operation upload, file size can be upto 5GB, but more than 100 MB file has to be multipart.
+  multipart upload/download process will speed up the process, as it can occur asyncronously.
   
+  Storage Gateway --> used to control traffic for storage services like S3
+    Gateway-Cached Volume --> frequently accessed data will be cached to speed up the proces
+    Gateway-Stored Volume --> store all the data to this volume and incrementally take snapshots for back-up and store to S3.
+ Snowball --> An AWS service for petabyte scale of data transportation from on-premises to cloud.
+AWS S3 Import/Export --> this will also gives the ability to move and extract data to/from cloud
+
+S3 Performance --> contact AWS support for temporary limit concerns, below is what default temp limit:
+  300 request per sec --> PUT/LIST/DELETE
+  800 request per sec --> GET
+  
+  Need to revisit design or follow best practices (to improve performance) if any of below happening with high number of consistency:
+     100 request per sec --> PUT/LIST/DELETE
+     300 request per sec --> GET
+     
+  S3 - Introducing Randomness to avoid overwhelming S3 partitions -->
+    S3 automatically creates and maintain an index of S3 key-names in AWS region, hence prefix object names with some randomness 
+    will avoid imbalance partition.
+  S3 GET intesive workload --> best practice approach
+    use randomness
+    use Amazon CloudFront, because CloudFront is Content Delivery Network, which delivers content with low latency and high transfer rate.
+    
+S3 Permissions --> By default all buckets and objects are private.
+  owner can give permissions using resource policies (bucket level or S3 ACLs) or IAM policies
+  IAM policies --> can contain details about S3 object ARN {arn:aws:s3:::bucket_name/object_name} 
+  Bucket Policies --> {JSON} attached to S3 buckets level, means its automatically applied to all objects of bucket created by bucket owner. objects created by other user has to explicitly specify object level permission.
+    these can be used to assign to IAM users or other AWS account holders.
+  S3 ACL Policies --> {XML} permissions at bucket and object level
+    ACLs can't deny permissions and can't grant conditional permissions
+    
+S3 Encryption --> 
+  In-transit --> SSL or client side
+    Client Side Master Key (CMK) --> 
+      client manage master key and never shares with AWS.
+      upload/download steps with CMK --> 
+          Random Data key generated at S3 client
+          data key is encrypted with client CSMK
+          encrypt the data with data key
+          upload file and metadata
+          download file and metadata
+          decrypt data key with CSMK
+          data key used to decrypt objects
+    AWS KMS-managed          
+  At rest --> S3 encrypt data for user
   
   
     
