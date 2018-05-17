@@ -40,8 +40,49 @@ DynamoDB Partitions --> partitions are SSD allocation of storage for tables, rep
  
  Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
  Hence, conditional writes are introduced.
+    Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
+        1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
+        eventual consitent reads requires half of strongly consistent reads RCU
+    example:- how many RCU needed to read 10 items of 13 KB per second for strongly consistent reads
+    answer:- 10 item * 13 KB each = 10 item * (13 kb / 4 Kb per RCU) = 10 item * (3.25 RCU/item) = 10 item * (4 RCU/item) = 40 RCU
+        but for eventual consistent reads this will be 20 RCU only.
+  DynamoDB read operation --> 
+      GetItem --> efficiently read a single item by providing item primary key
+      BatchGetItem --> read upto 100 item, from one or more tables {each item is processed with GetItem operations only)
+      Query --> read items with same partition key (and if provided sort key), all returned items considered as one read.
+      SCAN --> reads all items of table, and consider the size of items that are evaluated, not the item size that got returned
+   Eventual consistent --> doesn't guarantee most recent write 
+   strong consistent --> guarantee to reflect most recent write 
+
+DynamoDB Secondary Indexes --> 
+  this allows efficient queries of non-primary key attributes
+  every secondory index is associated with only one table, but one table can have multiple Secondary index
+  Local Secondary Index --> gives the choice of Sort Key
+    LSI primary-key are composite key {partition key + sort key}
+    Each LSI can act as another sort key. 
+    LSI consumes WCU and RCU from main tables capacity
+    LSI must be created at the same time table is created. Can't create later.
+  Global Secondary Index --> allows different partition and sort key, and can query the table in differnt ways
+    Strongly consistent reads not possible with GSI
+    GSI has their own WCU and RCU
+    GSI can be created even after table creation
+
+Common DynamoDB errors and limits --> 
+  throttling exception --> when you try to create, delete or update tables too quickly
+  ProvisionedThroughputExceedException --> if throughput on the table is insufficient
+  ResourceNotFoundException --> incase accessing resource too early or not exist
+
+DynamoDB Limits -->
+  secondary indexes
+  provisioned throughput
+  number of tables
+  items and attributes
+  specific API limits
     
   
+  
+  
+            
   
   
 
