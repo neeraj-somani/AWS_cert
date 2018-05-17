@@ -112,7 +112,24 @@ S3 versioning --> a feature to keep old/new/deleted S3 objects
     copying old version --> each copied objects (even from same bucket) will become new version of object with unique version id
 
 S3 storage classes and Glacier -->
+  storage class --> represents classification of object in S3, this dictates storage cost, availability, durability, frequent of access
+  S3-Standard --> default and for all purpose, 11X9's durable, 99.99% available, most expensive 
+  S3-RRS (Reduced Redundency Storage)-->designed for non-critical/reproducible objects. 99.99% available/durable, little less expensive
+  S3-IA (Infrequent Access) {standard-IA} --> designed for IA but with immidiate availability when requested, 11X9's durable, 99.90% available, less expensive than standard/RRS
+    OneZone-IA --> all specification applied to one specific zone only
+  S3-Glacier --> long time archival storage, not for back-ups, cheapest, several hours of retrieval time, 11X9's durable
+        3 types of retrieval --> expedited (1-5 min), standard (3-5 hr), bulk (5-12 hr)
+
+S3 lifecycle policy --> (by default disabled), set of rules that automates migration of objects to various storage classes
+
+S3 hosting static website --> you can build a code that can nevigate to different files stored at S3.
+  index.html (or default file) and error.html (error file) must be specified.
+  URL example --> bucket_name.s3-website(- or.)region.amazonaws.com
   
+  Cross Origin Resource Sharing (CORS) --> settings at S3 bucket level, {XML} file
+    a method that allow web application located at one domain to access and use resources at another domain
+    or in AWS world, one S3 bucket can access resources of another S3 bucket
+    Enabling CORS --> 
     
 
 
