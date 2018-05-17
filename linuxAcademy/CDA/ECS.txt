@@ -20,5 +20,24 @@ Purpose / Benefits -->
 
 AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instance
 
+Dockerfile -->
+  A plain text file (script) that contains details (/instructions) about components that are included in container
+Container/Docker Image -->
+  This is build from Dockerfile, it contains all the downloaded/installed softwares, libraries, code, runtime info, etc specified in Dockerfile.
+Container Registry -->
+  Its a repository where container image is stored for further reference
+  Container Registry can be located at :
+    at AWS via ECS, 3rd party repository like Docker Hub, self hosted registry
+
+ECS Agent -->
+  This runs on each EC2 instance in the ECS cluster, to make communication between EC2 and ECS.
+  ECS also responsible for starting/stoping tasks, resource utilization, etc.
+Tasks -->
+Task Definition -->
+  
+  
+    
+    
+  
 
       
