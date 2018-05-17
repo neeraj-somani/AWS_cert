@@ -1,0 +1,12 @@
+RDS Essentials --> fully managed relational DB service
+  --> can't access underlying OS
+  --> auto scaling available , highly available, multi-AZ, 
+  
+benefits --> 
+  automatic minor system updates
+  automatic backups (point-in-time snapshots)
+  no OS management / fully managed service
+  multi-AZ on a single click
+  auto recovery incase of failure.
+  
+  
