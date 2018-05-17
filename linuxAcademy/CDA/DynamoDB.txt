@@ -33,7 +33,7 @@ DynamoDb provision throughput --> Read and Write Capacity
 DynamoDB Partitions --> partitions are SSD allocation of storage for tables, replicated across AZs.
   number of partition determines by provisioned capacity and storage size of partition
   
-  Provisioned Capacity writes --> WCU consumed when creating, deleting, updating items
+  Provisioned Capacity writes --> WCU consumed when creating, deleting, updating items. Writes always follow strong consistency.
     1 WCU = 1 write of item of size 1 KB or less per second
    example:- how many WCU needed for a table to have 120 writes per min for each item of size 2.5 KB
    Answer:- WCU = 120 item/min * 2.5 KB = 120 item/60 sec * 3 KB (nearest 1 KB) = 6 WCU
