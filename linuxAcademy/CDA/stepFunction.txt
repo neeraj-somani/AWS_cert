@@ -14,9 +14,9 @@ Step Function Essentials -->
       'state' --> is a unique string name
       some other state types --> 
         'Tasks' --> states do some work in state machine
-        choice -->
-        fail or succeed -->
-        pass -->
+        choice --> states makes choices between different branches
+        fail or succeed --> state stop execution of your machine incase of failure or success
+        pass --> state pass there input to their output
         wait -->
         parallel -->
     
