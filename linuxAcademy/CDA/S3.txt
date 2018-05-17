@@ -96,6 +96,23 @@ S3 Encryption --> All handled by AWS SDK in background
       each object gets a unique key that is encrypted by regulatory-rotated master key
     SSE-KMS --> similar as SSE-S3, but key managed by KMS
     SSE-C --> customer provides and manages master key, S3 encrypts and decrypts using that key
+
+S3 versioning --> a feature to keep old/new/deleted S3 objects
+  by default, its disabled. But once enabled, you can only suspend it, can't disable it.
+  versioning can only be set at bucket level and will be applicable to all objects
+  Lifecycle policy can be applied to specific version of the objects
+  every object is independent in itself and consist of unique version id
+  
+  Delete Versioned objects --> 
+    1. if delete is made to an object without specifying version id, then AWS will add a delete marker to all versions of object
+    2. when we try to access object, S3 will response 404, but you can retrieve specific version of object by specifying version id
+    3. each version of object can permanently be deleted by specifying version id
+  Restoring versioned objects --> means making old version of object to current, can be achieve in 2 ways
+    Deleting current versions --> keep deleting untill you get needed object version
+    copying old version --> each copied objects (even from same bucket) will become new version of object with unique version id
+
+S3 storage classes and Glacier -->
   
     
-    
+
+
