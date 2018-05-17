@@ -1,0 +1,45 @@
+S3 Buckets -->
+  Buckets are main storage container of S3.
+  S3 buckets and objects resides within region where it got created, untill explicitly transfered.
+    This brings low latency, minimize cost and address regulatory requirements
+    Every bucket must have unique name across all of AWS.
+ Buckets limitation -->
+    100 per AWS account, Bucket ownership cant be transferd, Bucket can hold unlimited objects
+S3 Objects -->
+  Objects are static files and metadata information.
+  Metadata means, storage type, encryption settings and permissions.
+  Storage type, determines objects availability, durability, and cost.
+  By default, all objects are private.
+  Objects --> 0 byte to 5 TB
+    multiple versions (if versioning enabled)
+    every object can be access via URL
+    Storage Lifecycle policy
+    Encrypted
+    Objects Organized within folders
+  Objects Encryption -->
+    SSE (Server Side Encryption) --> AES-256, encryption at S3 level
+    Client Side Encryption --> Client uses 3rd party tool, or some other encryption technology
+
+S3 Essentials -->
+  Bulk static object storage
+  various storage classes to optimize cost vs needed object availability and durability
+  object versioning
+  S3 bucket/object restriction policies/permissions
+  Origin for cloudFront CDN
+  S3 objects stays within region but synced across AZs for high availability, durability
+
+S3 Read consistency rule -->
+  read-after-write --> PUT for new object
+  Eventual consistency --> PUT for overwriting existing objects and DELETE for objects
+S3 Errors -->
+  404 --> Not found
+  403 --> Forbidden
+  400 --> Bad request
+  500 --> server error
+S3 Event Notification --> AWS services like SNS, Lambda, SQS
+
+  
+  
+  
+    
+    
