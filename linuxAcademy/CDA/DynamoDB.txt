@@ -1,0 +1,39 @@
+DynamoDB Overview -->
+  Fully managed NoSQL DB
+  consistent and fast performance
+  easy to setup and communicate with
+  optional encryption at rest
+
+DynamoDB Pricing --> 
+  provisioned throughput Writes (WCU - write capacity unit)
+  Provisioned throughput Reads (RCU - Read capacity unit)
+  Indexed data storage -- (secondary index)
+  Other pricing factors --> 
+    Resevred capacity, auto scaling, global tables, on-demand backup, on-demand restore, DynamoDB Accellerator (DAX), DynamoDB Streams
+
+DynamoDB core concepts -->
+  partition Key --> also known as HASH attribute, scalar in nature (means holds only one value), 
+  sort key --> also known as Range attribute, not a required Key, scalar in nature, this is used to sort data in each partition
+  primary key --> used to uniquely identify each item, must be of type string, number, or binary
+    2 types --> simple primary key {only partition key}, composite primary key {partition key + sort key}
+  Items --> group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
+  attributes --> fundamental data element of dynamodb (same as individual column of RDBMS)
+    data types supported --> 
+      scalar type --> String, number, binary, boolean, null
+      document type --> List, Map
+      set --> number sets, string sets, binary sets
+
+DynamoDb provision throughput --> Read and Write Capacity
+  its maximum amount of capacity that application can consume, after that request are throttled
+  throughput sets at table level, but split-up and consumed at partition level. Means, one partition can lack capacity but others are fine
+  
+  Exam tips --> 
+    seconds vs minutes vs hours - WCU and RCU are number of writes and reads per second. always calculate troughput per sec
+    rounding --> round-up to nearest 1 KB (for WCU) and nearest 4 KB (for RCU)
+    
+  
+  
+
+
+      
+  
