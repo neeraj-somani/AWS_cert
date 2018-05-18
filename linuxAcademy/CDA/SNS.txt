@@ -1,0 +1,12 @@
+SNS Essentials --> its fully managed message notification service
+  its a Pub-Sub managed service for messaging
+  coordinates and manages the sending and delivery of messages to specific end-point
+  easy intergrates with AWS services and events
+
+SNS components --> 
+Topics --> group of subscriptions that you send a message, 
+  Topics names should be limited to 256 charachter only.
+subscription -->
+publisher
+
+SNS benefits --> scalable and highly reliable
