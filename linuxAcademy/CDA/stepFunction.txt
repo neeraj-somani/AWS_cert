@@ -16,7 +16,11 @@ Step Function Essentials -->
         'Tasks' --> states do some work in state machine
         choice --> states makes choices between different branches
         fail or succeed --> state stop execution of your machine incase of failure or success
-        pass --> state pass there input to their output
-        wait -->
-        parallel -->
+        pass --> state pass there input to their output and can inject some fixed data to the process
+        wait --> states can delay the process for certain amount of time or date
+        parallel --> states begins parallel execution of the state machine
+
+Step Function transition -->
+  basic transition -->
+    
     
