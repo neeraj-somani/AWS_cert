@@ -22,5 +22,13 @@ Step Function Essentials -->
 
 Step Function transition -->
   basic transition -->
-    
+    when a state machine executes, it uses "startAt" field to select one of the state to begin
+    "Next" field is the state for allowing next task in flow control
+    flow continue until it reach terminal state with type: succeed, fail, or End: true
+
+Step function API -->
+  CreateStateMachine --> create a state machine, JSON document, consist of collection of states
+  StartExecution --> start execution of state machine
+  ListExecutions --> it list state machine execution, eventual consistent, means most recent state execution will display eventually
+  StopExecution --> stop execution of state machine
     
