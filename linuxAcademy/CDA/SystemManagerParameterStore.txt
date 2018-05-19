@@ -1,1 +1,5 @@
 Systems Manager Parameter Store --> 
+  provides a secure way to store configuration and sensitive secrets -->
+    like password, database strings, API keys, license codes
+    these can be stored as encrypted as well
+    
