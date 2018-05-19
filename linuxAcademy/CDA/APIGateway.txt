@@ -1,0 +1,34 @@
+APIGateway Essentials -->
+  service to create and manage your own API for your application
+  "act-as" a front door for application, 
+  build RESTFul web APIs with: resources, methods (GET, DELETE, POST, PUT), Settings
+  Deploy API to different stages (dev, staging, prod)
+  API versioning
+  custom Domain name can be pointed to APIs
+  set throttling rules based on number of request per sec
+ 
+Benefits --> 
+  Ability to cache API responses
+  DDos protection via CloudFront
+  SDK generation for iOS, Android, etc
+  support SWAGGER (very popular framework of API)
+  Request/Response data transformation (JSON IN to XML out)
+ 
+API Gateway Resources -->
+  Resources are logical entities that can be access via resource path.
+  Both resources and child resources have associated HTTP method
+  API resource URLs --> https://16gkh57hj686.execute-api.us-east-1.amazonapi.com/dev/cars
+
+API Gateway Method --> 
+  HTTP methods (GET, PUT, POST, DELETE, ANY) associated with API Gateway
+
+API Gateway Deployment and Stages -->  
+  Deployments --> are snapshots of API resources and methods, must be created and associated with stage
+  stages --> are references to lifecycle status (dev, staging, prod)
+
+API Gateway Caching and monitoring -->
+  cache API responses for delivery
+  TTL for API responses
+  Monitoring can be done by cloudWatch
+  
+  
