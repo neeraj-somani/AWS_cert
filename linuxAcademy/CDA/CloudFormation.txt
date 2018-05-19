@@ -1,0 +1,54 @@
+CloudFormation Essentials -->
+  cloudFormation Template as JSON / YAML, used to deploy application architecture in any region, any account as per permission
+  cloudFormation stacks --> defined by template, collection of AWS resources can be managed together as one unit
+
+Benefit -->
+  saves time, as same configuration can be reuse in any region, account, 
+  infrastructure became the code, easy to manage and configure even with different versions
+  easy rollback if needed
+  can be easily prepare for even disaster recovery
+
+CloudFormation Template --> JSON / YAML text file, describe AWS infrastructure 
+  this template can have various optional sections, but Resources section is compulsory
+    format version --> its the template version
+    description --> a string that describes about template, its must follow format version
+    metadata --> additional details that can help in implementation
+    parameters --> values to pass to your template when create or update stack
+    mapping --> match a provided key to a set of named values
+    conditions --> statements that determine when resources are created or properties are defined using logical operator
+    Transform --> used to integrate with AWS serverless application model (AWS SAM)
+    Resources --> AWS resources details and there properties
+    Outputs --> output values that can be imported to other stacks, return in the response, or can be viewed at cloudFormation consol
+ 
+CloudFormation Resources -->
+  resource type identifier --> AWS::aws-product-name::data-type-name
+    example --> AWS::EC2::instance or AWS::DynamoDB::Table or AWS::IAM::Role
+  each resource property vary by type -->
+    AWS::EC2::instance --> AvailabilityZone or InstanceType
+    AWS::IAM::Role --> ManagedPolicyArns
+  some other resource attributes -->
+    CreationPolicy --> used to delay stack creation, can be based on other stack status
+    DeletionPolicy --> used to create a backup / snapshot before deleting any resource
+    DependsOn --> used to specify resource dependency, if needed resources creation/deletion in specific order
+    Metadata --> optional additional information 
+    UpdatePolicy --> used to specify how to apply updates to AWS resources
+
+CloudFormation Stacks --> groups of resources that can be managed together
+  stacks are defined and managed by cloudFormation template
+  in-case if AWS not able to create all mentioned resources of stack, it will rollback. 
+      Hence, it will always be complete or stack or nothing
+
+CloudFomartion Intrinsic Functions --> 
+  these are used to assign values to different cloudFormation properties that are available at or after runtime
+  can be used in, --> resources and output properties, or Metadata and UpdatePolicy attribute 
+  common intrinsic functions -->
+    Fn::GetAtt --> return the value of an attribute from a resource (example, used to get Name, ARN of resource)
+    Fn::Join --> appends values into a single value seperated by a delimiter 
+    Ref --> returns a value you can use to refer to provided parameter or resource
+      example, Ref to EC2 instance would return instance ID
+              Ref to Lambda function would return function Name
+    
+  
+    
+    
+    
