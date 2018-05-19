@@ -1,0 +1,32 @@
+SQS Essentials -->
+  ability to have/hosted highly avilable queues
+  Helpful is developing distribute/decoupled application
+  each message size upto 256 kb 
+  2 type of queues --> 
+    standard queue --> supports nearly unlimited number of messages per second
+      supports multiple producers/consumers
+      guarantee delivery of messages atleast once
+      application should be able to handle duplicate messages
+    FIFO queue --> supports upto 3000 messages with batching and 300 messages without batching
+      FIFO guarantee that message are sent atleast once and processed in order
+      usually designed with application where duplicate messages can't be tolerated
+    
+  SQS is also highly available and redundant and can encrypt queue messages using KMS
+  
+  It worked with polling (pulling) mechanism
+    two type of polling -->
+      Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, hence reduces API request
+      short polling --> increases API request and hence increase cost
+
+SQS producers --> any service that send messages to SQS queue
+SQS Consumer --> any service that consumes and process SQS messages, also responsible for deleting messages from queue.
+
+Queue Settings -->
+  Dead letter queue --> used to deal with malformed data from consumers
+  DelaySeconds --> how long messages take to be added to the queue upon creation
+  VisibilityTimeOut --> How long messages are invisible after being received by consumer and wait for response from consumer
+ 
+SQS resource based access control policies --> all points are same as SNS. 
+  it supports both ACL and IAM policies
+  
+  
