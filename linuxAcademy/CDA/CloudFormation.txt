@@ -1,3 +1,5 @@
+Github repo of Linux Academy (https://github.com/linuxacademy/aws-cda-2018)
+
 CloudFormation Essentials -->
   cloudFormation Template as JSON / YAML, used to deploy application architecture in any region, any account as per permission
   cloudFormation stacks --> defined by template, collection of AWS resources can be managed together as one unit
