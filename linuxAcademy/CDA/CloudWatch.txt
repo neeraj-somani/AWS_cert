@@ -1,0 +1,16 @@
+CloudWatch --> used to monitor AWS services , like S3, EC2, ELB by configuring cloudWatch matrices
+  for example: 
+    EC2 per-instance metrices -->
+      CPUUtilization
+      CPUCreditUsage 
+    S3 metrices -->
+      NumberOfObjects
+      BucketSizeBytes
+    ELB metrices -->
+      RequestCount
+      UnhealthyHostCount
+Monitoring levels -->
+  Basic --> data will be available in every 5-min at no cost
+  Detailed --> in every 1-min with some cost
+CloudWatch alarms can be configured to trigger alerts.
+Auto scaling of AWS heavily rely on cloudWatch threshould and alarms
