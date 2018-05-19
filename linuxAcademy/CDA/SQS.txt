@@ -16,8 +16,12 @@ SQS Essentials -->
   It worked with polling (pulling) mechanism
     two type of polling -->
       Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, hence reduces API request
+            occurs when waitTimeSeconds > 0 
       short polling --> increases API request and hence increase cost
-
+          Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
+          if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
+          
+          
 SQS producers --> any service that send messages to SQS queue
 SQS Consumer --> any service that consumes and process SQS messages, also responsible for deleting messages from queue.
 
@@ -28,5 +32,29 @@ Queue Settings -->
  
 SQS resource based access control policies --> all points are same as SNS. 
   it supports both ACL and IAM policies
+ 
+SQS message characteristics and Limitations -->
+  {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
+  time-to-live from 1 min to 14 days
+  visibilityTimeout --> message can be invisible for upto 12 hours
+  messages can be added to dead letter queue if consumers unable to process them
+
+message components -->
+  Body --> XML, JSON, unformmated text 
+  receiptHandle --> a message attributes that allows you to delete the message after being received and processed 
+  messageAttributes --> custom attributes can be set outside of message body
+  visibilityTimeout --> length of time message will be invisible after received by consumer and wait for process by them and response to delete
+  DelaySeconds --> length of time queue will wait before initially placing message to the queue
   
+
+SQS API -->
+  CreateQueue --> start by creating first queue
+  GetQueueURL --> use this to return the URL you need for future actions
+  SendMessage --> used by producer to send message to queue
+  ReceiveMessage --> used by consumers to receive messages
+  ChangeMessageVisibility --> sometime consumer need more visibility time, hence it used to set message visibility
+  DeleteMessage --> consumer finish processing and delete message
+
+SDKs can handle many functionality and more useful then APIs.
+
   
