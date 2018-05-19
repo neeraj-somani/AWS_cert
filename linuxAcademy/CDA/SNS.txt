@@ -6,7 +6,37 @@ SNS Essentials --> its fully managed message notification service
 SNS components --> 
 Topics --> group of subscriptions that you send a message, 
   Topics names should be limited to 256 charachter only.
-subscription -->
-publisher
+subscription --> an endpoint that a message is sent to, like Http, Https, Lambda, Email, SQS
+publisher --> the entity that triggers the sending of a message
 
 SNS benefits --> scalable and highly reliable
+
+SNS Access control policies -->
+  ACLs --> can be used to grant access to SNS topic to another AWS account
+  SNS API: AddPermission
+  IAM policies can also be used
+
+SNS Message Data -->
+  JSON file format, Header content can be used for verification and authenticity, message content depends on subscribers
+
+SNS Message body -->
+  message --> 
+  messageID -->
+  signature -->
+  signatureVersion -->
+  SigningCertURL -->
+  Subject -->
+  timeStamp -->
+  TopicARN -->
+  Type -->
+  Unsubscribed URL -->
+  
+SNS message attributes --> contains Name, type, and value
+
+Mobile Push with SNS -->
+  Ability to send notifications directly to apps on mobile devices
+  these are like message alerts, badge updates, and sounds alerts
+
+SNS API Actions --> Create Topic, Publish, Subscribe, Unsubscribe
+
+  
