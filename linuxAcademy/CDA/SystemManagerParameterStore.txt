@@ -3,3 +3,9 @@ Systems Manager Parameter Store -->
     like password, database strings, API keys, license codes
     these can be stored as encrypted as well
     
+API actions -->
+  All parameter store APIs are underneath the AWS sysntel manager umbrella.
+  PutParamter --> adds a parameter to a paramter store (String, StringList, or secureSting)
+  GetParameter --> Gets a parameter value from SSM
+  DeleteParameter --> deletes a parameter from SSM
+  
