@@ -1,0 +1,38 @@
+X-Ray --> traces request as they move through your application
+  it can be useful to collect data, and view, filter, sort are few operations. Can be useful for optimization, etc
+  
+concepts and components -->
+  segments --> contains data about the work done by your application
+  subSegments --> a more granular view of data inside the segment
+  serviceGraph --> JSON doc, contains info about how services and resources interacts
+  Traces --> trace IDs tracks request as they go through in application
+  Sampling --> X-Ray applies an algorithm to sample request data (high-volume or low-volume sampling)
+  tacing header -->
+  filter expression --> used to search through your traces
+  annotations and metadata --> additional way to store searchable (annotation) and non-searchable (metadata) info 
+  Errors (client error-400), faults (server fault-500) and expressions (too many request-429) --> to trace application error messages
+
+CodeCommit --> manage, secure and scalable source code service to host private Git repository
+  Benefits --> fully managed and secure AWS service
+            collaborate on code, no limit on file type and size of repository
+            easy intergration with other AWS services and other Git repository
+
+CodeBuild --> fully managed build service that can compile source code, run unit test and produce deployment artifacts
+  Benefits --> pre-configured env for many popular languages, high scalable
+ components --> 
+  Build Project --> define here rules how codeBuild should run the build (like, where is source code, what env, build commands, etc)
+  Build Environment --> OS, language runtime, framework, tools specifications
+  Build spec --> YAML file to describe collection of commands, settings used by CodeBuild to build the code
+
+CodeDeploy --> automates deployment of your application to EC2, lambda, and even on on-premises env
+  Benefits --> automate process, minimize downtime, easy stop and rollback, centralized management
+  Deployment types --> 
+    In-place deployment --> existing servers updated with new version of application
+    Blue/Green Deployment (EC2) --> new application version to new instance, traffic re-route from old to new instance, 
+        easy fall-back from new to old, incase of issues
+    Blue/Green Deployment (Lambda) --> same as EC2 for old to new version, but can be done in multiple ways 
+      Canary --> a percentage of traffic is shifted to new version
+      Linear --> traffic is shifted in equal increments with an equal number of minutes between each increment
+      All-at-Once --> immidiate and completely shifted to new version
+      
+    
