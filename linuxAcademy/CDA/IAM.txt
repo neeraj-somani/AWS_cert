@@ -153,6 +153,12 @@ ARN (Amazon Resource Name) --> Is used to identify amazon resources across diffe
   example --> arn:aws:iam::575876987:user/admin
   means --> arn:aws:service-name:region_name:account_number:aws_resource_type_name/user_name
 
+Quiz question notes -->
+  1. AZs --> atleast more than 2 in a region, geographically seperated inside a region to help protect against disaster affecting more than one place at a time
+  2. Need to understand locatin of Edge Location and AWS Regional Endpoint
+  3. AWS access --> SDK, CLI, Consol
+  4. IAM is global
+  5. Region contains --> AZs, Data Centers, AWS services. Doesn't contain --> Edge Location
 
 
   
