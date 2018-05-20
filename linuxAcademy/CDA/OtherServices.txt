@@ -34,5 +34,27 @@ CodeDeploy --> automates deployment of your application to EC2, lambda, and even
       Canary --> a percentage of traffic is shifted to new version
       Linear --> traffic is shifted in equal increments with an equal number of minutes between each increment
       All-at-Once --> immidiate and completely shifted to new version
-      
+
+CodeDeploy AppSpec File --> mention details about how to deploy applications
+  LifeCycle Hooks --> allows scripts to run during deployment
+    BeforeInstall, AfterInstall, ApplicationStart, ApplicationStop, validateService
+
+CodePipeline --> continuous delivery service that can model, visualize, and automate your software release process.
+  Benefits --> 
+      automate release process -- source repo through build, test and deploy
+      consistent release process - set of steps for every new changes
+      Real-time status of process
+  Components --> 
+    pipeline --> workflow that describes how changes go through release process
+    artifacts --> files or changes that will be worked on by actions and stages
+    stages --> different stages, like build, deployment (same like phases)
+    actions --> stages contains atleast one action, these action applied to artifacts to move as input or output for the process
+    transition --> progressing from one stage to another inside of pipeline
+    
+CodeStar --> service for creating, managing, and working with AWS projects
+  CodeStar well integrates with CodeDeploy, CodePipeline, CodeCommit, codeBuild, CloudWatch
+  Benefits --> 
+    can create templates for projects and reuse them
+    Helps manage users and access to project (saves some complecation of IAM policies)
+    visualize activity on your projects
     
