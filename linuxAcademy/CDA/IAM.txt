@@ -160,6 +160,7 @@ Quiz question notes -->
   4. IAM is global
   5. Region contains --> AZs, Data Centers, AWS services. Doesn't contain --> Edge Location
 
-
+Aquiz --->
+  
   
   
