@@ -106,8 +106,19 @@ EC2 Shared Responsibility Model -->
   AWS is responsible for Hypervisor and physical layer of security on instnaces, DDOS protection and port scanning protection.
       DDOS (Distributed Denial of Service)
       
-      
-      
+EC2 quiz notes -->
+  1. data will be lost when you terminate EBS backed instance, but reboot or stop/start instance will keep your data on EBS volume.
+  2. EFS --> easy scale up and down, and can connect to multiple EC2
+  3. RegisterImage --> AWS API action call for creating non-EBS backed instance from AMI
+     need to know about below API actions
+     CreateImage --> 
+     ami-register-image -->
+     ami-create-image --> 
+  4. ".pem" key file must not be publically visible, it must be 400 permission.
+  5. lauching an instance through AMI within same region where AMI exists.
+  6. EBS-backed instnace can be stop/start without lossing data vs Instance-store backed Instance stop/start will loose data.
+  7. ElastiCache --> When dealing with session state in EC2-based applications using Elastic load balancers
+  8. DescribeImages --> used to describe an Amazon Machine Image
       
       
       
