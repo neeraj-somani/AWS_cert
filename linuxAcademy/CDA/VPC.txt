@@ -92,6 +92,10 @@ VPC - Bastion Host and NAT Gateway -->
       **Be part of private subnets route table.
     NAT Instance --> purpose is identical to NAT Gateway, however executed differently by configuring actual EC2 instnaces
       
-    
+Quiz notes --> 
+1. What is required for a subnet to be considered "public"? 
+  answer: It must be associated with a Route Table that is configured with a route to an IGW
+  explanation --> A subnet is considered "public" when resources (e.g. an ec2 instance) placed inside it can communicate with and be accessed by resources/user over the open internet. A subnet must be associated with a RT that has a route to the IGW for this to be possible.
+2. For an EC2 instance to communicate with the internet, it must have an IP that is configured for public use. This can be assigned to the instance through assigning it a public IP during creation OR by creating and attaching an Elastic IP address.
     
     
