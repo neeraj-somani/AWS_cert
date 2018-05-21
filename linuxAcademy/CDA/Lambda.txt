@@ -25,4 +25,13 @@ Lambda Versions and Aliases -->
 
 Lambda API actions --> need to visit on AWS website if needed.
   
+Quiz Notes -->
+  1. A Lambda deployment package contains: Lambda function packages or 'deployment packages' must include function code and all the dependencies required for the function to work. They do not need to include a binary for the language runtime.
+  2. two arguments a Python Lambda handler function require: event, context
+      The event data contains the request data passed into Lambda form the event that triggered it. The context object provides useful methods for interacting with the context of the current execution (for example, time remaining in the execution or the AWS request id)
+  3. When referencing the remaining time left for a Lambda function to run within the function's code you would use: 
+    answer: "The context object" will give you access to a method to get the remaining time left in function execution. For example, in Python this would return the remaining time in milliseconds: context.get_remaining_time_in_millis()
+4. Logs for Lambda functions are actually stored and accessed in CloudWatch.
+5. Lambda requires you to specifically allocate certain resources. Which of the following can you adjust directly yourself?
+    answer: Execution timeout (max is 300 sec) and Memory
     
