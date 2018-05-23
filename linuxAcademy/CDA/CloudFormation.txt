@@ -5,7 +5,7 @@ CloudFormation Essentials -->
   cloudFormation stacks --> defined by template, collection of AWS resources can be managed together as one unit
 
 Benefit -->
-  saves time, as same configuration can be reuse in any region, account, 
+  saves time, as same template configuration can be reuse in any region, account, 
   infrastructure became the code, easy to manage and configure even with different versions
   easy rollback if needed
   can be easily prepare for even disaster recovery
