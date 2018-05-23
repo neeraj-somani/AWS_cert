@@ -9,7 +9,7 @@ APIGateway Essentials -->
  
 Benefits --> 
   Ability to cache API responses
-  DDos protection via CloudFront
+  DDos (Distributed Denial of Service) protection via CloudFront
   SDK generation for iOS, Android, etc
   support SWAGGER (very popular framework of API)
   Request/Response data transformation (JSON IN to XML out)
