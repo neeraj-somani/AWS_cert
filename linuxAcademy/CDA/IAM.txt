@@ -7,22 +7,24 @@ good features --> sigma scripts
 19-may --> revision
 20-may --> exams
 
-Access and Services layer --> how you create, access and manage aws account and its services.
+Account and Services layer --> how you create, access and manage aws account and its services.
 Root User --> full account access. Not recommanded for daily use puporse. (email address and password)
 
 Physical and Networking Layer --> all about how aws is organized and how internal and external communication with aws works.
-where aws resources are physically located and how data flows around the world through aws network.
-Regions, AZ, Edge Locations
+where aws resources are physically located around the world and how data flows through aws network.
 
-Edge Location --> It's used to deliver content all over the world. ie. Cloudfront. example, used for caching objects, etc.
-Regions --> Geographycal location, consist of multi AZ
-AZ --> Data Centers, provides foudation for high availability and Fault tolerance. low latency network between AZs.
+Hybrid Environment --> allows user to combine on-premises resources with AWS resource and use it as they are in same environment.
+
+Regions, AZ, Edge Locations -->
+Edge Location --> (not inside AWS region), but its an AWS data center, Used to cache content closest to customer location to deliver content fast, if request is coming from other side of the geographical location. example, Cloudfront used for caching objects, etc.
+Regions --> Geographical location, consist of atleast two or more AZ. (group of AZs)
+AZ --> group of Data Centers, provides foudation for high availability and Fault tolerance for AWS resources. low latency network between AZs.
 
 Shared Responsibility Model -->
   AWS Responsibility -->
   >> Physical server level and below
   >> physical env security and protection (firewall/power/climate/management)
-  >> storage device decomissioning as per inductry standards
+  >> storage device decomissioning as per industry standards
   >> personnel security
   >> Network Device security and ACL
   >> AWS API endpoints - SSL
@@ -45,7 +47,7 @@ Shared Responsibility Model -->
 
 Some responsibility differs based on services -->
   AWS Lambda -->  Generally, OS patches are customer responsibilty
-      Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations.
+      Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations as well.
 
 AWS Compute Overview -->
   EC2 --> Virtual server based service
@@ -62,7 +64,7 @@ AWS Storage Overview -->
     Elastic Cache --> In-memory Cache Engine
     Redshift --> PetaBytes managed DW
 
-IAM    
+IAM (Identity and Access management) --   
 IAM Essentials --> Global service, AWS access control service
   core components --> Users, groups, roles, policies, API Keys, password policy and MFA
   IAM provides access and access permission to AWS resources (like EC2, S3 etc)
@@ -91,6 +93,7 @@ IAM Roles -->
   you can now change or assign role that is assigned to EC2 instances.
   An EC2 instance can have only ONE role attached at a time.
   Roles are useful for "Cross Account" access
+  
 IAM STS --> Security Token Service
   STS allows to create temporary security credential to access AWS resources.
   for short term use, from few min to few hours
@@ -102,23 +105,26 @@ IAM STS --> Security Token Service
     Grant access to AWS with IAM identity/user. (but with IAM roles and identity federation)
   When to Use STS -->
     1. Identity Federation
-      a) Enterprise Identity Federation (using Microsoft Windows AD). STS supports SAML (Security Assertion Markup Language)
+      a) Enterprise Identity Federation (using Microsoft Windows AD, etc). STS supports SAML (Security Assertion Markup Language)
       b) Web-identity Federation (using FB, google, amazon)
     2. Roles for Cross Account Access (Cross Origin Resource Sharing)
-    3. Roles for AWS Services (such as EC2, EBS)
+    3. Roles for AWS EC2 or other Services (such as EC2 to access S3 or other services)
   
   STS API Calls -->
     AssumeRole --> Cross account delegation and federation through a custom identity broker
     AssumeRoleWithWebIdentity --> Federation through a web based Identity provider
-    AssumeRoleWithSAML --> Federation through an ENterprise Identity Provider compatible with SAML
+    AssumeRoleWithSAML --> Federation through an Enterprise Identity Provider compatible with SAML
     GetFederationToken --> Federation through a custom identity broker
     GetSessionToken --> Temporary credentials for users in untrusted environment
  
  IAM API Keys -->
-  API Keys are useful to make programmatic calls to AWS, using CLI, SDKs, DirectHttp calls
-  Facts -->
-    An API key must be associated with individual users and can have only one active API key at a time
-    Roles doesn't have API key credentials
+  API Keys are useful to make programmatic calls to AWS, using CLI, SDKs, or Direct Http calls. (example, an API credentials are used by developers working from an on-premises network.
+  Facts --> An API key is only available at the time of creation of user, if user forget later, they have to regenerate new key.
+    AWS won't generate same set of key again, and can have only one active API key at a time.
+    Every API key must be associated with one specific user.
+    Roles doesn't have API key credentials.
+    AWS consol will show you only Access key ID and never the secrete key ID.
+    Never store these Key on EC2 instances.
 
 IAM KMS (Key Management Service) --> Create and control encryption keys used to encrypt user data
   Customer Master Keys (CMK) --> used to encrypt/decrypt 4KB of data and primary resource of KMS
@@ -134,7 +140,7 @@ IAM KMS (Key Management Service) --> Create and control encryption keys used to 
     Data Keys are encrypted with KEK (Key encryption key)
     KEK may be enrypted by another KEK, but eventually there will be one master key that can be used to decrypt 
  KMS API actions -->
-  Encrypt plaintext using CMK
+  Encrypt --> encrypts plaintext using CMK
   GenerateDataKey --> uses a CMK to return a plainText, and cipherText version of data encryption key
   Decrypt --> Decrypt cipherText that are encrypted by API 
     Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext
@@ -151,7 +157,7 @@ Amazon Congnito -->
   
 ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
   example --> arn:aws:iam::575876987:user/admin
-  means --> arn:aws:service-name:region_name:account_number:aws_resource_type_name/user_name
+  means --> arn:aws:service-name:region_name(optional):account_number:aws_resource_type_name/user_name
 
 AWS overview Quiz notes -->
   1. AZs --> atleast more than 2 in a region, geographically seperated inside a region to help protect against disaster affecting more than one place at a time
@@ -161,8 +167,7 @@ AWS overview Quiz notes -->
   5. Region contains --> AZs, Data Centers, AWS services. Doesn't contain --> Edge Location
 
 IAM quiz notes --->
-  API access keys are required to make programmatic calls to AWS using 
-  AWS CLI, Windows PowerShell, and Direct HTTP call using the API
+  API access keys are required to make programmatic calls to AWS using AWS CLI, Windows PowerShell, and Direct HTTP call using the API
   IAM policy doc at min contains, Effects, resources, actions.
   
   
