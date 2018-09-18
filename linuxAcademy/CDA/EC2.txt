@@ -1,16 +1,18 @@
 EC2 Essentials -->
   scalable virtual server on cloud, runs on Linux/Windows, 
-  very similar as on-premises servers, with flexibility of on-demand scalabale
+  very similar as on-premises servers, with flexibility of on-demand commission and decommision for easy scalability and elasticity.
+  These virtual servers known as "instance" and can be made up of different instance type and sizes.
   
   Components -->
-    AMI --> OS, software packages, and other setting image (preconfigured packages)
+    AMI --> OS, software packages, and other image settings  (preconfigured packages)
     Instance type --> hardware compute power, RAM, network bandwidth
     Network Interface --> public, private, elastic IP address
     instances storage --> "hard-drive"
       EBS (Elastic Block Storage) --> network persistent storage
       EFS (Elastic File storage) --> scalable, elastic file storage
       Instance storage --> "ephemeral storage" -- temporary / short time storage
- Facts --> 
+ 
+ imp Facts --> 
   1. security groups must be assigned at time of creation
   2. Each instance must be placed into an existing VPC, AZ, and subnets
   3. custom launch command (bootstarping) can be passed at the launch
@@ -33,7 +35,7 @@ EC2 Purchasing Options -->
     purchase for set time period (one or 3 year) with significant discount (pay upfront, partial upfront, no upfront)
     Regional RI and AZ specific RI
   Spot Instance -->
-    bid for specific instance type, substantial discount, terminate at anytime
+      bid for specific instance type, substantial discount, terminate at anytime
   Dedicated Instnaces --> dedicated machine with full control, save money and works with specific regulatory compliance
   
 EC2 Instance Configuration --> 
@@ -60,6 +62,7 @@ EC2 Instance Configuration -->
     EBS volumes measures in IOPS (means input/output operations per sec, in 256kb chunks, {512 kb operations = 2 IOPS})
   
   EBS Types -->
+    Solid State Drive (SSD) or Hard Disk Drive (HDD)
     General Purpose SSD --> Used for dev/test env, smaller DB instance, Volume size (1 GB to 16 TB), performace 3 IOPS/GB
     Provisioned IOPS SSD --> used for critical applications/envs, High IOPS performance (upto 30000 IOPS per volume), perfoms at provision level, volume size (4GB to 16TB) 
     ThroughPut Optimized HDD and Cold HDD --> cheaper than SSD, less performant, Volume size 500GB to 16 TB, not bootable, (Cold HDD -- designed for less frequent access)
@@ -104,7 +107,7 @@ ELB and Session state -->
 EC2 Shared Responsibility Model -->
   customer responsible for software level security on instnaces, using security groups, firewalls, EBS Encryption, apply SSL certificate to ELB
   AWS is responsible for Hypervisor and physical layer of security on instnaces, DDOS protection and port scanning protection.
-      DDOS (Distributed Denial of Service)
+      DDOS (Distributed Denial of Service) --> a malicious attempt to make a server or a network resource unavailable to legitimate users, by overloading it with massive amounts of fake traffic.
       
 EC2 quiz notes -->
   1. data will be lost when you terminate EBS backed instance, but reboot or stop/start instance will keep your data on EBS volume.
