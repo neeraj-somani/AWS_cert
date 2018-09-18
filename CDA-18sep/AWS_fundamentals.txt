@@ -1,0 +1,22 @@
+----- Global Infrastructure -->
+  AWS regions -->
+  AWS AZ (Availability Zones) -->
+  Edge Location --> 
+
+------ Shared Responsibility Security Model --->
+
+--> AWS Compute Overview -->
+1. EC2 --> Elastic Compute Cloud
+2. ECS --> Elastic Container service
+3. Elastic Beanstalk --> PAAS solution, upload application code and don't worry about instfrastrure.
+4. Lambda --> fully managed service, serverless computing plateform
+
+AWS Storage Overview -->
+1. S3 --> Object storage service, files
+2. Glacier --> 
+
+DB Starage service -->
+1. RDS
+2. DynamoDB
+3. Elastic Cache --> In memory cache
+4. Redshift
