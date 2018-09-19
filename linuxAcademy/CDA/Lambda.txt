@@ -1,29 +1,52 @@
 Lambda Essentials -->
   Serverless computing platform --> means run code without managing servers
   pay only for compute time code consume, in millisec
-  Lambda, highly available, scalable, fault tolerant, cost effective, elastic
-  Lambda Functions and Lambda function packages are core of it
+  by default Lambda is, highly available, scalable, fault tolerant, cost effective, elastic
+  Lambda Functions and Lambda function packages are core concept for programming pplication based on Lambda
   Lambda easily integrates with other AWS services
   Lambda supported languages --> Node.js, JAVA, C#, Python, GO
   
 Lambda Events -->
   Lambda functions are triggered by events. example, like S3 file upload, DynamoDB changes, cloudWatch scheduled events, etc.
-Lambda Functions --> nothing but application code
-  lambda functions can invokes as:
+
+Lambda Functions --> consists of nothing but application code and dependent libraries, packages
+  lambda functions can invokes as: --> using Invoke API call, using below Invocation type
     Synchronous : wait for return value and return it
-    Asynchronous: Don't wiat for return value, discard it
+    Asynchronous: Don't wait for return value, discard it
+ Note:- When Lambda function triggered from an event, the type of invocation is determined by the service invoking the function.
+ 
 Lambda Function Configuration -->
-  Lambda requires significatly less configuration and managment, but you can 
-  
-Lambda Versions and Aliases -->
-  labmda versions are stored as unique code function with their own unique ARN
-  $LATEST --> this represents latest lambda function version, rest all with version number
-  Lambda Aliases --> are pointer to specific version
-      Alias have static ARN and can be used to point to any version
-      Alias can also be used to split traffic between lambda functions
-  Benefits of both --> ease deployment workflow and management of stages
+  Lambda requires significatly less configuration and managment, but you can still customize it:
+    --> different programming language options and runtime environments
+    --> the handler (each function has a handler file and function, format of the lambda handler value is filename.functioname, ) 
+    --> Memory (128 MB to 3008 MB), and CPU allocation sclaes based on memory
+    --> max execution duration (300 sec) - in 1 sec increments
+    --> permissions (Through IAM roles, or resource based STS/congnito)
+    --> Environment Variables (in form of key-value pair at runtime env, can be encrypted using kMS)
+    --> we can configure SQS or SNS to get details about function failure
+    --> concurrency --> we can specify the max no of concurrent execution of function
+    --> Tags - can be attached to function
+ 
+ Lambda Function Packages --> zip package file include code and any dependencies
+  --> handler file, custom or third party packages
+      
+Lambda Versions and Aliases --> used to manage code for production vs other environment (dev/qa) for different releases
+  1. versions --> each version of function stored with unique ARN
+    $LATEST --> this represents latest lambda function version, rest all with version number and this is the only mutable (changable version)
+    Numbered Version (like 1 or 2) --> these are immutable, start with number 1 and increment by 1
+  2. Aliases --> are pointer to specific lambda function version
+       Alias can be used to call specific function without knowing version of function
+       Alias have static ARN and can be used to point to any version of the same function
+       Alias can also be used to split traffic between lambda functions versions
+  Benefits of both --> easier development workflow and management of stages.
 
 Lambda API actions --> need to visit on AWS website if needed.
+  
+  
+  
+  
+  
+  
   
 Quiz Notes -->
   1. A Lambda deployment package contains: Lambda function packages or 'deployment packages' must include function code and all the dependencies required for the function to work. They do not need to include a binary for the language runtime.
