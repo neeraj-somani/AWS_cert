@@ -1,3 +1,6 @@
-ElasticBeanstalk --> A service used to deploy single-tier application without worry about provisioning of AWS resources.
+ElasticBeanstalk --> A service used to deploy single-tier (less complex) application without worry about provisioning of AWS resources.
   this is designed for people who have less knowledge of AWS but can utilize AWS super-power.
-  Supported plateforms --> 
+  when to use this -->
+    --> if application fits within the parameter of BeanStalk service
+    --> can deploy from repositories or from uploaded code files
+    --> easily update application by uploading new code files or requesting a pull from repository
