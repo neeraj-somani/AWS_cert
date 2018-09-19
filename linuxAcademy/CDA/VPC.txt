@@ -72,6 +72,7 @@ To enable access to or from the internet for instances in a VPC subnet, you must
     can't delete route table if it has dependencies, (associated subnets), means remove IP address first and then only delete route table.
     Default VPC always comes with one default route table.
     Best practice, is to untouch default route table and create new needed route table.
+ 
  Subnets --> When you create a VPC, it span across AZ within same region. 
     After creating VPC, we can add one or more subnet in each AZ
     subnet doesn't span across AZs
@@ -85,14 +86,17 @@ To enable access to or from the internet for instances in a VPC subnet, you must
  NACLs --> (Newtork Access Control List)
     ACL operates at network and subnet level
     supports both DENY and ALLOW rules
-    NACLs are stateless
-    NACLs process rules in sequencial orders for allow or Deny on same port
-    Last rule in every NACL is catch all "DENY" rule
-    NACL is optional layer of security for VPC, that controls in and out traffic of one or more subnets.
+    NACLs are stateless: so return traffic must be allowed with outbound rule
+    NACLs process rules in sequencial orders for allow or Deny on same port,  
+      example: if rule to deny specific traffic at lower number, and allow at higher number then allow will be ignored and it will deny the traffic.
+    Last rule in every NACL is catch all "DENY" rule, this is because all rules above this line will get precedence.
+    NACL is optional layer of security for VPC, that acts as a firewall for controlling in and out traffic of one or more subnets.
     Best practice to incremenet rules by 10 numbers, so that if needed some rule can be fit in between.
     Note: Default VPC already have a NACL and that is associated with default subnets.
- 
- Security Groups -->
+    A subnet can only be associated with one NACL at a time. 
+      
+  
+ Security Groups --> 
     are security at instnace level, as oppose to NACL which is at subnet level.
     Security groups also has allow/deny rules, same as NACL, but works differently:
       security groups supports only allow rules, by default everything is denied.
@@ -100,21 +104,33 @@ To enable access to or from the internet for instances in a VPC subnet, you must
       all rules are evaluted before deciding to allow traffic.
     Best practice is to allow only those trafffic that is required.
  
- VPC Networking -->
-    Auto Scaling --> This is an AWS service, that automates the process of increasing or decreasing the number of instances as per need.
+ VPC Networking --> High Availability and Fault Tolerance (using Auto Scaling Group)
+    Auto Scaling --> This is an AWS service, that automates the process of increasing or decreasing the number of instances as per need, either with manual interaction as on-demand or using cloudWatch metrics analysis/ alarm trigger.
         This above concept is also known as elastcity of AWS environment.
       Auto scaling components -->
-        Launch Configuration --> EC2 templates needs to be used at the time of provisioning additional instnace
-        Auto Scaling Groups --> contains all the rules and settings that govern if/when EC2 instance automatically provisioned /                       terminated.
+        Launch Configuration --> EC2 templates needs to be used at the time of provisioning additional instances (i.e AMI, instance type, user data, storage type, security groups, etc)
+        Auto Scaling Groups --> contains all the rules and settings that govern if/when EC2 instance automatically provisioned /                       terminated. (No of Min/Max instances, VPCs/AZs to launch instances into, SNS notifications, scaling policies, etc
+Note:- An ideal highly available and fault tolerant architecture must have ELB serving traffic, and ASG with a min of 2 instances located in seperate AZ.
+
+  ELB --> (its an EC2 service)
+    --> ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs for High Availability and Fault Tolerance architecture
+    --> ELB usually paired with Auto Scaling to improve High Availability and Fault Tolerance.
+    --> when ELB used within VPC, it works as an internal load balancer. (i.e, on private subnet)
+    --> ELB will automatically stops serving traffic to those instances that become unhealthy.
+    --> If SSL certificate applies on ELB, a significant improve in compute power can be seen at instance
+    
 VPC - Bastion Host and NAT Gateway -->
-    Bastion Host --> an EC2 instance that lives in a public subnet and used as a Gateway for traffic that destined for instances lived          in private subnet.
+    Bastion Host --> an EC2 instance that lives in a public subnet and used as a Gateway for traffic that is destined for instances lived in private subnet. (means, bastion host is a portal to access EC2 instances of private subnet)
        This is the "critical strong point" of network. Very tight security rules should be considered.
-    NAT Gateways --> used to provide access to internet, for EC2 instances that resides at private subnet.
+       A bastion host can also be used to "SSH" directly into AWS inside network to access private resources without VPN.
+    
+    NAT Gateways --> used to provide access to internet for EC2 instances that resides at private subnet.
       This will prevent any host outside of VPC to make connection to instnace on private subnet.
-      NAT gateway only allow incoming traffic if request was initiated from instnace reside at private subnet.
+      NAT gateway only allow incoming traffic if request was initiated from instnace resides at private subnet. (means, a response of a request and not the request)
       **NAT Gateway must be created in public subnet.
       **Be part of private subnets route table.
-    NAT Instance --> purpose is identical to NAT Gateway, however executed differently by configuring actual EC2 instnaces
+    
+    NAT Instances --> purpose is identical to NAT Gateway, however executed differently by configuring actual EC2 instnaces to perform the same job.
       
 Quiz notes --> 
 1. What is required for a subnet to be considered "public"? 
