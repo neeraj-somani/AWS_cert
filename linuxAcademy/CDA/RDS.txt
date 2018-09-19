@@ -1,7 +1,12 @@
-RDS Essentials --> fully managed relational DB service
+RDS Essentials --> fully managed relational DB service (means, store data in tables)
   --> can't access underlying OS
+  --> connecting to RDS is very similar to connecting to any oher on-premises DB
   --> auto scaling available , highly available, multi-AZ, 
-  
+  --> can create Read replicas to distribute traffic from primary DB
+
+Supported DBs -->
+  MySQL, MariaDB, PostgreSQL, Oracle, MS SQL Server
+  Aurora --> AWS home growned RDB, fully compatible with MySQL and has 5 times better performance and lower competitive prices
 benefits --> 
   automatic minor system updates
   automatic backups (point-in-time snapshots)
