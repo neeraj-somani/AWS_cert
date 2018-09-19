@@ -1,41 +1,49 @@
 Elastic Container Service (ECS) --> Server based service
-  This container service supports Docker.
+  its a container managment service that supports Docker.
   This is used to create and manage a fleet of Docker container on a cluster of EC2 instances.
   
-Purpose / Benefits -->
-  create distributed application and microservices -->
-    microservices --> create application architecture comprised of independent task.
-    example, seperate container for different componenet of application -->
+Purpose / Benefits --> 
+  1. create distributed applications and microservices -->
+    microservices --> create application architecture comprised of small independent task.
+    example, seperate container for different component of application -->
       Webserver
       application server
       message queue
       backend servers
-    This allows to start, stop, manage, monitor, and scale each container independently
+    This allows you to start, stop, manage, monitor, and scale each container independently.
     
-    Batch and ETL jobs -->
-      package batch and ETL jobs into container and deploy them into EC2 clusters
+    2. Batch and ETL jobs -->
+      package batch and ETL jobs into container and deploy them into a shared EC2 clusters
       run different versions of the same job or multiple jobs on the same cluster
       share cluster capacity with other processes and/or grow jobs dynamically to improve resource utilization
-    Continous Integration and Deployment -->
+  3. Continous Integration and Deployment -->
+    By using Docker image versioning, its easy to use container for continous integration and deployment
+    Build processes can Pull, Build, and create Docker images for your container
 
-AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instance
+AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instances (same as Lambda)
 
 Dockerfile -->
-  A plain text file (script) that contains details (/instructions) about components that are included in container
+  A plain text file (script) that contains details (/instructions) about components that should be included in container
+
 Container/Docker Image -->
-  This is build from Dockerfile, it contains all the downloaded/installed softwares, libraries, code, runtime info, etc specified in Dockerfile.
+  This is build from Dockerfile, it contains all the downloaded/installed softwares, libraries, code, runtime info, etc specified in Dockerfile. (means, Dockerfile specifies instructions and DockerImage implements those instructions)
+
 Container Registry -->
-  Its a repository where container image is stored for further reference
-  Container Registry can be located at :
-    at AWS via ECS, 3rd party repository like Docker Hub, self hosted registry
+  Its a repository where Container/Docker Image are stored and accessed when needed
+  Container Registry can be:
+     located on AWS via ECR (Elastic Container Registry), or a 3rd party repository like Docker Hub, or self hosted registry
 
 ECS Agent -->
-  This runs on each EC2 instance in the ECS cluster, to make communication between EC2 and ECS.
-  ECS also responsible for starting/stoping tasks, resource utilization, etc.
-Tasks -->
-Task Definition -->
+  This runs on each EC2 instance in the ECS cluster, to communication information from EC2 to ECS, like running task, resource utilization, etc.
+  ECS Agent also responsible for starting/stoping tasks when instructed by ECS.
   
-  
+Tasks --> Actual representation of the task definition on an EC2 inside of container cluster. (ECS Agent performs these tasks)
+Task Definition --> A JSON formatted text file that contains the "bluprint" of your application:
+    --> which container/docker image to use
+    --> which repository (container registry) is located in
+    --> which port should be open on container instance
+    --> what data volumes should be used with container
+   
     
     
   
