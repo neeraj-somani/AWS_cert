@@ -103,6 +103,10 @@ ELB and Session state -->
     option 1 --> ELB generates cookies stickiness
     option 2 --> application generated cookies stickiness
     Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
+Types of ELB -->
+  Network load balancer --> for TCP requests
+  Classic Load balancer --> old but for http/https/ tcp requests
+  Application Load Balancer ---> for http and https requests
 
 EC2 Shared Responsibility Model -->
   customer responsible for software level security on instnaces, using security groups, firewalls, EBS Encryption, apply SSL certificate to ELB
