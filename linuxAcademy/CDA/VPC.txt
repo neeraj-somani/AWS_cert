@@ -1,27 +1,35 @@
 VPC Essentials -->
-  VPC enable you to launch AWS resources into virtual network. This is very similar to on-premises data center but scalable.
-  
-  Private and public features of VPC -->
-    private and public subnets, scalable architecture
+  VPC enable you to launch AWS resources into virtual network that we define as per need. This is very similar to on-premises data center but scalable.
+  means, this makes sure how securely data should flow through including access points, internal and external routing, security layers and instance endpoints.
+ 
+ A VPC is designed to resemble: 1. private on-premises data centers, 2. private corporate network
+ 
+ following are Private network features available in AWS VPC -->
+    1. private and public subnets, 2. scalable architecture 3. ability to extend on-premises network into cloud as its a part of same environment, through VPN.
   
   Important VPC facts -->
-    A VPC spans across multiple AZs within a Region. High availability and fault tolerant architecture.
-    Each VPC has its own hostname.
+    A VPC spans across multiple AZs within a Region (can't span across multiple region). High availability and fault tolerant architecture.
+    AWS provides DNS servers so that each VPC instance can have its own hostname. However, this can be changed in VPC configuartion by setting DHCP option. 
+  
   Benefits of VPC --> 
     Ability to launch instances into subnet
-    Ability to define custom CIDR inside each subnet
-    Ability to configure routes between subnets
-    Ability to configure Internet Gateway to provide route to internet
+    Ability to define custom CIDR (IP address range) inside each subnet
+    Ability to configure routes between subnets via route tables
+    Ability to configure Internet Gateway to provide route to internet from inside VPC 
     Ability to create layered network of resources
     Ability to extend corporate/on-premise network to cloud via VPN/VPG
     Layered Security -->
       Instance level security groups (firewall on the instance level)
       subnet level network ACLs (firewall on the subnet level)
+      
+      example:- hirarchy for different network component:
+        NACL (on top) --> Subnet --> Security groups --> EC2 instances
    
-Default VPC features -->
-      preconfigured VPC will be created at the time of AWS account creation
-      Default VPC and non-default VPC has significate differences
+Default VPC features -->  preconfigured and created at the time of AWS account creation
+      Default VPC and non-default VPC has significant differences
       In default VPC, all subnet have a route to inetrnet via route table and attached IGW.
+      Each instances on the default VPC has private and public IP addess (defined on subnet settings)
+
 VPC Limits -->
     5 VPC per region (more can be requested)
     5 Internet Gateway per region (this is equal to VPC, because one VPC can have One IG)
@@ -29,37 +37,52 @@ VPC Limits -->
     50 VPN connections per region
     200 route tables / 50 entries in each table
     5 Elastic IP address per region
-    500 Security groups per VPC / 50 rules per security groups
-    5 security groups per network interface (or considered 
+    500 Security groups per VPC and/ 50 rules per security groups
+    5 security groups per network interface (because, security groups are genrally on instance level but technically considered on VPC level)
+
+Horizontal scaling vs Vertical Scaling --->
+Horizontal scaling means that you scale by adding more machines into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
 
 VPC Networking -->
   Internet Gateway -->
     allows the communication between instances and Internet.
     it can scale horizontally, highly available and redundant
-    there is a risk of no availability and risk bandbwidth constraints on network
-    Provides NAT translation for instances that have public IP address assigned (public IP to private IP)
+    there is a slight risk of no availability or bandbwidth constraints on network.
+    Provides NAT translation (public IP to private IP) for instances that have public IP address assigned 
     Default VPC always comes with IGW attahced.
-  IGW rules -->
+  IGW imp rules -->
     one IGW per VPC at a time
     IGW cant be detached from VPC while there is any active AWS resources on VPC (like EC2, RDS)
     IGW is must when communication needed between internet and AWS resources on VPC
+  
+Rules for Enabling Internet Access to/from VPC -->
+To enable access to or from the internet for instances in a VPC subnet, you must do the following.
+    Attach an internet gateway to your VPC.
+    Ensure that your subnet's route table points to the internet gateway.
+    Ensure that instances in your subnet have a globally unique IP address (public IPv4 address, Elastic IP address, or IPv6 address).
+    Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance.
+  
   Route Tables -->
     it contains set of rules that used to determine where netwrok traffic is directed, called routes.
     2 major components -->
-      Destination --> CIDR block range of target
-      Target --> a name identifier where data is directed
-    By default, all subnet traffic is allowed to each other within VPC, and its can't be modified.
-    Can have more than one route table
-    can't delete route table if it has dependencies, (associated subnets)
+      Destination --> CIDR block range of target (IP address)
+      Target --> a name identifier where data is directed (name of that specific IP address)
+    By default, all subnet traffic is allowed to each other within VPC, and its can't be modified. known as local route.
+    Can have more than one active route table in a VPC
+    can't delete route table if it has dependencies, (associated subnets), means remove IP address first and then only delete route table.
     Default VPC always comes with one default route table.
     Best practice, is to untouch default route table and create new needed route table.
- Subnets -->
-    can add one or more subnet in each AZ
+ Subnets --> When you create a VPC, it span across AZ within same region. 
+    After creating VPC, we can add one or more subnet in each AZ
     subnet doesn't span across AZs
     A subnet must be associated with route tables
     A public subnet has a route to internet, means that public subnet is associated with a route table that has an IGW attached.
     A private subnet doesn't have a route to internet, means private subnet associated with a route table doesn't have an IGW attached.
- NACLs -->
+    Instances launched in private subnet can't communicate to internet.
+      --> This creates higher level of security but introduce few limitation as well(like, not able to update software, install patches)
+      --> This limitation can be overcome by routing traffic through NAT instances.
+      
+ NACLs --> (Newtork Access Control List)
     ACL operates at network and subnet level
     supports both DENY and ALLOW rules
     NACLs are stateless
@@ -68,6 +91,7 @@ VPC Networking -->
     NACL is optional layer of security for VPC, that controls in and out traffic of one or more subnets.
     Best practice to incremenet rules by 10 numbers, so that if needed some rule can be fit in between.
     Note: Default VPC already have a NACL and that is associated with default subnets.
+ 
  Security Groups -->
     are security at instnace level, as oppose to NACL which is at subnet level.
     Security groups also has allow/deny rules, same as NACL, but works differently:
