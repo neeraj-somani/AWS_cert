@@ -1,42 +1,68 @@
-S3 Buckets -->
-  Buckets are main storage container of S3.
-  S3 buckets and objects resides within region where it got created, untill explicitly transfered.
-    This brings low latency, minimize cost and address regulatory requirements
-    Every bucket must have unique name across all of AWS.
- Buckets limitation -->
-    100 per AWS account, Bucket ownership cant be transferd, Bucket can hold unlimited objects
-S3 Objects -->
-  Objects are static files and metadata information.
-  Metadata means, storage type, encryption settings and permissions.
-  Storage type, determines objects availability, durability, and cost.
-  By default, all objects are private.
-  Objects --> 0 byte to 5 TB
-    multiple versions (if versioning enabled)
-    every object can be access via URL
-    Storage Lifecycle policy
-    Encrypted
-    Objects Organized within folders
-  Objects Encryption -->
-    SSE (Server Side Encryption) --> AES-256, encryption at S3 level
-    Client Side Encryption --> Client uses 3rd party tool, or some other encryption technology
+Overall S3 Structure -->
+  1. S3 Essential point
+  2. S3 Components --> Buckets, Folders, Objects
+  3. S3 Features --> Objects Versioning, Storage Classes, Storage Lifecycle policies, S3 Events, Static Web Hosting, Encryption
+  4. S3 Permissions and S3 performance
+Below will be detailed summary of above listed 4 points:
 
-S3 Essentials -->
+1. S3 Essentials --> This is AWS main storage service and server many purposes:
   Bulk static object storage
   various storage classes to optimize cost vs needed object availability and durability
   object versioning
-  S3 bucket/object restriction policies/permissions
-  Origin for cloudFront CDN
-  S3 objects stays within region but synced across AZs for high availability, durability
+  Access restrictions via object bucket policies/permissions
+  Object management via lifecycle policies
+  Origin for cloudFront CDN (content delivery network)
+  File sharing or back-up/archiving for hybrid networks (via AWS Storage Gateway)
 
-S3 Read consistency rule -->
-  read-after-write --> PUT for new object
+Few important facts -->
+  1. S3 objects stays within region but synced across AZs for high availability, durability
+  2. always create S3 bucket in a region where it can best server its purpose:
+    --> serving fast content to customer
+    --> sharing data with EC2
+    
+S3 Read consistency rule --> in all regions
+  read-after-write --> PUT request for new object
   Eventual consistency --> PUT for overwriting existing objects and DELETE for objects
-S3 Errors -->
+
+S3 Errors --> generally handled with http response
   404 --> Not found
   403 --> Forbidden
   400 --> Bad request
   500 --> server error
-S3 Event Notification --> AWS services like SNS, Lambda, SQS
+S3 Event Notification --> using AWS services like SNS, Lambda, SQS
+
+2. S3 Components ----------------------------
+S3 Buckets -->
+  Buckets are main storage container of S3.
+  S3 buckets and objects resides within region where it got created, untill explicitly transfered.
+    This brings low latency, minimize cost and address regulatory requirements
+ Bucket Naming convention -->
+    Every bucket must have unique name across all of AWS.
+    must comply with DNS naming convention
+    charachter limit ( min 3 - max 63)
+    must start with letter or number and can only contain lowercase letters, numbers, period, hyphen
+    Also, two symbols cant be together, means, hyphen can't follow period and vice versa
+    must not be an IP address format
+ Buckets limitation -->
+    100 per AWS account, Bucket ownership cant be transferd, Bucket can hold unlimited objects
+
+S3 Objects -->
+  Objects are static files and metadata information.
+  Metadata means - storage type, encryption settings and permissions.
+  Storage type is must and used to determines objects availability, durability, and cost.
+  By default, all objects are private.
+  Objects --> 0 byte to 5 TB size
+    multiple versions (if versioning enabled)
+    every object can be access via URL
+    Storage Lifecycle policy can be applied (eg:- stored in Standard, then moved to IA, then moved to Glacier)
+    Encryption can be done
+    Objects Organized into "Sub-name" spaces known as folders
+  Objects Encryption -->
+    SSE (Server Side Encryption) --> AWS provide - AES-256, encryption at S3 level
+    Client Side Encryption --> Client uses 3rd party tool, or some other encryption technology
+S3 Folders --> ( this is just a concept AWS support, but in general S3 has a flat structure, means no hirarchy, like any other file system.
+    --> it can be used as a means of grouping objects together
+    --> it can be created by using key-name prefixes for objects
 
 Moving Data to S3 --> Single operation upload, file size can be upto 5GB, but more than 100 MB file has to be multipart.
   multipart upload/download process will speed up the process, as it can occur asyncronously.
