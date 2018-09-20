@@ -22,10 +22,10 @@ Lambda Function Configuration -->
     --> Memory (128 MB to 3008 MB) - {in 64MB increment each time}
     --> CPU allocation sclaes based on memory
     --> max execution duration (300 sec) - in 1 sec increments
-    --> permissions (Through IAM roles, or resource based STS/congnito)
+    --> permissions (Through IAM roles, or resource based access control policies, these policies needs to be set through CLI/SDK, can't be done through consol and it uses STS/Cognito for security)
     --> Environment Variables (in form of key-value pair at runtime env, can be encrypted using kMS)
     --> we can configure SQS or SNS to get details about function failure
-    --> concurrency --> we can specify the max no of concurrent execution of function
+    --> concurrency --> we can specify the max no of concurrent execution of function (limit 1000)
     --> Tags - can be attached to function
  
  Lambda Function Packages --> zip package file include code and any dependencies
@@ -42,12 +42,16 @@ Lambda Versions and Aliases --> used to manage code for production vs other envi
   Benefits of both --> easier development workflow and management of stages.
 
 Lambda API actions --> need to visit on AWS website if needed.
+  AddPermission --> add permission to AWS resource
+  CreateFunction --> create new lambda function
+  Invoke --> this invokes the needed lambda function, with Invocation Type (Event (Asynchronous) or RequestResponse (default and used for Synchronous))
+  CreateEventSourceMapping --> this identifies a stream as an event source for a lambda function. This association between a stream source and a lambda function is called the event source mapping. (example, lambda function will be triggered when records are posted to the stream)
   
+  ----- Need to work on Lambda function lab again -----
   
-  
-  
-  
-  
+
+
+
   
 Quiz Notes -->
   1. A Lambda deployment package contains: Lambda function packages or 'deployment packages' must include function code and all the dependencies required for the function to work. They do not need to include a binary for the language runtime.
