@@ -189,15 +189,20 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
    3 types of retrieval --> expedited (1-5 min), standard (3-5 hr), bulk (5-12 hr)
 
 4. S3 lifecycle policy --> (by default disabled), set of rules that automates migration of objects to various storage classes
+      --> good for company data retention policy, cost efficient, ease of management, 
 
-5. S3 hosting static website --> you can build a code that can nevigate to different files stored at S3.
-  index.html (or default file) and error.html (error file) must be specified.
-  URL example --> bucket_name.s3-website(- or.)region.amazonaws.com
-  
+5. S3 hosting static website --> you can build a code that can nevigate to different files (usually HTML, CSS, JavaScript) stored at S3.
+      --> index.html (or default file) and error.html (error file for 4XX errors) must be specified.
+       URL format --> bucket_name.s3-website(- or.)region.amazonaws.com
+       URL example --> my-cool-site.s3-website-us-east-1.amazonaws.com
+    --> AWS Route 53 can be used to map human redable domain names with this URL, also helpful in DNS failover situation
+    
   Cross Origin Resource Sharing (CORS) --> settings at S3 bucket level, {XML} file
     a method that allow web application located at one domain to access and use resources at another domain
     or in AWS world, one S3 bucket can access resources of another S3 bucket
-    Enabling CORS --> 
+    Just need to Enabling CORS at S3 bucket level 
     
-6. S3 Events --> 
-
+6. S3 Events --> used to setup automated notifications between S3 and other AWS services/resources based on some event occurance.
+    common example:- RRSObjectLost (used for automating the recreation of lost RRS objects)
+                     ObjectsCreated (in-case of any of these API calls -- PUT/POST/COPY/CompleteMultiPartUpload
+    --> Event notification can be send to following AWS services (SNS/Lambda/SQS Queue)
