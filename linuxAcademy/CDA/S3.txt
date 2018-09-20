@@ -64,10 +64,21 @@ S3 Folders --> ( this is just a concept AWS support, but in general S3 has a fla
     --> it can be used as a means of grouping objects together
     --> it can be created by using key-name prefixes for objects
 
-Moving Data to S3 --> Single operation upload, file size can be upto 5GB, but more than 100 MB file has to be multipart.
-  multipart upload/download process will speed up the process, as it can occur asyncronously.
-  
-  Storage Gateway --> used to control traffic for storage services like S3
+Before Understanding other parts of S3, lets understand how data gets to S3 or to AWS storage layer
+------- using Storage "Transit" services ---- "Moving Data to S3"
+
+1. Multi-part Upload Benefits --> 
+    --> allows to upload a single object as a set of parts
+    --> allows to upload part concurrently (Asynchronously) -- this can speed up the overall process
+    --> allows to start/stop/resume file upload
+    --> if tranmission of any part fails, that part alone can be retransmitted
+    --> S3 reassembles each part after complete upload and creates one object 
+    --> Multipart approach is must for file size 5GB and larger but suggested to implement this for object size 100 MB or larger
+    --> file size limitation of S3 is 0 byte to 5 TB
+2. Signle Operation upload -->
+    --> Single opration upload is traditional approach for uploading file as One part
+    --> Single operation can support a file size upto 5 GB, but suggest to implement mutipart upload for any file size 100 MB or larger 
+3. Storage Gateway --> used to control traffic for storage services like S3
     Gateway-Cached Volume --> frequently accessed data will be cached to speed up the proces
     Gateway-Stored Volume --> store all the data to this volume and incrementally take snapshots for back-up and store to S3.
  Snowball --> An AWS service for petabyte scale of data transportation from on-premises to cloud.
