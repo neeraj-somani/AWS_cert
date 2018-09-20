@@ -110,11 +110,23 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
     
 2. S3 Permissions --> By default all buckets and objects are private only owner has access
   owner can give permissions using resource based policies (bucket level or S3 ACLs) or IAM policies
-  IAM policies --> can contain details about S3 object ARN {arn:aws:s3:::bucket_name/object_name} 
-  Bucket Policies --> {JSON} attached to S3 buckets level, means its automatically applied to all objects of bucket created by bucket owner. objects created by other user has to explicitly specify object level permission.
-    these can be used to assign to IAM users or other AWS account holders.
-  S3 ACL Policies --> {XML} permissions at bucket and object level
-    ACLs can't deny permissions and can't grant conditional permissions
+    1. IAM policies --> attached to users, groups, or/and roles
+            --> can't attach to S3 bucket or objects
+            --> can't grant access to anonymous user
+            --> {JSON} and can contain details about S3 bucket/object using ARN (amazon resource name)
+                  {arn:aws:s3:::bucket_name/object_name} // object name
+                  {arn:aws:s3:::bucket_name} // bucket name
+                  {arn:aws:s3:::bucket_name/*} // all objects inside bucket
+                  {arn:aws:s3:::*} // all buckets
+                  {arn:aws:s3:::bucket_name/object_name/${aws:user_name}} // using variable inside json
+                  
+  Resource-based policies - 2 ways -->
+    2. Bucket Policies --> {JSON} attached to S3 bucket level (not to objects), means its automatically applied to all objects of bucket created by bucket owner. objects created by other than owner has to explicitly specify object level permission.
+    --> can be used to grant accesss to IAM users or other AWS accounts
+    --> policy specifies allow and deny permission, even can specify based on user as well. (like, which user can use PUT/DELETE, etc)
+    3. S3 ACL Policies --> {XML} can be used to specify permissions at both bucket and object level
+          --> ACLs can't deny permissions and can't grant conditional permissions
+          --> most useful for Object level permissions, as this is the only way to attach a policy to objects
     
 S3 Encryption --> All handled by AWS SDK in background
   In-transit --> SSL or client side
