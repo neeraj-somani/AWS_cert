@@ -1,7 +1,23 @@
-Elastic Container Service (ECS) --> Server based service
+EC2 Container Service (ECS) --> Server based service
   its a container managment service that supports Docker.
-  This is used to create and manage a fleet of Docker container on a cluster of EC2 instances.
+  ECS --> Runs and manages docker enabled application across a logical group of amazon EC2 instances.
+      --> ECS keeps track of how many instances they have, where they are running, how many EC2 resources they are utilizing
+      --> if there is a request from user to ECS to run for example, container image 1 and 2, ECS will find available EC2 instance in AWS to download those container images from Registry and run on available EC2 instances.
+  containers --> that have everything your software needs including libraries, system tools, runtime engines, code.
+   Docker --> A technology that packages software into standarized unit called containers. 
+        --> Lets you quickly deploy and scale application into any environment and make sure your code will run properly.
   
+  This container then can be delivered to any machine that can run docker and can run on that machine.
+  This is used to create and manage a fleet of Docker container on a cluster of EC2 instances.
+
+AWS ECS Cluster --> Logical group of EC2 instances that you can place container onto
+  it can utilize on-demand, reserved or spot EC2 instances
+  It can even include different EC2 instance types even from different regions
+  EC2 instances are linked via VPC
+
+ECS cluster can be created using any of below options --->
+      --> AWS Console, --> CloudFormation, --> CLI, --> AWS ECS APIS
+      
 Purpose / Benefits --> 
   1. create distributed applications and microservices -->
     microservices --> create application architecture comprised of small independent task.
@@ -22,30 +38,55 @@ Purpose / Benefits -->
 
 AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instances (same as Lambda)
 
+Container Registry -->
+  Its a repository where Container/Docker Images can be uploaded, stored and accessed when needed.
+     Features -->
+     --> fully managed Docker Container Registry
+     --> Store, manage and deploy container images
+     --> Integrated with AWS ECS
+     --> Encrypted, Redundant and Highly-available
+     --> Granualr security permission through AWS IAM
+
+ECS Agent -->
+    --> manages the state of container on a single EC2 instances 
+    --> manages how ECS communicate with the Docker deamon on EC2 instances
+    --> must be on every EC2 instance in your ECS cluster
+    --> included with the ECS optimized AMI
+    
+  This runs on each EC2 instance in the ECS cluster, to communication information from EC2 to ECS, like running task, resource utilization, etc.
+  ECS Agent also responsible for starting/stoping tasks when instructed by ECS.
+ 
 Dockerfile -->
   A plain text file (script) that contains details (/instructions) about components that should be included in container
 
-Container/Docker Image -->
-  This is build from Dockerfile, it contains all the downloaded/installed softwares, libraries, code, runtime info, etc specified in Dockerfile. (means, Dockerfile specifies instructions and DockerImage implements those instructions)
+Docker Images --> point in time capture of code and dependencies
+  This is build from Dockerfile, it contains all the downloaded/installed softwares, libraries, code, runtime info, etc specified in Dockerfile. (means, Dockerfile specifies instructions and DockerImage implements those instructions) 
 
-Container Registry -->
-  Its a repository where Container/Docker Image are stored and accessed when needed
-  Container Registry can be:
-     located on AWS via ECR (Elastic Container Registry), or a 3rd party repository like Docker Hub, or self hosted registry
+Tasks --> Deploys containers onto ECS instances in your cluster based on task definition
+  --> communicate with ECS Agent and Docker Deamon to run containers on eligible EC2 instances in cluster
 
-ECS Agent -->
-  This runs on each EC2 instance in the ECS cluster, to communication information from EC2 to ECS, like running task, resource utilization, etc.
-  ECS Agent also responsible for starting/stoping tasks when instructed by ECS.
+Task Definition --> point in time capture of the configuration for running the image
+    --> template for running one or more tasks
+A JSON formatted text file that contains the "bluprint" of your application:
+    --> Docker Image for each container
+    --> CPU and Memory requirement for each container
+    --> links between containers
+    --> networking and port settings
+    --> Data storage volume
+    --> Security IAM roles
+
+Services: 
+  --> Manage long running workloads
+  --> Automate the run-task process
+  --> Actively monitor running tasks
+  --> restart task if they fail 
+ 
+Task Placement Stretagy --> defines how to distribute tasks on EC2 instance in cluster
+    --> balance tasks for availability
+    --> pack tasks for efficiency
+    --> run only one tasks per EC2 instances
+    --> custom tasks placements
   
-Tasks --> Actual representation of the task definition on an EC2 inside of container cluster. (ECS Agent performs these tasks)
-Task Definition --> A JSON formatted text file that contains the "bluprint" of your application:
-    --> which container/docker image to use
-    --> which repository (container registry) is located in
-    --> which port should be open on container instance
-    --> what data volumes should be used with container
-   
-    
-    
   
 
       
