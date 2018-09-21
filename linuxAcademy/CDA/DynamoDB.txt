@@ -1,45 +1,80 @@
-DynamoDB Overview -->
-  Fully managed NoSQL DB
-  consistent and fast performance
-  easy to setup and communicate with
-  optional encryption at rest
-  AWS auto scale compute resources for you based on setup
+DynamoDB Overview --> 
+    1. Fully managed NoSQL DB --> 
+          AWS auto scale compute resources for you based on setup
+          customer need to manage data, not to worry about DB software/hardware
+          provides built-in monitoring system
+          schema-less, stores data in the form of key-value pair
+    2. consistent and fast performance --> 
+          fast SSD used in hardware, 
+          control throughput using RCU/WRU, 
+          replication on multi-AZ, 
+          Global table allow replication across multi-region
+    3. easy to setup and communicate with --> using AWS console/API/CLI/SDK, DynamoDB Stream advanced feature to use across AWS services
+    4. optional encryption at rest
+    5. Popular use-cases, example:- IOT (storing meta-data), Gaming info, mobile user session info, etc
 
-DynamoDB Pricing --> 
-  provisioned throughput Writes (WCU - write capacity unit)
-  Provisioned throughput Reads (RCU - Read capacity unit)
-  Indexed data storage -- (secondary index)
-  Other pricing factors --> 
-    Resevred capacity, auto scaling, global tables, on-demand backup, on-demand restore, DynamoDB Accellerator (DAX), DynamoDB Streams
+DynamoDB Pricing --> below are main components to calculate pricing
+  provisioned throughput Writes (WCU - write capacity unit) --> monthly rate per WCU
+  Provisioned throughput Reads (RCU - Read capacity unit) --> monthly rate per RCU
+  Indexed data storage -- (secondary index) --> hourly rate per GB of table data
+  Other pricing factors --> (pricing differ based on region and over-time) and pricing are prorated based on hours
+    Reserved capacity --> reserve WCU/RCU for fixed low price
+    auto scaling, --> free, just pay for WCU/RCU
+    global tables, --> (rWCU) in-case of global table replication, additional replication WCU
+    on-demand backup, --> pay per GB month stored
+    on-demand restore, --> pay per GB restored
+    DynamoDB Accellerator (DAX), --> pay for the instances used per hour
+    DynamoDB Streams --> pay per 100K reads
 
 DynamoDB core concepts -->
-  partition Key --> also known as HASH attribute, scalar in nature (means holds only one value), 
-  sort key --> also known as Range attribute, not a required Key, scalar in nature, this is used to sort data in each partition
-  primary key --> used to uniquely identify each item, must be of type string, number, or binary
-    2 types --> simple primary key {only partition key}, composite primary key {partition key + sort key}
-  Items --> group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
-  attributes --> fundamental data element of dynamodb (same as individual column of RDBMS)
+
+DynamoDB Partitions --> DynamoDB stores data in partitions, partitions are SSD allocation of storage for tables, replicated across AZs.
+       --> number of partition determines by provisioned capacity and storage size of partition
+partition Key --> (required), also known as HASH attribute of item, scalar in nature (means holds only one value), 
+sort key --> (not-required), also known as Range attribute, scalar in nature (holds only one value), used to sort data within partition
+primary key --> uniquely identify each item to avoid duplicate rows, must be of type string, number, or binary
+    2 types --> 
+      simple primary key {only partition key} --> each item must have unique value for this attribute
+      composite primary key {partition key + sort key} --> two item can have same partition key or sort key, but combination should be unique and such item are required to have both key.
+
+Items --> group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
+Attributes --> fundamental data element of dynamodb (same as individual column of RDBMS)
     data types supported --> 
       scalar type --> String, number, binary, boolean, null
       document type --> List, Map
       set --> number sets, string sets, binary sets
 
-DynamoDb provision throughput --> Read and Write Capacity
-  its maximum amount of capacity that application can consume, after that request are throttled
-  throughput sets at table level, but split-up and consumed at partition level. Means, one partition can lack capacity but others are fine.
-  Exam tips --> 
-    seconds vs minutes vs hours - WCU and RCU are number of writes and reads per second. always calculate troughput per sec
+DynamoDb provision throughput --> measured in Read and Write Capacity unit
+  its maximum amount of capacity that application can consume, after that request are throttled (canceled or stoped)
+  throttled can be avoided by using DynamoDB auto scaling feature
+  throughput sets at table level, but split-up and consumed at partition level. Means, one partition can lack capacity but others are fine. Hence, complete table will not suffer with performance only one partition with slight difference
+Exam tips --> 
+    seconds vs minutes vs hours - WCU and RCU are number of writes and reads per second. always round-up and calculate throughput per sec
     rounding --> round-up to nearest 1 KB (for WCU) and nearest 4 KB (for RCU)
 
-DynamoDB Partitions --> partitions are SSD allocation of storage for tables, replicated across AZs.
-  number of partition determines by provisioned capacity and storage size of partition
-  
-  Provisioned Capacity writes --> WCU consumed when creating, deleting, updating items. Writes always follow strong consistency.
-    1 WCU = 1 write of item of size 1 KB or less per second
+Provisioned Capacity units --> 
+1. Write Capacity Unit --> WCU consumed when creating, deleting, updating items. Writes always follow strong consistency.
+   1 WCU = 1 write of item of size 1 KB (or less) per second
    example:- how many WCU needed for a table to have 120 writes per min for each item of size 2.5 KB
    Answer:- WCU = 120 item/min * 2.5 KB = 120 item/60 sec * 3 KB (nearest 1 KB) = 6 WCU
  
- Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
+2. Read Capacity Unit --> RCU consumed when GetItem and BatchGetItem operation performed. Using the QUERY or SCAN opration
+  RCU supports both strong consistency and Eventual Consistency -->
+In-case of Strong Consistency --> 
+   1 RCU = 1 read of 1 item of size 4 KB (or less) per second
+   example:- how many RCU needed for a table to read 10 items each of 13KB to read per sec
+   Answer:- RCU = 10 items * (13KB/ 4KB per RCU) = 10 items * (3.25KB per RCU) = 10 items * (4KB rounded to nearest 4KB per RCU) = 40 RCU
+In-case of Eventually Consistency --> half of RCU will be needed compared to Strong Consistency
+
+DynamoDB Read Operations -->
+  GetItem --> read single item based on given primary key
+  BatchGetItem --> can read upto 100 items from one or more table (each item read is done by GetItem operation, and RCU calculated)
+  QUERY --> read item(s) with the same partition key value, (sort key if provided), 
+      --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
+  SCAN --> 
+  
+  
+Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
  Hence, conditional writes are introduced.
     Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
         1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
