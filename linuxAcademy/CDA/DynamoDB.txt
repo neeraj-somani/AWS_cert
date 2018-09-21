@@ -71,34 +71,28 @@ DynamoDB Read Operations -->
   BatchGetItem --> can read upto 100 items from one or more table (each item read is done by GetItem operation, and RCU calculated)
   QUERY --> read item(s) with the same partition key value, (sort key if provided), 
       --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
-  SCAN --> 
-  
+  SCAN --> read all the item(s) and consider the size of items evaluated by operation, not the size of returned item. means, returned item could be less than the evaluated items.
+       --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
+       --> SCAN operation should be avoided by using queries or secondary indexes. 
+       --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
+****** there is limit of 1MB of data returned from these operations, to get more data need to provide LastEvaluatedKey  
   
 Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
- Hence, conditional writes are introduced.
-    Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
-        1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
-        eventual consitent reads requires half of strongly consistent reads RCU
-    example:- how many RCU needed to read 10 items of 13 KB per second for strongly consistent reads
-    answer:- 10 item * 13 KB each = 10 item * (13 kb / 4 Kb per RCU) = 10 item * (3.25 RCU/item) = 10 item * (4 RCU/item) = 40 RCU
-        but for eventual consistent reads this will be 20 RCU only.
-  DynamoDB read operation --> 
-      GetItem --> efficiently read a single item by providing item primary key
-      BatchGetItem --> read upto 100 item, from one or more tables {each item is processed with GetItem operations only)
-      Query --> read items with same partition key (and if provided sort key), all returned items considered as one read.
-      SCAN --> reads all items of table, and consider the size of items that are evaluated, not the item size that got returned
-   Eventual consistent --> doesn't guarantee most recent write 
-   strong consistent --> guarantee to reflect most recent write 
-
-DynamoDB Secondary Indexes --> 
-  this allows efficient queries of non-primary key attributes
+Hence, conditional writes are introduced. means each write operation will be performed based on some conditional check.
+ 
+**** very imp for exam *** 
+DynamoDB Secondary Indexes --> allows efficient queries on non-primary key attributes
   every secondory index is associated with only one table, but one table can have multiple Secondary index
-  Local Secondary Index --> gives the choice of Sort Key
-    LSI primary-key are composite key {partition key + sort key}
+  This is an awesome feature of DynamoDB, DynamoDB automatically maintains the secondary index. Means, when base table gets updates, DynamoDB updates secondary index as well.
+  
+  Local Secondary Index --> gives the choice of Sort Keys
     Each LSI can act as another sort key. 
+    LSI primary-key are composite key {partition key + sort key}
     LSI consumes WCU and RCU from main tables capacity
     LSI must be created at the same time table is created. Can't create later.
-  Global Secondary Index --> allows different partition and sort key, and can query the table in differnt ways
+  Global Secondary Index --->
+    allows different partition and different sort key from the main table partition key and sort key
+    means can query the table in differnt ways
     Strongly consistent reads not possible with GSI
     GSI has their own WCU and RCU
     GSI can be created even after table creation
@@ -115,7 +109,22 @@ DynamoDB Limits -->
   items and attributes
   specific API limits
     
+  ----------- need to review them or delete them ----------
+  Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
+        1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
+        eventual consitent reads requires half of strongly consistent reads RCU
+    example:- how many RCU needed to read 10 items of 13 KB per second for strongly consistent reads
+    answer:- 10 item * 13 KB each = 10 item * (13 kb / 4 Kb per RCU) = 10 item * (3.25 RCU/item) = 10 item * (4 RCU/item) = 40 RCU
+        but for eventual consistent reads this will be 20 RCU only.
   
+  DynamoDB read operation --> 
+      GetItem --> efficiently read a single item by providing item primary key
+      BatchGetItem --> read upto 100 item, from one or more tables {each item is processed with GetItem operations only)
+      Query --> read items with same partition key (and if provided sort key), all returned items considered as one read.
+      SCAN --> reads all items of table, and consider the size of items that are evaluated, not the item size that got returned
+   Eventual consistent --> doesn't guarantee most recent write 
+   strong consistent --> guarantee to reflect most recent write 
+----------------------------------------------------
   
   
             
