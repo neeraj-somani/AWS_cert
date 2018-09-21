@@ -3,6 +3,7 @@ DynamoDB Overview -->
   consistent and fast performance
   easy to setup and communicate with
   optional encryption at rest
+  AWS auto scale compute resources for you based on setup
 
 DynamoDB Pricing --> 
   provisioned throughput Writes (WCU - write capacity unit)
