@@ -92,23 +92,31 @@ DynamoDB Secondary Indexes --> allows efficient queries on non-primary key attri
     LSI must be created at the same time table is created. Can't create later.
   Global Secondary Index --->
     allows different partition and different sort key from the main table partition key and sort key
-    means can query the table in differnt ways
+    means you can query the table in differnt ways
     Strongly consistent reads not possible with GSI
     GSI has their own WCU and RCU
     GSI can be created even after table creation
 
 Common DynamoDB errors and limits --> 
-  throttling exception --> when you try to create, delete or update tables too quickly
-  ProvisionedThroughputExceedException --> if throughput on the table is insufficient
-  ResourceNotFoundException --> incase accessing resource too early or not exist
+  throttlingException --> when you try to create, delete or update tables too quickly
+  ProvisionedThroughputExceedException --> if throughput on the table is insufficient to support read and write operation
+  ResourceNotFoundException --> requested table does not exist or is too early in CREATING state
+
+go through more errors here:- https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html
 
 DynamoDB Limits -->
-  secondary indexes
-  provisioned throughput
-  number of tables
-  items and attributes
-  specific API limits
+  1. secondary indexes
+  2. provisioned throughput default limits --> these limit includes sum of table and GSI both
+            --> minimum is 1RCU and 1WCU for any table or GSI
+            --> maximum is -->
+                --> for US East (N. Virginia) Region --> Per table – 40,000 RCU/WCU  or Per account – 80,000 RCU/WCU
+                --> All other Region --> Per table – 10,000 RCU/WCU  or Per account – 20,000 RCU/WCU
+  3. number of tables
+  4. items and attributes
+  5. specific API limits
     
+ go through more limits here:- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html
+ 
   ----------- need to review them or delete them ----------
   Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
         1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
