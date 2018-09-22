@@ -6,7 +6,7 @@ DynamoDB Overview -->
           schema-less, stores data in the form of key-value pair
     2. consistent and fast performance --> 
           fast SSD used in hardware, 
-          control throughput using RCU/WRU, 
+          control throughput using RCU/WCU, 
           replication on multi-AZ, 
           Global table allow replication across multi-region
     3. easy to setup and communicate with --> using AWS console/API/CLI/SDK, DynamoDB Stream advanced feature to use across AWS services
