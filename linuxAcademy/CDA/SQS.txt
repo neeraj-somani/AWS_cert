@@ -47,18 +47,18 @@ SQS resource based access control policies --> all points are same as SNS.
 SQS message characteristics and Limitations -->
   {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
   time-to-live from 1 min to 14 days
-  visibilityTimeout --> message can be invisible for upto 12 hours
+  visibilityTimeout --> message can be invisible in a queue for upto 12 hours
   messages can be added to dead letter queue if consumers unable to process them
 
 message components -->
   Body --> XML, JSON, unformmated text 
   receiptHandle --> a message attributes that allows you to delete the message after being received and processed 
-  messageAttributes --> custom attributes can be set outside of message body
+  messageAttributes --> custom attributes can be set outside of message body to SQS queue
   visibilityTimeout --> length of time message will be invisible after received by consumer and wait for process by them and response to delete
   DelaySeconds --> length of time queue will wait before initially placing message to the queue
   
 SQS API -->
-  CreateQueue --> start by creating first queue
+  CreateQueue --> start by creating your queue
   GetQueueURL --> use this to return the URL you need for future actions
   SendMessage --> used by producer to send message to queue
   ReceiveMessage --> used by consumers to receive messages
@@ -67,4 +67,7 @@ SQS API -->
 
 SDKs can handle many functionality and more useful then APIs.
 
+Below URLs to read about common errors and API actions and limitations:-
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/CommonErrors.html
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html
   
