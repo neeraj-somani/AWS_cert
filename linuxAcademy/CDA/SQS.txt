@@ -1,31 +1,39 @@
-SQS Essentials -->
-  ability to have/hosted highly avilable queues
-  Helpful is developing distribute/decoupled application
-  each message size upto 256 kb 
-  2 type of queues --> 
-    standard queue --> supports nearly unlimited number of messages per second
-      supports multiple producers/consumers
-      guarantee delivery of messages atleast once
-      application should be able to handle duplicate messages
-    FIFO queue --> supports upto 3000 messages with batching and 300 messages without batching
-      FIFO guarantee that message are sent atleast once and processed in order
-      usually designed with application where duplicate messages can't be tolerated
+SQS Essentials --> 
+    useful for highly available queue that is used to send and receive messages
+    useful to build distributed/decoupled architecture
+    Messages between servers are retrived via "polling"
+    can encrypt queue messages using AWS KMS
+    each message size can be upto 256 kb 
+    SQS offers 2 types of Queue --> standard queue and FIFO queue
     
-  SQS is also highly available and redundant and can encrypt queue messages using KMS
-  
-  It worked with polling (pulling) mechanism
-    two type of polling -->
-      Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, hence reduces API request
-            occurs when waitTimeSeconds > 0 
-      short polling --> increases API request and hence increase cost
-          Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
-          if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
-          
-          
+two types of polling --> (pulling) mechanism
+  Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, hence reduces API request
+        occurs when message waitTimeSeconds > 0
+  short polling --> increases API request and hence increase cost
+        SQS samples subset of servers and returns messages just from those servers
+        will not return all possible messages from poll
+        Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
+        if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
+
+SQS Queue --> highly reliable hosted message store. 
+2 type of queues --> 
+   standard queue --> supports nearly unlimited number of messages per second
+        supports multiple producers/consumers
+        guarantee delivery of messages atleast once with best effort ordering
+        used with application that can tolerate or handle duplicate messages
+        support 120,000 in-Flight messages
+   FIFO queue --> supports upto 3000 messages with batching and 300 messages without batching
+        supports multiple producers but only supports multiple consumers through use of GroupID:
+            GroupIDs can be used to interleave multiple ordered message groups within a single FIFO queue
+            Messages are processed in-order with respect to the group but not always with respect to the other groups
+      FIFO guarantee that message are sent atleast once and processed in order, for applications where order is critical
+      usually designed with application where duplicate messages can't be tolerated
+      supports 20,000 in-Flight messages
+        
 SQS producers --> any service that send messages to SQS queue
 SQS Consumer --> any service that consumes and process SQS messages, also responsible for deleting messages from queue.
 
-Queue Settings -->
+Queue Settings --> ** imp
   Dead letter queue --> used to deal with malformed data from consumers
   DelaySeconds --> how long messages take to be added to the queue upon creation
   VisibilityTimeOut --> How long messages are invisible after being received by consumer and wait for response from consumer
