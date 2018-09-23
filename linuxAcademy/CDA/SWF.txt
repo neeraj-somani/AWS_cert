@@ -7,17 +7,18 @@ SWF Essentials --> fully managed workflow service
  
  Components of SWF -->
   workflows (decider) --> sequence of steps to perform a specific tasks
-  Activities --> A single step of workflow
-  tasks --> that interacts with workers
+  Activities --> A single step (or unit of work) in the workflow
+  tasks --> that interacts with workers that are part of workflow
     2 types -->
-      active tasks --> tells a worker to perform a function
-      decision tasks --> tells the decider about state of the workflow execution
-  workers --> responsible for receiving a tasks and take action on it
+     activity tasks --> tells a worker to perform a function (eg: to encode video, check inventory, etc)
+     decision tasks --> tells the decider about state of the workflow execution, which allows the decider to determine about next activity
+  workers --> responsible for receiving a tasks and take action on it. it can be any type means, a EC2 instance or a person
+  deciders --> 
   
 SWF vs SQS -->
-  similarities --> both used to create dictirbuted systems and to scale each task independently
-  Differnece --> SWF can have human interacted task as part of workflow
-      SQS max life 14 days vs SWF workflows and tasks life upto 1 year
+  similarities --> both used to create dictirbuted systems and allow to scale each task independently
+  Differnece --> SWF can have human interacted task as part of workflow but not in SQS
+      SQS max life 14 days vs SWF workflows and tasks life can be upto 1 year
 
 SWF and Step Function -->
   Similarities --> Both can help create coordination between application components
