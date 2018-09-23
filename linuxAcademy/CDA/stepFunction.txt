@@ -1,4 +1,4 @@
-Step Function Essentials -->
+Step Function Essentials --> (build distributed application using visual workflow)
   fully managed service to coordinate components of application, through each step. 
   it gives various functionality that helps co-ordination of different components of distributed applications, 
       like workflow diagram, navigation tools, visualize application logic, serverless application orchestration,
