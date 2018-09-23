@@ -30,8 +30,8 @@ SQS Queue --> highly reliable hosted message store.
       usually designed with application where duplicate messages can't be tolerated
       supports 20,000 in-Flight messages
         
-SQS producers --> any service that send messages to SQS queue
-SQS Consumer --> any service that consumes and process SQS messages, also responsible for deleting messages from queue.
+SQS producers --> any service that send messages to SQS queue, eg:- EC2 instance, Lambda, ECS services, even few external services
+SQS Consumer --> any service that consumes and process SQS messages, also responsible for deleting messages from queue. (Lmabda, ECS)
 
 Queue Settings --> ** imp
   Dead letter queue --> used to deal with malformed data from consumers
@@ -39,7 +39,10 @@ Queue Settings --> ** imp
   VisibilityTimeOut --> How long messages are invisible after being received by consumer and wait for response from consumer
  
 SQS resource based access control policies --> all points are same as SNS. 
-  it supports both ACL and IAM policies
+            can be used to grant access to SQS queues to another AWS account
+            SQS AddPermission API automatically generates the ACL policy to SQS
+            These policies can also be used to grant access to some AWS services to public to your SNS topic (although, many service like EC2 or Lambda will use IAM Role instead for SNS)
+            IAM role and Access control policies can be used at the same time.
  
 SQS message characteristics and Limitations -->
   {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
@@ -54,7 +57,6 @@ message components -->
   visibilityTimeout --> length of time message will be invisible after received by consumer and wait for process by them and response to delete
   DelaySeconds --> length of time queue will wait before initially placing message to the queue
   
-
 SQS API -->
   CreateQueue --> start by creating first queue
   GetQueueURL --> use this to return the URL you need for future actions
