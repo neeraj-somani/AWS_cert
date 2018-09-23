@@ -1,11 +1,13 @@
 APIGateway Essentials -->
-  service to create and manage your own API for your application
+  fully managed service to create and manage your own API for your application
   "act-as" a front door for application, 
   build RESTFul web APIs with: resources, methods (GET, DELETE, POST, PUT), Settings
-  Deploy API to different stages (dev, staging, prod)
-  API versioning
+  Deploy API to different stages/environments (dev, staging, prod). Each stage can have their own environment settings.
+  API versioning, can clone API from previous versions
   custom Domain name can be pointed to APIs
+  CloudWatch can be used to monitor and manage API keys
   set throttling rules based on number of request per sec
+  security through signature v.4 to sign and authorize API calls (temporary credentials generated through cognito or STS)
  
 Benefits --> 
   Ability to cache API responses
@@ -15,20 +17,34 @@ Benefits -->
   Request/Response data transformation (JSON IN to XML out)
  
 API Gateway Resources -->
-  Resources are logical entities that can be access via resource path.
-  Both resources and child resources have associated HTTP method
-  API resource URLs --> https://16gkh57hj686.execute-api.us-east-1.amazonapi.com/dev/cars
+  Resources are logical entities that can be access via resource path or URL
+  Resources can have child resource and with different API URL
+  Both resources and child resources can have associated HTTP method
+  example API resource URLs --> https://16gkh57hj686.execute-api.us-east-1.amazonapi.com/dev/cars
+  above "dev" in the URL consider as "stage" for API
 
 API Gateway Method --> 
-  HTTP methods (GET, PUT, POST, DELETE, ANY) associated with API Gateway
+  HTTP methods (GET, PUT, POST, DELETE) associated with API Gateway
+  AWS also offer "ANY" method as-a-catch-all method option
+  method response can be configured in varity of ways:-
+    1. Lambda function, passed as a lambda event
+    2. Http response to another Http endpoint
+    3. Integration with other AWS services
 
 API Gateway Deployment and Stages -->  
   Deployments --> are snapshots of API resources and methods, must be created and associated with stage
   stages --> are references to lifecycle status (dev, staging, prod)
+     few stage settings can be configured:- like, Enable caching, customize request throttling, configure logging, define stage variables
 
 API Gateway Caching and monitoring -->
-  cache API responses for delivery
-  TTL for API responses
+  cache API responses for delivery fast request/response
+  we can configure cache key and TTL for API responses
+  caching can be set-up on a per API or per stage basis
   Monitoring can be done by cloudWatch
   
-  
+API Gateway Monitoring --> can be used to monitor activity and usage
+    monitoring can be done at API or stage level
+    throttling rules are also monitored by CloudWatch
+    Monitoring mertics includes statistics like -- caching, latency, detected errors
+    method level metrics can be monitored
+    cloudWatch alarms can be setup based on these metrics
