@@ -1,11 +1,21 @@
 Systems Manager Parameter Store --> 
   provides a secure way to store configuration and sensitive secrets -->
     like password, database strings, API keys, license codes
-    these can be stored as encrypted as well
-    
+    these can be stored as encrypted or as plaintext
+
+Benefits -->
+1. secure, scalable, hosted secret management service
+2. allows you to seperate secrete information from source code 
+3. create versions for tracking and organization purposes
+4. these parameters can be used across multiple AWS services
+
+
 API actions -->
-  All parameter store APIs are underneath the AWS sysntel manager umbrella.
-  PutParamter --> adds a parameter to a paramter store (String, StringList, or secureSting)
-  GetParameter --> Gets a parameter value from SSM
+  All parameter store APIs are underneath the AWS systems manager (SSM) umbrella.
+  can be used through CLI, SDK or AWS console
+  
+  PutParamter --> adds a parameter to a paramter store (String, StringList, or secureSting{this is a KMS encrypted string})
+  GetParameter --> Gets a parameter value from SSM either in encrypted or decrypted form
   DeleteParameter --> deletes a parameter from SSM
   
+link for other APIs --> https://docs.aws.amazon.com/systems-manager/latest/APIReference/Welcome.html
