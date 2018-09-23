@@ -1,34 +1,57 @@
 Step Function Essentials -->
   fully managed service to coordinate components of application, through each step. 
-  its give various functionality that helps co-ordination of different components of distributed applications, 
-      like workflow diagram, neviagtion tools, visualize application logic, serverless application orchestration,
+  it gives various functionality that helps co-ordination of different components of distributed applications, 
+      like workflow diagram, navigation tools, visualize application logic, serverless application orchestration,
   Highly-scalable, reliable, 
+  We can avoid coding large application logic as it can be defined in JSON state machine
+  can be reused easily and just tweak the workflow as per need
+  easily integrate with AWS other services
   
- Step function components --> 
-    Tasks --> an activity or Lambda function, basic program code that interacts with step function APIs,
-      like GetActivityTask, SendTaskSuccess, SendTaskFailure, sendTaskHeartBeat
-    State Machines --> consist of tasks  {JSON doc with Amazon state language, and type of state}
-    what is state types -->
-      step function co-ordinate tasks through state-machine.
-      Each 'state' in a state-machine makes decisions based on inputs, performs actions, and passes output to other state.
-      'state' --> is a unique string name
-      some other state types --> 
-        'Tasks' --> states do some work in state machine
-        choice --> states makes choices between different branches
-        fail or succeed --> state stop execution of your machine incase of failure or success
-        pass --> state pass there input to their output and can inject some fixed data to the process
-        wait --> states can delay the process for certain amount of time or date
-        parallel --> states begins parallel execution of the state machine
+Step function components --> 
+ 1. State Machines --> consist of tasks  {JSON doc with Amazon state language, and type of state}
+ 
+ 2. Tasks --> all work in your state machine is done by task, it can be an activity or Lambda function, 
+    2 types -->    
+      1. An Activity --> 
+          is a program code that taks input and responds using step function API actions
+          it can be hosted on EC2, ECS or any mobile devices
+          basic program code that interacts with step function APIs, like GetActivityTask, SendTaskSuccess, SendTaskFailure, sendTaskHeartBeat
+     2. A Lambda func --> a serverless function that respond to your state machine task
+          can be written in many programming languages
+          can be easily integrates with step Functions
 
-Step Function transition -->
-  basic transition -->
-    when a state machine executes, it uses "startAt" field to select one of the state to begin
-    "Next" field is the state for allowing next task in flow control
-    flow continue until it reach terminal state with type: succeed, fail, or End: true
+3. Step Function Transitions --> 
+  Basic Transition --> 
+      when a step machine executes, it uses a "StartAt" field to select one of the state to begin with
+      "Next" field is used to go to next state in state machine execution
+      Certain flow control states allow choices to select multiple "Next" field
+      Transition continues untill -->
+        reach a termination state, with "Type: Succeed", "Type: Fail" or "End: true"
+        they hit a runtime error
+      state machine can have only one start step
+  Input and Output -->
+      each states input is JSON
+      states gets input from previuos state or if it is at first state, the input will be passed in at execution
+      if needed states can modify input or can continue without modifying if not needed
+      tasks state take the input provided, send that input to a task, and then receive output from the task and pass to Next state
+    
+what is state types -->
+  step function co-ordinate tasks through state-machine.
+  Each 'state' in a state-machine makes decisions based on inputs, performs actions, and passes output to other state.
+  'states' --> are components of your state machine
+        each state has a name which must be a unique string inside a state machine
+ different states can do different things in state machine --> 
+    'Tasks' --> states do some work in state machine
+    choice --> states makes choices between different branches
+    fail or succeed --> state stop execution of your machine incase of failure or success
+    pass --> state pass there input to their output and can inject some fixed data to the process
+    wait --> states can delay the process for certain amount of time or date
+    parallel --> states begins parallel execution of the state machine
 
 Step function API -->
-  CreateStateMachine --> create a state machine, JSON document, consist of collection of states
+  CreateStateMachine --> create a state machine, {JSON document}, consist of collection of states that can perform some work
   StartExecution --> start execution of state machine
   ListExecutions --> it list state machine execution, eventual consistent, means most recent state execution will display eventually
   StopExecution --> stop execution of state machine
   
+https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListExecutions.html
