@@ -1,0 +1,13 @@
+CodePipeline --> (continous software release process)
+continuous delivery service that can model, visualize, and automate your software release process.
+  
+  Benefits --> 
+      automate release process -- source repository through build, test and deploy
+      consistent release process - set of steps to perform for every new changes to perform smooth and continous software release
+      Real-time status of process -- view alerts, retry process, etc
+  Components --> 
+    pipeline --> workflow that describes how changes go through release process
+    artifacts --> files or changes that will be worked on by actions and stages
+    stages --> pipeline broken into different stages, like build (where code is build and test), deployment (updates deployed to env)
+    actions --> stages contains atleast one action, these action applied to artifacts to move as input or output for the process
+    transition --> progressing from one stage to another inside of pipeline
