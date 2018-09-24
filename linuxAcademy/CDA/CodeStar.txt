@@ -1,0 +1,8 @@
+CodeStar --> service for creating, managing, and working with AWS projects
+  CodeStar well integrates with CodeDeploy, CodePipeline, CodeCommit, codeBuild, CloudWatch
+  Benefits --> 
+    can create templates for projects and reuse them
+    integrate some IDE with CodeStar
+    Helps manage users and access they require to interact with AWS services (saves you from create and manage IAM policies, as everything can be written in templates)
+    visualize and collaborate on your projects at one same place
+        like, application activity metrics - CPU utilization,  JIRA issue tracking, commit history, continous deployment
