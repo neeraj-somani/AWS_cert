@@ -1,0 +1,18 @@
+CodeDeploy --> automates deployment of your application to EC2, lambda, and even on on-premises env
+    means, even you can schedule your deployment and everything will start automatically at scheduled time.
+  Benefits --> automate process, minimize downtime, easy stop and rollback, centralized management
+  Deployment types --> 
+    In-place deployment --> existing servers updated with new version of application
+    Blue/Green Deployment (EC2) --> new application version to new instance, traffic re-route from old to new instance, 
+        easy fall-back from new to old, incase of issues
+    Blue/Green Deployment (Lambda) --> same as EC2 for old to new version, but can be done in multiple ways 
+      Canary --> a percentage of traffic is shifted to new version
+      Linear --> traffic is shifted in equal increments with an equal number of minutes between each increment
+      All-at-Once --> immidiate and completely shifted to new version
+
+CodeDeploy AppSpec File --> mention details about how to deploy applications
+      Lambda Deployment --> which function to use, which function can do validation test
+      EC2 or On-premises deployment --> what to install, from where to fetch objects, what lifecycle of events occur
+      
+  LifeCycle Hooks --> allows scripts to run during deployment step, depending upon deployment type/environment
+    BeforeInstall, AfterInstall, ApplicationStart, ApplicationStop, validateService
