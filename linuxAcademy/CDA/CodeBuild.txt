@@ -1,0 +1,6 @@
+CodeBuild --> fully managed build service that can compile source code, run unit test and produce deployment artifacts
+  Benefits --> pre-configured env for many popular languages, high scalable as per demand, Fully managed by AWS
+ components --> 
+  Build Project --> define here rules how codeBuild should run the build (like, where is source code, what env, build commands, etc)
+  Build Environment --> OS, language runtime, framework, tools specifications
+  Build spec --> YAML file to describe collection of commands, settings used by CodeBuild to build the code
