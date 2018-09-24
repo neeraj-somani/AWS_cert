@@ -1,0 +1,2 @@
+Auto Scaling --> Automates the process of adding (scale up) or removing (scale down) EC2 instances based on traffic demand.
+
