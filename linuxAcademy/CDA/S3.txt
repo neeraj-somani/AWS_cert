@@ -178,6 +178,7 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
 
 3. S3 storage classes and Glacier -->
   storage class --> represents classification of object in S3, this dictates storage cost, availability, durability, frequency of access
+              --> each object must be assigned to a storage class.
       Durability --> can be described a the probability that you will eventually be able to get your object back from the storage system from one of the stores and archives.
       Availability --> is the probability that you will be able to get it back the moment that you ask for it.
   4 class types -->
@@ -187,6 +188,10 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
     OneZone-IA --> all S3-IA specification applied to one specific zone only
     S3-Glacier --> long time archival storage, should not be used for back-ups, cheapest, several hours of retrieval time, 11X9's durable
    3 types of retrieval --> expedited (1-5 min), standard (3-5 hr), bulk (5-12 hr)
+
+Settings/changing storage class --> while uploading to S3, default storage class is Standard.
+    you can perform manual setting or use life cycle policy to update/change storage class for object.
+    ** to move to Glacier storage class, can be done only by lifecycle policy and it can take 1-2 days to take effect.
 
 4. S3 lifecycle policy --> (by default disabled), set of rules that automates migration of objects to various storage classes
       --> good for company data retention policy, cost efficient, ease of management, 
