@@ -1,4 +1,4 @@
-EC2 Essentials -->
+EC2 Essentials --> (think of it as a basic desktop computer, with some advance capabilities)
   scalable virtual server on cloud, runs on Linux/Windows, 
   very similar as on-premises servers, with flexibility of on-demand commission and decommision for easy scalability and elasticity.
   These virtual servers known as "instance" and can be made up of different instance type and sizes.
@@ -12,6 +12,11 @@ EC2 Essentials -->
       EFS (Elastic File storage) --> scalable, elastic file storage
       Instance storage --> "ephemeral storage" -- temporary / short time storage
  
+ AMI Types -->
+  1. Comunity AMI --> free to use, generally only OS selection available
+  2. AWS Marketplace AMI --> Pay-to-Use, generally comes with additional packaged softwares.
+  3. My personal AMI --> Customized AMI, that you create as per need, (OS, software packages, other preconfigured settings, etc)
+ 
  imp Facts --> 
   1. security groups must be assigned at time of creation
   2. Each instance must be placed into an existing VPC, AZ, and subnets
@@ -21,21 +26,26 @@ EC2 Essentials -->
   6. there is limit on number of instnaces running at specific time within a region
 
 EC2 instnace types -->
-  1. compute power (processor/CPU) {C}, {P, G, F}
-  2. memory (RAM) {X, R}
+  1. compute power optimized (processor/CPU) {C}, {P, G, F}
+  2. memory optimized (RAM) {X, R}
   3. Storage Optimized (Hard-drive) {H, I, D}
   4. Network Performance (bandwidth)
- General purpose {T, M}
+  5. General purpose {T, M}
 
 EC2 Purchasing Options -->
   On-Demand --> 
     choose, provision and terminate any instnaces type at any time
     most expensive, most flexible
+    charged only for running time (billed as per seconds)
   Reserved Instances -->
     purchase for set time period (one or 3 year) with significant discount (pay upfront, partial upfront, no upfront)
     Regional RI and AZ specific RI
   Spot Instance -->
-      bid for specific instance type, substantial discount, terminate at anytime
+      bid for specific instance type, substantial discount, 
+      you will get your spot instance when spot price is less or equal to bid price
+      spot prices fluctuate based on supply & demand
+      billing is done per second basis but spot prices are at per hour rate
+      AWS terminate instance at anytime when spot price is greater then your bid price
   Dedicated Instnaces --> dedicated machine with full control, save money and works with specific regulatory compliance
   
 EC2 Instance Configuration --> 
