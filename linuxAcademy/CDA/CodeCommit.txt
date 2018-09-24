@@ -1,0 +1,6 @@
+CodeCommit --> This is a managed, secure and scalable source control service that host private Git repository
+  Benefits --> 
+    fully managed AWS service
+    stored encrypted and secure in AWS
+    collaborate on code, no limit on file type and size of repository
+    easy intergration with other AWS services and other Git repository
