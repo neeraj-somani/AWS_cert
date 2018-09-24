@@ -1,0 +1,22 @@
+XRay --> traces request as they move through your application. 
+It collects data make it available to view, filter and sort. This data can be used for optimization and analysis as well.
+
+XRay Concepts -->
+Segments --> Data about the work done by your application. (data related to request, response, subsegments, and issues)
+Subsegments --> A more granular view of data inside of segments
+Service Graph --> JSON doc, contains information about how your applications services and resource interacts. (visualize service map)
+Traces --> this will trace all IDs as they go through your application
+    1. first XRay supported service to interact with a request to add an HTTP trace ID to header
+    2. trace ID propogates downstream to track the request as it move through application
+Sampling --> XRay applies an algorithm to sample request data but you can configure the frequecy of sampling
+    (i.e how to apply it on high volume or lower volume requests)
+Tracing Header --> example (X-Amzn-Trace-Id: Root=1-5759e988-bd862e3fe1be46a994272793;Sampled=1)
+Filter Expression --> used to search in your traces beased on (trace ID, portion of ARN URL, etc)
+Annotation and metadata --> additional way to store searchable (annotation) and non-searchable (metadata) data about traces
+Errors, Faults, and Exceptions --> Xray trace error and categorize them:
+  Error – Client errors (400 series errors)
+  Fault – Server faults (500 series errors)
+  Throttle – Throttling errors (429 Too Many Requests)
+
+
+  
