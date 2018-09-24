@@ -74,7 +74,9 @@ To enable access to or from the internet for instances in a VPC subnet, you must
     Default route table doesn't have any explicit subnet associatd with it. Means, All default available subnet are non-explicitely associated with default route table and hence default VPC. If user explicitly associate any subnet to different route table, that subnet will not appear in default route table.
     Best practice, is to untouch default route table and create new needed route table.
  
- Subnets --> When you create a VPC, it span across AZ within same region. 
+ Subnets --> Short form of Sub-Network, is a sub section of a network.
+ Generally, subnet includes all of the computers in the same location.
+ When you create a VPC, it span across AZ within same region. 
     After creating VPC, we can add one or more subnet in each AZ
     subnet doesn't span across AZs
     A subnet must be associated with route tables
@@ -83,8 +85,10 @@ To enable access to or from the internet for instances in a VPC subnet, you must
     Instances launched in private subnet can't communicate to internet.
       --> This creates higher level of security but introduce few limitation as well(like, not able to update software, install patches)
       --> This limitation can be overcome by routing traffic through NAT instances.
-      
- NACLs --> (Newtork Access Control List)
+
+Firewall --> A type of software that either allow or deny certain kinds of internet traffic to pass through.
+ 
+ NACLs --> (Newtork Access Control List) --> A firewall or security layer on subnet level
     ACL operates at network and subnet level
     supports both DENY and ALLOW rules
     NACLs are stateless: so return traffic must be allowed with outbound rule
@@ -96,9 +100,8 @@ To enable access to or from the internet for instances in a VPC subnet, you must
     Note: Default VPC already have a NACL and that is associated with default subnets.
     A subnet can only be associated with one NACL at a time. 
       
-  
- Security Groups --> 
-    are security at instnace level, as oppose to NACL which is at subnet level.
+ Security Groups -->  security or firewall at instance level
+    are security at instance level, as oppose to NACL which is at subnet level.
     Security groups also has allow/deny rules, same as NACL, but works differently:
       security groups supports only allow rules, by default everything is denied.
       They are stateful, means return traffic is by default allowed regardless of rules
