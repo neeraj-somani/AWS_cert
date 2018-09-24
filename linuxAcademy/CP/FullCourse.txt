@@ -1,0 +1,35 @@
+1. Lets build foundation -->
+2. Explore Core AWS Services -->
+3. Billing and Support Services --> 
+
+1. Lets build foundation -->
+
+Cloud Terminologies --> 
+High Availability --> (Highly Available) --> means, you can always access it (no downtime)
+Fault Tolerant --> (self-healing, return to full capacity quickly) --> ability to handle most type of related failure
+Scalable --> ability to easily grow in size, capacity and scope, as per need or on-demand
+Elasticity --> ability to not only grow (scale) but also shrink when needed.
+
+Benefits of AWS --> these are based on same above 4 terminologies
+1. redundant backups 
+2. easily share information across multiple devices and people
+
+AWS Global Infrastructure -->
+Region, AZ, & Data center --> globally located all around the world, consist of AZ, which consist of one or more data centers. 
+These data centers are connected with each other with fast connectivity. 
+These data centers are consist of various AWS services.
+
+S3 --> fully managed bulk file storage service
+EC2 --> A compute capacity service
+AWS Shared Responsibility Model --> responsibility is shared among user and AWS
+
+2. Explore Core AWS Services -->
+IAM --> 
+Storage Service --> S3 and its various classes
+Networking services --> VPC
+Compute Services --> EC2 and Lambda
+ELB and Auto Scaling --> 
+Content Delivery and DNS service --> CloudFront and Route53
+Monitoring and Logging service --> CloudWatch and CloudTrail
+Notification Services --> SNS
+DataBase services --> RDS, DynamoDB, RedShift and Elastic Cache
