@@ -1,0 +1,11 @@
+CloudTrail --> allows you to monitor all actions taken by any IAM user
+  example:- who and when an specific S3 object been deleted and log the details
+
+Hence, it enables -->
+Goverance
+Compliance
+Operational Auditing
+and Risk Auditing of your account
+
+CloudTrail provides events history of your account activity.
+This helps in security analysis, resource change tracking and troubleshooting
