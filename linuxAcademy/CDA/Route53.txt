@@ -1,10 +1,11 @@
 Route 53 --> DNS service (Domain Name System service)
 you can configure and manage web domains for websites you host on AWS.
 
-3 main functions of AWS -->
+3 main functions of AWS Route 53-->
   1. Domain Registration --> you can register domain name as per availability, such as example.com
   2. DNS service (Domain Name System service) --> Route53 translates friendly domain names into IP address.
         Route53 respond to DNS queries using a global network of authoritative DNS server which reduces latency.
+        DNS Failover --> automatically change domain endpoint if system fails.
   3. Health Checking --> frequently send automated requests to make sure application health and accessibility.
   
 you can use Route53 for either Domain Registrar or DNS Service or even both.
