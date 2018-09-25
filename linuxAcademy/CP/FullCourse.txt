@@ -77,6 +77,17 @@ DataBase services --> RDS, DynamoDB, RedShift and Elastic Cache
       --> identify which service you use the most, which AZ has most traffic, which AWS account has most traffic
  
  4. Shared responsibility Model --> 
+ Security and Compliance is shared responsibility between AWS and customers.
+ AWS responsible for -->
+--> setup and maintainance of physical harware located at each AWS data center
+--> physical security of data centers (locks, keys, security guards)
+--> setup and maintainance of host virtualization software
+ 
+ Customer responsible for -->
+ --> Network level security (NACL, security groups)
+ --> OS patches and updates
+ --> IAM (user access management)
+ --> client and server side data encryption
  
  5. Trusted Advisor and support --> 
       Account support plan --> added benefit of priority in support
@@ -96,7 +107,22 @@ DataBase services --> RDS, DynamoDB, RedShift and Elastic Cache
           
        **** level of support also depends on type of account
  
+ Six checks that cover basic security and performance check across any AWS account type -->
+ 1. Security Groups (port checks)
+ 2. IAM use
+ 3. MFA
+ 4. EBS public snapshot
+ 5. RDS public snapshot
+ 6. Service limits
     
-    
+Below security check option is only available for Business and Enterprise accounts -->
+1. Access to Full list of Trusted Advisors checks
+2. Notifications to stay-up-to-date with weekly resource deployments
+3. Programmatic access to retrieve/refresh Trusted Advisor results via APIs
   
-  
+Things to consider if your Account compromised -->
+1. Change you root account password
+2. Change all IAM user's passwords
+3. Delete or rotate all programmatic (API) access keys
+4. Delete any resources in your account that you did not create
+5. Respond to any notification you received from AWS through AWS support center or contact AWS support to open a case
