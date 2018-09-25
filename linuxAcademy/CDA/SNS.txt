@@ -8,12 +8,14 @@ SNS benefits --> scalable and highly reliable and can be used through Console, C
 
 SNS components --> 
 
-Topics --> group of subscriptions that you send a message to 
+Topics --> How you label and group different endpoints that you send messages to.
+group of subscriptions that you send a message to 
   Topics names should be unique within account and limited to 256 charachter only.
   allows alphanumeric charachters, hyphen, and underscore
   topics and messages are stored redundently to multiple servers and data centers.  
 
-subscription --> you attach ARN of your topic, type of subscriber (Email, SMS, etc) and value for that subscriber.
+subscription --> The endpoints that a topic sends message to
+you attach ARN of your topic, type of subscriber (Email, SMS, etc) and value for that subscriber.
 
 Message --> JSON formated Key-value pair, 
   allows developer to grab message data and parse it
@@ -35,8 +37,8 @@ SNS Message body -->
 SNS message attributes --> each message attributes needs a Name, type, and value. Sent along with the message. 
     Useful for SQS and mobile push notifications
     
-subscriber --> an endpoint that a message is sent to, like Http, Https, Lambda, Email, SQS, Email-JSON, SMS, mobile Apps
-publisher --> the "entity" that triggers the sending of a message like, few AWS services (S3 events, CloudWatch Alarms), CLI, SDKs
+subscriber (consumer) --> an endpoint that a message is sent to, like Http, Https, Lambda, Email, SQS, Email-JSON, SMS, mobile Apps
+publisher (producer) --> An entity (human/ alarm/ event) that gives SNS a message that needs to be sent. 
 
 SNS Access control policies --> can be used to grant access to SNS topic to another AWS account
   example:- SNS API: AddPermission --> requires topic, AWS Account ID, Actions and Labels
