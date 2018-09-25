@@ -1,0 +1,6 @@
+What is a Solution Architect?
+--> is responsible for interpreting customer requirements and defining a solution following architecture design principles.
+--> provide implementation guidance based on best practices throughout the lifecycle of project
+--> a successful architect in AWS should have following:
+  --> a. designing a resilient architecture, which is highly available and fault tolerant
+  --> b. achieving max 
