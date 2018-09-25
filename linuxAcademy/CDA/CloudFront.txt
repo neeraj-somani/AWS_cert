@@ -1,0 +1,5 @@
+CloudFront --> (CDN) --> Content Delivery network
+    --> allows you to store (cache) your content at "edge locations" located all around the world.
+    --> allows customer to access your content more quickly
+    --> also provides additional security specially against DDOS attacks
+    
