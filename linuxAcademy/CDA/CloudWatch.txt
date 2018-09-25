@@ -9,6 +9,7 @@ CloudWatch --> used to monitor AWS services , like S3, EC2, ELB by configuring c
     ELB metrices -->
       RequestCount
       UnhealthyHostCount
+
 Monitoring levels -->
   Basic --> data will be available in every 5-min at no cost
   Detailed --> in every 1-min with some cost
