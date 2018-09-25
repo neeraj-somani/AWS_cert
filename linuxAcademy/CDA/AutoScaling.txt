@@ -1,2 +1,5 @@
 Auto Scaling --> Automates the process of adding (scale up) or removing (scale down) EC2 instances based on traffic demand.
 
+Auto Scaling Group --> Collection of EC2 instances.
+you can specify min and max for EC2 instances in auto scaling group. It will make sure not to go beyond that specification.
+This can be done with configuration of auto scaling policy as well.
