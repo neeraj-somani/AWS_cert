@@ -1,3 +1,5 @@
+?????? VPC (especially VPC peering), some security questions ?????
+
 VPC Essentials -->
   VPC enable you to launch AWS resources into virtual network that we define as per need. This is very similar to on-premises data center but scalable.
   means, this makes sure how securely data should flow through including access points, internal and external routing, security layers and instance endpoints.
