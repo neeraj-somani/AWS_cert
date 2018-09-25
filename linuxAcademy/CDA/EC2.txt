@@ -1,3 +1,5 @@
+??????? instance pricing (regional reserved, scheduled reserved, etc) ???????
+
 EC2 Essentials --> (think of it as a basic desktop computer, with some advance capabilities)
   scalable virtual server on cloud, runs on Linux/Windows, 
   very similar as on-premises servers, with flexibility of on-demand commission and decommision for easy scalability and elasticity.
