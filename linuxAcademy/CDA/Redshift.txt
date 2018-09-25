@@ -2,6 +2,7 @@ Redshift Essential --> petabyte scale datawarehouse service, fully-managed and s
     --> generally used for big data analytics
     --> standard SQL operations are performed
     --> easily integrates with BI tools
+    --> its an AWS database that is primarily used to analyze data using standard SQL formatting with compatibility for your existing business intelligence tools
 
     
 
