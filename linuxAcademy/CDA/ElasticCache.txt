@@ -1,0 +1,17 @@
+ElasticCache --> Data caching service used to help improve speed/performance of web applications running on AWS.
+
+Amazon Elastic Cache and Caching stretegy -->
+  Elastic Cache Essentials --> 
+    fully managed, in-memory cache engine used to improve DB performance by caching frequently used query results
+    great for large, high-performance DB
+     Elastic Cache allows for managing web-session, also caching dynamically generated data 
+    currently available engines plugins are (MemcacheD & Redis)
+    application should be compatible with these Caching plugins
+    
+    Redis --> fast, open source, in-memory data store and cache 
+    MemcacheD --> a widely adopted memory object caching system
+    
+  Caching stretegies -->
+    Lazy Loading --> cache will be loaded only when already not exists (means when cache miss occurs) and avoid to load data that was never requested. This usually implemented with some other maintainable stretegies to avoid data stale.
+    write through --> cache will always be updated with new write and update requests to keep it up-to-date, usually implement it with TTL
+    TTL --> time-to-live, TTL not guarantee fresh information, but helps in cleanup and implemented with any of above 2 options
