@@ -1,3 +1,5 @@
+??????  and DynamoDB Accelerator (DAX)?????
+
 DynamoDB Overview --> 
     1. Fully managed NoSQL DB --> 
           AWS auto scale compute resources for you based on setup
