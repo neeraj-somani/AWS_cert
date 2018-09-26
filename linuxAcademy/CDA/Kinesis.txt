@@ -1,0 +1,43 @@
+Kinesis --> Analytics Service
+
+Kinesis Essentials --> 
+    Video Streams --> stream video to AWS, real-time or batch video processing and analytics
+    Data Streams -->  
+        --> ingest data from many sources
+        --> real-time data processing application
+        --> Kinesis connector -- EMR
+        --> Data processed in sequence
+        --> Server Side Encryption
+      major components -->
+        --> stream --> contains one or more shards
+        --> shards --> (processing power) --> 1 MB/sec data input and 2MB/sec data output
+                             --> distribute data to shards using partition key
+        --> producer --> data creator
+        --> consumer --> data consumer
+    Firehose --> load streaming data to S3, Redshift, ElastCache, Splunk
+    Data Analytics --> Run SQL queries against Data Streams or Firehose
+    
+Kinesis Benefits -->
+
+
+
+
+    ------------ from aCloudGuru -------
+    Streaming Data --> It is continously generated data in/by applications in small size (i.e, in KBs), through thousands of data resources 
+      at same time.
+  Kinesis --> AWS service for easily load and analyze streaming data.
+  3 category of Kinesis service -->
+    1. Kinesis stream
+    2. K Firehose
+    3. K Analytics
+  1. Kinesis Stream -->
+      All incoming data are stored in multiple Shard for default 24 hours (and can be increased to 7 days) --> Data retention period
+      Shards --> high read/write throughput with distributed environment
+  2. Kinesis Firehose -->
+      Its more automated way of Kinesis Streams.
+      >> In this we don't need to manage shards 
+      >> data in automaticaly stored to S3 after processing. Consumer services can access from S3 anytime
+      >> you can't directly send data to RedShift or RDS or DynamoDB, it has to go to S3 first then to any other services.
+      >> Firehose can send data directly to S3, ESC (ElasticSearch Cluster)
+  3. Kinesis Analytics -->
+      >> Allows user to write SQLs and analyze data that exists in FireHose or Stream.
