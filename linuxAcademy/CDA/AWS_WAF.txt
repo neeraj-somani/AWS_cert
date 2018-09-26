@@ -1,0 +1,11 @@
+AWS WAF --> 
+  Application Layer -->
+    --> SQL injection
+    --> Cross Site scripting
+    --> Bad Bots
+    --> High request rates
+    --> large request size
+    --> Blacklist / Whitelist IPs
+  Associated With --> 
+    CloudFront
+    ALBs (Application load balancer) (Https/Http)
