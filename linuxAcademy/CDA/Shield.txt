@@ -1,0 +1,11 @@
+Amazon Shield --> DDOS protection
+  Standard --> (Network and transport layer)
+      --> automatic protection of 96% of layer 3/4 attacks
+      --> SYN/UDP floods
+      --> Reflection Attacks
+      --> Malformed TCP
+  Advanced --> (application layer)
+    --> more advanced DDoS protection
+    --> Larger attacks
+    --> 24/7 response team
+    --> Cost protection
