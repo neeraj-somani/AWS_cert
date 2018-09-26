@@ -6,18 +6,22 @@ CloudFormation Essentials --> (infrastructure as code)
 
 Benefit -->
   saves time, as same template configuration can be reuse in any region, account, 
-  infrastructure became the code, easy to manage and configure even with different versions
-  easy rollback if needed
+  version control, as infrastructure became the code, easy to manage and configure even with different versions
+  easy rollback if needed / backups
   can be easily prepare for even disaster recovery
 
-CloudFormation Template --> JSON / YAML text file, describe AWS infrastructure 
+Cloud Formation Engines --> Create Stacks, update Stacks (change sets), Delete Stacks, Nested Stacks
+Cloud Formation Designer --> WYSIWYG template designer, editor
+
+
+CloudFormation Template --> JSON / YAML text file, describe AWS infrastructure (V-DM-PM-CTRO)
 this template can have various optional sections, but "Resources" section is compulsory
   format version --> its the template version
   description --> a string that describes about template, its must follow format version
   metadata --> additional details that can help in implementation
-  parameters --> values to pass to your template when create or update stack
-  mapping --> match a provided key to a set of named values
-  conditions --> (intrinsic functions) statements that determine when resources are created or properties are defined using logical operator
+  parameters --> values to pass to your template when create or update stack, (variables in template, User prompted for values to enter at run-time, example- key-pair, instance type, password values, etc)
+  mapping --> match a provided key to a set of named values (lookup tables, AMIs by region)
+  conditions --> (intrinsic functions) statements that determine when resources are created or properties are defined using logical operator (example, Env= prod, )
   Transform --> used to integrate with AWS serverless application model (AWS SAM)
   Resources --> AWS resources details and there properties
   Outputs --> output values that can be imported to other stacks, return in the response, or can be viewed at cloudFormation console
