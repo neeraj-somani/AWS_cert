@@ -1,0 +1,12 @@
+AWS Config --> 
+--> A service that provides visibility into resource configurations
+    --> Detailed configurations --> snapshot of resource inventory, deliver reports to S3
+    --> Relationships between resources --> (eg: which resources use which security group)
+    --> Historical Timelines
+    --> Integrates with CloudTrail
+--> Notification can be configured when resource is created, modified or deleted. Configure stream delivery to SNS topics.
+
+Config Rules -->
+--> Evaluates compliance
+--> Managed rules --> provided by AWS, eg: is EBS volume encrypted, only approved AMIs used
+--> custom rules --> (Lambda function rules)
