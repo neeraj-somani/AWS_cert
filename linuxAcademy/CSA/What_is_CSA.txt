@@ -3,4 +3,68 @@ What is a Solution Architect?
 --> provide implementation guidance based on best practices throughout the lifecycle of project
 --> a successful architect in AWS should have following:
   --> a. designing a resilient architecture, which is highly available and fault tolerant
-  --> b. achieving max 
+  --> b. achieving maximum performance efficiency by leveraging caching, scalability and elasticity
+  --> c. identify the most cost effcient solution for compute and storage
+  --> d. knowing how to secure data, network and application
+  --> e. choosing design features that enable oprational excellence
+
+What is a well Architected Framework ??
+Its a series of best practice recommendations and questions to ask when designing and developing cloud architecture.
+
+A well Architected Framework and its pillars -->
+Reliability --> 
+Performance Efficiency --> 
+Security  --> 
+Cost Optimization --> 
+Operational Excellence --> 
+
+Lets discuss these in details -->
+
+--> Reliability --> ability to recover from failure and mitigate disruption (Key Service - CloudWatch)
+    Design Principles --> 
+        --> Test Recovery procedures
+        --> Automatically recover from failure
+        --> Scale Horizontally
+        --> Stop guessing capacity
+        --> Automate change
+    Best Practices -->
+        --> Foundation --> Limit access, Isolate resources, Safeguard application
+              Key AWS Services -->
+                  IAM --> Access control
+                  VPC --> Isolated network
+                  Trusted Advisor --> service Limit
+                  AWS Shield --> DDOS protection
+        --> Change Management --> Monitor AWS API, key Matrics, Automatically Scale 
+          Key AWS services --> cloudWatch, cloudTrail, Config, Auto-Scaling
+        --> Failure Management --> Disaster recovery strategy, maintain backups
+            key AWS services --> CloudFormation, S3, Glacier, KMS
+            
+            
+--> Performance Efficiency --> use computing resources efficiently
+--> Security  --> protect and monitor system
+--> Cost Optimization --> avoid or eliminate unneeded expenses
+
+
+--> Operational Excellence --> run and monitor systems to provide business value and to continually improve supporting processes and procedure.
+    Design principles --> 
+        --> perform operations as code
+        --> Annotate Documentation
+        --> Make frequent, small, reversible changes
+        --> Refine Operations procedure frequently 
+        --> Anticipate failure
+        --> Learn from all operational failure
+    Best Practices -->
+      Preparation --> Effective preparation --> 
+          key AWS services that help this practice --> 
+            cloudFormation --> operation as code
+            Log Collection and Monitoring --> AWS config, CloudWatch, CloudTrail, flowLogs
+      Operate --> Measure success with the achivement of business and customer outcome
+            Key AWS Services -->
+              CloudWatch --> Matrics Dashboard
+              Insights/Details --> CloudTrail, flowLogs, X-Ray
+      Evolve --> Evolve operations to sustain operation excellence
+            Key AWS Service -->
+              AWS Elasticsearch ---> Analyze log data
+              Strong Devops Model --> (Developer Tools services) CodeBuild, CodeCommit, CodeDeploy, CodePipeline, CodeStar, X-Ray
+
+
