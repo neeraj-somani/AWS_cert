@@ -1,0 +1,22 @@
+Physical and Networking Layer --> 
+  AWS Region -->
+  Availability Zone -->
+  Data centers -->
+  Edge Locations -->
+  
+  VPC -->
+    VPC Peering
+    Network components --->
+      NAT Gateway
+      Bashion Host
+      NACL
+      Security groups
+      Internet Gateway
+      Route Table
+      Subnet
+  Route53 -->
+  CDN --> Content Delivry Network
+    CloudFront --> 
+  S3 --> Static website hosting / DNS failover
+ 
+ 
