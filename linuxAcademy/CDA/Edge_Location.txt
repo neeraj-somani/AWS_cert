@@ -1,0 +1,8 @@
+Edge Locations --> 
+AWS data centers (point of presence) located around the world designed to give low latency access to two AWS services:
+  Route53 --> DNS lookup
+  CloudFront --> Content Delivery Network (CDN)
+      --> cached content, streaming distribution, and acceleration
+
+Security is handled by --> AWS Shield and AWS WAF services
+Acceleration is handled by --> Lambda@Edge, S3 Transfer, API Gateway
