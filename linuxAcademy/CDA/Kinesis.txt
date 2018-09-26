@@ -10,7 +10,7 @@ Kinesis Essentials -->
         --> Server Side Encryption
       major components -->
         --> stream --> contains one or more shards
-        --> shards --> (processing power) --> 1 MB/sec data input and 2MB/sec data output
+        --> shards --> (processing power) --> 1 MB/sec data input (write) and 2MB/sec data output (read)
                              --> distribute data to shards using partition key
         --> producer --> data creator
         --> consumer --> data consumer
@@ -18,8 +18,34 @@ Kinesis Essentials -->
     Data Analytics --> Run SQL queries against Data Streams or Firehose
     
 Kinesis Benefits -->
+    Real-time processing --> continously collect data and, build applications that analyze the data as it gets generated
+    Parallel processing --> multiple kinesis consumer applications can be processing the same incoming data streaming concurrently.
+    Durable --> Kinesis Synchronously replicates the streaming data across three data centers within a single AWS region and preserves the data for upto 7 days (24 hours by default)
+    Scalable --> can stream from as little as few MB to several TB per hour
 
+When to Use / Where to use -->
+    Gaming --> collect data like players actions, feed the data into gaming platform 
+            (a reactive plateform based off of players real-time actions)
+    Real-time Analytics --> Collect IOT (sensors) data from many sources at high amount of frequency and process it using kinesis
+    Application alerts --> monitors application logs in real-time and trigger events based on data
+    Log / event data collection --> log data from any number of devices, real-time data anlytics dashboard, stores in S3
+    mobile data capture --> all mobile devices can push data simultaneously to kinesis as it produced
 
+Kinesis Producers --> IOT devices (sensors), cell phone devices
+     --> producers are devices that produce and sends data to Kinesis
+     --> you can setup producers to continously input data into Kinesis Stream
+     --> you can easily scale (up or down) producers as per need
+     --> more producer means more shard you need
+     --> Kinesis APIs --> PutRecord, PutRecords
+     --> Kinesis Producer Library --> java library that sends data to stream
+     --> Kinesis Agent --> stream files from linux server
+
+Kinesis Consumers --> multiple consumers can consume Kinesis stream's data concurrently
+      --> Kinesis Consumers Library --> Java Library (EC2) --> wrapper for other languages
+                        --> launches a consumer for each shard
+                        --> auto scaling
+      --> Lambda can read stream data
+      --> Kinesis connector for EMR
 
 
     ------------ from aCloudGuru -------
