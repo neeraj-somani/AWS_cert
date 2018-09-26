@@ -6,3 +6,5 @@ AWS data centers (point of presence) located around the world designed to give l
 
 Security is handled by --> AWS Shield and AWS WAF services
 Acceleration is handled by --> Lambda@Edge, S3 Transfer, API Gateway
+
+Regional Edge Cache --> Used by cloud front to offload your origin by caching content that has been ejected from an Edge location.
