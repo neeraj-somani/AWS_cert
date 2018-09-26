@@ -11,39 +11,34 @@ What is a Solution Architect?
 What is a well Architected Framework ??
 Its a series of best practice recommendations and questions to ask when designing and developing cloud architecture.
 
-A well Architected Framework and its pillars -->
+A well Architected Framework and its pillars --> 
+      (CORPS - easy to remember below terms and related it with corporation architecture) -- below is alternative way
+      (CROPS - final output of your seed, cultivated plant that is fully grown)
+Cost Optimization -->
+Operational Excellence --> 
 Reliability --> 
 Performance Efficiency --> 
 Security  --> 
-Cost Optimization --> 
-Operational Excellence --> 
-
+ 
 Lets discuss these in details -->
 
---> Reliability --> ability to recover from failure and mitigate disruption (Key Service - CloudWatch)
-    Design Principles --> 
-        --> Test Recovery procedures
-        --> Automatically recover from failure
-        --> Scale Horizontally
-        --> Stop guessing capacity
-        --> Automate change
-    Best Practices -->
-        --> Foundation --> Limit access, Isolate resources, Safeguard application
-              Key AWS Services -->
-                  IAM --> Access control
-                  VPC --> Isolated network
-                  Trusted Advisor --> service Limit
-                  AWS Shield --> DDOS protection
-        --> Change Management --> Monitor AWS API, key Matrics, Automatically Scale 
-          Key AWS services --> cloudWatch, cloudTrail, Config, Auto-Scaling
-        --> Failure Management --> Disaster recovery strategy, maintain backups
-            key AWS services --> CloudFormation, S3, Glacier, KMS
-            
-            
---> Performance Efficiency --> use computing resources efficiently
---> Security  --> protect and monitor system
---> Cost Optimization --> avoid or eliminate unneeded expenses
-
+--> Cost Optimization --> avoid or eliminate unneeded expenses/cost
+      Design Principles --> 
+          --> Adopt a consumption model
+          --> Measure overall efficiency
+          --> stop spending money on data centers (as upfront cost)
+          --> analyze and attribute expenditure
+          --> use managed services
+     Best practices --> 
+        --> cost-effective resources --> chossing the right instances and storage option
+              --> key-services --> EC2 instances (reserved or spot), tags (cost allocation tags)
+        --> matching supply and demand --> scale according to load
+              --> key-services --> CloudWatch and Auto-scaling
+        --> expenditure awareness --> use cost allocation tags
+              --> Key-services --> CloudWatch, SNS (notifications when cost exceeds budget), cost allocation tags
+        --> optimizing over-time --> continously reevaluate
+              --> key-services --> Trusted Advisor (weekly email reports)
+      
 
 --> Operational Excellence --> run and monitor systems to provide business value and to continually improve supporting processes and procedure.
     Design principles --> 
@@ -66,5 +61,98 @@ Lets discuss these in details -->
             Key AWS Service -->
               AWS Elasticsearch ---> Analyze log data
               Strong Devops Model --> (Developer Tools services) CodeBuild, CodeCommit, CodeDeploy, CodePipeline, CodeStar, X-Ray
+
+--> Reliability --> ability to recover from failure and mitigate disruption (Key Service - CloudWatch)
+    Design Principles --> 
+        --> Test Recovery procedures
+        --> Automatically recover from failure
+        --> Scale Horizontally
+        --> Stop guessing capacity
+        --> Automate change
+    Best Practices -->
+        --> Foundation --> Limit access, Isolate resources, Safeguard application
+              Key AWS Services -->
+                  IAM --> Access control
+                  VPC --> Isolated network
+                  Trusted Advisor --> service Limit
+                  AWS Shield --> DDOS protection
+        --> Change Management --> Monitor AWS API, key Matrics, Automatically Scale 
+               Key AWS services --> cloudWatch, cloudTrail, Config, Auto-Scaling
+        --> Failure Management --> Disaster recovery strategy, maintain backups
+               key AWS services --> 
+                    CloudFormation --> IaaS
+                    S3 --> Durable backups
+                    Glacier --> Durable Archive
+                    KMS --> Reliable Key managment
+               Disaster Recovery Strategy --> 
+                    RTO (Recovery Time objective) --> How long to recover
+                    RPO (Recovery point objective) --> How much data is lost
+                 1. Backup and Restore --> 
+                        --> Backup data to AWS or another region (S3, snapshots)
+                        --> Have AMIs in recovery region
+                        --> CloudFormation templates in Standing By
+                        --> In-case of Disaster --> Spin-up instances from AMIs (use templates)
+                                    --> restore backup data
+                                    --> modify DNS to point to new instance
+                        --> RTO --> time it takes to launch instances, recover data, and update DNS
+                        --> RPO --> data generated since last backup
+                 2. Pilot Light --> 
+                        --> Cross region replication (S3, RDS, DynamoDB)
+                        --> instances stopped
+                        --> smaller DB read replica instances
+                        --> In-case of Disaster --> start instances
+                                    --> scale up DB, promote to primary
+                                    --> modify DNS or use Route53 failover
+                       --> RTO --> time to start instances and scale
+                       --> RPO --> replication lag only
+                3. Low capacity Standby --> 
+                      --> cross region replication
+                      --> similar to pilot light
+                      --> some capacity running 24/7
+                      --> continous testing with trick traffic
+                      --> multi-master option (Aurora)
+                      --> In-case of Disaster --> scale up / auto scale to full production capacity
+                                  --> Route53 failover for DNS
+                      --> RTO --> time to scale
+                      --> RPO --> replication lag only
+               4. Multi-Site Active-Active --> 
+                      --> Cross region replication or multi-master
+                      --> full capacity running 24/7 in 2 region
+                      --> multi-master option (Aurora)
+                      --> In-case of Disaster --> Route53 failover for DNS
+                      --> RTO --> time to failover
+                      --> RPO --> Replication lag only
+                            
+--> Performance Efficiency --> use computing resources efficiently
+      Design Principles --> 
+          --> Democratize advance technologies
+          --> Go global in minutes
+          --> Use serverless architectures
+          --> Experiment more often
+          --> mechanical sympathy
+      Best Practices -->
+          --> Selection --> chossing the right instance and storage option 
+          --> Review --> Re-evaluate when AWS announces new features and services (AWS blogs and news)
+          --> Monitoring --> verify resources perform as expected (CloudWatch, Lambda, SNS)
+          --> Tradeoff --> consider caching and read replicas (CloudFront, Cache, Snowball, RDS)
+          
+--> Security  --> ability to protect and monitor system
+      Design Principles --> (Shared responsibility model)
+          --> implement strong Indentity foundation
+          --> Enable tracability
+          --> apply security at every layer
+          --> automate security 
+          --> protect data (encrypt) in-transit or at-rest
+          --> prepare for security events
+     Best Practices --> 
+          --> IAM --> securely control access (IAM, AWS Organization, MFA, temp credentials)
+          --> detective controls --> real-time monitoring and access logging (CloudTrail, Config, CloudWatch, GuardDuty)
+          --> Infrastructure protection --> Isolated private networks (VPC, AmazonInspector, AWS Shield, AWS WAF)
+          --> Data Protection --> limit access, use encryption 
+          --> Incident response --> Automate response, Incident response monitor team
+
+
+
+
 
 
