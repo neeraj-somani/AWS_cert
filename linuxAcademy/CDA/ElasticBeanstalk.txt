@@ -1,6 +1,14 @@
 ElasticBeanstalk --> A service used to deploy single-tier (less complex) application without worry about provisioning of AWS resources.
   this is designed for people who have less knowledge of AWS but can utilize AWS super-power.
-  when to use this -->
+  Automated deployment and scaling services
+  Environment for Web-applications and SQS worker instances -->
+    --> load balancing, auto-scaling, monitoring, plateform managemnet, code deployment
+    --> Programming languages --> JAVA, Python, Go, .Net, PHP, Node.js, Ruby
+    --> servers --> Apache, Njinx, Passanger, IIS
+
+Deployment Option --> In-place (rolling), Blue-Green
+
+when to use this -->
     --> if application fits within the parameter of BeanStalk service
     --> can deploy from repositories or from uploaded code files
     --> easily update application by uploading new code files or requesting a pull from repository
