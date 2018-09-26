@@ -1,0 +1,10 @@
+Amazon Inspector --> 
+    --> Agent based security scans
+    --> Rule knowledgebase --> 
+      --> common vulnerabilities
+      --> best practices
+      --> center for Internet Security (CIS) Benchmark  
+      --> Runtime behaviour analysis (Insecure ports and protocols)
+    --> Example findings -->
+        --> remote root login enabled
+        --> vulnerable software versions
