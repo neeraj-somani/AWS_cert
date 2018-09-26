@@ -1,0 +1,35 @@
+Elastic MapReduce --> 
+  Essentials --> 
+    --> it simplifies running big data jobs on AWS, (Hadoop / spark)
+    --> processing of data in large batches
+    --> EMR is a managed service for running Hadoop cluster on EC2
+    --> used to process and analyze large amount of data
+
+Features and Advantages -->
+  --> S3 for storage --> load into HDFS or keep in S3 (EMRFS)
+  --> Transient clusters (temporary, short-term)
+  --> Spot instances
+  --> Boot-strapping
+  --> preconfigured application framework
+  --> scalability (add/remove core and task nodes)
+  
+EMR Map Phase -->
+  --> mapping is a function that defines the processing of data for each split
+  --> the block size for HDFS is 128 MB, which is the optimum split size
+  --> the larger the instance size used in EMR cluster, the more chunks your can map and process at the sametime
+  --> if there are more chunks than nodes/mappers, chunks will be queued for processing
+
+Reduce Phase -->
+  --> Reducing is the function that aggregates data into single output file
+  --> Reduced data needs to be stored (service like S3), because data processed by EMR cluster is not persistent.
+
+Cluster consist of Master and slave Nodes
+
+Master Node --> manages the cluster by running software components, which co-ordinates the distribution of data  and tasks among other (slave) node for processing
+    --> tracks the status of tasks and monitor the health of cluster
+    --> accepts SSH connection in-order to run interactive jobs
+Slave Node --> 2 types
+    Core node --> A slave node that has software components which run tasks and stores data in the HDFS on your cluster
+        --> core nodes do the "heavy lifting" of your data
+    Task node --> A slave node that has software components which only run tasks
+        --> task nodes are optional
