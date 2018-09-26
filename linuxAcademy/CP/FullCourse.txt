@@ -97,11 +97,12 @@ DataBase services --> RDS, DynamoDB, RedShift and Elastic Cache
       Trusted Advisor --> A service that "advises" and helps you optimize aspects of AWS account
           --> can help in reduce cost, increase performance, improve security
           --> real-time guidance to help you provision your resources following AWS best practices
-       Categories --> 
-          cost optimization
-          performance
-          security
-          fault tolerance
+       Best practice recommendation Categories --> 
+          cost optimization (Idle resources, and capacity reservation)
+          performance (High Utilization)
+          security (IAM, Security Groups)
+          fault tolerance (EBS snapshots, RDS backups, Multi-AZ)
+          Service limits
           
        **** level of support also depends on type of account
  
