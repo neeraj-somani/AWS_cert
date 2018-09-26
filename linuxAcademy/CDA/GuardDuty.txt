@@ -1,0 +1,7 @@
+GuardDuty --> 
+    Intelligent threat detection
+      --> threat intelligence feeds
+      --> machine learning
+      --> managed rule sets
+      --> continous monitoring
+      --> create events in cloudWatch
