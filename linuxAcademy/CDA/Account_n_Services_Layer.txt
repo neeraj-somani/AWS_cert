@@ -1,0 +1,14 @@
+AWS Account related configuration and Terms --> create, access and manage account and its services.
+  Root User (Account holder)
+  AWS User --> created by account owner with specific permissions
+  Account connection tools --> CLI, SDk, Console
+  
+  IAM 
+  All Other AWS services -->
+    Compute Services
+    Storage services
+    Database services
+    Analytics services
+    Development tools and services
+    Application and notification services
+    Monitoring services
