@@ -1,0 +1,20 @@
+Shared Responsibility Model --> 
+ Security and Compliance is shared responsibility between AWS and customers.
+ 
+AWS responsible for --> "Security OF the Cloud"
+--> setup and maintainance of physical harware located at each AWS data center
+--> physical security of data centers (locks, keys, security guards)
+--> setup and maintainance of host virtualization software / infrastructure
+--> Storage Decommision
+--> Network Infrastructure
+ 
+ Customer responsible for --> "Security IN the cloud"
+ --> Network level security (NACL, security groups)
+ --> OS patches and updates
+ --> IAM (user access management)
+ --> client and server side data encryption (Data in-trasit, Data at-rest)
+ --> AMIs
+ --> Applications
+ --> Firewall
+ --> Intrusion detection
+ --> Intrusion prevention
