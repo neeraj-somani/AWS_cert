@@ -1,0 +1,4 @@
+AWS ElasticSearch Service --> 
+  Open-source Distributed search and analytics Engine --> Log Analytics, Full-text search, Operational Intelligence
+  DataSources --> Logstash, CloudWatch Logs, Kinesis Firehose
+  Kibana Dashboard --> different matics / charts
