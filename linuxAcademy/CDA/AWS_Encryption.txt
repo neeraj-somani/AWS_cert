@@ -1,0 +1,17 @@
+Encryption on AWS -->
+
+AWS KMS (Key Managment service -->
+Master key never leave KMS
+IAM permissions and Key permissions
+Unique Data key for each data object
+Integrated with EBS, S3, RDS, RedShift, Elastic Transcoder, WorkMail, EMR, SQS, Kinesis
+
+Another service provided by AWS for Security/ encryption
+
+AWS CloudHSM -->
+Single Tenant Hardware
+No upfront cost
+Meet Federal Information Processing Standard (FIPS) 140-2 and common criteria EAL4+ standards
+AWS manages Firmware updates and automatica backups
+AWS has no access to keys
+Compatible with Oracle TDE
