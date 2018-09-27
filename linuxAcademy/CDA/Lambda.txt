@@ -1,5 +1,6 @@
 Lambda Essentials -->
-  Serverless computing platform --> means run code without managing servers
+  Serverless computing platform --> means run code without provisioning or managing servers
+  Lambda allows you to configure the amount of resources (memory, CPU) available to user function
   pay only for compute time code consume, in millisec
   by default Lambda is, highly available, scalable, fault tolerant, cost effective, elastic
   Lambda Functions and Lambda function packages are core concept for programming pplication based on Lambda
@@ -46,7 +47,11 @@ Lambda API actions --> need to visit on AWS website if needed.
   CreateFunction --> create new lambda function
   Invoke --> this invokes the needed lambda function, with Invocation Type (Event (Asynchronous) or RequestResponse (default and used for Synchronous))
   CreateEventSourceMapping --> this identifies a stream as an event source for a lambda function. This association between a stream source and a lambda function is called the event source mapping. (example, lambda function will be triggered when records are posted to the stream)
-  
+
+
+When to use Lambda over EC2 --> Generally when you want to run code in resoonse to an event -->
+example:- change to S3 bucket, updates to DynamoDB table, Kinesis Stream, SQS queue
+
   ----- Need to work on Lambda function lab again -----
   
 
