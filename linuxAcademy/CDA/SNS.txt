@@ -8,19 +8,28 @@ SNS benefits --> scalable and highly reliable and can be used through Console, C
 
 SNS components --> 
 
-Topics --> How you label and group different endpoints that you send messages to.
+Topics --> Object to which you publish your message (message must be <= 256 KB)
+How you label and group different endpoints that you send messages to.
 group of subscriptions that you send a message to 
   Topics names should be unique within account and limited to 256 charachter only.
   allows alphanumeric charachters, hyphen, and underscore
   topics and messages are stored redundently to multiple servers and data centers.  
+  subscribers subscribe to topic to receive messages
+  (receive message from publisher --> push to subscriber)
+
+subscriber (consumer) --> an endpoint that a message is sent to, like Http, Https, Lambda, Email, SQS, Email-JSON, SMS, mobile Apps
+--> there is a soft limit of 10 million subscribers per topic 
 
 subscription --> The endpoints that a topic sends message to
 you attach ARN of your topic, type of subscriber (Email, SMS, etc) and value for that subscriber.
 
-Message --> JSON formated Key-value pair, 
+publisher (producer) --> An entity (human/ alarm/ event) that gives SNS a message that needs to be sent. 
+
+Message --> (<= 256 KB) JSON formated Key-value pair, 
   allows developer to grab message data and parse it
   POST to end-point (HTTPs) with Specific header info. Header content can be used for verification and authenticity.
   message content depends on subscribers
+  since a message is limited to 256KB, consider SES for sending bulk email
 
 SNS Message body -->
   message --> this is the actual message value that will be send when notification was published 
@@ -37,8 +46,7 @@ SNS Message body -->
 SNS message attributes --> each message attributes needs a Name, type, and value. Sent along with the message. 
     Useful for SQS and mobile push notifications
     
-subscriber (consumer) --> an endpoint that a message is sent to, like Http, Https, Lambda, Email, SQS, Email-JSON, SMS, mobile Apps
-publisher (producer) --> An entity (human/ alarm/ event) that gives SNS a message that needs to be sent. 
+
 
 SNS Access control policies --> can be used to grant access to SNS topic to another AWS account
   example:- SNS API: AddPermission --> requires topic, AWS Account ID, Actions and Labels
