@@ -2,10 +2,12 @@ SWF Essentials --> fully managed workflow service
   allows application team to implement distributed and asynchronous application.
   coordinates and manages the execution of activities
   SWF guarantees the order of activity, consistent and continous execution
-  SWF cant have duplicate tasks
+  SWF can't have duplicate tasks
   A workflow execution time can be mins to 1 year
+  --> Its an API service that can be used by non-AWS services as well, like on-premises components to integrate and manage their workflow tasks.
  
  Components of SWF -->
+  starter --> starts the workflow
   workflows (decider) --> sequence of steps to perform a specific tasks
   Activities --> A single step (or unit of work) in the workflow
   tasks --> that interacts with workers that are part of workflow
@@ -13,7 +15,7 @@ SWF Essentials --> fully managed workflow service
      activity tasks --> tells a worker to perform a function (eg: to encode video, check inventory, etc)
      decision tasks --> tells the decider about state of the workflow execution, which allows the decider to determine about next activity
   workers --> responsible for receiving a tasks and take action on it. it can be any type means, a EC2 instance or a person
-  deciders --> 
+  
   
 SWF vs SQS -->
   similarities --> both used to create dictirbuted systems and allow to scale each task independently
