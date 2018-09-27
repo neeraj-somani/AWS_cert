@@ -16,9 +16,9 @@ AWS ECS Cluster --> Logical group of EC2 instances that you can place container 
   EC2 instances are linked via VPC
 
 ECS cluster can be created using any of below options --->
-      --> AWS Console, --> CloudFormation, --> CLI, --> AWS ECS APIS
+      --> AWS Console, --> CloudFormation, --> CLI, --> AWS ECS APIs
       
-Purpose / Benefits --> 
+Purpose / Benefits -->
   1. create distributed applications and microservices -->
     microservices --> create application architecture comprised of small independent task.
     example, seperate container for different component of application -->
@@ -35,7 +35,12 @@ Purpose / Benefits -->
   3. Continous Integration and Deployment -->
     By using Docker image versioning, its easy to use container for continous integration and deployment
     Build processes can Pull, Build, and create Docker images for your container
-
+  4. Higher instance utilization
+  5. Auto-scaling
+  6. ELB
+  7. Consistent between all environments
+  
+  
 AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instances (same as Lambda)
 
 Container Registry -->
@@ -49,12 +54,11 @@ Container Registry -->
 
 ECS Agent -->
     --> manages the state of container on a single EC2 instances 
-    --> manages how ECS communicate with the Docker deamon on EC2 instances
+    --> manages how ECS communicate with the Docker deamon on EC2 instances (running task, resource utilization)
     --> must be on every EC2 instance in your ECS cluster
     --> included with the ECS optimized AMI
-    
-  This runs on each EC2 instance in the ECS cluster, to communication information from EC2 to ECS, like running task, resource utilization, etc.
-  ECS Agent also responsible for starting/stoping tasks when instructed by ECS.
+    --> This runs on each EC2 instance in the ECS cluster, to communication information from EC2 to ECS, like running task, resource utilization, etc.
+    --> ECS Agent also responsible for starting/stoping tasks when instructed by ECS.
  
 Dockerfile -->
   A plain text file (script) that contains details (/instructions) about components that should be included in container
@@ -64,11 +68,13 @@ Docker Images --> point in time capture of code and dependencies
 
 Tasks --> Deploys containers onto ECS instances in your cluster based on task definition
   --> communicate with ECS Agent and Docker Deamon to run containers on eligible EC2 instances in cluster
+  --> actual representation of task definition on Ec2 instanceinside ECS
 
 Task Definition --> point in time capture of the configuration for running the image
     --> template for running one or more tasks
 A JSON formatted text file that contains the "bluprint" of your application:
-    --> Docker Image for each container
+    --> which Docker Image for each container
+    --> which container registry (repository) the image is located in 
     --> CPU and Memory requirement for each container
     --> links between containers
     --> networking and port settings
@@ -87,6 +93,9 @@ Task Placement Stretagy --> defines how to distribute tasks on EC2 instance in c
     --> run only one tasks per EC2 instances
     --> custom tasks placements
   
-  
+Elastic Container service for Kubernet --> (EKS)
+  --> Manages availability and scalability of kubernets control plane nodes
+        --> start, stop container, schedule container, replace unhealthy nodes
+
 
       
