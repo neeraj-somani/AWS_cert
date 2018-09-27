@@ -1,17 +1,20 @@
 APIGateway Essentials -->
   fully managed service to create and manage your own API for your application
-  "act-as" a front door for application, 
+  "act-as" a front door for application, allowing access to data/logic/functionality from your back-end service.
   build RESTFul web APIs with: resources, methods (GET, DELETE, POST, PUT), Settings
-  Deploy API to different stages/environments (dev, staging, prod). Each stage can have their own environment settings.
-  API versioning, can clone API from previous versions
+  Deploy APIs to different stages/environments (dev, staging, prod). Each stage can have their own environment settings (like, throtteling, caching, metering and logging)
+  API versioning, can clone API from previous versions and create a new version from it
+  Rollback to previous API deployments
   custom Domain name can be pointed to APIs
-  CloudWatch can be used to monitor and manage API keys
-  set throttling rules based on number of request per sec
+  CloudWatch can be used to monitor and manage API keys, logs, 
+  set throttling rules based on number of request per sec (eg: for http request)
   security through signature v.4 to sign and authorize API calls (temporary credentials generated through cognito or STS)
  
-Benefits --> 
-  Ability to cache API responses
+Benefits -->  (using CloudFront)
+  Ability to cache API responses (Edge Locations)
   DDos (Distributed Denial of Service) protection via CloudFront
+  CloudFront Edge Location become entry point for your API into your back-end
+  hence, it can reduced latency and improved projection
   SDK generation for iOS, Android, etc
   support SWAGGER (very popular framework of API)
   Request/Response data transformation (JSON IN to XML out)
@@ -42,7 +45,7 @@ API Gateway Caching and monitoring -->
   caching can be set-up on a per API or per stage basis
   Monitoring can be done by cloudWatch
   
-API Gateway Monitoring --> can be used to monitor activity and usage
+API Gateway Monitoring --> CloudWatch can be used to monitor activity and usage
     monitoring can be done at API or stage level
     throttling rules are also monitored by CloudWatch
     Monitoring mertics includes statistics like -- caching, latency, detected errors
