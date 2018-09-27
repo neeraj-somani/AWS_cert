@@ -1,0 +1,48 @@
+Virtual Private Network (VPN) --> allows you as an architect to bridge the gap between on-premise and cloud resources.
+    with an AWS VPC, you can extend subnet from the cloud to your data-center and vice versa.
+
+VPN Essentials -->
+  --> enables the ability to extend network from one geographycal location to another
+  --> traffic traverses through internet
+  --> means extending on-premises network to cloud and vice versa
+  
+  --> from AWS stands point, this allows us to connect AWS resources (like EC2 instances) without need for public IP address or internet gateway.
+  --> also an additional level of security as traffic traverse through VPN is encrypted
+  
+  --> VPN connection has two parallel routes (IPsec Channel), which is for redundancy
+  --> Only one Virtual Private Gateway can be attach to VPC (just like IGW)
+  --> A VPC can have one IGW and one VPG at the same time
+
+Internet Protocol Security (IPsec) --> 
+  --> suite of secure network protocols for IPv4 (layer 3)
+  --> provides mutual Authentication
+  --> provides encryption, negotiation of keys
+
+example, VPN flow diagram -->
+On-premises DC --> Customer Gateway --> VPN connection --> VPG at VPC --> Router table --> subnet --> EC2
+  
+Customer Gateway -->
+  --> is a physical device or software application at on-premise location that act as "connector" to VPN connection.
+  --> this is the component at on-premises where we configure public IP address for other application
+      2 ways 
+      --> static routing --> you define routes
+      --> dynamic routes --> route automatically propogates, automatic failover
+              --> Border Gateway Protocol (BGP)
+              --> Autonomous System Number (ASN)
+
+VPN connection --> Actual link between VPG and Customer Gateway
+  --> this is setup / configure in AWS
+  --> each connection uses two IPsec tunnels for redundancy 
+
+Virtual Private Gateway (VPG) --> acts as "connector" on VPC (AWS) side on VPN connection
+      --> VPG is connected to VPC
+      --> Target for Route tables
+      --> Cloud hub --> multiple customer network
+      
+** Note: Both VPG and Customer Gateway are required to make VPN connections
+
+Router --> 
+  --> AWS has dispensed the concept of having users physically setup and manage a "router".
+  --> route tables are actually part of router assigned to your VPC
+  --> Hence, route table must include the route for on-premises network that are used by VPN, and point them to VPG. 
+      Choose Route propogation for BGP to automatically add the routes.
