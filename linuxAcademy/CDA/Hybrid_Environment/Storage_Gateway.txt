@@ -1,5 +1,8 @@
 Storage Gateway --> connect local data center software appliances to cloud based storage such as AWS S3
+    --> This gateway can also integrates your data with, AWS encryption, IAM, CloudWatch for monitoring
+    
     Gateway-Cached Volume --> 
         --> create storage volumes and mount them as iSCSI devices on on-premises server
         --> Gateway will store the data to AWS S3 that is written to this volume and cache frequently accessed data on-premises in the storage server.
+    
     Gateway-Stored Volume --> store all the data locally (on-premises) in storage volume and incrementally take snapshots of data for back-up and store them to S3.
