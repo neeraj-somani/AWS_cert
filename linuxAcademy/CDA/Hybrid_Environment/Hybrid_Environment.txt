@@ -1,0 +1,1 @@
+Hybrid Architecture allows you to combine resources located in AWS cloud with on-premises resources and use them as if they were located in same environment.
