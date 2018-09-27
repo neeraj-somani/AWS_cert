@@ -1,0 +1,31 @@
+Direct Connect --> provides a solution when you need a direct , dedicated internet connection to AWS without sending your data out over to open internet.
+
+DirectConnect Essentials -->
+  --> provides a dedicated connection between your network and one of the AWS direct connect location.
+  --> This is done through authorized DC provider (like, verizon or other ISPs) --> 1 GBps or 10 GBps
+  --> AWS DC provides ability to access VPC in the AWS region it is associated with,
+  --> Access to public service endpoints in all regions
+
+Benefits -->
+  Reduce network cost --> reduce bandwidth commitment to corporate ISP over public internet, Amazon billed at lower rate for data transfered through DC.
+  Increase network consistency --> dedicated connection can reduce latency
+  dedicated private network connection to on-premises --> Use multiple VIF (virtual interfaces) to connect to multiple VPCs
+
+Private Virtual Interface (PVI) --> allows you to interface with AWS VPC
+  --> with automatic route discovery using BGP
+  --> requires a public or private ASN 
+  --> can only communicate with internal IP addresses inside of EC2
+  --> can't access public IP addresses as DC is not an internet provider
+  --> its a dedicated private connection like VPN
+  --> recommendation, use two DC for active-active or active-failover availability
+  --> you can also use VPN as a backup to DC connection
+  --> Use multiple VIF (virtual interfaces) to connect to multiple VPCs
+
+Public Virtual Interface (PVI) -->  allows you to connect to public AWS endpoints at any region (example, dynamodb items or S3 objects)
+    --> connection maintains consistent traffic as it is flowing through dedicated network
+  
+Direct Connect Gateway --> 
+  --> connect to any VPC is your account in any region
+  --> create in any region and access it from any region (except china)
+  --> VPCs can not have overlapping CIDR blocks
+  --> communication traverses the AWS netwrok backbone
