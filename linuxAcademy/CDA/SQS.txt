@@ -7,22 +7,23 @@ SQS Essentials -->
     SQS offers 2 types of Queue --> standard queue and FIFO queue
     
 two types of polling --> (pulling) mechanism
-  Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, hence reduces API request
-        occurs when message waitTimeSeconds > 0
+  Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, 
+  --> check all server / services before sending empty response back to caller
+  --> hence reduces API request occurs when message waitTimeSeconds > 0
   short polling --> increases API request and hence increase cost
         SQS samples subset of servers and returns messages just from those servers
         will not return all possible messages from poll
         Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
         if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
 
-SQS Queue --> highly reliable hosted message store. 
+SQS Queue --> highly reliable hosted message store. ( TTL is 1 min to 14 days)
 2 type of queues --> 
    standard queue --> supports nearly unlimited number of messages per second
         supports multiple producers/consumers
         guarantee delivery of messages atleast once with best effort ordering
         used with application that can tolerate or handle duplicate messages
         support 120,000 in-Flight messages
-   FIFO queue --> supports upto 3000 messages with batching and 300 messages without batching
+   FIFO queue --> supports upto 3000 messages with batching and 300 messages without batching (per second)
         supports multiple producers but only supports multiple consumers through use of GroupID:
             GroupIDs can be used to interleave multiple ordered message groups within a single FIFO queue
             Messages are processed in-order with respect to the group but not always with respect to the other groups
@@ -45,9 +46,12 @@ SQS resource based access control policies --> all points are same as SNS.
             IAM role and Access control policies can be used at the same time.
  
 SQS message characteristics and Limitations -->
+    message --> a set of instructions that will be relayed to the worker instance via SNS Queue (upto 256 kb text in any format)
   {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
-  time-to-live from 1 min to 14 days
-  visibilityTimeout --> message can be invisible in a queue for upto 12 hours
+  for larger messages we can use S3.
+  server side encryption
+  time-to-live from 1 min to 14 days in SQS queue
+  visibilityTimeout --> message can be invisible in a queue for upto 12 hours, this becomes invisible after being pulled by called and wait for deletion.
   messages can be added to dead letter queue if consumers unable to process them
 
 message components -->
@@ -64,6 +68,18 @@ SQS API -->
   ReceiveMessage --> used by consumers to receive messages
   ChangeMessageVisibility --> sometime consumer need more visibility time, hence it used to set message visibility
   DeleteMessage --> consumer finish processing and delete message
+
+Sample SQS workflow could be similar to this -->
+    --> Generally a worker instance will pull a queue to retrieve waiting messages for processing
+    --> Lambda function can now replace worker to pull and process messages
+    --> Auto scaling can be applied based on queue size so that if a component of your application has an increase in demand the number of worker instances can increase.
+    
+Tightly coupled or decoupled Architecture -->
+    Tightly couple Architecture -->
+        --> In this system the components are not only linked with each other but also dependent on each other.
+        --> if one component fails, all other will get impacted means will fail or will not run
+   Loosely coupled or decoupled components -->
+        --> these have multiple component that can work without even being connected, means if one fails the rest of the system still up and running. Its fault-taulerent and highly available.
 
 SDKs can handle many functionality and more useful then APIs.
 
