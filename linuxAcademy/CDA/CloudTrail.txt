@@ -1,3 +1,8 @@
+CloudTrail Essentials --->
+  CloudTrail is an API logging service that logs API calls made to AWS.
+  It can log call from any interface, means from console, CLI, or SDK
+  All logs will be stored in S3, highly available, durable
+
 CloudTrail --> allows you to monitor all actions taken by any IAM user
   example:- who and when an specific S3 object been deleted and log the details
 
@@ -9,3 +14,7 @@ and Risk Auditing of your account
 
 CloudTrail provides events history of your account activity.
 This helps in security analysis, resource change tracking and troubleshooting
+
+CloudWatch - CloudTrail logs Integration --> 
+  --> sends cloudTrail events to cloudWatch logs
+  --> define custom metrics and alarms
