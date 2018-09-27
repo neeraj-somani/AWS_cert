@@ -1,0 +1,15 @@
+Service Oriented Architecture vs Serverless Architecture -->
+    
+    Microservices --> each microservice is a self contained unit of functionality on independent resources.
+        --> communicate with each other using API
+        --> decouple microservices using queue
+    microservices components --> 
+        Lambda function (serverless)
+        messaging App --> (SQS, MQ)
+        API Gateway 
+        Containers (ECS, EKS)
+        ELB, Auto-sclaing
+
+Serverless Architecture means -->
+  each service is seperate from each other and work independently for each task and pass control to other once done.
+  
