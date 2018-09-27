@@ -1,0 +1,9 @@
+VPC Flow Logs -->  allows you to collect IP traffic going to/from network interface in your VPC .
+    --> VPC Flow Logs data is stored in a log group in CloudWatch
+    --> it can be created on a specific VPC, subnet or network interfaces.
+    --> each network interface will have its own unique log stream
+    --> you can custom log configuartion setting to capture data on accepted traffic, reject traffic, or all traffic
+    
+Example: - 
+  log details can contain, SourceIP, destination IP, source port, destination port
+  
