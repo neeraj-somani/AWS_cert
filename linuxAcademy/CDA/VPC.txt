@@ -42,6 +42,21 @@ VPC Limits -->
     500 Security groups per VPC and/ 50 rules per security groups
     5 security groups per network interface (because, security groups are genrally on instance level but technically considered on VPC level)
 
+CIDR Notation -->
+VPC IP addressing --> 
+  IPv4 --> (public and private addresses)
+        -->  32 bit, 4 (8-bit) octates, (example, XXX.XXX.XXX.XXX(0-255))
+  IPv6 --> Public addresses)
+        --> 128 bits, 8 (4-char) hexadecimal, 
+  CIDR Notation (IPv4) --> (example, XXX.XXX.XXX.XXX(0-255)/XX(0-32)) means --> range of IP address
+      example:- (0.0.0.0/0 --> entire internet --> range from 0.0.0.0 to 255.255.255.255)
+            --> (10.0.0.0/32 --> only one address --> 10.0.0.0)
+            --> (10.0.0.0/16 --> 65,536 address --> range from 10.0.0.0 to 10.0.255.255)
+
+VPC Endpoint -->
+  Gateway Endpoints -->
+  Interface Endpoints --> cloudWatch logs, codeBuild, KMS, Kinesis, Service Catalog
+  
 Horizontal scaling vs Vertical Scaling --->
 Horizontal scaling means that you scale by adding more machines into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
 
@@ -93,7 +108,7 @@ Firewall --> A type of software that either allow or deny certain kinds of inter
  NACLs --> (Newtork Access Control List) --> A firewall or security layer on subnet level
     ACL operates at network and subnet level
     supports both DENY and ALLOW rules
-    NACLs are stateless: so return traffic must be allowed with outbound rule
+    NACLs are "stateless": so return traffic must be allowed with outbound rule
     NACLs process rules in sequencial orders for allow or Deny on same port,  
       example: if rule to deny specific traffic at lower number, and allow at higher number then allow will be ignored and it will deny the traffic.
     Last rule in every NACL is catch all "DENY" rule, this is because all rules above this line will get precedence.
