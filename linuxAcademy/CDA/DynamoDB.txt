@@ -6,6 +6,7 @@ DynamoDB Overview -->
           customer need to manage data, not to worry about DB software/hardware
           provides built-in monitoring system
           schema-less, stores data in the form of key-value pair
+          high availability, scalable, elastic, fault tolerant
     2. consistent and fast performance --> 
           fast SSD used in hardware, 
           control throughput using RCU/WCU, 
@@ -14,6 +15,7 @@ DynamoDB Overview -->
     3. easy to setup and communicate with --> using AWS console/API/CLI/SDK, DynamoDB Stream advanced feature to use across AWS services
     4. optional encryption at rest
     5. Popular use-cases, example:- IOT (storing meta-data), Gaming info, mobile user session info, etc
+    6. Easily integrates with other AWS services like, EMR, Lambda
 
 DynamoDB Pricing --> below are main components to calculate pricing
   provisioned throughput Writes (WCU - write capacity unit) --> monthly rate per WCU
@@ -136,7 +138,10 @@ DynamoDB Limits -->
    strong consistent --> guarantee to reflect most recent write 
 ----------------------------------------------------
   
-  
+Popular Use cases -->
+    IOT --> Storing meta-data
+    Gaming --> storing session information, LeaderBoard
+    Mobile --> Storing User profiles, personalization
             
   
   
