@@ -1,4 +1,4 @@
-Route 53 --> DNS service (Domain Name System service)
+Route 53 --> DNS service (Domain Name System service) - Domain Management Service
 you can configure and manage web domains for websites you host on AWS.
 
 3 main functions of AWS Route 53-->
@@ -9,3 +9,39 @@ you can configure and manage web domains for websites you host on AWS.
   3. Health Checking --> frequently send automated requests to make sure application health and accessibility.
   
 you can use Route53 for either Domain Registrar or DNS Service or even both.
+
+Some other functionality of Route53 -->
+  --> Route53 can manage external DNS for domain routing
+        --> means, routing request for external domain like google.com, to proper AWS resources such as CloudFront Distribution, ELB, EC2 instances, RDS server.
+  --> Route53 is commonly used with ELB to direct traffic from the domain to the ELB (for evenly distribution of traffic)
+  --> Route53 can also be used to manage internal DNS for custom internal hostnames within a VPC as long as VPC is configured for it.
+  --> Latency, GEO, basic and failover routing policies allow for region-to-region fault tolerant architecture design.
+  --> you can easily configure for failover to S3 (if website bucket hosting is enabled)
+  
+
+Route53 Hosted Zones -->
+    --> A hosted zone stores DNS records for your domain
+    --> Basically, it contains all the rules (record sets) that tells Route53 what to do with DNS request.
+    --> After you created a hosted zone for your domain, you create resource record sets to tell the DNS how you want traffic to be routed for that domain.
+    --> Hosted zone comes pre-populated with NS (name server) and SOA (start of authority) record sets.
+ 
+ 2 types of Hosted Zones -->
+    --> Public Hosted Zones --> is a container that holds information about how you want to route traffic on the internet for a domain and its sub-domain.
+    --> Private Hosted Zones --> is a container that holds information about how you want to route traffic for a domain and its sub-domain within one or more AWS VPCs.
+   
+Route53 Record Sets --> 
+  --> Record sets are instructions that actually match domain names to IP addresses.
+  --> Record sets are comprised of various options, including:
+      --> Record Type
+      --> Standard / Alias
+      --> Routing policy
+      --> Evaluate Target health
+  --> Common record types include --> 
+      A: used to point a domain to an IPv4 IP address
+      AAAA: used to point a domain to an IPv6 IP address
+      CNAME: Used to point host/name to another host/name
+      MX: used to route email (mail exchange)
+ 
+Alias Record sets -->
+Routing policy -->
+Evaluate Health Check --> 
