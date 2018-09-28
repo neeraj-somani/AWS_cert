@@ -1,9 +1,18 @@
-Redshift Essential --> petabyte scale datawarehouse service, fully-managed and scalable
+Redshift Essential --> (OLAP) petabyte scale datawarehouse service, fully-managed and scalable
     --> generally used for big data analytics
     --> standard SQL operations are performed
     --> easily integrates with BI tools
-    --> its an AWS database that is primarily used to analyze data using standard SQL formatting with compatibility for your existing business intelligence tools
-
+    --> its an AWS database that is primarily used to analyze data using standard SQL formatting with compatibility for your existing business intelligence tools (eg: Tableau, JasperSoft, Amazon QuickSight)
     
+Features -->
+    1. SnapShots
+    2. Encryption
+    3. SQL (PostgreSQL compatible)
+    4. Low-cost (~$1000 per TB per year)
+    5. MPP (Massive Parallel Processing)
+
+RedShift Spectrum --> 
+    --> can query unstructured data stored in S3
+    --> Query exabytes of data in just few minutes
 
   
