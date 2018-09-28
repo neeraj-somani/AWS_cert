@@ -33,5 +33,9 @@ Troubleshooting -->
             --> need to add on-premise routes to the VPG route table
     --> Failure to create a VPC peering connection between two VPC's in different regions
             --> Peering connections can only be created between two VPC in the same region
-  
+ 
+ 3. ELB Troubleshooting --> 
+    --> Load balancing is not occuring between instances in multi-AZs
+        --> make sure "enable cross zone load balancing" has been selected
+    --> 
   
