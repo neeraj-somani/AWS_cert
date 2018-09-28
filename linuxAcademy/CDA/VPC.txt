@@ -60,7 +60,7 @@ VPC Endpoint -->
 Horizontal scaling vs Vertical Scaling --->
 Horizontal scaling means that you scale by adding more machines into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
 
-VPC Networking -->
+VPC Networking --> (Basic VPC infrastructure)
   Internet Gateway -->
     allows the communication between instances and Internet.
     it can scale horizontally, highly available and redundant
@@ -137,6 +137,7 @@ Note:- An ideal highly available and fault tolerant architecture must have ELB s
     --> ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs for High Availability and Fault Tolerance architecture
     --> ELB usually paired with Auto Scaling to improve High Availability and Fault Tolerance.
     --> when ELB used within VPC, it works as an internal load balancer. (i.e, on private subnet)
+    --> ELB can be public facing or Private facing
     --> ELB will automatically stops serving traffic to those instances that become unhealthy.
     --> If SSL certificate applies on ELB, a significant improve in compute power can be seen at instance
     
