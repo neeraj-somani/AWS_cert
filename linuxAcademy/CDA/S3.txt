@@ -6,16 +6,17 @@ Overall S3 Structure -->
 Below will be detailed summary of above listed 4 points:
 
 1. S3 Essentials --> This is AWS main storage service and server many purposes:
-  Bulk static object storage
+  Bulk (unlimited) static object storage
   various storage classes to optimize cost vs needed object availability and durability
   object versioning
   Access restrictions via object bucket policies/permissions
   Object management via lifecycle policies
+  Hosting static files and websites
   Origin for cloudFront CDN (content delivery network)
   File sharing or back-up/archiving for hybrid networks (via AWS Storage Gateway)
 
 Few important facts -->
-  1. S3 objects stays within region but synced across AZs for high availability, durability
+  1. S3 objects stays within region but synced across AZs for high availability (99.99%) and durability (11x9s)
   2. always create S3 bucket in a region where it can best server its purpose:
     --> serving fast content to customer
     --> sharing data with EC2
@@ -26,29 +27,34 @@ S3 Read consistency rule --> in all regions
 
 S3 Errors --> generally handled with http response
   404 --> Not found
-  403 --> Forbidden
+  403 --> Forbidden (no access)
   400 --> Bad request
   500 --> server error
+
 S3 Event Notification --> using AWS services like SNS, Lambda, SQS
 
 2. S3 Components ----------------------------
 S3 Buckets -->
-  Buckets are main storage container of S3.
+  Buckets are main storage container of S3. grouping of object can be done by using "folder" concept.
+  tags can be used to organize buckets
+  encrypted by default
   S3 buckets and objects resides within region where it got created, untill explicitly transfered.
     This brings low latency, minimize cost and address regulatory requirements
+ 
  Bucket Naming convention -->
     Every bucket must have unique name across all of AWS.
     must comply with DNS naming convention
-    charachter limit ( min 3 - max 63)
+    charachter limit (min 3 - max 63)
     must start with letter or number and can only contain lowercase letters, numbers, period, hyphen
+    No uppercase letters or numbers
     Also, two symbols cant be together, means, hyphen can't follow period and vice versa
     must not be an IP address format
  Buckets limitation -->
-    100 per AWS account, Bucket ownership cant be transferd, Bucket can hold unlimited objects
+    only 100 buckets per AWS account, Bucket ownership can't be transferd, Bucket can hold unlimited objects
 
 S3 Objects -->
   Objects are static files and metadata information.
-  Metadata means - storage type, encryption settings and permissions.
+  Metadata means - storage type, encryption settings and permissions. (in the form of key-value pair)
   Storage type is must and used to determines objects availability, durability, and cost.
   By default, all objects are private.
   Objects --> 0 byte to 5 TB size
