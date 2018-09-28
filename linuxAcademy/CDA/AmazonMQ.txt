@@ -1,7 +1,7 @@
 Amazon MQ Essentials -->
   --> An opensource message broker
   --> managed Apache ActiveMQ
-  --> compatible with JMS API or protocols such as AMQP, MQTT, OpenWire and STOMP
+  --> compatible with (Java Messaging Service) JMS API or protocols such as AMQP, MQTT, OpenWire and STOMP
   --> can function as a Queue or Topic
   --> One-to-One or One-to-Many
 
