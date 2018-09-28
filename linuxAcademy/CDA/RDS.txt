@@ -1,12 +1,23 @@
 RDS Essentials --> fully managed relational DB service (means, store data in tables)
-  --> can't access underlying OS
-  --> connecting to RDS is very similar to connecting to any oher on-premises DB
-  --> auto scaling available , highly available, multi-AZ, 
+  --> can't access underlying OS, because fully managed by AWS
+  --> connecting to RDS is very similar to connecting to any other on-premises DB
+  --> auto scaling can be enabled, highly available, multi-AZ, 
   --> can create Read replicas to distribute traffic from primary DB
+  --> OLTP DB
 
 Supported DBs -->
   MySQL, MariaDB, PostgreSQL, Oracle, MS SQL Server
-  Aurora --> AWS home growned RDB, fully compatible with MySQL and has 5 times better performance and lower competitive prices
+  Aurora --> AWS home growned RDB, 
+      --> fully compatible with MySQL or PostgreSQL
+      --> has 5 times better performance than MySQL and 3 times better performance than PostgreSQL
+      --> lower competitive prices
+      Main Features --> 
+        --> upto 15 read replicas across 3 AZs
+        --> continous backups
+        --> single-digit millisec replication lag
+        --> Back-track in seconds
+        --> multi-master option
+
 benefits --> 
   automatic minor system updates
   automatic backups (point-in-time snapshots)
@@ -14,4 +25,31 @@ benefits -->
   multi-AZ on a single click
   auto recovery incase of failure.
   
+RDS Read Replicas -->
+  --> Asynchronous copies of primary database that are used for read-only purpose
+  --> AWS automatically copy data to Replicas from primary, when any new write come to primany
+  --> cross region read replicas are supported
+  --> MySQL, PostgreSQL, MariaDB, Aurora, currently support read replicas
+  --> CloudWatch can be used to monitor lag
+
+RDS Multi-AZ failover --> (stand-By DB instance)
+  --> Multi-AZ failover (automatic AZ failover) synchronously replicates data to a back-up (stand-by) DB instance located in another AZ but in same region.
+  --> This is helpful in the event of:
+        --> service outage in an AZ
+        --> Primary DB instance failure
+        --> instance server type is changed
+        --> Manual failover initiated
+        --> Updating software version
+        --> AWS will automatically switch the DNS record from primary instance to stand-by instance
+        
+   --> RDS backups are taken against the stand-by instance to reduce I/O freezes and slowdown if multi-AZ is enabled
+   --> In-order for multi-AZ to work your primary DB instance must be launched into a subnet group
+   
+RDS Backups --> (Automated backups and snapshots)
+    --> AWS provides automated point-in-time backups against RDS instance
+    --> automated backups are deleted once the DB instance is deleted and it can't be recovered
+    --> The max retention period for automated snapshot is 35 days.
+    --> manual snapshots can be retained for as long as you want.
+    --> snapshots can be copied to other regions for Disaster Recovery purposes
+    --> RDS Encryptions enable --> snapshots are automatically encrypted
   
