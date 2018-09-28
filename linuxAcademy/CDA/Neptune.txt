@@ -1,0 +1,15 @@
+Neptune --> Data storage Service
+    Essentials --> 
+        --> fully managed NOSQL Graph database, service provided by AWS
+        --> Open Source APIs --> 
+              TinkerPop Gremlin --> Use Gremlin console client
+              RDF SPARQL --> Use RDF4j console
+        --> Highly available
+        --> Storage up to 64 TB with upto 15 read replicas
+        --> Server side encryption
+ 
+ Popular Usecases Includes -->
+    1. Social Network
+    2. Knowledge Graphs
+    3. Fraud Detection
+    4. Recommandation Engine
