@@ -1,0 +1,8 @@
+VPC Peering --> 
+  --> used to extend your private network from one VPC to another, or from one subnet or specific instance to another.
+  --> This is for sharing internal resources via private IP address
+  --> VPC peering can occur between 2 VPCs in same region or different region
+  --> its even possible between 2 VPC in different account
+  --> They must have seperate (non-overlapping) CIDR block range.
+  --> Transitive considtions are not allowed
+  --> It can be configured to connect entire VPC or specific subnet.
