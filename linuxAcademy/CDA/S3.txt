@@ -33,7 +33,7 @@ S3 Errors --> generally handled with http response
 
 S3 Event Notification --> using AWS services like SNS, Lambda, SQS
 
-2. S3 Components ----------------------------
+2. S3 Components ---(S3 bucket, S3 Object, S3 folders) -------------------------
 S3 Buckets -->
   Buckets are main storage container of S3. grouping of object can be done by using "folder" concept.
   tags can be used to organize buckets
@@ -55,17 +55,20 @@ S3 Buckets -->
 S3 Objects -->
   Objects are static files and metadata information.
   Metadata means - storage type, encryption settings and permissions. (in the form of key-value pair)
-  Storage type is must and used to determines objects availability, durability, and cost.
+  Storage type (class) is must and used to determines objects availability, durability, and cost.
   By default, all objects are private.
+  
   Objects --> 0 byte to 5 TB size
     multiple versions (if versioning enabled)
     every object can be access via URL
     Storage Lifecycle policy can be applied (eg:- stored in Standard, then moved to IA, then moved to Glacier)
     Encryption can be done
     Objects Organized into "Sub-name" spaces known as folders
+  
   Objects Encryption -->
     SSE (Server Side Encryption) --> AWS provide - AES-256, encryption at S3 level
     Client Side Encryption --> Client uses 3rd party tool, or some other encryption technology
+
 S3 Folders --> ( this is just a concept AWS support, but in general S3 has a flat structure, means no hirarchy, like any other file system.
     --> it can be used as a means of grouping objects together
     --> it can be created by using key-name prefixes for objects
@@ -80,15 +83,36 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
     --> S3 reassembles each part after complete upload and creates one object 
     --> Multipart approach is must for file size 5GB and larger but suggested to implement this for object size 100 MB or larger
     --> file size limitation of S3 is 0 byte to 5 TB
+    
+    S3 Transfer Acceleration --> 
+        --> Users can upload content through cloudFront Edge location
+        --> and can change end-point URL
+        example:- mybucket.s3.amazonaws.com  --------->   mybucket.s3-accelerate.amazonaws.com
+        
 2. Signle Operation upload -->
     --> Single opration upload is traditional approach for uploading file as One part
     --> Single operation can support a file size upto 5 GB, but suggest to implement mutipart upload for any file size 100 MB or larger 
-3. Storage Gateway --> connect local data center software appliances to cloud based storage such as AWS S3
-    Gateway-Cached Volume --> 
+
+3. Storage Gateway --> connect local data center software (VMWare or Hyper-V) appliances to cloud based storage such as AWS S3
+     a. Volume Gateway -->
+       Gateway-Cached Volume --> 
         --> create storage volumes and mount them as iSCSI devices on on-premises server
         --> Gateway will store the data to AWS S3 that is written to this volume and cache frequently accessed data on-premises in the storage server.
-    Gateway-Stored Volume --> store all the data locally (on-premises) in storage volume and incrementally take snapshots of data for back-up and store them to S3.
+      Gateway-Stored Volume --> store all the data locally (on-premises) in storage volume and incrementally take snapshots of data for back-up and store them to S3.
+    b. File Gateway --> local NFS, object are stored and retreivable from S3
+    c. Tape Gateway --> industry standard iSCSI virtual tape library devices 
+                    --> common back-up appliances (eg. Veeam, veritas, Dell, etc)
+                    
 4. Snowball --> An AWS service/device for petabyte scale of data transportation from on-premises to cloud and vice versa.
+        --> AWS provided secure transfer appliances
+        --> use up to 80 TB per device
+    --> 4.a --> Snowball Edge --> snowball plus onboard compute capability
+                              --> upto 100 TB per device
+                              --> can be clustered
+                              --> S3 API interface
+                              --> Lambda functions
+    --> 4.b. --> SnowMobile --> ExaByte-scale data transfer (100 PB per Snowmobile)
+    
 5. AWS S3 Import/Export --> gives the ability to import/export on-premises data and physically mail to AWS (using a device owned by customer)
       --> AWS will import the data to S3, Glacier, EBS, within one business day
       --> benfits --> off-site backup policy, Disaster Recovery option, easy and quick migration of LARGE (16 TB per job) amount of data to/from cloud
@@ -127,15 +151,18 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
                   {arn:aws:s3:::bucket_name/object_name/${aws:user_name}} // using variable inside json
                   
   Resource-based policies - 2 ways -->
+    
     2. Bucket Policies --> {JSON} attached to S3 bucket level (not to objects), means its automatically applied to all objects of bucket created by bucket owner. objects created by other than owner has to explicitly specify object level permission.
     --> can be used to grant accesss to IAM users or other AWS accounts
     --> policy specifies allow and deny permission, even can specify based on user as well. (like, which user can use PUT/DELETE, etc)
+    
     3. S3 ACL Policies --> {XML} can be used to specify permissions at both bucket and object level
           --> ACLs can't deny permissions and can't grant conditional permissions
           --> most useful for Object level permissions, as this is the only way to attach a policy to objects
 
 ---- S3 Features --->
 1. S3 Encryption --> 2 ways -- All handled in background by AWS SDK
+
    1. In-transit/client side --> SSL or client side encyption techniques
         1. Client Side Master Key (CSMK) --> client manage master key and unencrypted data never sent to AWS.
               upload/download steps with CSMK --> 
@@ -153,7 +180,8 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
               --> Download file and metadata
               --> KMS decrypts ciphertext blob for client, to get the plaintext key
               --> plaintext key is used to decrypt the object data file
-   2. At rest / server side --> S3 encrypt data for user / server side encryption
+  
+  2. At rest / server side --> S3 encrypt data for user / server side encryption
       SSE-S3 --> Amazon S3 provides encryption key before saving data to disk 
             --> AES-256 (Advanced Encryption Standards)
             --> each object gets a unique key that is encrypted by regulatory-rotated master key
@@ -167,6 +195,9 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
   versioning can only be set at bucket level and will be applicable to all objects
   Lifecycle policies can be applied to specific version of the objects
   every object is independent in itself and consist of unique version id
+  different life-cycle policy can be applied to current version and previous versions
+  versioning & life-cycle policy can both be enabled at the same time. Used this feature to create great archival and back-up solution.
+  Cross Region Replication is also available.
   Enable Versioning -->
      Existing object remain unchaged and have null as versionID
      Each addedd objects will automatically have unique versionID
@@ -190,9 +221,10 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
   4 class types -->
   S3-Standard --> default and for all purpose, 11X9's durable, 99.99% available, most expensive 
   S3-RRS (Reduced Redundency Storage)--> designed for non-critical/reproducible objects. 99.99% available/durable, little less expensive
-  S3-IA (Infrequent Access) {standard-IA} --> designed for IA but with immidiate availability when requested, 11X9's durable, 99.90% available, less expensive than standard/RRS
-    OneZone-IA --> all S3-IA specification applied to one specific zone only
-    S3-Glacier --> long time archival storage, should not be used for back-ups, cheapest, several hours of retrieval time, 11X9's durable
+  S3-IA (Infrequent Access) {standard-IA} --> designed for IA but with immidiate availability when requested, 11X9's durable, 99.90% available, less expensive than standard/RRS. (30 days minimum storage)
+    OneZone-IA --> all S3-IA specification applied to one specific zone only. 11X9's durable, 99.5% available, (30 days minimum storage)
+    S3-Glacier --> long time archival storage, should not be used for back-ups, cheapest, several hours of retrieval time, 11X9's durable. (90 days minimum storage), SSL/TLS end point, encryption at rest, 
+          --> 40 TB max object size, Vault lock feature (just like safe house lock).
    3 types of retrieval --> expedited (1-5 min), standard (3-5 hr), bulk (5-12 hr)
 
 Settings/changing storage class --> while uploading to S3, default storage class is Standard.
@@ -201,6 +233,7 @@ Settings/changing storage class --> while uploading to S3, default storage class
 
 4. S3 lifecycle policy --> (by default disabled), set of rules that automates migration of objects to various storage classes
       --> good for company data retention policy, cost efficient, ease of management, 
+      --> each object can have their own life-cycle policy, even different version of same object can have different policy
 
 5. S3 hosting static website --> you can build a code that can nevigate to different files (usually HTML, CSS, JavaScript) stored at S3.
       --> index.html (or default file) and error.html (error file for 4XX errors) must be specified.
