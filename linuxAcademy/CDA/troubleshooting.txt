@@ -1,0 +1,14 @@
+Troubleshooting --> 
+1. EC2 Troubleshooting --> 
+--> connectivity issues to an EC2 instance --> correct port on security group may not be open
+--> Can not attach an EBS volume to an EC2 instance --> 
+    --> EBS volume and EC2 instance must be in same AZ
+    --> you can create a snapshot from the volume and launch the volume in correct AZ
+--> can't launch additional instances --> you probably reach the limit, contact AWS support
+--> Unable to download package updates --> EC2 instance may not have public/Elastic IP and or doesn't belong to public subnet
+--> Applications seeming to slow down on T2 micro instances --> 
+    --> T2 micro instances utilize CPU credit (for "bustable" processing), so chances are your application using to much processing power, so needs a larger instance or different instance type
+
+
+  
+  
