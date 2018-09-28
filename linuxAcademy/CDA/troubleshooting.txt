@@ -37,5 +37,20 @@ Troubleshooting -->
  3. ELB Troubleshooting --> 
     --> Load balancing is not occuring between instances in multi-AZs
         --> make sure "enable cross zone load balancing" has been selected
-    --> 
-  
+    --> Instances are healthy but are not registering as healthy with the ELB
+        --> check configuration for "health check", make sure you have selected the proper ping protocol, ping port and ping path
+    --> The ELB is configured to listen on port 80, but traffic is not making it to instances that belong to ELB
+        --> you may have mistaken the "Listeners" for the security group. Listeners are not the same as security group rules, port 80 still need to be open on security group that the ELB is using.
+    --> Access logs on web server show IP addresses of the ELB not the source traffic
+        --> Enable access logs to Amazon S3 (found under attributes)
+    --> Unable to add instances from a specific subnet to the ELB
+        --> most likely the subnet that the instance lives in has not been added to the ELBs configuration
+
+4. Auto Scaling Troublshooting -->
+    --> An auto scaled instance continous to start/stop (or create/terminate) in short intervals
+        --> the scale up and scale down threasholds may be too close to each other. Either raise the scale-up threshold or scale-down the threshold.
+    --> Auto scaling does not occur even though scaling policies are configured correctly.
+        --> the max number of instances set in the auto scaling group may have been reached.
+     
+ ** few other troubleshooting scenarios will be covered in SysOps course as they are not needed for CDA or CSA.
+ 
