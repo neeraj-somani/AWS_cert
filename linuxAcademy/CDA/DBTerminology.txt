@@ -1,0 +1,20 @@
+DB Terminology --> 
+
+RDBMS (Relational DB management system) -->
+  structured data (schema)
+  data is normalized and spread across multiple tables
+  SQL Query Language
+  ACID compilant (Atomicity, Consistency, Isolation, Durability)
+  Vertical scaling and read replicas
+  OLTP / OLAP
+  Example: Oracle, SQL Server, MySQL, PostgreSQL
+
+NoSQL DB --> 
+  semi-structured data (schema-less)
+  flat table structure
+  API Queries
+  High Transaction rates
+  Horizontal Scaling (more computers can be added in parallel)
+  Four Type:- column, key-value, document, graph
+  Example:- MongoDB, CouchDB, HBase, Cassandra, Riak
+  
