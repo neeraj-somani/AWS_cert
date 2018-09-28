@@ -8,7 +8,30 @@ Troubleshooting -->
 --> Unable to download package updates --> EC2 instance may not have public/Elastic IP and or doesn't belong to public subnet
 --> Applications seeming to slow down on T2 micro instances --> 
     --> T2 micro instances utilize CPU credit (for "bustable" processing), so chances are your application using to much processing power, so needs a larger instance or different instance type
+--> AMI unavailable in other regions --> 
+        ---> AMIs are only available in the region in which they are created    
+        --> AMI can be copied to another region but will received a new AMI ID
+--> "Capacity error" when attempting to launch an instance in a placement group
+        --> start and stop all the instances in a placement group (AWS try to locate them as close as possible)
 
-
+2. VPC Troubleshooting -->
+    --> New EC2 instances are not automatically being assigned public IP address
+            --> modify the auto assign public IP setting on the subnet
+    --> NAT Gateway is configured but instances inside a private subnet still can't download packages -->
+            --> need to add 0.0.0.0/0 route to the NAT gateway on the route table of the private subnet 
+    --> Traffic is not making it in to the instances even though security groups are correct
+            --> check the NACL to ensure the proper ports from the proper sources are open (also check your IGW and route table settings)
+    --> Error when attempting to attach multiple internet gateways (IGW) to a VPC
+            --> only one internet gateway can be attach to a VPC at any given time
+     --> Error when attempting to attach multiple virtual private gateway (VPG) to a VPC
+            --> only one VPG can be attach to a VPC at any given time
+     --> VPC security groups (for EC2 instance) doesn't have enough rules for the required application
+            --> assign the EC2 instance to multiple security groups
+     --> Can't SSH/communicate with resources inside of a private subnet
+            --> Either you have not setup a VPN or you have not connected to an EC2 instance (Bastion Host) within the VPC to launch a connection from.
+    --> Successful site-to-site VPN connection but unable to access extended resources
+            --> need to add on-premise routes to the VPG route table
+    --> Failure to create a VPC peering connection between two VPC's in different regions
+            --> Peering connections can only be created between two VPC in the same region
   
   
