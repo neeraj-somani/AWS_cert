@@ -2,4 +2,18 @@ CloudFront --> (CDN) --> Content Delivery network
     --> allows you to store (cache) your content at "edge locations" located all around the world.
     --> allows customer to access your content more quickly
     --> also provides additional security specially against DDOS attacks
+
+CloudFront Essentials --> 
+    --> CloudFront is a global CDN which delivers content to users from the nearest edge location.
+    --> CloudFront retrieves content from origins.
+    --> CloudFront Distribution (web or RTMP)
+            --> Define origins for content (static or dynamic)
+            --> cloudFront can integrate with Route53 for alternate "CNAMEs" --> (this allows you to create a URL such that it can work with your distribution)
+            --> Cache behaviors (Path Patterens{images/*.jpg}, min/max/default TTL, Query string forwarding and caching, HTTP methods (GET/PUT/POST/HEAD/etc)
+
+Updating Cached Files --> 
+         --> Caching is done based off the cache key
+         --> In order to serve a new version of an object, either create a new object with a new name or create an "invalidation" on the cloudFront distribution based off the object name.
+         --> "Invalidation" can be costly.
+         --> set TTL = 0
     
