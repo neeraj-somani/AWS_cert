@@ -26,3 +26,7 @@ CloudFront Security -->
             --> S3 (limited access to Origin Access Identity (OAI))
             --> Signed URL or Signed Cookie --> (Expiration, restrict by IP, Trusted Signers (CloudFront Key-pair))
     --> Geo Restriction
+
+CloudFront Performance Consideration -->
+Edge location -->
+CloudFront Origin -->
