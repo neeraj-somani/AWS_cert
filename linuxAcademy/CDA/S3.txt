@@ -250,3 +250,12 @@ Settings/changing storage class --> while uploading to S3, default storage class
     common example:- RRSObjectLost (used for automating the recreation of lost RRS objects)
                      ObjectsCreated (in-case of any of these API calls -- PUT/POST/COPY/CompleteMultiPartUpload
     --> Event notification can be send to following AWS services (SNS/Lambda/SQS Queue)
+
+--- from Route53 section -----------
+S3 for DNS failover -->
+  --> By using a failover routing policy in a Route53 DNS record set, an S3 bucket can be used as a failover endpoint.
+  --> this can provide an extremely reliable back-ups solution if your primary end-point fails.
+  --> even though S3 can only be used for static web hosting, it gives you the opportunity to provide your users with sometype of information untill the primary endpoint is working again.
+  --> An S3 bucket can also be used as a primary endpoint, if you just want to host a simple static site.
+
+**** Note --> for a DNS record to use an S3 bucket as an endpoint, the bucket name must be the same as the Domain name.
