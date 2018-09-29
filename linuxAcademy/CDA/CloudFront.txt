@@ -17,3 +17,12 @@ Updating Cached Files -->
          --> "Invalidation" can be costly.
          --> set TTL = 0
     
+
+CloudFront Security --> 
+    --> SSL certificates
+    --> end-to-end https
+    --> AWS WAF integration
+    --> Distribute private content
+            --> S3 (limited access to Origin Access Identity (OAI))
+            --> Signed URL or Signed Cookie --> (Expiration, restrict by IP, Trusted Signers (CloudFront Key-pair))
+    --> Geo Restriction
