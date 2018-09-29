@@ -18,7 +18,6 @@ Some other functionality of Route53 -->
   --> Latency, GEO, basic and failover routing policies allow for region-to-region fault tolerant architecture design.
   --> you can easily configure for failover to S3 (if website bucket hosting is enabled)
   
-
 Route53 Hosted Zones -->
     --> A hosted zone stores DNS records for your domain
     --> Basically, it contains all the rules (record sets) that tells Route53 what to do with DNS request.
@@ -42,6 +41,16 @@ Route53 Record Sets -->
       CNAME: Used to point host/name to another host/name
       MX: used to route email (mail exchange)
  
-Alias Record sets -->
+Alias Record sets --> Instead of an IP address (standard record sets), an alias record set contains a pointer to an AWS specific resource, such as: 
+  --> an elastic load balancer, --> CloudFront Distribution, --> Elastic Beanstalk Environment, 
+  --> Amazon S3 bucket that is configured as as static website
+  
 Routing policy -->
-Evaluate Health Check --> 
+    Simple: --> route all traffic to one point
+    Weighted: --> route traffic to multiple end-point (manual load balancing)
+    Latency: --> route traffic to an endpoint based on the users latency to various endpoints
+    Failover: --> route traffic to a "secondary" end-point, if primary is unavailable
+    Geolocation: --> route traffic to an end point based on geographical location of the user
+
+    
+Evaluate Health Check --> can monitor the health of your application and trigger an action
