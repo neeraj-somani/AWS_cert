@@ -90,7 +90,8 @@ EC2 Instance Configuration -->
     However, if original snapshots are deleted, still data can be ratined from other snapshots. Because, even though snapshots charges you only for incremental data, all prior data is still there. Hence, fully restored EBS volume is possible.
     snapshots can degrade the performance, hence needs to be done in less load time, and should do frequently to increase data durability.
     
-  EFS --> fully managed storage service, supports NFSv4 protocols, and best performance with linux
+  EFS --> fully managed storage service, supports NFSv4 protocols, and 
+      --> best performance with linux and not compatible with Windows OS
     scalable storage option:
     Elastic storage option: 
       --> storage capacity increase/decrease as you add or remove files 
