@@ -145,3 +145,6 @@ naming convention -->
     streams.dynamodb.<region>.amazonaws.com
    dynamoDB table endpoint --> dynamodb.us-west-2.amazonaws.com  
    dynamoDB stream endpoint --> streams.dynamodb.us-west-2.amazonaws.com
+
+Every stream is uniquely identified by an Amazon Resource Name (ARN). Here is an example ARN for a stream on a DynamoDB table named TestTable:
+    arn:aws:dynamodb:us-west-2:111122223333:table/TestTable/stream/2015-05-11T21:21:33.291
