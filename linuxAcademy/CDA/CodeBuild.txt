@@ -3,4 +3,7 @@ CodeBuild --> fully managed build service that can compile source code, run unit
  components --> 
   Build Project --> define here rules how codeBuild should run the build (like, where is source code, what env, build commands, etc)
   Build Environment --> OS, language runtime, framework, tools specifications
-  Build spec --> YAML file to describe collection of commands, settings used by CodeBuild to build the code
+  Build Spec file --> YAML file to describe collection of commands, settings used by CodeBuild to build the code
+      --> this file is used to determine how to build your deployment artifacts from your application code
+      
+    
