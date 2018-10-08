@@ -1,0 +1,7 @@
+need to concentrate more on -->
+  Kinesis and DynamoDBStreams and 
+  AWS X-Ray --> read FAQ
+  CodePipline
+  KMS and encryption: --> how to encrypt data in transit between different services. For example, EC2 to RDS or EC2 to S3, etc.
+  Lambda Optimization --> Best practices --> https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html 
+  
