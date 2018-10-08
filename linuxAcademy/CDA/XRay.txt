@@ -18,5 +18,20 @@ Errors, Faults, and Exceptions --> Xray trace error and categorize them:
   Fault – Server faults (500 series errors)
   Throttle – Throttling errors (429 Too Many Requests)
 
+X-Ray Service helpful in following ways --> 
+    --> helps developers analyze and debug issues in distributed applications 
+    --> helps in identify and troubleshoot the root cause of performance issues and errors.
+    --> provides an end-to-end view of requests as they travel through your application
 
-  
+X-Ray Model --> X-Ray provides a user-centric model, instead of service-centric or resource-centric model, for collecting data related to requests made by user to your application.
+
+What can I do with X-Ray?
+--> Create a service map -->
+--> Identify errors and bugs --> X-Ray can automatically highlight bugs or errors in your application code by analyzing the response code for each request made to your application.
+--> Build your own analysis and visualization apps --> 
+
+X-Ray metatdata Handling -->
+--> Xray tracing information is available within 30 seconds of it being received by the service.
+--> Xray trace data can be available for upto 30 days
+--> in some situations it is possible that X-Ray trace information will be partial. (tagged as incomplete or partial)
+--> X-Ray agent can assume a role to publish data into a different account 
