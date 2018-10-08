@@ -1,7 +1,7 @@
 SQS Essentials --> 
     useful for highly available queue that is used to send and receive messages
     useful to build distributed/decoupled architecture
-    Messages between servers are retrived via "polling"
+    Messages between servers are retrived via "polling" (pulling)
     can encrypt queue messages using AWS KMS
     each message size can be upto 256 kb 
     SQS offers 2 types of Queue --> standard queue and FIFO queue
@@ -16,7 +16,7 @@ two types of polling --> (pulling) mechanism
         Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
         if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
 
-SQS Queue --> highly reliable hosted message store. ( TTL is 1 min to 14 days)
+SQS Queue --> highly reliable hosted message store. (TTL is 1 min to 14 days)
 2 type of queues --> 
    standard queue --> supports nearly unlimited number of messages per second
         supports multiple producers/consumers
@@ -40,19 +40,19 @@ Queue Settings --> ** imp
   VisibilityTimeOut --> How long messages are invisible after being received by consumer and wait for response from consumer
  
 SQS resource based access control policies --> all points are same as SNS. 
-            can be used to grant access to SQS queues to another AWS account
-            SQS AddPermission API automatically generates the ACL policy to SQS
-            These policies can also be used to grant access to some AWS services to public to your SNS topic (although, many service like EC2 or Lambda will use IAM Role instead for SNS)
-            IAM role and Access control policies can be used at the same time.
+    can be used to grant access to SQS queues to another AWS account
+    SQS AddPermission API automatically generates the ACL policy to SQS
+    These policies can also be used to grant access to some AWS services to public to your SNS topic (although, many service like EC2 or Lambda will use IAM Role instead for SNS)
+    IAM role and Access control policies can be used at the same time.
  
 SQS message characteristics and Limitations -->
-    message --> a set of instructions that will be relayed to the worker instance via SNS Queue (upto 256 kb text in any format)
+    message --> a set of instructions that will be relayed to the worker instance via SQS Queue (upto 256 kb text in any format)
   {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
   for larger messages we can use S3.
   server side encryption
   time-to-live from 1 min to 14 days in SQS queue
-  visibilityTimeout --> message can be invisible in a queue for upto 12 hours, this becomes invisible after being pulled by called and wait for deletion.
-  messages can be added to dead letter queue if consumers unable to process them
+  visibilityTimeout --> upto 12 hours, this becomes invisible after being pulled by called and wait for deletion.
+  messages can be added to dead letter queue if consumers unable to process them for debugging purposes
 
 message components -->
   Body --> XML, JSON, unformmated text 
