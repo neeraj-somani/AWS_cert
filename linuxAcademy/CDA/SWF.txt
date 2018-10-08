@@ -3,7 +3,7 @@ SWF Essentials --> fully managed workflow service
   coordinates and manages the execution of activities
   SWF guarantees the order of activity, consistent and continous execution
   SWF can't have duplicate tasks
-  A workflow execution time can be mins to 1 year
+  A workflow execution time can be few mins to 1 year
   --> Its an API service that can be used by non-AWS services as well, like on-premises components to integrate and manage their workflow tasks.
  
  Components of SWF -->
@@ -19,7 +19,7 @@ SWF Essentials --> fully managed workflow service
   
 SWF vs SQS -->
   similarities --> both used to create dictirbuted systems and allow to scale each task independently
-  Differnece --> SWF can have human interacted task as part of workflow but not in SQS
+  Difference --> SWF can have human interacted task as part of workflow but not in SQS
       SQS max life 14 days vs SWF workflows and tasks life can be upto 1 year
 
 SWF and Step Function -->
