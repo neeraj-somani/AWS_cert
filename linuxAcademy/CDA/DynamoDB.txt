@@ -121,31 +121,27 @@ DynamoDB Limits -->
     
  go through more limits here:- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html
  
-  ----------- need to review them or delete them ----------
-  Provisioned Capacity reads --> RCU are consumed with, GetItems, BatchGetItems, QUERY and SCAN operations
-        1 RCU = 1 read of item of 4 KB or less per second (for strongly consistent reads)
-        eventual consitent reads requires half of strongly consistent reads RCU
-    example:- how many RCU needed to read 10 items of 13 KB per second for strongly consistent reads
-    answer:- 10 item * 13 KB each = 10 item * (13 kb / 4 Kb per RCU) = 10 item * (3.25 RCU/item) = 10 item * (4 RCU/item) = 40 RCU
-        but for eventual consistent reads this will be 20 RCU only.
-  
-  DynamoDB read operation --> 
-      GetItem --> efficiently read a single item by providing item primary key
-      BatchGetItem --> read upto 100 item, from one or more tables {each item is processed with GetItem operations only)
-      Query --> read items with same partition key (and if provided sort key), all returned items considered as one read.
-      SCAN --> reads all items of table, and consider the size of items that are evaluated, not the item size that got returned
-   Eventual consistent --> doesn't guarantee most recent write 
-   strong consistent --> guarantee to reflect most recent write 
-----------------------------------------------------
-  
 Popular Use cases -->
     IOT --> Storing meta-data
     Gaming --> storing session information, LeaderBoard
     Mobile --> Storing User profiles, personalization
             
-  
-  
+ DynamoDB Stream --> 
+ https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html 
+ https://aws.amazon.com/blogs/database/dynamodb-streams-use-cases-and-design-patterns/
+ 
+   --> DynamoDB Streams captures a time-ordered sequence of item-level modifications in any DynamoDB table, and stores this information in a log for up to 24 hours. Applications can access this log and view the data items as they appeared before and after they were modified, in near real time.
+    --> A DynamoDB stream is an ordered flow of information about changes to items in an Amazon DynamoDB table. you need to enable a stream on a table.
+        --> by default stream captures primary key attribute(s) of the items that were modified
+        --> You can configure the stream so that the stream records capture additional information, such as the "before" and "after" images of modified items.
 
-
-      
+DynamoDB Streams guarantees the following -->
+    --> Each stream record appears exactly once in the stream.
+    --> For each item that is modified in a DynamoDB table, the stream records appear in the same sequence as the actual modifications to the item.
+    --> DynamoDB Streams writes stream records in near real time, so that you can build applications that consume these streams and take action based on the contents.      
   
+****** AWS maintains separate endpoints (URL/ARN) for DynamoDB and DynamoDB Streams.
+naming convention -->
+    streams.dynamodb.<region>.amazonaws.com
+   dynamoDB table endpoint --> dynamodb.us-west-2.amazonaws.com  
+   dynamoDB stream endpoint --> streams.dynamodb.us-west-2.amazonaws.com
