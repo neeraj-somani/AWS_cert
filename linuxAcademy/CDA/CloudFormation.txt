@@ -33,8 +33,8 @@ CloudFormation Resources -->
     AWS::EC2::instance --> can have AvailabilityZone or InstanceType as property
     AWS::IAM::Role --> can have ManagedPolicyArns
   some other resource attributes -->
-    CreationPolicy --> (creation stack based on some condition check) used to delay stack creation, can be based on other stack status
-    DeletionPolicy --> (deletion checks before actual delete) used to create a backup / snapshot before deleting any resource
+    CreationPolicy -->(creation of stack based on some condition check) used to delay stack creation, can be based on other stack status
+    DeletionPolicy --> (deletion of checks before actual delete) used to create a backup / snapshot before deleting any resource
     DependsOn --> used to specify resource dependency, if needed resources creation/deletion in specific order
     Metadata --> optional additional information about resources or stack 
     UpdatePolicy --> used to specify how to apply updates to AWS resources
