@@ -2,21 +2,27 @@ XRay --> traces request as they move through your application.
 It collects data make it available to view, filter and sort. This data can be used for optimization and analysis as well.
 
 XRay Concepts -->
-Segments --> Data about the work done by your application. (data related to request, response, subsegments, and issues)
-Subsegments --> A more granular view of data inside of segments
-Service Graph --> JSON doc, contains information about how your applications services and resource interacts. (visualize service map)
-Traces --> this will trace all IDs as they go through your application
-    1. first XRay supported service to interact with a request to add an HTTP trace ID to header
-    2. trace ID propogates downstream to track the request as it move through application
-Sampling --> XRay applies an algorithm to sample request data but you can configure the frequecy of sampling
-    (i.e how to apply it on high volume or lower volume requests)
-Tracing Header --> example (X-Amzn-Trace-Id: Root=1-5759e988-bd862e3fe1be46a994272793;Sampled=1)
-Filter Expression --> used to search in your traces beased on (trace ID, portion of ARN URL, etc)
-Annotation and metadata --> additional way to store searchable (annotation) and non-searchable (metadata) data about traces
-Errors, Faults, and Exceptions --> Xray trace error and categorize them:
-  Error – Client errors (400 series errors)
-  Fault – Server faults (500 series errors)
-  Throttle – Throttling errors (429 Too Many Requests)
+    Segments --> Data about the work done by your application. (data related to request, response, subsegments, annotations and issues)
+    Subsegments --> A more granular view of data inside of segments
+        For example, when your application makes a call to a database in response to a request, it creates a segment for that request with a sub-segment representing the database call and its result. The sub-segment can contain data such as the query, table used, timestamp, and error status. this data can be system-defined and user-defined data.
+    Service Graph --> JSON doc, contains information about how your applications services and resource interacts. (visualize service map)
+    Traces --> is a set of data points that share the same trace ID. 
+        1. first XRay supported service to interact with a request to add an HTTP trace ID to header
+        2. trace ID propogates downstream to track the request as it move through application
+    Sampling --> XRay applies an algorithm to sample request data but you can configure the frequecy of sampling
+        (i.e how to apply it on high volume or lower volume requests)
+        --> To provide a performant and cost-effective experience, X-Ray does not collect data for every request that is sent to an application. Instead, it collects data for a statistically significant number of requests. X-Ray should not be used as an audit or compliance tool because it does not guarantee data completeness.
+    Tracing Header --> example (X-Amzn-Trace-Id: Root=1-5759e988-bd862e3fe1be46a994272793;Sampled=1)
+    X-Ray Agent --> X-Ray agent collects data from log files and sends them to the X-Ray service for aggregation, analysis, and storage. The agent makes it easier for you to send data to the X-Ray service, instead of using the APIs directly.
+    Filter Expression --> used to search in your traces beased on (trace ID, portion of ARN URL, etc)
+    Annotation and metadata --> additional way to store searchable (annotation) and non-searchable (metadata) data about traces
+        --> X-Ray annotation is system-defined or user-defined data associated with a segment. (for example, region, AZ data)
+        --> System-defined annotations include data added to the segment by AWS services, whereas 
+        --> user-defined annotations are metadata added to a segment by a developer.
+    Errors, Faults, and Exceptions --> Xray trace error and categorize them:
+      Error – Client errors (400 series errors)
+      Fault – Server faults (500 series errors)
+      Throttle – Throttling errors (429 Too Many Requests)
 
 X-Ray Service helpful in following ways --> 
     --> helps developers analyze and debug issues in distributed applications 
