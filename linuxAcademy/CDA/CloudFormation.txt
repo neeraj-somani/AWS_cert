@@ -1,5 +1,3 @@
-Github repo of Linux Academy (https://github.com/linuxacademy/aws-cda-2018)
-
 CloudFormation Essentials --> (infrastructure as code)
   describe application architecture as JSON / YAML, used to deploy application architecture in any region, any account as per permission
   cloudFormation stacks --> defined by CloudFormation template, collection of AWS resources can be managed together as one unit
@@ -9,6 +7,7 @@ Benefit -->
   version control, as infrastructure became the code, easy to manage and configure even with different versions
   easy rollback if needed / backups
   can be easily prepare for even disaster recovery
+  CloudFormation allows bootstraping scripts to install software while lauching cloud.
 
 Cloud Formation Engines --> Create Stacks, update Stacks (change sets), Delete Stacks, Nested Stacks
 Cloud Formation Designer --> WYSIWYG template designer, editor
@@ -54,7 +53,8 @@ CloudFomartion Intrinsic Functions -->
       example, Ref to EC2 instance would return instance ID
               Ref to Lambda function would return function Name
     
-  
+ CloudFormation APIs --> https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/Welcome.html
+  ListStackResources ---> returns description of all resources of the specified stack. (even for deleted stacks upto 90 days after the stack has been deleted)
     
     
     
