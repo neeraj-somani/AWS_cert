@@ -41,12 +41,14 @@ primary key --> uniquely identify each item to avoid duplicate rows, must be of 
       simple primary key {only partition key} --> each item must have unique value for this attribute
       composite primary key {partition key + sort key} --> two item can have same partition key or sort key, but combination should be unique and such item are required to have both key.
 
-Items --> group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
+Items --> (1 byte to 400 kb) group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
 Attributes --> fundamental data element of dynamodb (same as individual column of RDBMS)
     data types supported --> 
       scalar type --> String, number, binary, boolean, null
       document type --> List, Map
       set --> number sets, string sets, binary sets
+Item Collection (size limit) --> The max size of item collection is 10 GB, means for any distinct partition key value, the sum of item size in table plus the sum of item sizes across all of that tables LSI must not exceed 10 GB.
+        --> This limit does not apply to table without LSI.
 
 DynamoDb provision throughput --> measured in Read and Write Capacity unit
   its maximum amount of capacity that application can consume, after that request are throttled (canceled or stoped)
@@ -80,6 +82,10 @@ DynamoDB Read Operations -->
        --> SCAN operation should be avoided by using queries or secondary indexes. 
        --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
 ****** there is limit of 1MB of data returned from these operations, to get more data need to provide LastEvaluatedKey  
+***** QUERY and SCAN operation both support eventual consistent read by default, but can configure to request consistent reads.
+Advantages of QUERY over SCAN --->
+    ---> Returns the item matching the primary key search, return all attributes of item or only the one you request.
+    --> much more efficient because it searches indexes only
   
 Atomic Counters --> DynamoDB writes applied in the order received, if operation fails they can be retried. This brings a risk of updating item twice, possibly under or overcounting.
 Hence, conditional writes are introduced. means each write operation will be performed based on some conditional check.
@@ -88,6 +94,7 @@ Hence, conditional writes are introduced. means each write operation will be per
 DynamoDB Secondary Indexes --> allows efficient queries on non-primary key attributes
   every secondory index is associated with only one table, but one table can have multiple Secondary index
   This is an awesome feature of DynamoDB, DynamoDB automatically maintains the secondary index. Means, when base table gets updates, DynamoDB updates secondary index as well.
+**** AWS doesn't allow increase in limit of secondary indexes. by default each table in an account can have 5 LSI and 5 GSI.
   
   Local Secondary Index --> gives the choice of Sort Keys
     Each LSI can act as another sort key. 
@@ -99,7 +106,7 @@ DynamoDB Secondary Indexes --> allows efficient queries on non-primary key attri
     means you can query the table in differnt ways
     Strongly consistent reads not possible with GSI
     GSI has their own WCU and RCU
-    GSI can be created even after table creation
+    GSI can be created even after table creation, using either CLI, SDK or through console
 
 Common DynamoDB errors and limits --> 
   throttlingException --> when you try to create, delete or update tables too quickly
@@ -109,7 +116,7 @@ Common DynamoDB errors and limits -->
 go through more errors here:- https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html
 
 DynamoDB Limits -->
-  1. secondary indexes
+  1. secondary indexes --> total 10 (5 LSI and 5 GSI)
   2. provisioned throughput default limits --> these limit includes sum of table and GSI both
             --> minimum is 1RCU and 1WCU for any table or GSI
             --> maximum is -->
@@ -125,7 +132,15 @@ Popular Use cases -->
     IOT --> Storing meta-data
     Gaming --> storing session information, LeaderBoard
     Mobile --> Storing User profiles, personalization
-            
+
+DynamoDB APIs --> https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html
+UpdateItem --> 
+CreateTable – Creates a new table. Optionally, you can create one or more secondary indexes, and enable DynamoDB Streams for the table.
+DescribeTable– Returns information about a table, such as its primary key schema, throughput settings, index information, and so on.
+ListTables – Returns the names of all of your tables in a list.
+UpdateTable – Modifies the settings of a table or its indexes, creates or remove new indexes on a table, or modifies DynamoDB Streams settings for a table.
+DeleteTable – Removes a table and all of its dependent objects from DynamoDB.
+
  DynamoDB Stream --> 
  https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html 
  https://aws.amazon.com/blogs/database/dynamodb-streams-use-cases-and-design-patterns/
