@@ -1,0 +1,23 @@
+Amazon Congnito -->
+  Superset of wbe-Identity Federation
+  --> create uniue indentity for application users from Google, fb
+  --> supports unauthenticated identity (signup after application usage)
+  --> save mobile user data
+  --> can sync user data cross devices, mobile and web
+  --> cache data locally at client
+
+Cognito Essentials --> 
+General
+Add User Signup & Sign-in to your mobile and web apps
+Federate identities and provide secure access to AWS resources
+Store and Sync Data Across Devices
+Pricing
+
+1. General --> 
+  --> With the help of Cognito its easy to add user sign-up and authenticate through mobile devices and web-apps.
+  --> even it allows you to authenticate users through external identity provider and provides temporary security credentials to access your app’s.
+  --> support SAML (Security Assertion Markup Language) providers like (facebook, amazon, google)
+  --> syncronize data across devices
+  --> benefit --> customer should focus on building creative apps without worrying about building, securing, and scaling a solution to handle user management, authentication, and sync across platforms and devices.
+  
+  
