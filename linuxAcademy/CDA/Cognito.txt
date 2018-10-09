@@ -16,8 +16,26 @@ Pricing
 1. General --> 
   --> With the help of Cognito its easy to add user sign-up and authenticate through mobile devices and web-apps.
   --> even it allows you to authenticate users through external identity provider and provides temporary security credentials to access your app’s.
-  --> support SAML (Security Assertion Markup Language) providers like (facebook, amazon, google)
+  --> support SAML (Security Assertion Markup Language) or other providers like (facebook, amazon, google)
   --> syncronize data across devices
   --> benefit --> customer should focus on building creative apps without worrying about building, securing, and scaling a solution to handle user management, authentication, and sync across platforms and devices.
-  
-  
+  --> Congnito can be used using server-side APIs, SDKs, or using console
+  --> cognito supports both web-identity provider as well some other user defined or enterprise provider (windows AD group, etc)
+  --> user pool is used, where you securely stores your users’ profile attributes
+  --> user pool can be configured in AWS account using console, skds, or cli
+  --> Identity pools are the containers that Cognito Identity uses to keep your apps’ federated identities organized. 
+  --> Cognito Identity console shows you how many identities were created via the Cognito Identity APIs
+
+Q: How does the login flow work with public identity providers?
+--> mobile app authenticates with an Identity Provider (IdP) using SDKs
+--> Once the end user is authenticated, the OAuth or OpenID Connect token or the SAML assertion returned from the IdP 
+--> then this received token will be passed to Cognito Identity 
+--> Cognito returns a new Cognito ID for the user and a set of temporary, limited-privilege AWS credentials.
+
+Q: What if I don’t want to force my users to log in?
+Cognito Identity supports the creation and token vending process for unauthenticated users as well as authenticated users.
+this enables you to use temporary, limited privilege credentials to access AWS resources.
+
+--> Cognito Identity supports separate identities on a single device, such as a family iPad. Each identity is treated separately 
+--> store data in the form of key/value pairs. The data is stored both locally on the device and in the Cognito sync store. 
+--> There is no limit to the number of identities you can create in your identity pools and sync store.
