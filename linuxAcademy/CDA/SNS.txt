@@ -3,11 +3,11 @@ SNS Essentials --> its fully managed message notification service (Simple Notifi
   SNS coordinates and manages the sending and delivery of messages to specific end-point
   easily intergrates with AWS services and events
   A full-environment monitoring solution can be created with SNS and CloudWatch to get different alerts / notifications.
-
+  SNS guaratees that each message is delivered to SQS at-least-once.
+  
 SNS benefits --> scalable and highly reliable and can be used through Console, CLI, SDK, APIs
 
 SNS components --> 
-
 Topics --> Object to which you publish your message (message must be <= 256 KB)
 How you label and group different endpoints that you send messages to.
 group of subscriptions that you send a message to 
@@ -22,6 +22,7 @@ subscriber (consumer) --> an endpoint that a message is sent to, like Http, Http
 
 subscription --> The endpoints that a topic sends message to
 you attach ARN of your topic, type of subscriber (Email, SMS, etc) and value for that subscriber.
+A valid subscription request remain pending for upto 3 days, token included in the confirmation message sent to SNS endpoints.
 
 publisher (producer) --> An entity (human/ alarm/ event) that gives SNS a message that needs to be sent. 
 
