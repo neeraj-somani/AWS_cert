@@ -14,6 +14,7 @@ Below will be detailed summary of above listed 4 points:
   Hosting static files and websites
   Origin for cloudFront CDN (content delivery network)
   File sharing or back-up/archiving for hybrid networks (via AWS Storage Gateway)
+  A Bucket can contain both encrypted or non-encrypted objects. Encryption is available at object level. while versioning is available at bucket level.
 
 Few important facts -->
   1. S3 objects stays within region but synced across AZs for high availability (99.99%) and durability (11x9s)
@@ -162,6 +163,7 @@ Before Understanding each parts of S3, lets understand how data gets to S3 or to
 
 ---- S3 Features --->
 1. S3 Encryption --> 2 ways -- All handled in background by AWS SDK
+A Bucket can contain both encrypted or non-encrypted objects. Encryption is available at object level. while versioning is available at bucket level.
 
    1. In-transit/client side --> SSL or client side encyption techniques
         1. Client Side Master Key (CSMK) --> client manage master key and unencrypted data never sent to AWS.
