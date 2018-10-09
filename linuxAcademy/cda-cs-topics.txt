@@ -1,7 +1,17 @@
 need to concentrate more on -->
-  Kinesis and DynamoDBStreams and 
-  AWS X-Ray --> read FAQ
+  Kinesis
   CodePipline
   KMS and encryption: --> how to encrypt data in transit between different services. For example, EC2 to RDS or EC2 to S3, etc.
   Lambda Optimization --> Best practices --> https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html 
   
+Need to understand below in more details -->
+--> from whizlab-cda-diagnostic-test --> 
+1. ELB , sticky session feature benefits, limitations, 
+2. How elastic Cache can help in session managment for user? What is best method for maintain application session state when using ELB.
+https://aws.amazon.com/blogs/developer/elasticache-as-an-asp-net-session-store/
+ques 36/44 - Describe the process of registering mobile devices with SNS push notification service using GCM
+https://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html
+ques 46 / 49 --> check difference between SQS message and SNS message attributes
+
+https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_s3
+https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
