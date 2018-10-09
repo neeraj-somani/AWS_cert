@@ -5,6 +5,7 @@ SQS Essentials -->
     can encrypt queue messages using AWS KMS
     each message size can be upto 256 kb 
     SQS offers 2 types of Queue --> standard queue and FIFO queue
+    SQS free tier provides with 1 million request per month at no charge
     
 two types of polling --> (pulling) mechanism
   Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, 
@@ -44,15 +45,18 @@ SQS resource based access control policies --> all points are same as SNS.
     SQS AddPermission API automatically generates the ACL policy to SQS
     These policies can also be used to grant access to some AWS services to public to your SNS topic (although, many service like EC2 or Lambda will use IAM Role instead for SNS)
     IAM role and Access control policies can be used at the same time.
+    SQS allows anonymous access via IAM policies to access message queue
  
 SQS message characteristics and Limitations -->
     message --> a set of instructions that will be relayed to the worker instance via SQS Queue (upto 256 kb text in any format)
   {XML, JSON, unformatted} text upto 256 kb, can contain upto 10 metadata attributes outside of message body
   for larger messages we can use S3.
+  To send messages larger than 256 kb, we can use Amazon SQS extended client library for Java. This library point a reference to S3 for larger messages (more than 256 kb)
   server side encryption
   time-to-live from 1 min to 14 days in SQS queue
   visibilityTimeout --> upto 12 hours, this becomes invisible after being pulled by called and wait for deletion.
   messages can be added to dead letter queue if consumers unable to process them for debugging purposes
+  There is no limit on creating queues in SQS
 
 message components -->
   Body --> XML, JSON, unformmated text 
@@ -75,7 +79,7 @@ Sample SQS workflow could be similar to this -->
     --> Auto scaling can be applied based on queue size so that if a component of your application has an increase in demand the number of worker instances can increase.
     
 Tightly coupled or decoupled Architecture -->
-    Tightly couple Architecture -->
+   Tightly couple Architecture -->
         --> In this system the components are not only linked with each other but also dependent on each other.
         --> if one component fails, all other will get impacted means will fail or will not run
    Loosely coupled or decoupled components -->
