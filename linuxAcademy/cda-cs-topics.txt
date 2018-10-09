@@ -1,4 +1,12 @@
 need to concentrate more on -->
+Lambda- optimize deployment
+Api gateway- cache
+Lot of cognito question
+Kinesis- stream/Firehose
+Code deploy/ Pipe line/commit
+DynamoDB R/W capacity calculations.
+Cloudformation
+IAM policies
   Kinesis
   CodePipline
   KMS and encryption: --> how to encrypt data in transit between different services. For example, EC2 to RDS or EC2 to S3, etc.
@@ -15,3 +23,24 @@ ques 46 / 49 --> check difference between SQS message and SNS message attributes
 
 https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_s3
 https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
+
+CDA topics -->
+- Cloudwatch is now a huge topic
+- Cloudtrail for API log troubleshooting
+- VPC flow logs > though not strictly a topic, it was a possible answer for some question so having some knowledge here helps
+- VPC security groups
+- SAM (Server less Architecture Model)
+- Cloudformation
+- Systems Manager Parameter Store (only got one question here)
+- Route53
+- Troubleshooting is an important topic
+- questions on system/account limits
+major emphasis: Elastic Beanstalk, CodeBuild, CodeDeploy, DynamoDB, s3, ElastiCache, ECS, RDS, AWS API, SNS, SQS. 
+think scenarios --> For example, CodeDeploy to update ECS; or how to get human approvals with CodePipeline. You'll also want to know the components of SQS messages.
+---> Also, sometimes two answers are equally correct but you can only choose one. What to do! Well if you get those -- as I did where the solution could be either RDS or DynamoDB -- prefer the serverless option first! Next, the more secure option. Next, the cheapest or easiset option (i.e. fewest services).
+--> Learn how to read a SAML XML document. 
+
+SAA preparation basics -->
+Think of every service with 5 pillars perspective
+Next step would be a combination of services and five pillars
+(for example RDS+EC2+security or DynamoDB+EC2+performance or EC2+EBS+Cost. Try to add more layer (i.e. CloudFront) and see how to address those five pillars concerns.)
