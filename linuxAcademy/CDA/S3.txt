@@ -240,6 +240,7 @@ Settings/changing storage class --> while uploading to S3, default storage class
        URL format --> bucket_name.s3-website(- or.)region.amazonaws.com
        URL example --> my-cool-site.s3-website-us-east-1.amazonaws.com
     --> AWS Route 53 can be used to map human redable domain names with this URL, also helpful in DNS failover situation
+    --> you need to make sure index.html or any other file permission, so that required user can access it
     
   Cross Origin Resource Sharing (CORS) --> settings at S3 bucket level, {XML} file
     a method that allow web application located at one domain to access and use resources at another domain
