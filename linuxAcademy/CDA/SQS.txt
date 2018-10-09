@@ -5,7 +5,7 @@ SQS Essentials -->
     can encrypt queue messages using AWS KMS
     each message size can be upto 256 kb 
     SQS offers 2 types of Queue --> standard queue and FIFO queue
-    SQS free tier provides with 1 million request per month at no charge
+    First 1 million request are free, then $0.50 PER EVERY MILLION REQUESTS
     
 two types of polling --> (pulling) mechanism
   Long polling --> (1-20 seconds) wait untill a message is available in the queue before sending response, 
@@ -72,7 +72,8 @@ SQS API -->
   ReceiveMessage --> used by consumers to receive messages
   ChangeMessageVisibility --> sometime consumer need more visibility time, hence it used to set message visibility
   DeleteMessage --> consumer finish processing and delete message
-
+  ReceiveMessageWaitTimeSeconds --> long polling timeout 1 to 20 seconds 
+  
 Sample SQS workflow could be similar to this -->
     --> Generally a worker instance will pull a queue to retrieve waiting messages for processing
     --> Lambda function can now replace worker to pull and process messages
