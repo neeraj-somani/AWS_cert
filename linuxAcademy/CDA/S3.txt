@@ -35,7 +35,7 @@ S3 Errors --> generally handled with http response
 S3 Event Notification --> using AWS services like SNS, Lambda, SQS
 
 2. S3 Components ---(S3 bucket, S3 Object, S3 folders) -------------------------
-S3 Buckets -->
+S3 Buckets --> (default 100 bucket per account)
   Buckets are main storage container of S3. grouping of object can be done by using "folder" concept.
   tags can be used to organize buckets
   encrypted by default
