@@ -12,7 +12,7 @@ What is a well Architected Framework ??
 Its a series of best practice recommendations and questions to ask when designing and developing cloud architecture.
 
 A well Architected Framework and its pillars --> 
-      (CORPS - easy to remember below terms and related it with corporation architecture) -- below is alternative way
+      (CORPS - easy to remember below terms and relate it with corporate architecture) -- below is alternative way
       (CROPS - final output of your seed, cultivated plant that is fully grown)
 Cost Optimization -->
 Operational Excellence --> 
