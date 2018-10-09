@@ -9,6 +9,7 @@ SWF Essentials --> fully managed workflow service
  Components of SWF -->
   starter --> starts the workflow
   workflows (decider) --> sequence of steps to perform a specific tasks
+      --> decider is a program code (in any programming language) that cooridates the execution across worker process
   Activities --> A single step (or unit of work) in the workflow
   tasks --> that interacts with workers that are part of workflow
     2 types -->
