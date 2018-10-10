@@ -89,9 +89,12 @@ EC2 Instance Configuration -->
     snapshots are incremental in nature, means only stores the changes since the most recent snapshot, thus reduce cost
     However, if original snapshots are deleted, still data can be ratined from other snapshots. Because, even though snapshots charges you only for incremental data, all prior data is still there. Hence, fully restored EBS volume is possible.
     snapshots can degrade the performance, hence needs to be done in less load time, and should do frequently to increase data durability.
-    
-  EFS --> fully managed storage service, supports NFSv4 protocols, and 
-      --> best performance with linux and not compatible with Windows OS
+
+EBS Encryption --> mostly AWS-KMS -- CMK
+Amazon EBS encryption uses AWS Key Management Service (AWS KMS) customer master keys (CMKs) when creating encrypted volumes and any snapshots created from them. A unique AWS-managed CMK is created for you automatically in each region where you store AWS assets. This key is used for Amazon EBS encryption unless you specify a customer-managed CMK that you created separately using AWS KMS.
+
+EFS --> fully managed storage service, supports NFSv4 protocols, and 
+  --> best performance with linux and not compatible with Windows OS
     scalable storage option:
     Elastic storage option: 
       --> storage capacity increase/decrease as you add or remove files 
