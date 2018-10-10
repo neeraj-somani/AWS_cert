@@ -1,0 +1,5 @@
+Q: How to handle network delay in your application code
+Answer: 
+1. Retries in your application code in case of delay response.
+2. In addition to simple retries, each AWS SDK implements exponential backoff algorithm for better flow control. The idea behind exponential backoff is to use progressively longer waits between retries for consecutive error responses. You should implement a maximum delay interval, as well as a maximum number of retries.
+https://docs.aws.amazon.com/general/latest/gr/api-retries.html
