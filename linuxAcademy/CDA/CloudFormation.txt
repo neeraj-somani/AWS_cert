@@ -50,7 +50,7 @@ CloudFomartion Intrinsic Functions -->
     Fn::GetAtt --> return the value of an attribute from a resource (example, used to get Name, ARN of resource)
     Fn::Join --> appends values into a single value seperated by a delimiter 
     Ref --> returns a value you can use to refer to provided parameter or resource
-      example, Ref to EC2 instance would return instance ID
+      example, Ref to EC2 instance would return instance ID (when you pass logicalID of EC2 instance)
               Ref to Lambda function would return function Name
     
  CloudFormation APIs --> https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/Welcome.html
