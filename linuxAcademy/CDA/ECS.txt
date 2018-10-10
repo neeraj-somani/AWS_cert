@@ -1,4 +1,4 @@
-EC2 Container Service (ECS) --> Server based service
+EC2 Container Service (ECS) --> Server based service (fully managed orchastration service with minimal administrative headache)
   its a container managment service that supports Docker.
   ECS --> Runs and manages docker enabled application across a logical group of amazon EC2 instances.
       --> ECS keeps track of how many instances they have, where they are running, how many EC2 resources they are utilizing
