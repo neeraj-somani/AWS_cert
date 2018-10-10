@@ -62,7 +62,7 @@ EC2 Instance Configuration -->
    User-Data --> custom commands can be used at time of launch for specific user (i.e, bash scripts)
    Below command to view user-data & meta-data  -->
       curl http://169.254.169.254/latest/user-data   (displays bootstrapping commands)
-      curl http://169.254.169.254/latest/meta-data   (displays AMI, instance types, etc)
+      curl http://169.254.169.254/latest/meta-data   (displays AMI, instance types, instance IP address etc)
  
  EC2 Storage Basics --> (API --> AttachVolume - used to attach EBS to EC2)
   EBS Basics --> EBS volumes are persistent, network attached storage (meaning attach/detach to/from EC2 instances)
@@ -115,6 +115,7 @@ EC2 Key-Pair -->
 ELB and Session state --> 
   Load Balancing --> means distributing incoming traffic across servers
   ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs
+  --> ELB provides access logs that capture detailed information about requests sent to your load balancer. 
   ELB maintain session state -->
     option 1 --> ELB generates cookies stickiness
     option 2 --> application generated cookies stickiness
