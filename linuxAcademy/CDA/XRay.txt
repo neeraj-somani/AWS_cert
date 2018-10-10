@@ -1,5 +1,6 @@
 XRay --> traces request as they move through your application. 
 It collects data make it available to view, filter and sort. This data can be used for optimization and analysis as well.
+X-Ray can be helpful to see bottlenack issues of your application. as it provides detailed chart about request/response time and status.
 
 XRay Concepts -->
     Segments --> Data about the work done by your application. (data related to request, response, subsegments, annotations and issues)
