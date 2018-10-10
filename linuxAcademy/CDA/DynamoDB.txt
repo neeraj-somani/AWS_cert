@@ -83,6 +83,9 @@ DynamoDB Read Operations -->
        --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
 ****** there is limit of 1MB of data returned from these operations, to get more data need to provide LastEvaluatedKey  
 ***** QUERY and SCAN operation both support eventual consistent read by default, but can configure to request consistent reads.
+**** QUERY operation vs GETITEM operation -->
+    GETITEM --> returns attributes based on provided primary key only (means based on partition key only)
+    QUERY --> returns attributes based on provided primary key only (can use both partition key as well as sort key)
 Advantages of QUERY over SCAN --->
     ---> Returns the item matching the primary key search, return all attributes of item or only the one you request.
     --> much more efficient because it searches indexes only
