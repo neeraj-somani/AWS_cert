@@ -64,7 +64,7 @@ EC2 Instance Configuration -->
       curl http://169.254.169.254/latest/user-data   (displays bootstrapping commands)
       curl http://169.254.169.254/latest/meta-data   (displays AMI, instance types, etc)
  
- EC2 Storage Basics -->
+ EC2 Storage Basics --> (API --> AttachVolume - used to attach EBS to EC2)
   EBS Basics --> EBS volumes are persistent, network attached storage (meaning attach/detach to/from EC2 instances)
       --> However, one EBS volumes can be attached to one instnace at a time
       --> SnapShots can be created from EBS, that can be used to create new EBS volume
@@ -109,7 +109,7 @@ EC2 Key-Pair -->
   user must save key-pair.pem file with chmod 400 permission.
   to login to EC2 instance user use this key-pair.pem file:- ssh ec2-user@public-ip -i key-pair.pem file.
 
-ELB and Session state -->
+ELB and Session state --> 
   Load Balancing --> means distributing incoming traffic across servers
   ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs
   ELB maintain session state -->
