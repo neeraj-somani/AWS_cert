@@ -42,6 +42,9 @@ primary key --> uniquely identify each item to avoid duplicate rows, must be of 
       simple primary key {only partition key} --> each item must have unique value for this attribute
       composite primary key {partition key + sort key} --> two item can have same partition key or sort key, but combination should be unique and such item are required to have both key.
 
+AWS documentation, ideal way to construct partition key -->
+    1. use high-cardinality attribute (refers to the uniqueness of data values contained in a particular column (attribute) of a database table.)
+
 Items --> (1 byte to 400 kb) group of attributes that can be uniquely indetifiable, (similar as row of RDBMS)
 Attributes --> fundamental data element of dynamodb (same as individual column of RDBMS)
     data types supported --> 
