@@ -14,6 +14,7 @@ Cloud Formation Designer --> WYSIWYG template designer, editor
 
 
 CloudFormation Template --> JSON / YAML text file, describe AWS infrastructure (V-DM-PM-CTRO)
+(no limit on number of template creation) 
 this template can have various optional sections, but "Resources" section is compulsory
   format version --> its the template version
   description --> a string that describes about template, its must follow format version
@@ -38,10 +39,11 @@ CloudFormation Resources -->
     Metadata --> optional additional information about resources or stack 
     UpdatePolicy --> used to specify how to apply updates to AWS resources
 
-CloudFormation Stacks --> groups of resources that can be managed together
+CloudFormation Stacks --> (200 limit per account) groups of resources that can be managed together
   stacks are defined and managed by cloudFormation template
   in-case if AWS not able to create all mentioned resources of stack, it will rollback. 
       Hence, it will always be complete stack or nothing
+  contact AWS to increase stack limit
 
 CloudFomartion Intrinsic Functions --> 
   these are used to assign values to different cloudFormation properties that are available at or after runtime
