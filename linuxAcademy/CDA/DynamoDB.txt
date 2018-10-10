@@ -31,6 +31,7 @@ DynamoDB Pricing --> below are main components to calculate pricing
     DynamoDB Streams --> pay per 100K reads
 
 DynamoDB core concepts -->
+    DynamoDB supports optimistic locking using java SDK --> this stretagy ensures that client-side item that you are updating or deleting is the same item as in DynamoDB table. DB writes are protected by being overwritten.
 
 DynamoDB Partitions --> DynamoDB stores data in partitions, partitions are SSD allocation of storage for tables, replicated across AZs.
        --> number of partition determines by provisioned capacity and storage size of partition
@@ -167,7 +168,7 @@ naming convention -->
 Every stream is uniquely identified by an Amazon Resource Name (ARN). Here is an example ARN for a stream on a DynamoDB table named TestTable:
     arn:aws:dynamodb:us-west-2:111122223333:table/TestTable/stream/2015-05-11T21:21:33.291
 
-DynamoDB management consol --> select table --> Manage Stream window --> enable any of below options
+DynamoDB management console --> select table --> Manage Stream window --> enable any of below options
     Keys only—only the key attributes of the modified item.
     New image—the entire item, as it appears after it was modified.
     Old image—the entire item, as it appeared before it was modified.
