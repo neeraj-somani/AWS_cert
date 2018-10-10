@@ -6,6 +6,8 @@ Lambda Essentials -->
   Lambda Functions and Lambda function packages are core concept for programming pplication based on Lambda
   Lambda easily integrates with other AWS services
   Lambda supported languages --> Node.js, JAVA, C#, Python, GO
+  --> Environment variables can be set to point different services in lambda
+  --> tagging is helpful to add meta-data of your function in the logs
   
 Lambda Events -->
   Lambda functions are triggered by events. example, like S3 file upload, DynamoDB changes, cloudWatch scheduled events, etc.
@@ -24,7 +26,7 @@ Lambda Function Configuration -->
     --> CPU allocation sclaes based on memory
     --> max execution duration (300 sec) - in 1 sec increments
     --> permissions (Through IAM roles, or resource based access control policies, these policies needs to be set through CLI/SDK, can't be done through consol and it uses STS/Cognito for security)
-    --> Environment Variables (in form of key-value pair at runtime env, can be encrypted using kMS)
+    --> ** Environment Variables (in form of key-value pair to set environment at runtime env (dev, stage, prod), can be encrypted using kMS)
     --> we can configure SQS or SNS to get details about function failure
     --> concurrency --> we can specify the max no of concurrent execution of function (limit 1000)
     --> Tags - can be attached to function
@@ -53,6 +55,11 @@ When to use Lambda over EC2 --> Generally when you want to run code in resoonse 
 example:- change to S3 bucket, updates to DynamoDB table, Kinesis Stream, SQS queue
 
   ----- Need to work on Lambda function lab again -----
+ 
+ Lambda Best practice notes --> https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
+  --> Avoid using recursive code in your lambda function
+  --> your function should have some conditional checks to avoid infinite loops
+  --> in-case of some accidental recursive code, set the function concurrent execution limit to '0' (zero) to throttle all invocation to the function, and correct your code.
   
 
 
