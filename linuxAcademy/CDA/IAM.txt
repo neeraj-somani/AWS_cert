@@ -1,74 +1,14 @@
-good features --> sigma scripts
-14-may --> (am) --> IAM and EC2 , (pm) VPC
-15-may --> (am) --> lambda, server based compute services , (pm) S3
-16-may --> (am) --> S3 remaining and DynamoDB, (pm) other AWS DB services
-17-may --> (am) --> SNS, SQS, SWF , (pm) step functions, API gateways
-18-may --> all remaining
-19-may --> revision
-20-may --> exams
-
-Account and Services layer --> how you create, access and manage aws account and its services.
-Root User --> full account access. Not recommanded for daily use puporse. (email address and password)
-
-Physical and Networking Layer --> all about how aws is organized and how internal and external communication with aws works.
-where aws resources are physically located around the world and how data flows through aws network.
-
-Hybrid Environment --> allows user to combine on-premises resources with AWS resource and use it as they are in same environment.
-
-Regions, AZ, Edge Locations -->
-Edge Location --> (not inside AWS region), but its an AWS data center, Used to cache content closest to customer location to deliver content fast, if request is coming from other side of the geographical location. example, Cloudfront used for caching objects, etc.
-Regions --> Geographical location, consist of atleast two or more AZ. (group of AZs)
-AZ --> group of Data Centers, provides foudation for high availability and Fault tolerance for AWS resources. low latency network between AZs.
-
-Shared Responsibility Model -->
-  AWS Responsibility -->
-  >> Physical server level and below
-  >> physical env security and protection (firewall/power/climate/management)
-  >> storage device decomissioning as per industry standards
-  >> personnel security
-  >> Network Device security and ACL
-  >> AWS API endpoints - SSL
-  >> DDOS protection
-  >> EC2 instances and spoofing protection (Ingress / Egress filtering)
-  >> EC2 instances hypervisor isolation (instances on the same physical device are still independent, shared physical device between instances)
-  
-  Customer Responsibility -->
-  >> IAM
-  >> MFA
-  >> Password/ Key Rotation
-  >> Access Advisor
-  >> Trusted Advisor
-  >> security groups
-  >> Resource based policies
-  >> ACL
-  >> VPC
-  >> Port scanning is against the rules even on your own environment (ask AWS if needed)
-  >> OS level patches
-
-Some responsibility differs based on services -->
-  AWS Lambda -->  Generally, OS patches are customer responsibilty
-      Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations as well.
-
-AWS Compute Overview -->
-  EC2 --> Virtual server based service
-  Lambda --> Serverless based service
-  ECS --> Elastic container based service
-  Elastic BeanStalk --> PAAS
-
-AWS Storage Overview -->
-  S3 --> Object based stirage
-  Glacier --> Archive object based storage
-  DataBase services -->
-    DynamoDB --> serverless NoSQL DB
-    RDS --> mully-managed SQL DBs
-    Elastic Cache --> In-memory Cache Engine
-    Redshift --> PetaBytes managed DW
-
 IAM (Identity and Access management) --   
 IAM Essentials --> Global service, AWS access control service
   core components --> Users, groups, roles, policies, API Keys, password policy and MFA
   IAM provides access and access permission to AWS resources (like EC2, S3 etc)
   Best Practice --> always follow "Principle of Least Priviledge"
+
+As per AWS Documentation --> 
+  --> Different type of security credentials needed depending on how you interact -->
+    --> username/password --> while login through console
+    --> access keys to make programmatic call to AWS API operations (access key id, secrete access key, session token)
+    
 
 IAM Policies -->
   A policy is a document that formally states one or more permissions.
