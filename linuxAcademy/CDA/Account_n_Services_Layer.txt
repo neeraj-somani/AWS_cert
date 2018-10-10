@@ -12,3 +12,16 @@ AWS Account related configuration and Terms --> create, access and manage accoun
     Development tools and services
     Application and notification services
     Monitoring services
+    
+    Account and Services layer --> how you create, access and manage aws account and its services.
+Root User --> full account access. Not recommanded for daily use puporse. (email address and password)
+
+Physical and Networking Layer --> all about how aws is organized and how internal and external communication with aws works.
+where aws resources are physically located around the world and how data flows through aws network.
+
+Hybrid Environment --> allows user to combine on-premises resources with AWS resource and use it as they are in same environment.
+
+Regions, AZ, Edge Locations -->
+Edge Location --> (not inside AWS region), but its an AWS data center, Used to cache content closest to customer location to deliver content fast, if request is coming from other side of the geographical location. example, Cloudfront used for caching objects, etc.
+Regions --> Geographical location, consist of atleast two or more AZ. (group of AZs)
+AZ --> group of Data Centers, provides foudation for high availability and Fault tolerance for AWS resources. low latency network between AZs.
