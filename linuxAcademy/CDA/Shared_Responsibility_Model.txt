@@ -18,3 +18,48 @@ AWS responsible for --> "Security OF the Cloud"
  --> Firewall
  --> Intrusion detection
  --> Intrusion prevention
+ 
+ 
+ Shared Responsibility Model -->
+  AWS Responsibility -->
+  >> Physical server level and below
+  >> physical env security and protection (firewall/power/climate/management)
+  >> storage device decomissioning as per industry standards
+  >> personnel security
+  >> Network Device security and ACL
+  >> AWS API endpoints - SSL
+  >> DDOS protection
+  >> EC2 instances and spoofing protection (Ingress / Egress filtering)
+  >> EC2 instances hypervisor isolation (instances on the same physical device are still independent, shared physical device between instances)
+  
+  Customer Responsibility -->
+  >> IAM
+  >> MFA
+  >> Password/ Key Rotation
+  >> Access Advisor
+  >> Trusted Advisor
+  >> security groups
+  >> Resource based policies
+  >> ACL
+  >> VPC
+  >> Port scanning is against the rules even on your own environment (ask AWS if needed)
+  >> OS level patches
+
+Some responsibility differs based on services -->
+  AWS Lambda -->  Generally, OS patches are customer responsibilty
+      Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations as well.
+
+AWS Compute Overview -->
+  EC2 --> Virtual server based service
+  Lambda --> Serverless based service
+  ECS --> Elastic container based service
+  Elastic BeanStalk --> PAAS
+
+AWS Storage Overview -->
+  S3 --> Object based stirage
+  Glacier --> Archive object based storage
+  DataBase services -->
+    DynamoDB --> serverless NoSQL DB
+    RDS --> mully-managed SQL DBs
+    Elastic Cache --> In-memory Cache Engine
+    Redshift --> PetaBytes managed DW
