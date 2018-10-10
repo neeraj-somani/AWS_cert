@@ -47,6 +47,10 @@ Kinesis Consumers --> multiple consumers can consume Kinesis stream's data concu
       --> Lambda can read stream data
       --> Kinesis connector for EMR
 
+Kinesis with Lambda --> https://aws.amazon.com/blogs/big-data/preprocessing-data-in-amazon-kinesis-analytics-with-aws-lambda/
+    Many customers use Amazon Kinesis to ingest, analyze, and persist their streaming data.  One of the easiest ways to gain real-time insights into your streaming data is to use Kinesis Analytics.  It enables you to query the data in your stream or build entire streaming applications using SQL.  Customers use Kinesis Analytics for things like filtering, aggregation, and anomaly detection.
+
+Kinesis Analytics now gives you the option to preprocess your data with AWS Lambda.  This gives you a great deal of flexibility in defining what data gets analyzed by your Kinesis Analytics application. You can also define how that data is structured before it is queried by your SQL.
 
     ------------ from aCloudGuru -------
     Streaming Data --> It is continously generated data in/by applications in small size (i.e, in KBs), through thousands of data resources 
