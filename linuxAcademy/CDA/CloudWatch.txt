@@ -45,3 +45,9 @@ CloudWatch EC2 monitoring -->
 
 --> OS level metrics that required a third party script (perl) to be installed (provided by AWS)
     --> memory utilization, memory available, disk swap utilization, disk space available, disk space unitilization
+
+CloudWatch agent --> enables you to do the following:
+    --> Collect more system-level metrics from Amazon EC2 instances, including in-guest metrics, in addition to the metrics listed in Amazon EC2 Metrics and Dimensions. The additional metrics are listed in Metrics Collected by the CloudWatch Agent.
+    --> Collect system-level metrics from on-premises servers. These can include servers in a hybrid environment as well as servers not managed by AWS.
+    --> Collect logs from Amazon EC2 instances and on-premises servers, running either Linux or Windows Server.
+    --> Retrieve custom metrics from your applications or services using the StatsD and collectd protocols. StatsD is supported on both Linux servers and servers running Windows Server. collectd is supported only on Linux servers.
