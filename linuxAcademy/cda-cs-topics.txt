@@ -14,7 +14,7 @@ IAM policies
   
 Need to understand below in more details -->
 --> from whizlab-cda-diagnostic-test --> 
-1. ELB , sticky session feature benefits, limitations, 
+1. ELB , sticky session feature benefits, limitations, (duration-based vs Application-controlled sticky session) - practice test 2 (Q17)
 2. How elastic Cache can help in session managment for user? What is best method for maintain application session state when using ELB.
 https://aws.amazon.com/blogs/developer/elasticache-as-an-asp-net-session-store/
 ques 36/44 - Describe the process of registering mobile devices with SNS push notification service using GCM
