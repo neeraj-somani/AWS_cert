@@ -11,3 +11,9 @@ continuous delivery service that can model, visualize, and automate your softwar
     stages --> pipeline broken into different stages, like build (where code is build and test), deployment (updates deployed to env)
     actions --> stages contains atleast one action, these action applied to artifacts to move as input or output for the process
     transition --> progressing from one stage to another inside of pipeline
+
+CodePipeline using S3 bucket for storing code --> Encrypt S3 at rest -->
+  --> There are 2 ways to configure server side encryption for S3 artifacts -->
+    --> 1. CodePipeline creates an S3 bucket for artifacts,  and default AWS-managed SSE-KMS encryption keys when you create a pipeline using CodePipeline wizard. The master key is encrypted along with object data and managed by AWS.
+    --> 2. you can create and manage your own customer-managed SSE-KMS keys
+    
