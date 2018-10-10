@@ -36,8 +36,9 @@ API Gateway Method -->
 
 API Gateway Deployment and Stages -->  
   Deployments --> are snapshots of API resources and methods, must be created and associated with stage
-  stages --> are references to lifecycle status (dev, staging, prod)
+  stages --> are references to lifecycle status (dev, staging, prod) using stage variables.
      few stage settings can be configured:- like, Enable caching, customize request throttling, configure logging, define stage variables
+     stage variables are name-value pairs that can be configured to associate with the deployment stage of API, act as environment variables.
 
 API Gateway Caching and monitoring -->
   cache API responses for delivery fast request/response
@@ -51,3 +52,8 @@ API Gateway Monitoring --> CloudWatch can be used to monitor activity and usage
     Monitoring mertics includes statistics like -- caching, latency, detected errors
     method level metrics can be monitored
     cloudWatch alarms can be setup based on these metrics
+
+API gatewat addition configuration options or features -->
+  --> API custom authorizer can be used to create authorizer for each of the different stages, but this wouldn't help in differentiaing the environment.
+  --> Addition of model and schema to API can be done to add schema to your API and not to your stages of same API
+  --> allow to configure integration responses to the API gateway
