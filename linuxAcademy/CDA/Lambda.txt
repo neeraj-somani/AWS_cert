@@ -54,6 +54,21 @@ Lambda API actions --> need to visit on AWS website if needed.
 When to use Lambda over EC2 --> Generally when you want to run code in resoonse to an event -->
 example:- change to S3 bucket, updates to DynamoDB table, Kinesis Stream, SQS queue
 
+Q:-- What Configuration information needed for Lambda Function to Access Resources in an Amazon VPC
+Answer:- VPC subnet IDs and security group IDs. 
+
+example --> 
+The create-function CLI command specifies the --vpc-config parameter to provide VPC information at the time you create a Lambda function.
+$ aws lambda create-function \
+--function-name ExampleFunction \
+--runtime go1.x \
+--role execution-role-arn \
+--zip-file fileb://path/app.zip \
+--handler app.handler \
+--vpc-config SubnetIds=comma-separated-vpc-subnet-ids,SecurityGroupIds=comma-separated-security-group-ids \
+--memory-size 1024
+
+
   ----- Need to work on Lambda function lab again -----
  
  Lambda Best practice notes --> https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
