@@ -19,3 +19,17 @@ Amazon Elastic Cache and Caching strategy -->
     Lazy Loading --> cache will be loaded only when already not exists (means when cache miss occurs) and avoid to load data that was never requested. This usually implemented with some other maintainable stretegies to avoid data stale.
     write through --> cache will always be updated with new write and update requests to keep it up-to-date, usually implement it with TTL
     TTL --> time-to-live, TTL not guarantee fresh information, but helps in cleanup and implemented with any of above 2 options
+
+ElastiCache can improve overall performance of your application --> 
+In-Memory Data Store -->  consider these factors: Speed and Expense, Data and Access Pattern (frequent or not), Staleness.
+    consider caching your data if the following is true:
+        It is slow or expensive to acquire when compared to cache retrieval.
+        It is accessed with sufficient frequency.
+        It is relatively static, or if rapidly changing, staleness is not a significant issue.
+Gaming Leaderboards (Redis Sorted Sets) --> Redis sorted sets move the computational complexity associated with leaderboards from your application to your Redis cluster.
+  --> Redis sorted sets guarantee both uniqueness and element ordering.
+ 
+Messaging (Redis Pub/Sub)
+Recommendation Data (Redis Hashes)
+Other Redis Uses
+ElastiCache Customer Testimonials
