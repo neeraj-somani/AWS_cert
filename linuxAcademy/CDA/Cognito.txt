@@ -39,3 +39,10 @@ this enables you to use temporary, limited privilege credentials to access AWS r
 --> Cognito Identity supports separate identities on a single device, such as a family iPad. Each identity is treated separately 
 --> store data in the form of key/value pairs. The data is stored both locally on the device and in the Cognito sync store. 
 --> There is no limit to the number of identities you can create in your identity pools and sync store.
+
+Cognito Stream --> used to analyze information stored in Cognito.
+  Amazon Cognito Streams gives developers control and insight into their data stored in Amazon Cognito. Developers can now configure a Kinesis stream to receive events as data is updated and synchronized. Amazon Cognito can push each dataset change to a Kinesis stream you own in real time.
+  
+Cognito Events --> Amazon Cognito Events allows you to execute an AWS Lambda function in response to important events in Amazon Cognito. 
+Cognito Data --> users data
+Cognito Callback --> By implementing the "SyncCallback" interface, you can receive notifications on your app about dataset synchronization. 
