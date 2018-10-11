@@ -12,19 +12,18 @@ Benefit -->
 Cloud Formation Engines --> Create Stacks, update Stacks (change sets), Delete Stacks, Nested Stacks
 Cloud Formation Designer --> WYSIWYG template designer, editor
 
-
 CloudFormation Template --> JSON / YAML text file, describe AWS infrastructure (V-DM-PM-CTRO)
 (no limit on number of template creation) 
 this template can have various optional sections, but "Resources" section is compulsory
   format version --> its the template version
   description --> a string that describes about template, its must follow format version
-  metadata --> additional details that can help in implementation
-  parameters --> values to pass to your template when create or update stack, (variables in template, User prompted for values to enter at run-time, example- key-pair, instance type, password values, etc)
-  mapping --> match a provided key to a set of named values (lookup tables, AMIs by region)
+  metadata --> additional details about the template that can help in template authentication purpose.
+  parameters --> values to pass to your template at run-time when create or update stack, (variables in template, User prompted for values to enter at run-time, example- key-pair, instance type, password values, etc). You can refer to parameters from the Resources and Outputs sections of the template.
+  mapping --> match a provided key to a set of named values (works similar to lookup tables). {Example:- AMIs by region, Fn::FindInMap intrinsic function can be used to get details)
   conditions --> (intrinsic functions) statements that determine when resources are created or properties are defined using logical operator (example, Env= prod, )
-  Transform --> used to integrate with AWS serverless application model (AWS SAM)
-  Resources --> AWS resources details and there properties
-  Outputs --> output values that can be imported to other stacks, return in the response, or can be viewed at cloudFormation console
+  Transform --> For serverless applications (also referred to as Lambda-based applications), specifies the version of the AWS Serverless Application Model (AWS SAM) to use. When you specify a transform, you can use AWS SAM syntax to declare resources in your template. The model defines the syntax that you can use and how it is processed.
+  Resources --> AWS resources details and there properties (example: EC2 instance, S3 bucket)
+  Outputs --> output values that can be imported to other stacks, return in the response, or can be viewed at cloudFormation console. (example:- “aws cloudformation describe-stacks” AWS CLI command can be used to see these details)
  
 CloudFormation Resources -->
   resource type identifier --> AWS::aws-product-name::data-type-name
@@ -34,27 +33,33 @@ CloudFormation Resources -->
     AWS::IAM::Role --> can have ManagedPolicyArns
   some other resource attributes -->
     CreationPolicy -->(creation of stack based on some condition check) used to delay stack creation, can be based on other stack status
-    DeletionPolicy --> (deletion of checks before actual delete) used to create a backup / snapshot before deleting any resource
+    DeletionPolicy --> (working on checks before actual delete) used to create a backup / snapshot before deleting any resource
     DependsOn --> used to specify resource dependency, if needed resources creation/deletion in specific order
     Metadata --> optional additional information about resources or stack 
     UpdatePolicy --> used to specify how to apply updates to AWS resources
-
+    "WaitCondition" parameter --> Stacks can wait based on this condition
+    
 CloudFormation Stacks --> (200 limit per account) groups of resources that can be managed together
   stacks are defined and managed by cloudFormation template
   in-case if AWS not able to create all mentioned resources of stack, it will rollback. 
       Hence, it will always be complete stack or nothing
   contact AWS to increase stack limit
 
-CloudFomartion Intrinsic Functions --> 
-  these are used to assign values to different cloudFormation properties that are available at or after runtime
-  can be used in --> resources and output properties, or Metadata and UpdatePolicy attribute 
+CloudFomartion Intrinsic Functions --> help to manage stacks. Helps to assign values available at runtime
+ Limitation --> Currently, can only be used in resource properties, outputs, metadata attributes, and update policy attributes. Can also be used to conditionally create stack resources. 
   common intrinsic functions -->
-    Fn::GetAtt --> return the value of an attribute from a resource (example, used to get Name, ARN of resource)
-    Fn::Join --> appends values into a single value seperated by a delimiter 
-    Ref --> returns a value you can use to refer to provided parameter or resource
-      example, Ref to EC2 instance would return instance ID (when you pass logicalID of EC2 instance)
-              Ref to Lambda function would return function Name
-    
+    Fn::FindInMap - returns the value corresponding to keys in a two-level map that is declared in the Mappings section.
+    Fn::GetAtt - returns the value of an attribute from the resources section of the template. (example, used to get Name, ARN of resource)
+    Fn::ImportValue - returns the value of an output exported by another stack.
+    Fn::Join - appends a set of values into a single value, separated by the specified delimiter. If a delimiter is the empty string, the set of values are concatenated with no delimiter.
+    Fn::Select - returns a single object from a list of objects by index.
+    Fn::Split – used to split a string into a list of string values so that you can select an element from the resulting string list
+    Fn::Sub - substitutes variables in an input string with values that you specify
+    Ref - returns the value of the specified parameter or resource.
+      •	When you specify a parameter's logical name, it returns the value of the parameter. {{ EC2 instance would return instance ID (when you pass logicalID of EC2 instance) }}
+      •	When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. 
+      Ref to Lambda function would return function Name
+
  CloudFormation APIs --> https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/Welcome.html
   ListStackResources ---> returns description of all resources of the specified stack. (even for deleted stacks upto 90 days after the stack has been deleted)
     
