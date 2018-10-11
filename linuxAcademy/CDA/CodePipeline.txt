@@ -1,6 +1,7 @@
 CodePipeline --> (continous software release process)
 continuous delivery service that can model, visualize, and automate your software release process.
-  
+CodePipeline basically utilizes all development tools like, codeCommit, codeBuild, CodeDeploy, IAM role to work on these AWS services
+
   Benefits --> 
       automate release process -- source repository through build, test and deploy
       consistent release process - set of steps to perform for every new changes to perform smooth and continous software release
