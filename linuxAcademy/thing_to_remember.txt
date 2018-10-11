@@ -1,0 +1,11 @@
+--> CodeDeploy --> automates deployment
+  Deployment types --> 1. In-place (replace all EC2 instances, require some downtime)
+        2. Blue.Green Deployment (3 ways, allAtOnce, HalfAtOnce, OneAtATime) 
+            or (AllAtOnce, Linear, Canary {some percentage})
+  AppSpec file --> details about deployment steps (BeforeInstall, AfterInstall, ApplicationStart, ApplicationStop, validateService (LifeCycle Hooks))        
+
+--> CodePipeline --> CI/CD (continous software release process) --> set of steps to perform for every new changes in every release
+    --> status of release process --> view alerts, retry process steps, etc
+    --> CodePipeline creates S3 bucket for storing artifacts, (encryption at S3 can be by KMS-SSE-CMK, or AWS manager Key)
+    components --> 
+        --> pipeline --> stages {build, test, deployment} --> every stage contains one or more actions --> actions are applied on artifacts {code files}
