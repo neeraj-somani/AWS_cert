@@ -1,9 +1,10 @@
-CloudTrail Essentials --->
+CloudTrail Essentials ---> used for Audit purposes of AWS account. Used to log activities with AWS services. Example, creating new IAM user, S3 bucket, etc.
   CloudTrail is an API logging service that logs API calls made to AWS.
   It can log call from any interface, means from console, CLI, or SDK
   All logs will be stored in S3, highly available, durable
-
-CloudTrail --> allows you to monitor all actions taken by any IAM user
+  With a trail, you can also create event metrics, trigger alerts, and create event workflows. 
+  
+CloudTrail --> allows you to log activity or all actions taken by any IAM user
   example:- who and when an specific S3 object been deleted and log the details
 
 Hence, it enables -->
@@ -18,3 +19,11 @@ This helps in security analysis, resource change tracking and troubleshooting
 CloudWatch - CloudTrail logs Integration --> 
   --> sends cloudTrail events to cloudWatch logs
   --> define custom metrics and alarms
+  
+CloudTrail Data events --> (only for Lambda functions or S3 buckets)
+    Data events provide insights into the resource (“data plane”) operations performed on or within the resource itself. Data events are often high volume activities and include operations such as Amazon S3 object level APIs and Lambda function invoke API. For example, CloudTrail delivers data events for AWS Lambda Invoke API calls and Amazon S3 object level APIs such as Get, Put, Delete and List actions. Data events are recorded only for the Lambda functions and S3 buckets you specify and are charged at $0.10 per 100,000 events.
+
+CloudTrail Management events --> 
+    Management events provide insights into the management (“control plane”) operations performed on resources in your AWS account. For example, CloudTrail delivers management events for API calls such as launching Amazon EC2 instances or creating Amazon S3 buckets. Management events are enabled by default 
+
+CloudTrail pricing --> charges based on S3 storage, Data events and management events
