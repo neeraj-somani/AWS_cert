@@ -45,6 +45,8 @@ CloudFormation Stacks --> (200 limit per account) groups of resources that can b
       Hence, it will always be complete stack or nothing
   contact AWS to increase stack limit
 
+CloudFormation StackSet -->  A StackSet is a container for AWS CloudFormation stacks that lets you provision stacks across AWS accounts and regions by using a single AWS CloudFormation template.
+
 CloudFomartion Intrinsic Functions --> help to manage stacks. Helps to assign values available at runtime
  Limitation --> Currently, can only be used in resource properties, outputs, metadata attributes, and update policy attributes. Can also be used to conditionally create stack resources. 
   common intrinsic functions -->
@@ -64,4 +66,34 @@ CloudFomartion Intrinsic Functions --> help to manage stacks. Helps to assign va
   ListStackResources ---> returns description of all resources of the specified stack. (even for deleted stacks upto 90 days after the stack has been deleted)
     
     
-    
+------------ Below sample template ----
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description": "A CloudFormation template for the AWS CDA",
+
+  "Resources" : {
+    "UsersTable" : {
+      "Type" : "AWS::DynamoDB::Table",
+      "Properties" : {
+        "AttributeDefinitions" : [
+          {
+            "AttributeName" : "UserId",
+            "AttributeType" : "S"
+          }
+        ],
+        "KeySchema" : [
+          {
+            "AttributeName" : "UserId",
+            "KeyType" : "HASH"
+          }
+        ],
+        "ProvisionedThroughput" : {
+          "ReadCapacityUnits" : "5",
+          "WriteCapacityUnits" : "5"
+        },
+        "TableName" : "UsersTable"
+        }
+    }
+  }
+}
