@@ -1,32 +1,65 @@
-CloudFront --> (CDN) --> Content Delivery network
-    --> allows you to store (cache) your content at "edge locations" located all around the world.
+CloudFront Essentials--> (CDN) --> Content Delivery network - edge locations, reduced latency, traffic serves from the closest nodes, secure
+    --> CloudFront work based on the "Distribution" created and enabled at cloudFront.
+    --> allows you to store (cache) your content at "edge locations" 
     --> allows customer to access your content more quickly
-    --> also provides additional security specially against DDOS attacks
+    --> also provides additional security specially against DDOS attacks (AWS Shield)
+    --> can be used for both Download and upload files.
+    --> CloudFront retrieves content from origins. (Origin can be - S3, EC2, ELB, Route53 also NON AWS origin server ,)
+     
+Edge locations --> content will be cached (over 50), different from region / AZ. TTL (speed of image // media is quicker - first user suffers the performance), can be not only read only (you can write it)
+    --> Edge location are additional AWS data center located around the world, designed to give low latency to 2 AWS services:
+        --> Route53 --> DNS lookups (DNS can be cached)
+        --> CloudFront --> CDN (Cahced content (example a pdf file), streaming distribution, accelaration)
+        --> WAF -->
+        --> Shield -->
+        --> Lambda@Edge --> 
+Regional Edge Cache --> used by cloudFront to offload your origin by caching content that has been ejected from global Edge location.
 
-CloudFront Essentials --> 
-    --> CloudFront is a global CDN which delivers content to users from the nearest edge location.
-    --> CloudFront retrieves content from origins.
-    --> CloudFront Distribution (web or RTMP)
-            --> Define origins for content (static or dynamic)
-            --> cloudFront can integrate with Route53 for alternate "CNAMEs" --> (this allows you to create a URL such that it can work with your distribution)
-            --> Cache behaviors (Path Patterens{images/*.jpg}, min/max/default TTL, Query string forwarding and caching, HTTP methods (GET/PUT/POST/HEAD/etc)
-
-Updating Cached Files --> 
-         --> Caching is done based off the cache key
-         --> In order to serve a new version of an object, either create a new object with a new name or create an "invalidation" on the cloudFront distribution based off the object name.
-         --> "Invalidation" can be costly.
-         --> set TTL = 0
+CloudFront Origin --> 
+    --> is a source of content (static or dynamic)
+    --> Origin can be - S3, EC2, ELB, Route53,  NON AWS origin server, any public HTTP endpoint like API gateway endpoint
+    --> live video streaming or VOD (video origin distribution)
+    --> RTMP Distribution (flash media files)
     
+--> CloudFront Distribution (web or RTMP) --> can have multiple origins of a distribution
+(1) Web Distribution - Create a web distribution if you want to:
+        Speed up distribution of static and dynamic content, for example, .html, .css, .php, and graphics files.
+        Distribute media files using HTTP or HTTPS.
+        Add, update, or delete objects, and submit data from web forms.
+        Use live streaming to stream an event in real time.
+        You store your files in an origin - either an Amazon S3 bucket or a web server. After you create the distribution, you can add more origins to the distribution.
+(2) RTMP Distribution protocol (media streaming / flash) - for Adobe flash files only. An RTMP distribution allows an end user to begin playing a media file before the file has finished downloading from a CloudFront edge location. 
+    --> To create an RTMP distribution, you must store the media files in an Amazon S3 bucket.
+    --> To use CloudFront live streaming, create a web distribution.
+    --> Define origins for content (static or dynamic)
+    --> cloudFront can integrate with Route53 for alternate "CNAMEs" --> (this allows you to create a URL such that it can work with your distribution)
+    --> Cache behaviors (Path Patterens {images/*.jpg}, min/max/default TTL, Query string forwarding and caching, HTTP methods (GET/PUT/POST/HEAD/etc)
 
+Updating Cached Files --> (management for cache files)
+     --> Caching is done based off the cache key
+     --> In order to serve a new version of an object, either create a new object with a new name or create an "invalidation" on the cloudFront distribution based off the object name.
+     --> "Invalidation" can be costly. as it require network traffic to flow (request/ response)
+     --> Invalidation basically removes the objects from Edge location cache memory, but it cost money. This is needed when you wants to remove objects before TTL time.
+     --> set TTL = 0 (best is to set TTL if possible)
+    
 CloudFront Security --> 
-    --> SSL certificates
-    --> end-to-end https
-    --> AWS WAF integration
-    --> Distribute private content
-            --> S3 (limited access to Origin Access Identity (OAI))
-            --> Signed URL or Signed Cookie --> (Expiration, restrict by IP, Trusted Signers (CloudFront Key-pair))
-    --> Geo Restriction
+--> SSL certificates
+--> end-to-end https (or http)
+--> AWS WAF integration
+--> Distribute private content
+    --> S3 (limited access to Origin Access Identity (OAI))
+    --> Restrict viewer access by Signed URL or Signed Cookie --> (Expiration, restrict by IP, Trusted Signers (CloudFront Key-pair))
+    --> Restrict content based on geo location (whitelist {allowed countries} and blacklist {restricted countries})
 
 CloudFront Performance Consideration -->
-Edge location -->
-CloudFront Origin -->
+    --> regional cache --> save cache near to end user
+    --> point entire domain to CloudFront to speedup dynamic content 
+            --> connection optimization
+            --> dynamic content are still cached
+    --> CloudFront performance can be affected by -->
+        --> file size, type of file,
+        --> incase request has to go to origin location 
+    --> QueryString, as it usually performs at origin location and require additional work and cache at cloudFront
+    --> more request , more performance hit
+
+CloudFront access logs for a distribution, each row corresponds with one viewer request. 
