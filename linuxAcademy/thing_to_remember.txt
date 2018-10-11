@@ -9,3 +9,8 @@
     --> CodePipeline creates S3 bucket for storing artifacts, (encryption at S3 can be by KMS-SSE-CMK, or AWS manager Key)
     components --> 
         --> pipeline --> stages {build, test, deployment} --> every stage contains one or more actions --> actions are applied on artifacts {code files}
+  --> CodePipeline basically utilizes all development tools like, codeCommit, codeBuild, CodeDeploy, IAM role to work on these AWS services
+
+--> CodeStar --> A quick service to start your project with utilizing all AWS resources.
+  --> administor all needed AWS resoures and IAM roles/users as per specification,
+  --> CodeStar well integrates with  CodeCommit, codeBuild, CodeDeploy, CodePipeline, CloudWatch
