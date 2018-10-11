@@ -1,4 +1,13 @@
-CloudWatch --> used to monitor AWS services , like S3, EC2, ELB by configuring cloudWatch matrices
+CloudWatch --> create events or alarm for any event alerts.
+--> used to monitor AWS services and trigger alarms as needed. (services like S3, EC2, ELB by configuring cloudWatch matrices.
+two categoris of metrics --> 1. By Auto Scaling Group    2. Per-Instance Metrics 
+    under these categories 4-5 different types are available:
+      >> Network related
+      >> StatusCheck Related
+      >> Disk Related
+      >> CPU Related
+ >> All other are custom metrics, like memory related. Need to write some code for it.  
+
   for example: 
     EC2 per-instance metrices -->
       CPUUtilization
@@ -23,9 +32,10 @@ CloudWatch Logs -->
   --> log streams (example: EC2 cloudwatch log agent)
   --> metrics can be made from log stream
 
-CloudWatch Events -->
+CloudWatch Events --> perform some action based on some activity or timeframe
   --> create rules to respond to events in events stream: (trigger AWS lambda function when EC2 instance spin up/down)
   --> schedule events
+  --> Once an event occurs or matches your rule, configured target can be invoked.
 
 CloudWatch EC2 monitoring -->
   --> System status check --> (things that are outside of our control)
@@ -46,8 +56,18 @@ CloudWatch EC2 monitoring -->
 --> OS level metrics that required a third party script (perl) to be installed (provided by AWS)
     --> memory utilization, memory available, disk swap utilization, disk space available, disk space unitilization
 
+CloudWatch Logs --> CloudWatch Logs helps you to aggregate, monitor, and store logs. For example, you can:
+    Monitor HTTP response codes in Apache logs
+    Receive alarms for errors in kernel logs
+    Count exceptions in application logs
+
+CloudWatch logs requires 3 setup steps -->
+  1. Install cloudwatch Log agent to a Running EC2 Linux Instance
+  2. Metric filter criteria to automatically send log to CloudWatch logs
+  3. view log data (as per log stream at cloudWatch console)
+
 CloudWatch agent --> enables you to do the following:
     --> Collect more system-level metrics from Amazon EC2 instances, including in-guest metrics, in addition to the metrics listed in Amazon EC2 Metrics and Dimensions. The additional metrics are listed in Metrics Collected by the CloudWatch Agent.
     --> Collect system-level metrics from on-premises servers. These can include servers in a hybrid environment as well as servers not managed by AWS.
     --> Collect logs from Amazon EC2 instances and on-premises servers, running either Linux or Windows Server.
-    --> Retrieve custom metrics from your applications or services using the StatsD and collectd protocols. StatsD is supported on both Linux servers and servers running Windows Server. collectd is supported only on Linux servers.
+    --> Retrieve custom metrics from your applications or services using the StatsD and collectd protocols. StatsD is supported on both Linux servers and servers running Windows Server. collectD is supported only on Linux servers.
