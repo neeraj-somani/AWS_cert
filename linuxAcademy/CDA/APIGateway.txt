@@ -24,7 +24,7 @@ API Gateway Resources -->
   Resources can have child resource and with different API URL
   Both resources and child resources can have associated HTTP method
   example API resource URLs --> https://16gkh57hj686.execute-api.us-east-1.amazonapi.com/dev/cars
-  above "dev" in the URL consider as "stage" for API
+  above "dev" in the URL consider as "stage" name for API
 
 API Gateway Method --> 
   HTTP methods (GET, PUT, POST, DELETE) associated with API Gateway
@@ -38,7 +38,7 @@ API Gateway Deployment and Stages -->
   Deployments --> are snapshots of API resources and methods, must be created and associated with stage
   stages --> are references to lifecycle status (dev, staging, prod) using stage variables.
      few stage settings can be configured:- like, Enable caching, customize request throttling, configure logging, define stage variables
-     stage variables are name-value pairs that can be configured to associate with the deployment stage of API, act as environment variables.
+     stage variables are name-value pairs that can be configured to associate with the deployment stage of API, act as environment variables. You can use stage variables in your API configuration to parametrize the integration of a request. Stage variables are also available in the $context object of the mapping templates.
 
 API Gateway Caching and monitoring -->
   cache API responses for delivery fast request/response
