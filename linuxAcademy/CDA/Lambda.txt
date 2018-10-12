@@ -41,8 +41,16 @@ Lambda Versions and Aliases --> used to manage code for production vs other envi
   2. Aliases --> are pointer to specific lambda function version
        Alias can be used to call specific function without knowing version of function
        Alias have static ARN and can be used to point to any version of the same function
-       Alias can also be used to split traffic between lambda functions versions
+       Alias can also be used to split traffic between lambda functions versions, by configuring routing-config parameter 
   Benefits of both --> easier development workflow and management of stages.
+
+Traffic Shifting Using Aliases --> 
+    By default, an alias points to a single Lambda function version. 
+    You can point an alias to a maximum of two Lambda function versions. by configuring routing-config parameter and dictate what percentage of incoming traffic is sent to each version.
+few additional points to keep in mind -->
+    Both versions should have the same Dead Letter Queues configuration (or no DLQ configuration).
+    Both versions should have the same IAM execution role.
+    When pointing an alias to more than one version, the alias cannot point to $LATEST.
 
 Lambda API actions --> need to visit on AWS website if needed.
   AddPermission --> add permission to AWS resource
