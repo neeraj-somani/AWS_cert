@@ -57,7 +57,14 @@ IAM STS --> Security Token Service
     GetFederationToken --> Federation through a custom identity broker
     GetSessionToken --> Temporary credentials for users in untrusted environment
  
- IAM API Keys -->
+Some of the aspects that gets incorporated in the call to STS are -->
+    --> The Amazon Resource Name (ARN) of the role that the app should assume.
+    --> The token that the app gets from the IdP after the app authenticates the user.
+    --> The duration, which specifies the duration of the temporary security credentials.
+    --> A role session name, which is a string value that you can use to identify the session. This value can be captured and logged by CloudTrail to help you distinguish between your role users during an audit.
+    
+
+IAM API Keys -->
   API Keys are useful to make programmatic calls to AWS, using CLI, SDKs, or Direct Http calls. (example, an API credentials are used by developers working from an on-premises network.
   Facts --> An API key is only available at the time of creation of user, if user forget later, they have to regenerate new key.
     AWS won't generate same set of key again, and can have only one active API key at a time.
