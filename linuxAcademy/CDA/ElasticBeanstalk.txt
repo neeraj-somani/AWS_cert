@@ -25,11 +25,19 @@ Few points -->
     --> using console --> while creating ElasticBeanstalk env 
     --> using CLI --> while creating ElasticBeanstalk env
     --> using saved configurations --> predefined saved configuartion at the enviornment / account level 
-    --> using saved configuration files (.ebextension) --> at S3 level 
- --> if the same options is set at multiple locations then the value used is determined by order of precedence.
+    --> using saved configuration files inside .ebextension folder or at S3 level
+    
+ --> if the same environment options is set at multiple locations then the value used is determined by order of precedence.
     --> below is order of precedence from higher to lower --> 
        1. --> settings applied directly to environments --> settings specified during creation or updation of environment using any method like AWS CLI, or EB CLI or SDK, or console. (applied and saved at environment configuration level)
        2. --> saved configurations --> settings that are applied directly at the time of creation are loaded from predefined saved configurations. (applied and saved at environment configuration level)
        3. --> configuration files (.ebextensions) --> this is a folder at the root of the application source bundle. any files under this folder are stored in alphabatical order (01, 02, a, b, etc) (not applied and saved directly at environment configuration level)
        4. Default values --> any other default value settings that are not specifed by other precedence level
         
+
+Deployment planning for Elastic BeanStalk -->
+Create an Application Source Bundle and Your source bundle must meet the following requirements:
+    Consist of a single ZIP file or WAR file (you can include multiple WAR files inside your ZIP file)
+    Not exceed 512 MB
+    Not include a parent folder or top-level directory (subdirectories are fine)
+    If you want to deploy a worker application that processes periodic background tasks, must also include a cron.yaml file
