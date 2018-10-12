@@ -90,7 +90,9 @@ DynamoDB Read Operations -->
 ***** QUERY and SCAN operation both support eventual consistent read by default, but can configure to request consistent reads.
 **** QUERY operation vs GETITEM operation -->
     GETITEM --> returns attributes based on provided primary key only (means based on partition key only)
+            --> getItem retrieve via hash and range key is a 1:1 fit, the time it takes (hence performance) to retrieve it is limited by the hash and sharding internally. 
     QUERY --> returns attributes based on provided primary key only (can use both partition key as well as sort key)
+        --> Query results in a search on "all" range keys. It adds computational work, thus considered slower.
 Advantages of QUERY over SCAN --->
     ---> Returns the item matching the primary key search, return all attributes of item or only the one you request.
     --> much more efficient because it searches indexes only
