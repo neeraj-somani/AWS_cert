@@ -6,7 +6,7 @@ ELB and Session state --> (EC2 and ELB good combination for Serverless RestFul A
     option 1 --> ELB generates cookies stickiness
     option 2 --> application generated cookies stickiness
     Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
-Types of ELB -->
+#Types of ELB -->
   Classic Load balancer --> old but for http/https/tcp requests (No granular routing rules)
   Application Load Balancer ---> for http and https requests
         content based rules --> (setup on listener)
@@ -16,7 +16,11 @@ Types of ELB -->
             --> even monitor and auto-scale based on traffic to "specific groups"
             --> can balance traffic to multiple ports
        --> ALB also supports ECS, EKS, HTTPs, HTTP/2, Web Socket, Access Logs, WAF, 
-  Network load balancer --> for TCP requests (Reliability Pillar)
+       ALB with ECS service -->
+          --> ALB allow containers to use dynamic host port mapping (so that multiple tasks from the same service are allowed per container instance).
+          --> ALB support path-based routing and priority rules (so that multiple services can use the same listener port on single ALB).
+ 
+ Network load balancer --> for TCP requests (Reliability Pillar)
         --> NLB is designed for extreme performance. No need to scale to handle large traffic
         --> Layer 4 (TCP) load balancing
         --> Static / Elastic IP address per AZ
