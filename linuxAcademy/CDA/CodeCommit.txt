@@ -11,3 +11,7 @@ CodeCommit --> This is a managed, secure and scalable source control service tha
     Create a policy in AccountA that grants access to the repository.
     Create a role in AccountA that can be assumed by IAM users and groups in AccountB.
     Attach the policy to the role.
+
+Migrate to AWS CodeCommit -->
+  --> from other version control systems, such as Perforce, Subversion, or TFS, but you will have to migrate to Git first. Even from your local computer to git first.
+  --> Then migrate Git code to Code Commit.
