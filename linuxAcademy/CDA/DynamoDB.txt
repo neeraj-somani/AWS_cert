@@ -80,8 +80,11 @@ DynamoDB Read Operations -->
   GetItem --> read single item based on given primary key
   BatchGetItem --> can read upto 100 items from one or more table (each item read is done by GetItem operation, and RCU calculated)
   QUERY --> read item(s) with the same partition key value, (sort key if provided), 
+     --> A query operation searches only primary key attribute values and supports a subset of comparison operators on key attribute values to refine the search process. means, filter can be applied to key attributes only.
       --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
+  
   SCAN --> read all the item(s) and consider the size of items evaluated by operation, not the size of returned item. means, returned item could be less than the evaluated items.
+    --> A scan operation scans the entire table. You can specify filters to apply to the results to refine the values returned to you, after the complete scan. means, filter can be applied to any attribute of table.
        --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
        --> SCAN operation should be avoided by using queries or secondary indexes. 
        --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
