@@ -4,3 +4,10 @@ CodeCommit --> This is a managed, secure and scalable source control service tha
     stored encrypted and secure in AWS
     collaborate on code, no limit on file type and size of repository
     easy intergration with other AWS services and other Git repository
+    
+ Configure Cross-Account Access to an AWS CodeCommit Repository --> 
+    --> you need to create a cross account role, give role the privileges, Provide the role ARN to developers.
+    or samething in below steps -->
+    Create a policy in AccountA that grants access to the repository.
+    Create a role in AccountA that can be assumed by IAM users and groups in AccountB.
+    Attach the policy to the role.
