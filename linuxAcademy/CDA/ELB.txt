@@ -6,7 +6,7 @@ ELB and Session state --> (EC2 and ELB good combination for Serverless RestFul A
     option 1 --> ELB generates cookies stickiness
     option 2 --> application generated cookies stickiness
     Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
-#Types of ELB -->
+Types of ELB -->
   Classic Load balancer --> old but for http/https/tcp requests (No granular routing rules)
   Application Load Balancer ---> for http and https requests
         content based rules --> (setup on listener)
