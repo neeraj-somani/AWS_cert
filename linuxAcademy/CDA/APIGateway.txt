@@ -57,3 +57,8 @@ API gatewat addition configuration options or features -->
   --> API custom authorizer can be used to create authorizer for each of the different stages, but this wouldn't help in differentiaing the environment.
   --> Addition of model and schema to API can be done to add schema to your API and not to your stages of same API
   --> allow to configure integration responses to the API gateway
+
+Control who can access API Gateway -->
+  --> IAM roles and policies
+  --> Lambda Authorizer (formerly known as custom authorizers)
+  --> Amazon Cognito user pool 
