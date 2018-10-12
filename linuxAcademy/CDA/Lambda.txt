@@ -22,9 +22,9 @@ Lambda Function Configuration -->
   Lambda requires significatly less configuration and managment, but you can still customize it:
     --> different programming language options and runtime environments
     --> the handler (each function has a handler file and function, format of the lambda handler value is filename.functioname, ) 
-    --> Memory (128 MB to 3008 MB) - {in 64MB increment each time}
+    --> Memory (128 MB to 3008 MB) - {in 64MB increment each time}. (default it 128 MB)
     --> CPU allocation sclaes based on memory
-    --> max execution duration (300 sec) - in 1 sec increments
+    --> max execution duration (300 sec) - in 1 sec increments. (default is 3 sec)
     --> permissions (Through IAM roles, or resource based access control policies, these policies needs to be set through CLI/SDK, can't be done through consol and it uses STS/Cognito for security)
     --> ** Environment Variables (in form of key-value pair to set environment at runtime env (dev, stage, prod), can be encrypted using kMS)
     --> we can configure SQS or SNS to get details about function failure
