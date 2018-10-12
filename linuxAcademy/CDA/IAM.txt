@@ -9,7 +9,6 @@ As per AWS Documentation -->
     --> username/password --> while login through console
     --> access keys to make programmatic call to AWS API operations (access key id, secrete access key, session token)
     
-
 IAM Policies -->
   A policy is a document that formally states one or more permissions.
   By default, an explicit deny overrides an explicit allow.
@@ -63,6 +62,10 @@ Some of the aspects that gets incorporated in the call to STS are -->
     --> The duration, which specifies the duration of the temporary security credentials.
     --> A role session name, which is a string value that you can use to identify the session. This value can be captured and logged by CloudTrail to help you distinguish between your role users during an audit.
     
+Cloudwatch vs CloudTrail with STS -->
+CloudTrail logs all authenticated API requests (made with credentials) to IAM and AWS STS APIs (with temp credentials), with the exception of DecodeAuthorizationMessage. CloudTrail also logs non-authenticated requests.
+
+CloudWatch --> has details as per matrics, means how many requests, errors, throttled, 
 
 IAM API Keys -->
   API Keys are useful to make programmatic calls to AWS, using CLI, SDKs, or Direct Http calls. (example, an API credentials are used by developers working from an on-premises network.
@@ -91,6 +94,11 @@ IAM KMS (Key Management Service) --> Create and control encryption keys used to 
   GenerateDataKey --> uses a CMK to return a plainText, and cipherText version of data encryption key
   Decrypt --> Decrypt cipherText that are encrypted by API 
     Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext
+ 
+Testing IAM custom Policies with the IAM Policy Simulator --> 
+policy simulator command typically require calling API operation to do two things -->
+  --> Get context-keys first
+  --> use the aws iam simulate-custom-policy command. In this command we need to supply list of actions, resources and context keys.
   
     
 Amazon Congnito -->
