@@ -186,3 +186,8 @@ use the CreateTable or UpdateTable APIs to enable or modify a stream. The Stream
         NEW_IMAGE—the entire item, as it appears after it was modified.
         OLD_IMAGE—the entire item, as it appeared before it was modified.
         NEW_AND_OLD_IMAGES—both the new and the old images of the item.
+
+DynamoDB Encryption at Rest --> 
+    --> using an AWS Key Management Service (AWS KMS) managed encryption key 
+    --> you need to create a table with encryption at rest enabled. (Encryption at rest can be enabled only when you are creating a new DynamoDB table. can't enable encryption at rest on an existing table. once enabled, it can't be disabled. )
+    --> Copy data from existing table to new encrypted table
