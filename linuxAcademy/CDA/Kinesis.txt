@@ -63,6 +63,7 @@ Kinesis Analytics now gives you the option to preprocess your data with AWS Lamb
   1. Kinesis Stream -->
       All incoming data are stored in multiple Shard for default 24 hours (and can be increased to 7 days) --> Data retention period
       Shards --> high read/write throughput with distributed environment
+      Kinesis Stream can not guarantee order of data across multiple shards, its possible only within shards.
   2. Kinesis Firehose -->
       Its more automated way of Kinesis Streams.
       >> In this we don't need to manage shards 
