@@ -1,0 +1,24 @@
+ELB and Session state --> (EC2 and ELB good combination for Serverless RestFul APIs)
+  Load Balancing --> means distributing incoming traffic across servers
+  ELB can distribute incoming traffic across multiple EC2 instances across multiple AZs
+  --> ELB provides access logs that capture detailed information about requests sent to your load balancer. 
+  ELB maintain session state -->
+    option 1 --> ELB generates cookies stickiness
+    option 2 --> application generated cookies stickiness
+    Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
+Types of ELB -->
+  Classic Load balancer --> old but for http/https/tcp requests (No granular routing rules)
+  Application Load Balancer ---> for http and https requests
+        content based rules --> (setup on listener)
+            Host-based rules --> route traffic based on the host field of HTTP header
+            Path-based rules --> route traffic based on URL path of HTTP header
+            --> this allows you to structure your application as small services
+            --> even monitor and auto-scale based on traffic to "specific groups"
+            --> can balance traffic to multiple ports
+       --> ALB also supports ECS, EKS, HTTPs, HTTP/2, Web Socket, Access Logs, WAF, 
+  Network load balancer --> for TCP requests (Reliability Pillar)
+        --> NLB is designed for extreme performance. No need to scale to handle large traffic
+        --> Layer 4 (TCP) load balancing
+        --> Static / Elastic IP address per AZ
+        --> IP addresses as Targets
+        --> No SSL offloading
