@@ -13,6 +13,8 @@ Amazon Elastic Cache and Caching strategy -->
     Redis --> fast, open source, in-memory data store and cache 
         --> Supports complext data types, multi-AZ failover, data persistence, 
         --> snapshots for backup and restore, Encryption (HIPAA compliant)
+        --> pub-sub capability
+        --> Highly available, can be used to fast recover data lost
     MemcacheD --> a widely adopted memory object caching system (Simple model, easy to scale, support multithread)
     
   Caching stretegies -->
