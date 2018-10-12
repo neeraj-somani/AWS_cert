@@ -85,6 +85,7 @@ DynamoDB Read Operations -->
        --> all returned items are treated as single read operation, and sum the size of all items and rounded to 4KB for RCU calculation
        --> SCAN operation should be avoided by using queries or secondary indexes. 
        --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
+       --> Try to perform parallel scan operation instead of sequential scan. This can improve performance.
 ****** there is limit of 1MB of data returned from these operations, to get more data need to provide LastEvaluatedKey  
 ***** QUERY and SCAN operation both support eventual consistent read by default, but can configure to request consistent reads.
 **** QUERY operation vs GETITEM operation -->
