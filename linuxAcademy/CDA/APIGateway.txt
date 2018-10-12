@@ -58,7 +58,17 @@ API gatewat addition configuration options or features -->
   --> Addition of model and schema to API can be done to add schema to your API and not to your stages of same API
   --> allow to configure integration responses to the API gateway
 
-Control who can access API Gateway -->
+Controlling Access to an API in API Gateway -->
+  --> Resource Policies
   --> IAM roles and policies
+  --> CORS
   --> Lambda Authorizer (formerly known as custom authorizers)
   --> Amazon Cognito user pool 
+  --> Client-side SSL certificates can be used to verify that HTTP requests 
+  --> Usage plans let you provide API keys to your customers — and then track and limit usage
+  
+  -------------------------
+  On the other side -->
+    --> Key policies are used to provide authorization for KMS keys
+  
+  
