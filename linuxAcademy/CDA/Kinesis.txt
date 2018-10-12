@@ -64,11 +64,14 @@ Kinesis Analytics now gives you the option to preprocess your data with AWS Lamb
       All incoming data are stored in multiple Shard for default 24 hours (and can be increased to 7 days) --> Data retention period
       Shards --> high read/write throughput with distributed environment
       Kinesis Stream can not guarantee order of data across multiple shards, its possible only within shards.
-  2. Kinesis Firehose -->
-      Its more automated way of Kinesis Streams.
+  2. Kinesis Firehose --> Its more automated way of Kinesis Streams.
       >> In this we don't need to manage shards 
       >> data in automaticaly stored to S3 after processing. Consumer services can access from S3 anytime
       >> you can't directly send data to RedShift or RDS or DynamoDB, it has to go to S3 first then to any other services.
       >> Firehose can send data directly to S3, ESC (ElasticSearch Cluster)
+     For security concerns -->
+        --> enable server-side data encryption, But you can only do this if you use a Kinesis data stream as your data source. Firehose no longer stores the data at rest.
+        --> When you send data from your data producers to your Kinesis data stream, Kinesis Data Streams encrypts your data using an AWS KMS key before storing it at rest. 
+     
   3. Kinesis Analytics -->
       >> Allows user to write SQLs and analyze data that exists in FireHose or Stream.
