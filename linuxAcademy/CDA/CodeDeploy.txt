@@ -15,9 +15,10 @@ CodeDeploy --> automates deployment of your application to EC2, lambda, and even
 notes for Blue/Green deployment ** After instances in the replacement environment are registered with a load balancer, instances from the original environment are deregistered and can be terminated.
 
 CodeDeploy AppSpec File --> mention details about how to deploy applications, sequencial order of steps needs to follow by codeDeploy
-    --> BeforeInstall, AfterInstall, ApplicationStart, ApplicationStop, validateService (LifeCycle Hooks)
+    Below is the LifeCycle Hooks applicable when there is no CLB to balance the load
+    --> Start, ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart, ValidateService, END (LifeCycle Hooks)
       Lambda Deployment --> which function to use, which function can do validation test
       EC2 or On-premises deployment --> what to install, from where to fetch objects, what lifecycle of events occur
       
   LifeCycle Hooks --> allows scripts to run during deployment step, depending upon deployment type/environment
-    BeforeInstall, AfterInstall, ApplicationStart, ApplicationStop, validateService
+    --> Start, ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart, ValidateService, END 
