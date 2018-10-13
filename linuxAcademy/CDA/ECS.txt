@@ -92,7 +92,14 @@ Task Placement Stretagy --> defines how to distribute tasks on EC2 instance in c
     --> pack tasks for efficiency
     --> run only one tasks per EC2 instances
     --> custom tasks placements
-  
+
+Running the X-Ray Daemon on Amazon ECS --> https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html
+  --> create a Docker image with X-Ray deamon
+  --> Deploy Docker container on ECS cluster
+You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.
+
+
+
 Elastic Container service for Kubernet --> (EKS)
   --> Manages availability and scalability of kubernets control plane nodes
         --> start, stop container, schedule container, replace unhealthy nodes
