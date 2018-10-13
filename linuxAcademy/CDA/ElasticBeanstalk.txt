@@ -38,9 +38,10 @@ Few Notes -->
   --> Inorder to deploy a custom application on EB where there is a need for lots of configuration files and patches needs to be downloaded, then use of custom AMI is recommended. This will improve provisioning time for your environment.
   --> Using configuration files is great for configuring and customizing your environment quickly and consistently. 
 
-Elastic BeanStalk Integration 
-How can you ensure that RDS instance used with Elastic Beanstalk --> 
-    --> 
+Elastic BeanStalk Integration with RDS -->
+    --> you can connect and configure to DB instance directly to your environment or create DB externally and connect in EB environment.
+    --> Creating RDS externally and connecting that in your EB will help you to retain it even after your you tear down your env.
+    --> Also, Ensure you configure retention of your RDS DB marked as "Create SnapShot". This will keep a copy of your RDS even after your EB env tear down.
 
 Deployment planning for Elastic BeanStalk -->
 Create an Application Source Bundle and Your source bundle must meet the following requirements:
@@ -51,6 +52,29 @@ Create an Application Source Bundle and Your source bundle must meet the followi
 
 Auto Scaling Group for Your AWS Elastic Beanstalk Environment -->
   --> Elastic Beanstalk includes an Auto Scaling group that manages the Amazon EC2 instances in your environment.
-  --> Auto Scaling group also manages the launch configuration for the instances in your environment. 
-  
-  Apart from this A YAML formatted environment manifest can also be placed in the root source bundle to configure the environment.
+  --> Auto Scaling group also manages the launch configuration for the instances in your environment.  
+---------->  Apart from this A YAML formatted environment manifest can also be placed in the root source bundle to configure the environment.
+
+Managing Application Versions -->
+    --> Elastic Beanstalk creates an application version whenever you upload source code. This is created when you upload using consol or EB CLI. Hence, you can upload multiple versions to EB environment and all can work in parallel.
+    --> deletes these application versions according to the application's lifecycle policy and when you delete the application. 
+
+Updating Your Elastic Beanstalk Environment's Platform Version --> 
+    1. --> Updating an Environment's Platform Configuration (means, lateast or previous version of Docker)
+          --> Navigate using AWS console and select the Docker plateform version as per need and save the changes
+    2. Migrating an Environment to a New Configuration (means, lateast programing language version, example java 7 to java 8)
+          --> you need to create a new environment using latest verion and deploy your code to this env
+          --> EB doesn't support direct upgrade of language versions (like, PHP application from version 7.0 to version 7.1. Or move your Java with Tomcat application, from Java 7 with Tomcat 7 to Java 8 with Tomcat 8.5)
+          --> To route users to your environment, Elastic Beanstalk registers a CNAME record that points to your environment's load balancer. 
+          --> You can change the CNAME on your environment by swapping it with the CNAME of another environment.
+          
+What is CNAME records? (- Cannonical Name ) --> 
+  --> CNAME stands for Canonical Name. CNAME records can be used to alias (or point) one name to another.
+    for example:- you have a URL to access your docs online at docs.example.com but if someone wants to access it using documents.example.com, you create a CNAME record to point these URL to each other.
+
+Differences between the A, CNAME, ALIAS and URL records --> 
+  Here’s the main differences:
+The A record maps a name to one or more IP addresses, when the IP are known and stable.
+The CNAME record maps a name to another name. It should only be used when there are no other records on that name.
+The ALIAS record maps a name to another name, but in turns it can coexist with other records on that name.
+The URL record redirects the name to the target name using the HTTP 301 status code.
