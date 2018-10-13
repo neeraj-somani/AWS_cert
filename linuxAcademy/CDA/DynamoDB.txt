@@ -122,12 +122,24 @@ DynamoDB Secondary Indexes --> allows efficient queries on non-primary key attri
     GSI can be created even after table creation, using either CLI, SDK or through console
 
 Common DynamoDB errors and limits --> 
-  throttlingException --> when you try to create, delete or update tables too quickly
+  throttlingException --> Rate of requests exceeds the allowed throughput.. when you try to create, delete or update tables too quickly
   ProvisionedThroughputExceedException --> if throughput on the table is insufficient to support read and write operation
   ResourceNotFoundException --> requested table does not exist or is too early in CREATING state
+  LimitExceededException --> Too many operations for a given subscriber. The cumulative number of tables and indexes in the CREATING, DELETING or UPDATING state cannot exceed 10.
+
 
 go through more errors here:- https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/CommonErrors.html
 
+when DynamoDB returns response --> 
+    200 --> HTTP success status code 
+    400 --> HTTP 400 status code indicates a problem with your request, such as authentication failure, missing required parameters, or exceeding a table's provisioned throughput. 
+    5xx --> indicates a problem that must be resolved by Amazon Web Services. 
+       500 --> Internal Server Error (HTTP 500), network issue
+       503 --> Service Unavailable (HTTP 503)
+ 
+Error Retries and Exponential Backoff -->
+    Most exponential backoff algorithms use jitter (randomized delay) to prevent successive collisions. 
+    
 DynamoDB Limits -->
   1. secondary indexes --> total 10 (5 LSI and 5 GSI)
   2. provisioned throughput default limits --> these limit includes sum of table and GSI both
