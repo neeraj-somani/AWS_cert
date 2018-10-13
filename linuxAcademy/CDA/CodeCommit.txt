@@ -15,3 +15,11 @@ CodeCommit --> This is a managed, secure and scalable source control service tha
 Migrate to AWS CodeCommit -->
   --> from other version control systems, such as Perforce, Subversion, or TFS, but you will have to migrate to Git first. Even from your local computer to git first.
   --> Then migrate Git code to Code Commit.
+
+How to easily and securely share CodeCommit Repository with Developers of your team -->
+  --> Create Git credentials for IAM users
+  --> Allow the developer to connect via HTTPs using the git credentials
+
+A complex way to share or use CodeCommit Repository --> 
+  --> using SSH, requires users to generate public-private key-pair, and setup them properly which is complicated procedure.
+  
