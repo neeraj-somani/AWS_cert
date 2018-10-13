@@ -238,12 +238,19 @@ Settings/changing storage class --> while uploading to S3, default storage class
       --> good for company data retention policy, cost efficient, ease of management, 
       --> each object can have their own life-cycle policy, even different version of same object can have different policy
 
-5. S3 hosting static website --> you can build a code that can nevigate to different files (usually HTML, CSS, JavaScript) stored at S3.
-      --> index.html (or default file) and error.html (error file for 4XX errors) must be specified.
+5. S3 hosting static website --> you can build a code that can navigate to different files (usually HTML, CSS, JavaScript) stored at S3.
+      --> {required} index.html (or default file) and {option} error.html (error file for 4XX errors) .
        URL format --> bucket_name.s3-website(- or.)region.amazonaws.com
        URL example --> my-cool-site.s3-website-us-east-1.amazonaws.com
     --> AWS Route 53 can be used to map human redable domain names with this URL, also helpful in DNS failover situation
-    --> you need to make sure index.html or any other file permission, so that required user can access it
+          Required configurations:
+              Enabling Website Hosting
+              Configuring Index Document Support
+              Permissions Required for Website Access
+          Optional configurations:
+              (Optional) Configuring Web Traffic Logging
+              (Optional) Custom Error Document Support
+              (Optional) Configuring a Webpage Redirect
     
   Cross Origin Resource Sharing (CORS) --> settings at S3 bucket level, {XML} file
     a method that allow web application located at one domain to access and use resources at another domain
