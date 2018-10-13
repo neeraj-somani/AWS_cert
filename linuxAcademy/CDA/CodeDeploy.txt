@@ -22,3 +22,6 @@ CodeDeploy AppSpec File --> mention details about how to deploy applications, se
       
   LifeCycle Hooks --> allows scripts to run during deployment step, depending upon deployment type/environment
     --> Start, ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart, ValidateService, END 
+
+Working with Instances for AWS CodeDeploy -->  https://docs.aws.amazon.com/codedeploy/latest/userguide/instances.html
+    
