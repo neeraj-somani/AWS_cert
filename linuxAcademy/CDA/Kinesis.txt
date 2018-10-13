@@ -14,8 +14,8 @@ Kinesis Essentials -->
                              --> distribute data to shards using partition key
         --> producer --> data creator
         --> consumer --> data consumer
-    Firehose --> load streaming data to S3, Redshift, ElastCache, Splunk
-    Data Analytics --> Run SQL queries against Data Streams or Firehose
+    Kinesis Firehose --> load or deliver real-time streaming data to S3, Redshift, ElastCache, Splunk
+    Kinesis Data Analytics --> Run SQL queries against Data Streams or Firehose
     
 Kinesis Benefits -->
     Real-time processing --> continously collect data and, build applications that analyze the data as it gets generated
