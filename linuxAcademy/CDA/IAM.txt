@@ -22,8 +22,10 @@ IAM Users -->
   By Default, all IAM users has non-explicit deny policy means NO access to any AWS services.
   But if you attach allow access policy for any AWS services to a specific USER and also attach deny policy for any AWS services to the       same user, then this explicit deny policy always overrides explicit allow policy.
   Each user will receive unique access Key ID and Secrete access key (credentials), that must not be shared or pass to EC2 directly
+
 IAM Groups -->
   multiple policies can be assigned to multiple users at a time
+
 IAM Roles -->
   A role is something another entity can assume and acquires specific permissions defined by roles
   Here, entity mean AWS resources (such as EC2) or Non-AWS account holder who may need temp access to AWS (using AD, SSO - (fb, google) etc)
@@ -32,7 +34,18 @@ IAM Roles -->
   you can now change or assign role that is assigned to EC2 instances.
   An EC2 instance can have only ONE role attached at a time.
   Roles are useful for "Cross Account" access
-  
+
+Using Instance Profiles --> (for role)
+    --> An instance profile is a container for an IAM role that you can use to pass role information to an EC2 instance when the instance starts.
+    --> when you create a role for Amazon EC2 using consol, the console automatically creates an instance profile and gives it the same name as the role. 
+    --> In the console, the list that's displayed is actually a list of instance profile names. which we attach to instnaces and not the role.
+    --> using AWS CLI or the AWS API, you create roles and instance profiles as separate actions. 
+    --> An instance profile can contain only one IAM role, although a role can be included in multiple instance profiles. This limit of one role per instance profile cannot be increased. 
+    few CLI examples:-
+        Create an instance profile: aws iam create-instance-profile
+        Add a role to an instance profile: aws iam add-role-to-instance-profile
+        List instance profiles: aws iam list-instance-profiles, aws iam list-instance-profiles-for-role
+
 IAM STS --> Security Token Service
   STS allows to create temporary security credential to access AWS resources.
   for short term use, from few min to few hours
@@ -99,8 +112,7 @@ Testing IAM custom Policies with the IAM Policy Simulator -->
 policy simulator command typically require calling API operation to do two things -->
   --> Get context-keys first
   --> use the aws iam simulate-custom-policy command. In this command we need to supply list of actions, resources and context keys.
-  
-    
+      
 Amazon Congnito -->
   Superset of wbe-Identity Federation
   --> create uniue indentity for application users from Google, fb
@@ -108,8 +120,7 @@ Amazon Congnito -->
   --> save mobile user data
   --> can sync user data cross devices, mobile and web
   --> cache data locally at client
-  
-  
+   
 ARN (Amazon Resource Name) --> Is used to identify amazon resources across different region within an account.
   example --> arn:aws:iam::575876987:user/admin
   means --> arn:aws:service-name:region_name(optional):account_number:aws_resource_type_name/user_name
