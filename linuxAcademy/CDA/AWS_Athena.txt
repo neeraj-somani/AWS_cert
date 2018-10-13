@@ -1,1 +1,1 @@
-Amazon Athena --> 
+Amazon Athena --> Run SQL queries against S3 for analysis
