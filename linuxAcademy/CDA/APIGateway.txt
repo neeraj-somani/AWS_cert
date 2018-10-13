@@ -61,11 +61,11 @@ API gatewat addition configuration options or features -->
 Controlling Access to an API in API Gateway -->
   --> Resource Policies
   --> IAM roles and policies
-  --> CORS
+  --> CORS --> controls API response to cross-domain resource requests
   --> Lambda Authorizer (formerly known as custom authorizers)
   --> Amazon Cognito user pool 
-  --> Client-side SSL certificates can be used to verify that HTTP requests 
-  --> Usage plans let you provide API keys to your customers — and then track and limit usage
+  --> Client-side SSL certificates can be used to verify about HTTP requests that goes to API gateway
+  --> API Keys -- Usage plans let you provide API keys to your customers — and then track and limit usage
   
   -------------------------
   On the other side -->
