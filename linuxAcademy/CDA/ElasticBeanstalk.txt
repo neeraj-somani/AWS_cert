@@ -44,3 +44,9 @@ Create an Application Source Bundle and Your source bundle must meet the followi
     Not exceed 512 MB
     Not include a parent folder or top-level directory (subdirectories are fine)
     If you want to deploy a worker application that processes periodic background tasks, must also include a cron.yaml file
+
+Auto Scaling Group for Your AWS Elastic Beanstalk Environment -->
+  --> Elastic Beanstalk includes an Auto Scaling group that manages the Amazon EC2 instances in your environment.
+  --> Auto Scaling group also manages the launch configuration for the instances in your environment. 
+  
+  Apart from this A YAML formatted environment manifest can also be placed in the root source bundle to configure the environment.
