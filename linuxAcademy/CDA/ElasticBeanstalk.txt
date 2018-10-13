@@ -38,6 +38,10 @@ Few Notes -->
   --> Inorder to deploy a custom application on EB where there is a need for lots of configuration files and patches needs to be downloaded, then use of custom AMI is recommended. This will improve provisioning time for your environment.
   --> Using configuration files is great for configuring and customizing your environment quickly and consistently. 
 
+Elastic BeanStalk Integration 
+How can you ensure that RDS instance used with Elastic Beanstalk --> 
+    --> 
+
 Deployment planning for Elastic BeanStalk -->
 Create an Application Source Bundle and Your source bundle must meet the following requirements:
     Consist of a single ZIP file or WAR file (you can include multiple WAR files inside your ZIP file)
