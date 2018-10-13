@@ -1,4 +1,4 @@
-AWS Config --> 
+AWS Config --> monitor configuration changes
 --> A service that provides visibility into resource configurations
     --> Detailed configurations --> snapshot of resource inventory, deliver reports to S3
     --> Relationships between resources --> (eg: which resources use which security group)
