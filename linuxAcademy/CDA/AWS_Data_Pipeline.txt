@@ -1,0 +1,14 @@
+Essentials --> 
+AWS Data Pipeline is a web service that you can use to automate the movement and transformation of data.
+you can define data-driven workflows, so that tasks can be dependent on the successful completion of previous tasks.
+
+For example, you can use AWS Data Pipeline to archive your web server's logs to Amazon Simple Storage Service (Amazon S3) each day and 
+then run a weekly Amazon EMR (Amazon EMR) cluster over those logs to generate traffic reports. AWS Data Pipeline schedules the daily tasks 
+to copy data and the weekly task to launch the Amazon EMR cluster. AWS Data Pipeline also ensures that Amazon EMR waits for the final 
+day's data to be uploaded to Amazon S3 before it begins its analysis, even if there is an unforeseen delay in uploading the logs.
+
+Batch process -->
+  like, Daily, Weekly, Monthly
+
+Can be setup usign Console, CLI, SDK, Query API
+Query API— Provides low-level APIs that you call using HTTPS requests. Using the Query API is the most direct way to access AWS Data Pipeline, but it requires that your application handle low-level details such as generating the hash to sign the request, and error handling. 
