@@ -48,6 +48,12 @@ what is state types -->
     wait --> states can delay the process for certain amount of time or date
     parallel --> states begins parallel execution of the state machine
 
+
+Some Notes --> 
+  points to remember when working with StepFunction activity Workers and Tasks -->
+    --> Ensure to specify "timeOutSeconds" property for step function definition, else code will stuck waiting for a response incase of code issues and will never finish.
+    --> If you are passing larger payloads of data between states, consider usinf S3 for data storage and pass ARN for S3 instead of large amount of raw data.
+
 Step function API -->
   CreateStateMachine --> create a state machine, {JSON document}, consist of collection of states that can perform some work
   StartExecution --> start execution of state machine
