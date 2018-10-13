@@ -255,6 +255,17 @@ Settings/changing storage class --> while uploading to S3, default storage class
                      ObjectsCreated (in-case of any of these API calls -- PUT/POST/COPY/CompleteMultiPartUpload
     --> Event notification can be send to following AWS services (SNS/Lambda/SQS Queue)
 
+when can we use Amazon S3 Transfer Acceleration?
+    --> You have customers that upload to a centralized bucket from all over the world.
+    --> You transfer gigabytes to terabytes of data on a regular basis across continents.
+    --> You are unable to utilize all of your available bandwidth over the Internet when uploading to Amazon S3.
+following steps needs to be done to set-up this -->
+  --> Enable Transfer Acceleration on a bucket – 
+  --> make sure bucket name must not conatin period (".")
+  example for S3-accelerate endpoint --->
+      bucketname.s3-accelerate.amazonaws.com – to access an acceleration-enabled bucket.
+  OR    bucketname.s3-accelerate.dualstack.amazonaws.com
+  
 --- from Route53 section -----------
 S3 for DNS failover -->
   --> By using a failover routing policy in a Route53 DNS record set, an S3 bucket can be used as a failover endpoint.
