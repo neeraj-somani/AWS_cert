@@ -1,4 +1,4 @@
-Overall S3 Structure -->
+Overall S3 Structure --> (simple storage service)
   1. S3 Essential point
   2. S3 Components --> Buckets, Folders, Objects
   3. S3 Features --> Objects Versioning, Storage Classes, Storage Lifecycle policies, S3 Events, Static Web Hosting, Encryption
@@ -263,3 +263,19 @@ S3 for DNS failover -->
   --> An S3 bucket can also be used as a primary endpoint, if you just want to host a simple static site.
 
 **** Note --> for a DNS record to use an S3 bucket as an endpoint, the bucket name must be the same as the Domain name.
+
+Troubleshooting Amazon S3 --> 
+    Symptoms --> 
+       1. --> Significant Increases in HTTP 503 Responses to Requests to Buckets with Versioning Enabled
+            --> this usually comes for PUT or DELETE requests
+            --> this occurs When you have objects with millions of versions
+S3 Inventory tool --> To determine which S3 objects have millions of versions, use the Amazon S3 inventory tool. The inventory tool generates a report that provides a flat file list of the objects in a bucket.
+            --> S3 team encourages customers to investigate applications that repeatedly overwrite the same S3 object
+
+       2. --> Unexpected Behavior When Accessing Buckets Set with CORS
+            --> Verify that the CORS configuration is set on the bucket.
+            --> Capture the complete request and response using a tool of your choice. 
+                --> Verify that the request has the Origin header.
+                --> Verify that the Origin header in your request matches at least one of the AllowedOrigin elements in the specified CORSRule.
+                --> Verify that the method in your request (or in a preflight request, the method specified in the Access-Control-Request-Method) is one of the AllowedMethod elements in the same CORSRule.
+                --> For a preflight request, if the request includes an Access-Control-Request-Headers header, verify that the CORSRule includes the AllowedHeader entries for each value in the Access-Control-Request-Headers header.
