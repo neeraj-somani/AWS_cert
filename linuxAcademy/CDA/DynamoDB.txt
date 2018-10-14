@@ -208,3 +208,8 @@ DynamoDB Encryption at Rest -->
     --> using an AWS Key Management Service (AWS KMS) managed encryption key 
     --> you need to create a table with encryption at rest enabled. (Encryption at rest can be enabled only when you are creating a new DynamoDB table. can't enable encryption at rest on an existing table. once enabled, it can't be disabled. )
     --> Copy data from existing table to new encrypted table
+
+
+Question from Udemy --> 
+You are using DynamoDB Streams and there are 10 shards configured.  What influences the concurrency of a Lambda Function that is configured to process streaming data from DynamoDB?
+Answer --> Number of shards per stream is the unit of concurrency. Example: 100 shards would trigger 100 lambda functions running concurrently. One lambda function processes events on a shard in the order that they arrive
