@@ -87,6 +87,15 @@ Tightly coupled or decoupled Architecture -->
    Loosely coupled or decoupled components -->
         --> these have multiple component that can work without even being connected, means if one fails the rest of the system still up and running. Its fault-taulerent and highly available.
 
+Few points from Udemy Test -->
+When you have loosly coupled architecture and some systems are in offline / online mode to process the message in SQS:
+   --> you can use SNS to fan-out message to SQS specific to each consumer. So, that each consumer can process message as soon as they come online.
+    --> If you have messages with different priority (High, Medium, Low) and you want to process message based on priority then you need to create seperate SQS queue for them. Standard queue would be best.
+        Also, While FIFO message group id supports grouping messages. It does not guarantee which group id would be returned first. FIFO supports order of messages.
+ 
+--> Developers can handle stuck messages (messages that have not been successfully processed by a consumer) with Dead Letter Queues. When the maximum receive count is exceeded for a message it will be moved to the Dead Letter Queue (DLQ) associated with the original queue
+
+
 SDKs can handle many functionality and more useful then APIs.
 
 Below URLs to read about common errors and API actions and limitations:-
