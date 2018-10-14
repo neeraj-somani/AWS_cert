@@ -1,6 +1,7 @@
 ElasticBeanstalk --> A service used to deploy single-tier (less complex) application without worry about provisioning of AWS resources.
   this is designed for people who have less knowledge of AWS but can utilize AWS super-power.
   Automated deployment and scaling services
+  *** An environment is tied to a specific deployable application version. means one environment can have only one application. but one application can be deployed to multiple environments.
   Environment for Web-applications and SQS worker instances -->
     --> load balancing, auto-scaling, monitoring, plateform managemnet, code deployment
     --> Programming languages --> JAVA, Python, Go, .Net, PHP, Node.js, Ruby
