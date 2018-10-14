@@ -73,6 +73,7 @@ SQS API -->
   ChangeMessageVisibility --> sometime consumer need more visibility time, hence it used to set message visibility
   DeleteMessage --> consumer finish processing and delete message
   ReceiveMessageWaitTimeSeconds --> long polling timeout 1 to 20 seconds 
+  MessageRetentionPeriod --> The length of time, in seconds, for which Amazon SQS retains a message. (1 min to 14 days, in seconds)
   
 Sample SQS workflow could be similar to this -->
     --> Generally a worker instance will pull a queue to retrieve waiting messages for processing
