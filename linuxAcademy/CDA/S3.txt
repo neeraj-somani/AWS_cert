@@ -188,7 +188,7 @@ A Bucket can contain both encrypted or non-encrypted objects. Encryption is avai
       SSE-S3 --> Amazon S3 provides encryption key before saving data to disk 
             --> AES-256 (Advanced Encryption Standards)
             --> each object gets a unique key that is encrypted by regulatory-rotated master key
-            --> every upload request will have request header as "x-amz-server-side-enryption"
+            --> every upload request will have request header as "x-amz-server-side-enryption" or "x-amz-server-side-enryption-customer-key" or "x-amz-server-side-enryption-customer-algorithm:AES256"
       SSE-KMS --> similar as SSE-S3, but key managed by AWS-KMS service, provides better control, better auditing for access
       SSE-C --> customer provides and manages master key, S3 encrypts and decrypts using that key
 
