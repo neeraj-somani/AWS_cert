@@ -45,6 +45,9 @@ AWS responsible for --> "Security OF the Cloud"
   >> Port scanning is against the rules even on your own environment (ask AWS if needed)
   >> OS level patches
 
+Amazon does not vouch for the integrity or security of AMIs shared by other Amazon EC2 users. Therefore, you should treat shared AMIs as you would any foreign code that you might consider deploying in your own data center and perform the appropriate due diligence. We recommend that you get an AMI from a trusted source
+
+
 Some responsibility differs based on services -->
   AWS Lambda -->  Generally, OS patches are customer responsibilty
       Although, AWS Lambda is fully-managed service that lets AWS handle responsibility for OS operations as well.
