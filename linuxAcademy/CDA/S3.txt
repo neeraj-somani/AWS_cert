@@ -299,3 +299,7 @@ S3 Inventory tool --> To determine which S3 objects have millions of versions, u
                 --> Verify that the Origin header in your request matches at least one of the AllowedOrigin elements in the specified CORSRule.
                 --> Verify that the method in your request (or in a preflight request, the method specified in the Access-Control-Request-Method) is one of the AllowedMethod elements in the same CORSRule.
                 --> For a preflight request, if the request includes an Access-Control-Request-Headers header, verify that the CORSRule includes the AllowedHeader entries for each value in the Access-Control-Request-Headers header.
+
+**** S3 - Cross Region Replication -->
+If an object is deleted in source bucket, only marker is replicated. Previous versions of the Object can still be recovered in the replicated bucket. If an object version is deleted in source bucket, object version is left untouched in replicated bucket (to protect against malicious deletes)
+
