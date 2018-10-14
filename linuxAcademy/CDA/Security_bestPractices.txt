@@ -5,3 +5,6 @@ Below are few points for best security practices -->
   --> AWS policy only permits testing of the following resources: EC2 RDS Aurora CloudFront API Gateway Lambda Lightsail DNS Zone Walking
   --> not allowed on S3
   
+  API keys are used for monitoring usage by third-party developers. For user authorization, use signed API calls or Oauth or Cognito
+  
+  
