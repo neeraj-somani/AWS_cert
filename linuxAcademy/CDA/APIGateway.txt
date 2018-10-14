@@ -78,3 +78,5 @@ Controlling Access to an API in API Gateway -->
     
     Explanation --> To encrypt the data in transit, you would need to HTTPS endpoints. Signing helps to confirm the identity of the requester, identify if anybody tampered the message or attempting to replay. In most cases, a request must reach AWS within five minutes of the time stamp in the request. Otherwise, AWS denies the request
   
+  **** Most of the services provide region specific endpoints to reduce data latency. Although, few services like IAM has a single endpoint as it is global in nature.
+  
