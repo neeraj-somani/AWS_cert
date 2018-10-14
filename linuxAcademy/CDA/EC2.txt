@@ -163,3 +163,21 @@ EC2 quiz notes -->
 If cross-zone load balancing is enabled, the load balancer distributes traffic evenly across all registered instances in all enabled Availability Zones. In this case Availability Zone A has one instance and B has three instances. Each instance is receiving 25% of the traffic. When cross zone load balancing is disabled, each availability zone would get 50% of the traffic.
       
 --> To distribute traffic evenly across all registered instances in all enabled Availability Zones, enable cross-zone load balancing on your load balancer
+
+------------------------------------------------------
+*** EC2 auto scaling min, max, and desired capacity for instances --->
+Answer --> 
+The ASG will always try to maintain the Desired Capacity. If you scale up or down, and the new number of instances is different than the Desired Capacity, the ASG will add or remove an instance to go back to the desired capacity.
+
+If you use scaling policies, and the policy condition is met, the ASG will change the Desired Capacity to match the result of your scaling policy. E.g., you have a Desired Capacity of 2, and a policy that says to scale up if the CPU utilization goes over a threshold.
+
+If that policy is fulfilled, then the Desired Capacity will increase to 3, and so on.
+
+So manually scaling up and down will result in your ASG restoring the number of instances to the Desired Capacity.
+
+If you want to manually scale up and down, you could set your Max and Min to a wide value, and move Desired Capacity within it.
+
+So you could do Max=10, Min=1, Desired=3. Then you could scale up or down just by changing the Desired Capacity. (This is how we use Auto Scaling, and I think why I gave you a bad answer before.)
+
+If you want to terminate an instance and change the Desired Capacity at the same time, the CLI can do that.
+------------------------------------------------------
