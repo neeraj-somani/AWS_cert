@@ -4,6 +4,7 @@ EC2 Essentials --> (think of it as a basic desktop computer, with some advance c
   scalable virtual server on cloud, runs on Linux/Windows, 
   very similar as on-premises servers, with flexibility of on-demand commission and decommision for easy scalability and elasticity.
   These virtual servers known as "instance" and can be made up of different instance type and sizes.
+  *** Specifying explicit credentials is not needed. EC2 instances can automatically assume the role assigned to it. You can get the temporary credentials with role specific privileges using metadataservice
   
   Components -->
     AMI --> OS, software packages, and other image settings  (preconfigured packages)
