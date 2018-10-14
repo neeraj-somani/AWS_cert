@@ -89,6 +89,8 @@ DynamoDB Read Operations -->
        --> SCAN operation should be avoided by using queries or secondary indexes. 
        --> Avoid SCAN on mission critical tables as they can take up large amount of read capacity
        --> Try to perform parallel scan operation instead of sequential scan. This can improve performance.
+     **--> Scan operation is processed sequentially. To parallelize request, you need to specify "segment" and "totalsegment" parameters. Each segment would be processed by an application thread.  
+
 ****** there is limit of 1MB of data returned from these operations, to get more data need to provide LastEvaluatedKey  
 ***** QUERY and SCAN operation both support eventual consistent read by default, but can configure to request consistent reads.
 **** QUERY operation vs GETITEM operation -->
@@ -213,3 +215,8 @@ DynamoDB Encryption at Rest -->
 Question from Udemy --> 
 You are using DynamoDB Streams and there are 10 shards configured.  What influences the concurrency of a Lambda Function that is configured to process streaming data from DynamoDB?
 Answer --> Number of shards per stream is the unit of concurrency. Example: 100 shards would trigger 100 lambda functions running concurrently. One lambda function processes events on a shard in the order that they arrive
+
+*** When using Optimistic Concurrency Control in DynamoDB / explicit locking
+Answer --> 
+With optimistic concurrency, there is no explicit locking of an row or item. Instead, multiple writers can process independently. To prevent scenarios where multiple writers are attempting to change the same item, you can conditional expressions supported in dynamodb to allow only one writer to succeed. This works very well when writers work on different items and very rarely they attempt to work on the same item. https://www.awsarchitectureblog.com/2015/03/backoff.html
+-->> Hence DynamoDB will not perform very well when there is lot of contention
