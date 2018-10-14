@@ -1,0 +1,7 @@
+Below are few points for best security practices -->
+
+--> In-order to conduct a vulnerability assessment and penetration testing, need to make sure below:
+  --> A request may be initaited with AWS to get advance approval
+  --> AWS policy only permits testing of the following resources: EC2 RDS Aurora CloudFront API Gateway Lambda Lightsail DNS Zone Walking
+  --> not allowed on S3
+  
