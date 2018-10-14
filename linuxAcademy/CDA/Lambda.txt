@@ -136,3 +136,6 @@ Quiz Notes -->
 5. Lambda requires you to specifically allocate certain resources. Which of the following can you adjust directly yourself?
     answer: Execution timeout (max is 300 sec) and Memory
     
+Question from Udemy --> 
+You are using DynamoDB Streams and there are 10 shards configured.  What influences the concurrency of a Lambda Function that is configured to process streaming data from DynamoDB?
+Answer --> Number of shards per stream is the unit of concurrency. Example: 100 shards would trigger 100 lambda functions running concurrently. One lambda function processes events on a shard in the order that they arrive
