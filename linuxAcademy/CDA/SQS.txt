@@ -95,6 +95,11 @@ When you have loosly coupled architecture and some systems are in offline / onli
  
 --> Developers can handle stuck messages (messages that have not been successfully processed by a consumer) with Dead Letter Queues. When the maximum receive count is exceeded for a message it will be moved to the Dead Letter Queue (DLQ) associated with the original queue
 
+Question -->
+You have a FIFO Queue named pending_order.fifo.  Your application uses a distinct order_id as a Group ID for the message.  Each message has a different group ID.  What is the observed behavior when there are multiple consumers trying to read from the queue?
+Answer --> 
+--> When requesting, client cannot request for messages from specific group ID. FIFO maintains order of processing within a group ID. Since every message has a different group ID, it is not ordered in any way. Hence, this scheme maximizes concurrency.
+
 
 SDKs can handle many functionality and more useful then APIs.
 
