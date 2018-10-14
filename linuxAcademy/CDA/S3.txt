@@ -234,6 +234,8 @@ Settings/changing storage class --> while uploading to S3, default storage class
     you can perform manual setting or use life cycle policy to update/change storage class for object.
     ** to move to Glacier storage class, can be done only by lifecycle policy and it can take 1-2 days to take effect.
 
+*******  Infrequent Access - Minimum charge computed for object is based on 128KB size. If object is less than 128KB, it is still charged for 128KB. S3 Standard can be used for small objects and large objects in IA class. Glacier is not suitable for immediate access to images
+
 4. S3 lifecycle policy --> (by default disabled), set of rules that automates migration of objects to various storage classes
       --> good for company data retention policy, cost efficient, ease of management, 
       --> each object can have their own life-cycle policy, even different version of same object can have different policy
