@@ -71,4 +71,10 @@ Controlling Access to an API in API Gateway -->
   On the other side -->
     --> Key policies are used to provide authorization for KMS keys
   
+  ----------------------------------
+    When accessing AWS resources, request signing doesn't provides content encryption. 
+    But below are the things that Signing provides in Http request: 
+      --> verified identity of requester, protect agaist replay, protect data against tampering
+    
+    Explanation --> To encrypt the data in transit, you would need to HTTPS endpoints. Signing helps to confirm the identity of the requester, identify if anybody tampered the message or attempting to replay. In most cases, a request must reach AWS within five minutes of the time stamp in the request. Otherwise, AWS denies the request
   
