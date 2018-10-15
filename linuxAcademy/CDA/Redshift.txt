@@ -16,3 +16,5 @@ RedShift Spectrum -->
     --> Query exabytes of data in just few minutes
 
 *** COPY command to load large datasets into Amazon Redshift from Amazon S3 or DynamoDB.
+
+**** Encryption is an optional, immutable setting of a cluster. If you want encryption, you enable it during the cluster launch process.
