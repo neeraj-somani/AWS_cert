@@ -44,11 +44,10 @@ Route53 Record Sets -->
 Alias Record sets --> Instead of an IP address (standard record sets), an alias record set contains a pointer to an AWS specific resource, such as: 
   --> an elastic load balancer, --> CloudFront Distribution, --> Elastic Beanstalk Environment, 
   --> Amazon S3 bucket that is configured as as static website
-  
-**** To point Zone Apex Record to another AWS supported end point, you need to Alias resource record set.
 
 Route53 uses Time To Live (TTL) settings configured in the service that Alias Record points to.
 
+  
 Routing policy -->
     Simple: --> route all traffic to one point
     Weighted: --> route traffic to multiple end-point (manual load balancing)
