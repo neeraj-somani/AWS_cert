@@ -17,6 +17,7 @@ IAM Policies -->
     power user access: admin access but not allowed user/group management
     Read Only access: only view inside of AWS resource
   Policies can't directly be attached to AWS resources (Such as an EC2) 
+**** IAM stores up to five versions of your customer managed policies. IAM does not support versioning for inline policies.
 
 IAM Users -->
   By Default, all IAM users has non-explicit deny policy means NO access to any AWS services.
