@@ -53,7 +53,7 @@ API Gateway Monitoring --> CloudWatch can be used to monitor activity and usage
     method level metrics can be monitored
     cloudWatch alarms can be setup based on these metrics
 
-API gatewat addition configuration options or features -->
+API gateway addition configuration options or features -->
   --> API custom authorizer can be used to create authorizer for each of the different stages, but this wouldn't help in differentiaing the environment.
   --> Addition of model and schema to API can be done to add schema to your API and not to your stages of same API
   --> allow to configure integration responses to the API gateway
