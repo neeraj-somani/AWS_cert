@@ -57,3 +57,7 @@ RDS Backups --> (Automated backups and snapshots)
 Two requirements: 1. access to underlying EC2 instance to install OS level patches and 2. Need to use license that is tied to physical hardware. Inorder to install OS level patches, you need EC2 instance and to use licenses tied to hardware level, you need dedicated hosts.
 
 **** With RDS, if you do not use a standby instance, the primary data is: located within a single availability zone
+
+*** You are using a multi-AZ deployment with RDS and setup has a primary and standby instance. It will behave as:
+  --> transactions may take longer time
+  --> Standby is connected to Primary using synchronous replication. Any slowness in standby would impact primary
