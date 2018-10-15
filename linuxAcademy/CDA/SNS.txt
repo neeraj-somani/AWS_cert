@@ -44,7 +44,7 @@ SNS Message body -->
   Type --> type of message (Notifications are type Notification)
   Unsubscribed URL --> URL to unsubscribe from SNS message
   
-SNS message attributes --> message attributes are optional but sent along with message body.
+SNS message attributes {Name, type, and value} --> message attributes are optional but sent along with message body.
     each message can have upto 10 attributes
     These attributes are helpful for receiver application to handle messages properly inorder to process them
     each message attributes needs a Name, type, and value must not be null or empty. Sent along with the message which also must not be null or empty. (total size must be <= 256kb including all attributes)
