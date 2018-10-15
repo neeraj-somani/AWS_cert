@@ -303,3 +303,4 @@ S3 Inventory tool --> To determine which S3 objects have millions of versions, u
 **** S3 - Cross Region Replication -->
 If an object is deleted in source bucket, only marker is replicated. Previous versions of the Object can still be recovered in the replicated bucket. If an object version is deleted in source bucket, object version is left untouched in replicated bucket (to protect against malicious deletes)
 
+*** For non-stream event sources, Each published event is a unit of work. Number of events dictate concurrency for lambda function.
