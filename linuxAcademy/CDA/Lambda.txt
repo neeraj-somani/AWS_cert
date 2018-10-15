@@ -142,3 +142,13 @@ Answer --> Number of shards per stream is the unit of concurrency. Example: 100 
 
 
 ***** For non-stream event sources, Each published event is a unit of work. Number of events dictate concurrency for lambda function.
+
+*** Serverless deployment of your lambda function -->
+  --> create YAML file with deployment specification and package them with code function file
+  --> upload complete package on S3
+  
+to deploy using SAM (serverless Application Model) use below command --> 
+sam deploy \
+   --template-file serverless-output.yaml \
+   --stack-name new-stack-name \
+   --capabilities CAPABILITY_IAM
