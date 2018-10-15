@@ -139,3 +139,6 @@ Quiz Notes -->
 Question from Udemy --> 
 You are using DynamoDB Streams and there are 10 shards configured.  What influences the concurrency of a Lambda Function that is configured to process streaming data from DynamoDB?
 Answer --> Number of shards per stream is the unit of concurrency. Example: 100 shards would trigger 100 lambda functions running concurrently. One lambda function processes events on a shard in the order that they arrive
+
+
+***** For non-stream event sources, Each published event is a unit of work. Number of events dictate concurrency for lambda function.
