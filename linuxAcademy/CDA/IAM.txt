@@ -140,3 +140,5 @@ IAM quiz notes --->
 "Condition":{"Null":{"aws:TokenIssueTime":"true"}}
 --> Use a Null condition operator to check if a condition key is present at the time of authorization. In the policy statement, use either true (the key doesn't exist — it is null) or false (the key exists and its value is not null).
 
+*** IAM Group - you can attach only IAM users to the group. You cannot have nested groups. You can attach permissions directly at IAM User level; however it will result in too much maintenance. You can use identity federation using Active Directory integration. However, you still need to translate this AWS permissions. Logical choice is to simply create three managed policies with required permissions and then attach to a group named Department. Add IAM users to the department group
+
