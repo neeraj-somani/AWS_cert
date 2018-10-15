@@ -136,4 +136,7 @@ IAM quiz notes --->
   API access keys are required to make programmatic calls to AWS using AWS CLI, Windows PowerShell, and Direct HTTP call using the API
   IAM policy doc at min contains, Effects, resources, actions.
   
-  
+** AWS policy statement and explanation -->
+"Condition":{"Null":{"aws:TokenIssueTime":"true"}}
+--> Use a Null condition operator to check if a condition key is present at the time of authorization. In the policy statement, use either true (the key doesn't exist — it is null) or false (the key exists and its value is not null).
+
