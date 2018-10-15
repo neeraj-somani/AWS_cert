@@ -15,4 +15,4 @@ RedShift Spectrum -->
     --> can query unstructured data stored in S3
     --> Query exabytes of data in just few minutes
 
-  
+*** COPY command to load large datasets into Amazon Redshift from Amazon S3 or DynamoDB.
