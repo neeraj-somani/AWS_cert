@@ -17,6 +17,10 @@ two types of polling --> (pulling) mechanism
         Short polling occurs when waitTimeSeconds = 0 for both queue or message, when using ReceiveMessage API
         if message waitTimeSeconds > 0, then it overrides the queue's waitTimeSeconds
 
+Exception case /scenario --> when you have single threaded application and message needs to be delivered based on priority.
+** Since application is single threaded, this is one corner case where long polling will not work as it will block the thread and prevent you from processing messages in other queue. Short polling should be used for this specific scenario.
+
+
 SQS Queue --> highly reliable hosted message store. (TTL is 1 min to 14 days)
 2 type of queues --> 
    standard queue --> supports nearly unlimited number of messages per second
