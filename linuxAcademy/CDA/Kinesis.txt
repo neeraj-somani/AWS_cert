@@ -75,3 +75,9 @@ Kinesis Analytics now gives you the option to preprocess your data with AWS Lamb
      
   3. Kinesis Analytics -->
       >> Allows user to write SQLs and analyze data that exists in FireHose or Stream.
+
+
+***** 
+You can calculate the initial number of shards (number_of_shards) that your stream needs by using the input values in the following formula:
+
+number_of_shards = max(incoming_write_bandwidth_in_KB/1000, outgoing_read_bandwidth_in_KB/2000)
