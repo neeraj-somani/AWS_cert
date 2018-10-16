@@ -97,6 +97,8 @@ Amazon EBS encryption uses AWS Key Management Service (AWS KMS) customer master 
 **** Keys used by EBS need to be maintained in Key Management Service (KMS)
 **** Encrypted Snapshot. Public sharing – Not allowed. Private Sharing – Encryption key should not be default. Customer Managed Key (CMK) should be used. Accounts you are sharing with has access to this CMK
 
+*** What is the secure way to transition to EBS encrypted volume from unencrypted volume to minimize unwanted access during this process?
+Answer --> Snapshot process copies data to S3 and anybody who has access to your snapshots can access them. Copying in an encrypted volume directly in the instance is secure as data in this moves from one volume to another. Hence, snapshot copying is not recommended in this scenario.
 
 EFS --> fully managed storage service, supports NFSv4 protocols, and 
   --> best performance with linux and not compatible with Windows OS
