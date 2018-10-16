@@ -53,6 +53,8 @@ VPC IP addressing -->
             --> (10.0.0.0/32 --> only one address --> 10.0.0.0)
             --> (10.0.0.0/16 --> 65,536 address --> range from 10.0.0.0 to 10.0.255.255)
 
+**** 8 bits are used for host addressing. 2^8 possible addresses. Out of this, AWS reserves first four IP addresses and last one IP address in every subnet for IP networking. These five addresses cannot be used for hosts. So, 256 - 5 = 251
+
 VPC Endpoint -->
   Gateway Endpoints -->
   Interface Endpoints --> cloudWatch logs, codeBuild, KMS, Kinesis, Service Catalog
