@@ -168,6 +168,8 @@ If cross-zone load balancing is enabled, the load balancer distributes traffic e
       
 --> To distribute traffic evenly across all registered instances in all enabled Availability Zones, enable cross-zone load balancing on your load balancer
 
+----> You can automatically recover instances that have underlying physical host issues by moving to a different physical host but keeping all the metadata the same including same public IP address.
+
 ------------------------------------------------------
 *** EC2 auto scaling min, max, and desired capacity for instances --->
 Answer --> 
