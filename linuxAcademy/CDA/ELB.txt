@@ -7,8 +7,9 @@ ELB and Session state --> (EC2 and ELB good combination for Serverless RestFul A
     option 2 --> application generated cookies stickiness (additional code management headache)
     Non-ELB option --> Highly recommended, Use caching services like AWS ElasticCache
 Types of ELB -->
-  Classic Load balancer --> old but for http/https/tcp requests (No granular routing rules)
-  Application Load Balancer ---> for http and https requests
+  Classic Load balancer --> old but for http/https/tcp requests (No granular routing rules) (allow static port mapping)
+  
+  Application Load Balancer ---> for http and https requests (allow dynamic port mapping)
             content based rules --> (setup on listener)
             Host-based rules --> route traffic based on the host field of HTTP header
             Path-based rules --> route traffic based on URL path of HTTP header
