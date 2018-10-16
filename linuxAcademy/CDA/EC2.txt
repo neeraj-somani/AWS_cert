@@ -187,3 +187,5 @@ So you could do Max=10, Min=1, Desired=3. Then you could scale up or down just b
 
 If you want to terminate an instance and change the Desired Capacity at the same time, the CLI can do that.
 ------------------------------------------------------
+
+*** Instances are managed as part of Auto Scaling Group and are terminated when ASG is deleted
