@@ -50,6 +50,9 @@ CloudWatch EC2 monitoring -->
         --> incompatible Kernel
         --> How to solve: --> generally a reboot, or solving the file system configuration issue.
 
+CloudWatch EBS volume check --> Volume Status Check would indicate either warning or impaired. I/O performance status would indicate: Degraded, Severely Degraded or Stalled
+
+
 --> By default cloudWatch automatically monitor metrics that can be viewed at host level (not at software level):
   --> such as --> CPUUtilization, Network in/out, CPUCreditBalance, CPUCreditUsage
 
