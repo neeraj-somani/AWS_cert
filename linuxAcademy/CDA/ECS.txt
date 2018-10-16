@@ -40,7 +40,6 @@ Purpose / Benefits -->
   6. ELB
   7. Consistent between all environments
   
-  
 AWS Fargate --> is a way to use container as a fundamental application building block while AWS manages EC2 instances (same as Lambda)
 
 Container Registry -->
@@ -70,6 +69,8 @@ Tasks --> Deploys containers onto ECS instances in your cluster based on task de
   --> communicate with ECS Agent and Docker Deamon to run containers on eligible EC2 instances in cluster
   --> actual representation of task definition on Ec2 instanceinside ECS
 
+*** Scheduler is responsible for placing the tasks in the EC2 instances
+
 Task Definition --> point in time capture of the configuration for running the image
     --> template for running one or more tasks
 A JSON formatted text file that contains the "bluprint" of your application:
@@ -98,11 +99,14 @@ Running the X-Ray Daemon on Amazon ECS --> https://docs.aws.amazon.com/xray/late
   --> Deploy Docker container on ECS cluster
 You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.
 
-
-
 Elastic Container service for Kubernet --> (EKS)
   --> Manages availability and scalability of kubernets control plane nodes
         --> start, stop container, schedule container, replace unhealthy nodes
 
+**** In ECS configuration, you specify the desired task copies as 6 to handle your application traffic. Your ECS instance detects an unhealthy container that belongs to one of the tasks. 
+Answer:- ECS launches a replacement container.
+
+*** Which component in ECS is responsible for identifying EC2 instances in which to place the tasks?
+--> Scheduler is responsible for placing the tasks in the EC2 instances
 
       
