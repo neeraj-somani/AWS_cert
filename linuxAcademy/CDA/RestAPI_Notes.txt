@@ -2,3 +2,4 @@ Notes for Rest ful API requests -->
 AWS supports two signature versions: Signature Version 4 and Signature Version 2. 
 You should use Signature Version 4. All AWS services support Signature Version 4, except Amazon SimpleDB which requires Signature Version 2. For AWS services that support both versions, we recommend that you use Signature Version 4. All AWS regions support Signature Version 4
 
+** 5xx indicates a serve issue and the request itself is valid. So, retry is a good option. In general, if you use AWS SDKs, they support retry with exponential backoff
