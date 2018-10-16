@@ -49,6 +49,9 @@ EC2 Purchasing Options -->
       spot prices fluctuate based on supply & demand
       billing is done per second basis but spot prices are at per hour rate
       AWS terminate instance at anytime when spot price is greater then your bid price
+   Spot Instance pricing --> Now if you terminate instance : Charged for all seconds , If AWS terminate before one hour : No Charge, If AWS terminate after one hour : Charge for whole time calculating cost for seconds
+This is correct, with the exception of running Windows, Windows instances are charged entire hour if you terminate yourself.
+      
   Dedicated Instnaces --> dedicated machine with full control, save money and works with specific regulatory compliance
   
 EC2 Instance Configuration --> 
