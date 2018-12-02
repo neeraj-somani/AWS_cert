@@ -1,0 +1,20 @@
+AWS Well_Architected_Framework notes -->
+
+Introduction --> 
+by applying these practices you can consistently measure your architectures against best practices and identify areas for improvement.
+The process for reviewing an architecture is a constructive conversation about architectural decisions.
+
+5 Pillars of Well Architecture -->
+
+Cost Optimization --> The ability to run systems to deliver business value at the lowest price point.
+Operational Excellence --> The ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
+Reliability --> The ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
+Performance Efficiency --> The ability to use computing resources efficiently to meet system requirements, and to maintain that efficiency as demand changes and technologies evolve.
+Security --> The ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
+
+Few imp terms used in doc-->
+A "component" is the code, configuration and AWS Resources that together deliver against a requirement. 
+We use the term "workload" to identify a set of components that together deliver business value. 
+Milestones mark key changes in your architecture as it evolves throughout the product lifecycle (design, testing, go live, and in production).
+We think about "architecture" as being how components work together in a workload. 
+Within an organization the technology portfolio is the collection of workloads that are required for the business to operate.
