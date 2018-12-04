@@ -1,4 +1,4 @@
-CloudTrail Essentials ---> used to monitor or log API activity
+CloudTrail Essentials ---> used to log API activity, that can be monitored via cloudWatch
   used for Audit purposes of AWS account. Used to log activities with AWS services. Example, creating new IAM user, S3 bucket, etc.
   CloudTrail is an API logging service that logs API calls made to AWS.
   It can log call from any interface, means from console, CLI, or SDK
@@ -6,7 +6,7 @@ CloudTrail Essentials ---> used to monitor or log API activity
   With a trail, you can also create event metrics, trigger alerts, and create event workflows. 
   
 CloudTrail --> allows you to log activity or all actions taken by any IAM user
-  example:- who and when an specific S3 object been deleted and log the details
+  example:- who and when an specific S3 object has been deleted and log the details
 
 Hence, it enables -->
 Goverance
