@@ -41,7 +41,8 @@ CloudWatch EC2 monitoring -->
   --> System status check --> (things that are outside of our control)
         --> Loss of network connectivity/ loss of power
         --> software/hardware issues on physical hosts
-        --> how to solve:- generally stopping/starting instance can solve the issue, because this cause an instance to launch on different physical hardware device. 
+        --> how to solve:- generally stopping/starting instance can solve the issue, because this cause an instance to launch on different physical hardware device.
+        
   --> instance status check --> (software issue that we do have some control)
         --> failed system status checks
         --> setup configuration issue or network configuration issue
@@ -51,7 +52,6 @@ CloudWatch EC2 monitoring -->
         --> How to solve: --> generally a reboot, or solving the file system configuration issue.
 
 CloudWatch EBS volume check --> Volume Status Check would indicate either warning or impaired. I/O performance status would indicate: Degraded, Severely Degraded or Stalled
-
 
 --> By default cloudWatch automatically monitor metrics that can be viewed at host level (not at software level):
   --> such as --> CPUUtilization, Network in/out, CPUCreditBalance, CPUCreditUsage
