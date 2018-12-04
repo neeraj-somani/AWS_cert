@@ -1,6 +1,6 @@
 Amazon Congnito -->
-  Superset of wbe-Identity Federation
-  --> create uniue indentity for application users from Google, fb
+  Superset of Web-Identity Federation
+  --> create unique indentity for application users from Google, fb
   --> supports unauthenticated identity (signup after application usage)
   --> save mobile user data
   --> can sync user data cross devices, mobile and web
