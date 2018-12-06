@@ -153,7 +153,7 @@ EC2 Shared Responsibility Model -->
       DDOS (Distributed Denial of Service) --> a malicious attempt to make a server or a network resource unavailable to legitimate users, by overloading it with massive amounts of fake traffic.
       
 EC2 quiz notes -->
-  1. data will be lost when you terminate EBS backed instance, but reboot or stop/start instance will keep your data on EBS volume.
+  1. by default settings, data will be lost when you terminate EBS backed instance. This can be changed in settings. but reboot or stop/start instance will keep your data on EBS volume. (need to make sure about this point)
   2. EFS --> easy scale up and down, and can connect to multiple EC2
   3. RegisterImage --> AWS API action call occurs during final process of creating AMI, for creating non-EBS backed instance from AMI
      need to know about below API actions
@@ -163,20 +163,20 @@ EC2 quiz notes -->
   4. ".pem" key file must not be publically visible, it must be 400 permission.
   5. lauching an instance through AMI within same region where AMI exists.
   6. EBS-backed instnace can be stop/start without lossing data vs Instance-store backed Instance stop/start will loose data.
-  7. ElastiCache --> When dealing with session state in EC2-based applications using Elastic load balancers
+  7. ElastiCache --> It is recommended When dealing with session state in EC2-based applications using Elastic load balancers
   8. DescribeImages --> used to describe an Amazon Machine Image. but Public AMI with encrypted volumes are not supported using this API call.
       
 *** Notes from Udemy -->
 If cross-zone load balancing is enabled, the load balancer distributes traffic evenly across all registered instances in all enabled Availability Zones. In this case Availability Zone A has one instance and B has three instances. Each instance is receiving 25% of the traffic. When cross zone load balancing is disabled, each availability zone would get 50% of the traffic.
       
---> To distribute traffic evenly across all registered instances in all enabled Availability Zones, enable cross-zone load balancing on your load balancer
+--> To distribute traffic evenly across all registered instances in all enabled Availability Zones, enable cross-zone load balancing on your load balancer.
 
 ----> You can automatically recover instances that have underlying physical host issues by moving to a different physical host but keeping all the metadata the same including same public IP address.
 
 ------------------------------------------------------
 *** EC2 auto scaling min, max, and desired capacity for instances --->
 Answer --> 
-The ASG will always try to maintain the Desired Capacity. If you scale up or down, and the new number of instances is different than the Desired Capacity, the ASG will add or remove an instance to go back to the desired capacity.
+The Auto Scaling Group (ASG) will always try to maintain the Desired Capacity. If you scale up or down, and the new number of instances is different than the Desired Capacity, the ASG will add or remove an instance to go back to the desired capacity.
 
 If you use scaling policies, and the policy condition is met, the ASG will change the Desired Capacity to match the result of your scaling policy. E.g., you have a Desired Capacity of 2, and a policy that says to scale up if the CPU utilization goes over a threshold.
 
