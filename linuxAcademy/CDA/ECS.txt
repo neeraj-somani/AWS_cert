@@ -3,7 +3,7 @@ EC2 Container Service (ECS) --> Server based service (fully managed orchastratio
   ECS --> Runs and manages docker enabled application across a logical group of amazon EC2 instances.
       --> ECS keeps track of how many instances they have, where they are running, how many EC2 resources they are utilizing
       --> if there is a request from user to ECS to run for example, container image 1 and 2, ECS will find available EC2 instance in AWS to download those container images from Registry and run on available EC2 instances.
-  containers --> that have everything your software needs including libraries, system tools, runtime engines, code.
+  containers --> that have everything your software application needs including libraries, system tools, runtime engines, code.
    Docker --> A technology that packages software into standarized unit called containers. 
         --> Lets you quickly deploy and scale application into any environment and make sure your code will run properly.
   
