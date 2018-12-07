@@ -1,6 +1,5 @@
-Neptune --> Data storage Service
+Neptune --> fully managed NOSQL Graph Data storage Service
     Essentials --> 
-        --> fully managed NOSQL Graph database, service provided by AWS
         --> Open Source APIs --> 
               TinkerPop Gremlin --> Use Gremlin console client
               RDF SPARQL --> Use RDF4j console
