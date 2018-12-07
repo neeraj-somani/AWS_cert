@@ -26,7 +26,7 @@ benefits -->
   auto recovery incase of failure.
   
 RDS Read Replicas -->
-  --> Asynchronous copies of primary database that are used for read-only purpose
+  --> Asynchronous copies of primary database that are used for read-only purpose.
   --> AWS automatically copy data to Replicas from primary, when any new write come to primany
   --> cross region read replicas are supported
   --> MySQL, PostgreSQL, MariaDB, Aurora, currently support read replicas
