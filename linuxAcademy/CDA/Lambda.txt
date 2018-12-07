@@ -3,7 +3,7 @@ Lambda Essentials -->
   Lambda allows you to configure the amount of resources (memory, CPU) available to user function
   pay only for compute time code consume, in millisec
   by default Lambda is, highly available, scalable, fault tolerant, cost effective, elastic
-  Lambda Functions and Lambda function packages are core concept for programming pplication based on Lambda
+  Lambda Functions and Lambda function packages are core concept for programming applications based on Lambda
   Lambda easily integrates with other AWS services
   Lambda supported languages --> Node.js, JAVA, C#, Python, GO
   --> Environment variables can be set to point different services in lambda
@@ -21,7 +21,7 @@ Lambda Functions --> consists of nothing but application code and dependent libr
 Lambda Function Configuration -->
   Lambda requires significatly less configuration and managment, but you can still customize it:
     --> different programming language options and runtime environments
-    --> the handler (each function has a handler file and function, format of the lambda handler value is filename.functioname, ) 
+    --> the handler (each function has a handler file and function, format of the lambda handler value is filename.functioname) 
     --> Memory (128 MB to 3008 MB) - {in 64MB increment each time}. (default it 128 MB)
     --> CPU allocation sclaes based on memory
     --> max execution duration (300 sec) - in 1 sec increments. (default is 3 sec)
@@ -58,8 +58,7 @@ Lambda API actions --> need to visit on AWS website if needed.
   Invoke --> this invokes the needed lambda function, with Invocation Type (Event (Asynchronous) or RequestResponse (default and used for Synchronous))
   CreateEventSourceMapping --> this identifies a stream as an event source for a lambda function. This association between a stream source and a lambda function is called the event source mapping. (example, lambda function will be triggered when records are posted to the stream)
 
-
-When to use Lambda over EC2 --> Generally when you want to run code in resoonse to an event -->
+When to use Lambda over EC2 --> Generally when you want to run code in response to an event -->
 example:- change to S3 bucket, updates to DynamoDB table, Kinesis Stream, SQS queue
 
 Q:-- What Configuration information needed for Lambda Function to Access Resources in an Amazon VPC
@@ -76,7 +75,6 @@ $ aws lambda create-function \
 --vpc-config SubnetIds=comma-separated-vpc-subnet-ids,SecurityGroupIds=comma-separated-security-group-ids \
 --memory-size 1024
 
-
   ----- Need to work on Lambda function lab again -----
  
  Lambda Best practice notes --> https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
@@ -87,7 +85,8 @@ $ aws lambda create-function \
             Stream Event Invokes
             Async Invokes
             Lambda VPC
-  function code -->
+ 
+ function code -->
     --> Separate the Lambda handler (entry point) from your core logic. This allows you to make a more unit-testable function.
     --> Take advantage of Execution Context reuse to improve the performance of your function. Make sure any externalized configuration or dependencies that your code retrieves are stored and referenced locally after initial execution. Keep alive and reuse connections (HTTP, database, etc.) that were established during a previous invocation.
     --> Use Environment Variables to pass operational parameters to your function.
@@ -105,7 +104,7 @@ $ aws lambda create-function \
     --> Delete Lambda functions that you are no longer using.
     --> If you are using Amazon Simple Queue Service, with your Lambda function, need to make sure about Queue message visibility Timeout and Lambda function execution time.
   
-  Alaming and Matrics -->
+  Alarming and Matrics -->
 Lambda monitoring and debugging --> 
   AWS Lambda automatically monitors Lambda functions on your behalf, reporting metrics through Amazon CloudWatch. 
   Lambda automatically tracks the number of requests, the latency per request, and requests in an error and publishes the associated CloudWatch metrics. 
@@ -126,10 +125,11 @@ for debugging the Lambda -->
     --> Don't put your Lambda function in a VPC unless you have to.
     --> Lambda creates elastic network interfaces (ENIs) in your VPC to access your internal resources. ensure you have enough ENI capacity 
     --> Create dedicated Lambda subnets in your VPC:
+
 Quiz Notes -->
   1. A Lambda deployment package contains: Lambda function packages or 'deployment packages' must include function code and all the dependencies required for the function to work. They do not need to include a binary for the language runtime.
   2. two arguments a Python Lambda handler function require: event, context
-      The event data contains the request data passed into Lambda form the event that triggered it. The context object provides useful methods for interacting with the context of the current execution (for example, time remaining in the execution or the AWS request id)
+      The event data contains the request data passed into Lambda from the event that triggered it. The context object provides useful methods for interacting with the context of the current execution (for example, time remaining in the execution or the AWS request id)
   3. When referencing the remaining time left for a Lambda function to run within the function's code you would use: 
     answer: "The context object" will give you access to a method to get the remaining time left in function execution. For example, in Python this would return the remaining time in milliseconds: context.get_remaining_time_in_millis()
 4. Logs for Lambda functions are actually stored and accessed in CloudWatch.
@@ -139,7 +139,6 @@ Quiz Notes -->
 Question from Udemy --> 
 You are using DynamoDB Streams and there are 10 shards configured.  What influences the concurrency of a Lambda Function that is configured to process streaming data from DynamoDB?
 Answer --> Number of shards per stream is the unit of concurrency. Example: 100 shards would trigger 100 lambda functions running concurrently. One lambda function processes events on a shard in the order that they arrive
-
 
 ***** For non-stream event sources, Each published event is a unit of work. Number of events dictate concurrency for lambda function.
 
