@@ -1,0 +1,32 @@
+Domain 1 - Design Resilient Architecture
+
+1. Choose Reliable / Resilient Storage
+2. Determine how to design decoupling system using  AWS services
+3. Determine how to design multi-tier solution architecture
+4. Determine high availability and fault-taularent architecture
+
+1. Choose Reliable / Resilient Storage
+
+    What are some options for this:
+    1. EC2 Instance Storage --> Ephemeral, only few EC2 instance option, Fixed capacity, type, application level durability.
+    example, Instance storage should be used for temporary data, temporary caching, or data that gets replicated and no impact if get lost
+    This is provide fast access to data
+
+    2. EBS (Elastic Block storage) --> Different types, Encryption, snapshots, provisioned capacity (means configure IOPs), independent from EC2 life cycle, 
+    multiple volume can be attached to create large volume (One EBS volume can be attached to one EC2 but one EC2 can have more than one EBS) 
+    there are 2 types (SSD and HDD) --> SSD is good for random access of data while, HDD is good for sequencial access
+    SSD is more expensive than HDD.
+
+    3. EFS --> file storage, shared storage (multiple EC2 can connect to same), Peta-byte scale, Supports NFSv4.0 and 4.1 protocol, compatible with linux based AMI, not currently supported for windows.
+    4. S3 --> for object storage,  storage class and durability, encryption (SSE - data at rest and Https - data in transit), versioning
+    consistency model (strongly consistent or eventually consistent) --> New object - strong consistency and for updates - eventually consistency
+    5. Glacier --> back-up and archival storage option, encrypts data by default, 
+
+High Availability vs Fault tolerance -->
+High availability means, if a system get failed another system can handle the load and the service should be availabile, although the performance of the service can be impacted as now load is transmitted to less servers.
+Fault tolerant means, even if system fails, service should be available but no impact even on the performance, SLA must be meet.
+
+
+2. Determine how to design decoupling system using  AWS services
+3. Determine how to design multi-tier solution architecture
+4. Determine high availability and fault-taularent architecture
