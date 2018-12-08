@@ -26,7 +26,13 @@ High Availability vs Fault tolerance -->
 High availability means, if a system get failed another system can handle the load and the service should be availabile, although the performance of the service can be impacted as now load is transmitted to less servers.
 Fault tolerant means, even if system fails, service should be available but no impact even on the performance, SLA must be meet.
 
+CloudFormation --> Describe your infrastructure and deploy AWS services,
+Use templates and stacks to provision resources
+template --> Description of your infrastructure {JSON text file}
+Stack --> {work based on template instructions} create, update, delete set of resources as a single unit
 
-2. Determine how to design decoupling system using  AWS services
-3. Determine how to design multi-tier solution architecture
-4. Determine high availability and fault-taularent architecture
+Imp points -->
+1. Single AZ will never be the right answer
+2. Using AWS managed services will always be prefered
+3. High Availability vs Fault tolerance
+4. Expect that everything can fail and design accordingly
