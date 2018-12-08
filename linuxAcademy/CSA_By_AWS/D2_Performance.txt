@@ -1,0 +1,29 @@
+Domain 2 - Design performant Architecture
+
+1. choose performant storage and DB
+2. Apply caching to improve performance
+3. Design solution for scalability and elasticity
+
+EBS --> SSD is better performant for random accessing data while HDD is better performant for sequncial accessing of data.
+All Static content should be moved to S3 to improve web tier application performance. Hence, web-server can only be working for dynamic contents.
+
+S3 bucket can be access in 2 ways -->
+virual hosted based URL --> http://bucket.s3.amazonaws.com or http://bucket.s3-aws-region.amazonaws.com
+S3 buckets are globally unique and region specific
+S3 cost calculated based on --> Storage {GB per month}, transfer out of S3, PUT/COPY/GET/POST requests
+S3 - Free of charge --> Transfer into S3, transfer out from S3 to cloudFront or the same region
+
+Object can be access by this URL -->
+http://s3-aws-region.amazonaws.com/[bucket name]/[object name]
+
+Performant storage on DB --> 
+3 options --> RDS (OLTP), DynamoDB (NoSQL), RedShift (OLAP)
+
+RDS --> not scale more then master copy. Only one copy for transactions. (Stand by can be set up for high availability).
+RDS can support read replicas.
+for high RDS performance use powerful EC2 instances
+
+Caching -->
+
+
+
