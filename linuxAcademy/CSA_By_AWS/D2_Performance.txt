@@ -24,6 +24,11 @@ RDS can support read replicas.
 for high RDS performance use powerful EC2 instances
 
 Caching -->
+Cloudfront - Edge Location -->
 
+Elastic Cache --> best for caching
+2 ways --> 
+Redis --> support for Data structures, persistent, atomic operations, pub/sub messaging, read replicas/ failover, cluster mode / sharded cluster 
+MemcacheD --> Multi-threading, low maintainance, easy horizonatal scalability with auto discovery
 
 
