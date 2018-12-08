@@ -5,7 +5,7 @@ Overall S3 Structure --> (simple storage service)
   4. S3 Permissions and S3 performance
 Below will be detailed summary of above listed 4 points:
 
-1. S3 Essentials --> This is AWS main storage service and server many purposes:
+1. S3 Essentials --> This is AWS main storage service and serve many purposes:
   Bulk (unlimited) static object storage
   various storage classes to optimize cost vs needed object availability and durability
   object versioning
