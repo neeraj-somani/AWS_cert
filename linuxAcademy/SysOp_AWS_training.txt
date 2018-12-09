@@ -1,0 +1,35 @@
+Domain 1 -- Monitoring and alarms
+
+1. CloudWatch -- metrics and alarms
+perfomance metrics 
+availability mterics
+What are the remedies for this
+
+CloudWatch --> AWS puts metric in repository and we can get metric based on repository
+Features -> 
+Metric --> time ordered set of data published to cloudwatch (Standard or custom)
+Namespace: groups related metrics together
+Dimension: name and value pair
+Period: specific time during which metric collected
+Alarm: automatically initiates when metric meets initial condtion
+events and logs
+
+*** Remember cloudWatch doesnot pull data. All services push data to cloudWatch.
+
+you can enable detailed monitoring of EC2 from EC2 console and data will be pushed to cloudWatch for every 1 min period metric.
+
+3 categories of alarms or triggers -->
+OK --> threshold not exceed
+Alarm --> threshold exceeded
+Insufficient Data --> alarm has started but data not available. for example, you set up to collect data at every 5 min interval but for alarm you set up metric to trigger at every 1 min. then data is not sufficient.
+
+Events are triggered in form of JSON file -->
+Header part mostly same
+Detailed part of JSON vary based on Event
+
+CloudWatch logs --> collects logs from different services, apply filter and show in metric to trigger alarm or event
+
+CloudTrail --> logs goes to S3, easily intergrate with cloudWatch for alarms
+
+AWS config --> collect configuration history of services, when things changed, who changes configuration
+
