@@ -1,0 +1,20 @@
+Domain 3 - Secure application and architecture
+
+1. Determine how to secure application tier
+2. determine how to secure data
+3. define and understand the networking infrastructure for single VPC application
+
+Key concepts for Infrastructure --> 
+1. Shared responsibility model
+2. principle of least privilege
+3. Identities (IAM) 
+
+VPC is used to secure networking infrastruce -->
+
+NAT Gateway --> is more scalable and AWS managed service. (No route table required, private instnace can directly connect to gateway)
+NAT instance --> cheaper as this is single EC2 instance and cant scale. (route table with access to public ip is specified)
+
+Security at Data tier -->
+Data at rest --> ACL at bucket or object level, SSE-S3, SSE-KMS, SSE-C, CSE-KMS, CSE-C
+Data in transit --> SSL over web, VPN for IPsec, IPsec over AWS Direct Connect, Import/Export/Snowball, HTTPs
+
