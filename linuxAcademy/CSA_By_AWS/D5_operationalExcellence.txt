@@ -1,0 +1,20 @@
+Domain 5 - Operational Excellence
+
+Automation and elastic and highly available
+Best approach is :
+Prepare for failure --> Operate in automated way --> Evolve from failure and learnings
+
+1. perform operation as code
+2. Annotate documentation
+3. make frequent, small, reversible changes
+4. refine operations procedures frequently
+5. Anticipate failure
+6. learn from all operational failure
+
+Below services can support operational excellence -->
+AWS config
+cloudFormation
+AWS Trust Advisor --> checks account on best practices for (CORPS) and suggest optimization
+AWS Inspector --> checks EC2 instances for security vulnarabilities
+VPC flowlogs
+AWS CloudTrail
