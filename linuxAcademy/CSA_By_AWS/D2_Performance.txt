@@ -31,4 +31,21 @@ Elastic Cache --> best for caching
 Redis --> support for Data structures, persistent, atomic operations, pub/sub messaging, read replicas/ failover, cluster mode / sharded cluster 
 MemcacheD --> Multi-threading, low maintainance, easy horizonatal scalability with auto discovery
 
+*** There will be a question in exam to check when should you scale vertically vs horizontally.
+Vertical Scaling --> (scaling up or down) --> when you replace smaller instances with larger instances (more CPU, memory)
+Horizonatal scaling --> (scaling in or out) --> change in the number of instances (add or remove instance as per need)
+
+Auto scaling --> helps in scale system automatically. Launch or terminate instance as per need. 
+automatically registers new instances with load balancer.
+
+What is the template that auto scaling uses to launch a fully configured instance automatically?
+Answer: Launch configuration (contains all information related to EC2, like AMI ID, instance type-size, key-pair, user-data)
+
+Auto Scaling group --> reference to launch config, specify the min, max and desired size of auto scaling group
+may reference an ELB, health check type, 
+
+Auto scaling policy --> specify how much to scale in ot out, (one or more policy may be attached to auto scaling group)
+CloudWatch is used to determine when to scale out or in.
+
+
 
