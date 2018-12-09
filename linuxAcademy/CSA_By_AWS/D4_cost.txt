@@ -1,0 +1,8 @@
+Domain 4 - Cost Opetimization
+
+Determine how to design cost optimized storage and compute
+
+Cloudfront can save you some cost
+serverless architecture can save some cost
+reservation can save more than on-demand.
+
