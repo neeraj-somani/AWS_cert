@@ -74,3 +74,5 @@ CloudWatch agent --> enables you to do the following:
     --> Collect system-level metrics from on-premises servers. These can include servers in a hybrid environment as well as servers not managed by AWS.
     --> Collect logs from Amazon EC2 instances and on-premises servers, running either Linux or Windows Server.
     --> Retrieve custom metrics from your applications or services using the StatsD and collectd protocols. StatsD is supported on both Linux servers and servers running Windows Server. collectD is supported only on Linux servers.
+
+
