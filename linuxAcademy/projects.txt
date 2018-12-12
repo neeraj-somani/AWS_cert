@@ -1,1 +1,7 @@
 https://aws.amazon.com/blogs/machine-learning/build-a-social-media-dashboard-using-machine-learning-and-bi-services/
+
+https://github.com/kickball/awesome-selfhosted
+
+https://linuxacademy.com/cp/socialize/index/type/community_post/id/27574
+
+
