@@ -35,6 +35,8 @@ EC2 instnace types -->
   4. Network Performance (bandwidth)
   5. General purpose {T, M}
 
+t2 is the cheapest instance type because it uses shared CPU resources while other instance type uses dedicated CPU resources.
+
 EC2 Purchasing Options -->
   On-Demand --> 
     choose, provision and terminate any instnaces type at any time
