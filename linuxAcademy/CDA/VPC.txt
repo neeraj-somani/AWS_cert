@@ -55,7 +55,8 @@ VPC IP addressing -->
 
 **** 8 bits are used for host addressing. 2^8 possible addresses. Out of this, AWS reserves first four IP addresses and last one IP address in every subnet for IP networking. These five addresses cannot be used for hosts. So, 256 - 5 = 251
 
-VPC Endpoint -->
+VPC Endpoint --> A VPC endpoint uses a private network
+(Need to understand VPC endpoint) VPC endpoints will give the best network throughput to S3. 
   Gateway Endpoints -->
   Interface Endpoints --> cloudWatch logs, codeBuild, KMS, Kinesis, Service Catalog
   
