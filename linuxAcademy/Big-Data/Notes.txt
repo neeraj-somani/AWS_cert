@@ -1,0 +1,13 @@
+Big Data Certification Pillars --> (short form - V-SPACED)
+
+ Collection
+
+· Storage
+
+· Processing
+
+· Analysis
+
+· Visualization
+
+· Data Security 
