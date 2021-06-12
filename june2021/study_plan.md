@@ -10,6 +10,9 @@
 - Understand changes in old vs new cert sections and prepare for both (https://tutorialsdojo.com/new-exam-version-aws-certified-sysops-administrator-associate-soa-c02-vs-soa-co1/)
 - TD blogs on SysOps (https://tutorialsdojo.com/tag/sysops/, https://tutorialsdojo.com/tag/aws-sysops/)
 - TD blogs on Solution Architect (https://tutorialsdojo.com/tag/aws-solutions-architect-reviewer/)
+- Answering A Cloud Guru forum questions. 
+- Answering questions on AWS related slack and Discord channel
+- Engage in various AWS topic discussions
 
 
 ## Solution Architect Associate (SAA-C02)
