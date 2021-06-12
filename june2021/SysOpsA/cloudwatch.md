@@ -1,3 +1,7 @@
+# Imp material for cert
+- [AWS Official Cloudwatch Study Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)
+- [Cloudwatch FAQ](https://aws.amazon.com/cloudwatch/faqs/)
+
 ## Cloudwatch notes - SysOps Associate
 
 - Its performance monitoring and logging service
