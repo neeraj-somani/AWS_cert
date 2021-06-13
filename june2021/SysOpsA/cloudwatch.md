@@ -6,7 +6,9 @@
 
 - Its performance monitoring and logging service
 - Cloudwatch features -
-  - CloudWatch Dashboards - CloudWatch dashboards built with custom widgets allow you to visually monitor resources and proactively take action if needed. Overall, the dashboards give you a central (and visual) view of how your monitored resources are behaving at specific points in time.
+  - CloudWatch Dashboards 
+    - CloudWatch dashboards built with custom widgets allow you to visually monitor resources and proactively take action if needed. Overall, the dashboards give you a central (and visual) view of how your monitored resources are behaving at specific points in time.
+    - single dashboard can be build with matrics from multiple region
   - Dashboard Widgets
   - CloudWatch Metrics
 - can be used across AWS and even on-premises as well
@@ -33,4 +35,4 @@
   - create alarm to monitor cloudwatch matric and perform event based actions
   - example, EC2 CPU utilization (auto scaling), ELB latency or bill charges alarms
 - [AWS Prescriptive Guidance (APG) on CloudWatch](https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/welcome.html)
-- 
+- Cloudwatch Dashboard
