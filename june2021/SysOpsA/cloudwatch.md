@@ -30,10 +30,10 @@
   - CRON
     - its a scheduled tasks command based utility, that you can use to run a command at any specific interval of time
     - Its available at "/etc/crontab"
-    - #   Use the commands below for the lab.
-    -  #   /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --verify --verbose
-    -  #   /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
-    -  #   */1 * * * * root /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
+    - Use the commands below for the lab.
+      - /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --verify --verbose
+      - /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
+      - */1 * * * * root /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
 - Cloudwatch matrics retrieve data and retention period 
   - retrieve data using the **GetMetricStatistics API**
   - retrieve data by using third party tools offered by AWS partners
