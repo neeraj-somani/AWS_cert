@@ -26,6 +26,7 @@
   - RequestCount, consumedLCUs, TargetResponseTime, ActiveConnectionCount, ProcessedBytes, etc
 - Default cloudwatch per ELB matrics  
   - VolumeReadOps, VolumeWriteOps, volumeQueueLength, VolumeStatusCheck
+  - volumeQueueLength - Number of read operations and write operation request waiting to be completed ina specific period of time.
   - the higher the queue length, the more you max out your IOPS
   - VolumeStatusCheck is an imp matrics, "ok", "warning", "imparied", "insufficient-data"
 - Cloudwatch custom matrics 
