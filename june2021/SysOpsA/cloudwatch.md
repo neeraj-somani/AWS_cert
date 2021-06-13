@@ -10,17 +10,30 @@
     - CloudWatch dashboards built with custom widgets allow you to visually monitor resources and proactively take action if needed. Overall, the dashboards give you a central (and visual) view of how your monitored resources are behaving at specific points in time.
     - single dashboard can be build with matrics from multiple region
   - Dashboard Widgets
+    - widgets can cvreated based on Matrics or logs
   - CloudWatch Metrics
+    - in case of EC2 -- By auto sclaing group, by image, per-instance matrics, aggregated_by_instance_type, across_all_instances
+    - in case of ALB -- {per APPELB, per AZ, per TG matrics}, {per AppELB, per AZ matrics}, {TargetGroup}, 
 - can be used across AWS and even on-premises as well
   - SSM agent and cloudwatch agent needs to be installed on on-premises servers to use cloudwatch
 - Default Cloudwatch host level EC2 matrics
   - CPU - (CPU Utilization)
-  - Network - (Network utilization / throughput)
-  - Disk - (disk IO / throughput)
+  - Network - (Network utilization / throughput), networkIn, networkOut, 
+  - Disk usage - (disk IO / throughput)
   - Status Check - (health check of Ec2 host and instance)
+- Default cloudwatch per ALB matrics
+  - RequestCount, consumedLCUs, TargetResponseTime, ActiveConnectionCount, ProcessedBytes, etc
 - Cloudwatch custom matrics 
+  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html
   - RAM Utilization (how much memory EC2 utilizing)
   - physical disk storage space utilized and available
+  - CRON
+    - its a scheduled tasks command based utility, that you can use to run a command at any specific interval of time
+    - Its available at "/etc/crontab"
+    - #   Use the commands below for the lab.
+    -  #   /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --verify --verbose
+    -  #   /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
+    -  #   */1 * * * * root /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail
 - Cloudwatch matrics retrieve data and retention period 
   - retrieve data using the **GetMetricStatistics API**
   - retrieve data by using third party tools offered by AWS partners
@@ -35,4 +48,4 @@
   - create alarm to monitor cloudwatch matric and perform event based actions
   - example, EC2 CPU utilization (auto scaling), ELB latency or bill charges alarms
 - [AWS Prescriptive Guidance (APG) on CloudWatch](https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/welcome.html)
-- Cloudwatch Dashboard
+- 
