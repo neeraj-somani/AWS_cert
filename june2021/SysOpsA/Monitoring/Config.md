@@ -67,8 +67,13 @@
 - change management - you are able to track the relationships among resources and review resource dependencies prior to making changes.
 - operational troubleshooting - you can capture a comprehensive history of your AWS resource configuration changes to simplify troubleshooting of your operational issues.
 
+### Permissions needed for Config
+- AWS Config requires an IAM Role with Read only permissions to the recorded resources.
+- Write access to S3 logging bucket 
+- Publish access to SNS
 
-
-
-
+### Monitoring Config:
+- Use CloudTrail with Config to provide deeper insight into resources.
+- Use CloudTrail to monitor access to Config, such as someone stopping the Config Recorder.
+  
 
