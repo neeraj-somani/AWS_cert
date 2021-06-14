@@ -21,3 +21,9 @@
 - identity federation (google, facebook, amazon)
 - MFA
 
+
+### IAM Access Keys
+- Access keys are how the AWS Command Line Tools (CLI Tools) interact with AWS accounts.
+- At any given time, one user can have only 2 set of access key at max. It can be either active or inactive, doesn't matter.
+- aws CLI setup link -- https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html
+- 
