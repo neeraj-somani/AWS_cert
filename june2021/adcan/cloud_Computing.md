@@ -1,17 +1,22 @@
 # Cloud Computing
 - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
 - Essential Characteristics:
-  - On-demand self-service. 
+  - On-demand self-service 
     - Can provision capabilities as needed without requiring human interaction.
     - A consumer can unilaterally provision computing capabilities, such as
 server time and network storage, as needed automatically without requiring human
 interaction with each service provider.
+    - provision and terminate using UI/CLI without human interaction.
 
-  - Broad network access. 
-    - Capabilities are available over the network and accessed through standard
-mechanisms that promote use by heterogeneous thin or thick client platforms (e.g.,
+  - Broad network access 
+    - Capabilities are available over the **network** and accessed through **standard
+mechanisms** that promote use by heterogeneous thin or thick client platforms (e.g.,
 mobile phones, tablets, laptops, and workstations).
-  - Resource pooling. 
+    - access services over any networks, on any devices, using standard protocols and methods.
+
+  - Resource pooling 
+    - There is a sense of location independence...no control or knowledge over the exact location of the resources.
+    - resources are pooled to serve multiple consumers using multi-tenant model.
     - The provider’s computing resources are pooled to serve multiple consumers
 using a multi-tenant model, with different physical and virtual resources dynamically
 assigned and reassigned according to consumer demand. There is a sense of location
@@ -19,17 +24,22 @@ independence in that the customer generally has no control or knowledge over the
 location of the provided resources but may be able to specify location at a higher level of
 abstraction (e.g., country, state, or datacenter). Examples of resources include storage,
 processing, memory, and network bandwidth.
-  - Rapid elasticity. 
+    - Economies of scale, cheaper service.
+
+  - Rapid elasticity 
     - Capabilities can be elastically provisioned and released, in some cases
-automatically, to scale rapidly outward and inward commensurate with demand. To the
-consumer, the capabilities available for provisioning often appear to be unlimited and can
-be appropriated in any quantity at any time.
-  - Measured service. 
+automatically, to scale rapidly outward and inward commensurate with demand. 
+    - To the consumer, the capabilities available for provisioning often appear to be unlimited and can be appropriated in any quantity at any time.
+    - scale UP (OUT) or DOWN (IN) automatically in response to system load.
+
+  - Measured service 
+    - resource usage can be monitored, controlled, reported and billed.
     - Cloud systems automatically control and optimize resource use by leveraging
-a metering capability1 at some level of abstraction appropriate to the type of service (e.g.,
+a metering capability, at some level of abstraction appropriate to the type of service (e.g.,
 storage, processing, bandwidth, and active user accounts). Resource usage can be
 monitored, controlled, and reported, providing transparency for both the provider and
 consumer of the utilized service.
+    - usage is measured, pay for what you consume.
 
   - Service Models:
     - Software as a Service (SaaS). 
