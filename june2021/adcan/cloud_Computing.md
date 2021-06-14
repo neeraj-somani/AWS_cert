@@ -2,9 +2,11 @@
 - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
 - Essential Characteristics:
   - On-demand self-service. 
+    - Can provision capabilities as needed without requiring human interaction.
     - A consumer can unilaterally provision computing capabilities, such as
 server time and network storage, as needed automatically without requiring human
 interaction with each service provider.
+
   - Broad network access. 
     - Capabilities are available over the network and accessed through standard
 mechanisms that promote use by heterogeneous thin or thick client platforms (e.g.,
