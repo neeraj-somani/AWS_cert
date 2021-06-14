@@ -24,3 +24,6 @@
 
 **AWS Systems Manager** -- most imp for sysops cert
 - execute automation tasks on group resources
+
+
+
