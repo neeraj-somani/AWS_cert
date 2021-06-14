@@ -7,6 +7,9 @@
 - Its performance monitoring and logging service
 - Cloudwatch features -
   - CloudWatch Dashboards 
+    - Dashboards are global/international and not any dashboard can be scene from any region.
+    - Dashboards are multi-region and can display any widget to any region. 
+    - To add the widget, change to the specific region that you need and then add the widget to the dashboard.
     - CloudWatch dashboards built with custom widgets allow you to visually monitor resources and proactively take action if needed. Overall, the dashboards give you a central (and visual) view of how your monitored resources are behaving at specific points in time.
     - single dashboard can be build with matrics from multiple region
   - Dashboard Widgets
@@ -120,3 +123,16 @@ balance to burst to the required performance level, up to a maximum of 3,000 IOP
  this cost over the lifetime of the volume is acceptable.
  Performance is restored after the data is accessed once.
  - you can avoid this performance hit by reading all blocks of volume before use it in application, called initialization.
+
+
+
+## Cloudwatch Billing Alarm
+- Estimated charges matrics
+- threshold type 
+  - Static (use a value as a threshold)
+  - Anomaly detection (use a band as a threshold)
+- condition
+  - greater, greater/equal, lower/equal, lower
+- create Alarm
+- connect to SNS
+- EC2 action can be perfomed, like auto scaling etc.
