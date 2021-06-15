@@ -103,9 +103,8 @@
   - Routers are used to perfom this communication.
 
 
-### Summary - layer-2 Network
+### Summary - layer-3 Network
 - The network layer adds the ability for cross-network addressing (IP Addresses). It allows packets to be routed across different layer 2 networks, via L2 Frame encapsulation and forwarding decisions using routes and route tables. Its Layer 3 which allows the internet to function.
-
 
 
 ### IP - packet structure
@@ -121,6 +120,34 @@
 - Layer-4 protocol (ICMP, TCP, UDP)
 - Data (payload)
 - TTL (time to live) - its used to stop packet looping around forever, in-case of network issues. it defines max number of hops a packet can takes, before being discarded.
+
+### some other points about IPv4
+- All IP addresses have 'network' part and a 'host' part.
+- If network part of the two IP addresses matches, then they are on same IP network.
+- IP address are actually binary, 4 sets of 8 bits (octets) for a total of 32 bits.
+- IP addresses are assigned by machine (DHCP-Dynamic Host control protocol) or humans.
+
+### Subnet mask 
+- This allows us to understand the IP is local or remote
+- which influences if it needs to use gateway or can communicate locally.
+- for example, in home network, usually router is set as default gateway
+- A subnet mask represents which part of the IP address is network(1) and which part is HOST(0).
+- example, 255.255.0.0/16
+- A subnet mask is configured on a host device in addition to IP address
+- Using subnet mark, anyone can understand the start and end of the IP address range.
+
+### Route Tables & Routes
+- Every router has route tables and thats how it detects where to send data.
+- every route table consist of 2 parts, destination field and next hop/target field
+- router compares packet destination IP & route table for matching destinations. The more specific prefixes are preferred (0 lowest, 32 highest). Packet is forwarded on to the Next Hop/target.
+- route tables can be statically populated or there are protocols such as BGP (Border Gateway Protocol), which allows routers to communicate with each other, to exchange which networks they know about.
+- But how will you determine destination IP address.
+-  Thats where we use, Address resolution protocol.
+
+### Address resolution protocol (ARP)
+- you don't initially know the MAC address (for a given IP address) of the destination device 
+- 
+
 
 ### IPv6 consist of (high imp)
 - Source IP address
