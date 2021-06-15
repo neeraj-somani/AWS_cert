@@ -46,7 +46,87 @@
 - Physical shared medium
 - standards for transmitting onto the medium
 - standards for receiving from the medium
-- no access control
+- no media access control
 - no uniquely identified devices
 - no device to device communications, everything is broadcast on the network
+
+
+### layer-2-Data Link
+- unique hardware (MAC) address
+- mac address consist of 2 parts --- OUI (Organization unique identifier) and NIC (Network interface controller). In combination of these 2 things makes the MAC address on every unit a unique address.
+- layer 2 provides frames and layer 1 just transmitting the frame (which consist data)
+- Frame consist of various parts
+  - 1 - preamble (56 bits)
+  - 2 - destination MAC address (all F in case of broadcast)
+  - 3 - source MAC address 
+  - 4 - ET (Ether type) 16 bits - used to specify the protocol details of layer-3, which puts data frame into layer-2. example is internet protocol 
+  - 5 - payload (46 bytes to 1500 bytes). its nothing but data.
+  - 6 - FCS (frame check sequence) - used to identify any errors in the frame. Its a simple CRC check, allows destination to check if corruption has occured or not.
+  - How layer-2 avoids collisions by (CSMA/CD)
+    - Carrier-sense multiple access with collision detection (CSMA/CD) is a media access control (MAC) method used most notably in early Ethernet technology for local area networking (LAN). It uses carrier-sensing to defer transmissions until no other stations are transmitting.
+    - If collisions are detected (both transmiiting at once) both backoff for a time + random. if another close collision occurs Increases random backoff time.
+  - In case of Layer-2 we uses switch
+    - its similar to HUB but have added advantages
+    - switch has layer-2 software installed, hence it understand layer-2 functionality.
+    - Switches understand frames and MAC address. They maintains MAC address table which starts off empty. As the switch receives frames on its ports, it learns which devices are connected and populates the Mac address table.
+    - if MAC address is available in the MAC table, then data is sent to that specific port otherwise to all ports and create an entry of the correct destination port once the receive signal arrives.
+    - Switches store and forward frames... they don't repeat blindly like HUB.
+    - it means that only valid frames are forwarded - collisions are isolated on the port they occured.
+    - Every X port switch has X collision domains. It allows switches to scale and be connected together.
+
+
+### Summary - layer-2 - paragraph
+- The data link layer builds on a functional physical layer and adds device unique IDs (MAC address) and controls access to the shared medium .. and detects and mitigates collisions. The data link layer is one of the most important layers, and creates the foundational networking layer which supports Layer 3 IP .. which is how the internet functions.
+- identifiable devices (MAC address)
+- Media access control (sharing)
+- collision detection
+- unicast.. 1:1
+- Broadcast... 1:ALL
+- Switches like Hubs with super powers (layer 2 software)
+
+### What is encapsulation?
+- IP packet is put inside an ethernet frame, for that part of the journey.
+- when it needs to be moved into new network, that particular frame is removed and a new encapsulation frame is added around the same original packet and its moved on to the next local network.
+- IP is needed, to allow you to connect to other remote networks, crossing intermediate networks on the way.
+
+### What is Routers??
+- Router is a Layer-3 device, which has layer-3 level software.
+- It remove frame encapsulation and add new frame encapsulation at every hop.
+
+### layer-3 Network 
+- Why it is needed
+  - layer-3 allows to connect seperate distant layer-2 networks remotely over the internet.
+  - LAN1 and LAN2 are isolated local area networks. Using only layer-2, only those networks joined by direct point to point link using the same layer-2 protocol could communicate.
+  - Ethernet is a layer-2 protocol used generally for local networks. long distance point to point links will use some other more suitable protocol such as PPP/MPLS/ATM, etc.
+  - While, Internet protocol is a layer-3 protocol which adds cross-network IP addressing and routing to move data between local area network without direct P2P links.
+  - IP packets are moved step-by-step from source to destination via intermediate networks. Encapsulated in different frames along the way.
+  - Routers are used to perfom this communication.
+
+
+### Summary - layer-2 Network
+- The network layer adds the ability for cross-network addressing (IP Addresses). It allows packets to be routed across different layer 2 networks, via L2 Frame encapsulation and forwarding decisions using routes and route tables. Its Layer 3 which allows the internet to function.
+
+
+
+### IP - packet structure
+- two major versions at present
+- IPv4
+- IPv6
+
+- There are a lot of components that make up the IP address but at this time I am focusing on only important one.
+
+### IPv4 consist of (high imp)
+- Source IP address
+- Destination IP address
+- Layer-4 protocol (ICMP, TCP, UDP)
+- Data (payload)
+- TTL (time to live) - its used to stop packet looping around forever, in-case of network issues. it defines max number of hops a packet can takes, before being discarded.
+
+### IPv6 consist of (high imp)
+- Source IP address
+- Destination IP address
+- Data (payload)
+- Hop limit (time to live) - its used to stop packet looping around forever, in-case of network issues. it defines max number of hops a packet can takes, before being discarded.
+
+
 
