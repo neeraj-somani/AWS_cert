@@ -20,7 +20,8 @@
   - Symmetric key is used in this encryption technique
   - same key needs to be used for encryption and decryption
   - it is mostly used to encrypt data at rest, because key can't be transferred over internet/network
-  - its good for, local file encryption or disc encryption on laptops, 
+  - its good for, local file encryption or disc encryption on laptops.
+  
 - Asymmetric encryption
   - it formed of 2 parts (public key and private key)
   - both parties needs to agree on one encryption algorithm
@@ -29,4 +30,14 @@
   - hence, only one party who is receiving the data should generate the public/private key-pair
   - used by popular email and file encryption systems, SSL, TLS, which is a system for encrypting browser communications,
   - ssh also used the same method, to securely access servers
-  - 
+  - encryption doesn't prove identity
+
+
+### key points to understand while working with Asymmetric encryption
+### Signing
+- Its a way of making sure, the two patries can identify each and make and make sure they are communicating with the right party.
+- signing a doc can be done using private key. this is just to prove that its coming from correct party.
+
+### Steganography
+- its a method of hiding something in something else
+- for example, a file can be encrypted and then hide inside some other file. Although, the new file is very similar to original, but only the known parties can understand the difference.
