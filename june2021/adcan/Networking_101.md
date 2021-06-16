@@ -181,7 +181,8 @@
     - its a connection oriented protocol, meaning SRC and DEST builds a connection build a bi-directional communication channel
   - UDP (user datagrame protocol)
     - faster / less reliable
-    - it doesn't have the overhead of TCP
+    - it doesn't have the overhead of TCP, meaning all the connection check requirement is not followed.
+    - two devices can instantly start communicating on this for faster communication.
 
 ### TCP in more details
 - **TCP Segments**
