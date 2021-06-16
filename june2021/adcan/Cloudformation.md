@@ -44,7 +44,7 @@
  
  
  ### Imp links
- - ![CloudFormation Resource Reference :](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+ - [CloudFormation Resource Reference :](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 
 
 
