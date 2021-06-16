@@ -170,5 +170,67 @@
   - L3 per packet routing can introduce delays to packets en-route. Different packets can experience different delays.
   - With L3, there are no communication channels - packets have a source and destination OP only but no method of splitting by APP or Channel.
   - No flow control. If the source trasnmit faster than the destination can receive, it can saturate the destination causing packet loss.
-- How does Layer 4 and 5 resolve this?
-  - testing
+- How does Layer 4 and 5 resolves above problems?
+  - it adds two new protols
+  - at layer 4 it adds 2 new protocols TCP and UDP
+  - These both run on top of IP and used in the same way.
+  - TCP (transmission control protocol)
+    - its a slower / reliable connection
+    - error correction
+    - ordering of data
+    - its a connection oriented protocol, meaning SRC and DEST builds a connection build a bi-directional communication channel
+  - UDP (user datagrame protocol)
+    - faster / less reliable
+    - it doesn't have the overhead of TCP
+
+### TCP in more details
+- **TCP Segments**
+  - its another container for data
+  - TCP segments are encapsulated within IP packets
+  - Segments don't have SRC or DST IP's - the packet provide device addressing
+  - imp parts of TCP segments
+    - Source port
+    - Destination port
+    - sequence number
+    - Acknowledgment
+    - FLAGS and THINGS
+    - Window
+  - because of this structure of TCP segments, it allows devices to create a channel of communication
+  - because of these different ports, there can be multiple channel of communication can be created
+  - sequence number is incremented, its unique and can be used for error correction or retransmission.
+  - Sequence number also help in ordering of packets once it arrives at destination.
+  - Acknowledgment part allows devices to indicate that the packet has been received and up to what sequence number
+  - FLAGS and THINGS - this allows various other controls. Flags are used to close connections, sychronize sequence number, many more.
+  - Window - is the part where two parties agrees to receive specific number of bytes in between the acknowledgement.
+  - checksum - used for error checking
+  - urgent pointer - this allows SRC and DEST, to have seperate processing power. This allows flow control in communication. FTP and telnet are the example.
+    
+- **FLAGs and THINGS**
+  - flags can have few very specific values that can be used in communication.
+  - 'FIN' - value in flag can be used to close the connection
+  - 'ACK' - used for acknowledgment
+  - 'SYN' - used to synchronise sequence number
+  - 'PSH' - 
+  - 'RST' - 
+  - 'URG' - 
+
+- Based on these flags, TCP creates a 3-way handshake connection
+- SYN --> SYN-ACK --> ACK
+
+### Layer 5 - sessions and State
+- for security we add firewall rules
+- a stateless firewall would see two things (In AWS this is what NACL does)
+  - outbound connection
+  - response to the original outbound connection (inbound)
+- A stateful firewall would sees one thing (In AWS this is what Security Group does)
+  - allwoing the outbound, implicitly allows the inbound response.
+
+### TCP well known ports
+- 80 - HTTP
+- 443 - HTTPs (encrypted by default)
+- 22 - ssh (encrypted by default)
+- 25 - SMTP (email)
+- 21 - Telnet
+- 3389 - remote desktop protocol (encrypted by default)
+- 3306 - Mysql/MariaDB/Aurora
+
