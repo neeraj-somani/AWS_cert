@@ -235,3 +235,27 @@
 - 3389 - remote desktop protocol (encrypted by default)
 - 3306 - Mysql/MariaDB/Aurora
 
+### Network Address Traslation (NAT) 
+- Network Address Translation (NAT) is the process of adjusting packets source and destination addresses to allow transit across different networks. 
+- The main types you will encounter are Static NAT, Dynamic NAT and Port Address Translation (PAT). 
+- NAT is most commonly experience in home or office networks where private IPv4 addresses are translated to a single public address, allowing outgoing internet access.
+- NAT is designed to overcome IPv4 shortages
+- also provides some security benefits
+- translates private IPv4 address to public
+- Static NAT - 1 private to 1 fixed public address (IGW) - bi-directional
+- Dynamic NAT - 1 private to 1st available public IP from a pool of IP addresses. Mostly used where you have more private IP address and less public IP's.
+- Port Address Translation (PAT) - many private to 1 public (NAT-GW). Used most commonly in Home internet router. laptop, phone, other devices connect to same public IP. Also known as overloading. It uses port to identify individual devices. NAT Gateway and NAT instances use this within AWS.
+- This is required only for IPv4.
+- Since, we have huge number of IPv6 addresses, we don't need any form of private addressing and hence no translation required.
+- public and private IP addresses can't communicate directly over the public internet.
+- The router (NAT Device) maintains a NAT table, it maps PrivateIP : Public IP (1:1)
+- The router (PAT device / NAT-GW) - it maps PrivateIP : Public IP (many:1)
+
+### PAT (Port Address Translation)
+- it maps PrivateIP : Public IP (many:1)
+- The way it keeps track of devices is using private IP of device and port of device.
+  - The NAT device records the source (Private) IP and Source port. 
+  - It replaces the source IP with the single Public IP and a public source port allocated from a pool which allows IP overloading (many to one). meaning, NAT device translate both source IP and source port. port is allocated at random by the NAT devices, hence this combination will always be unique. And NAT table will keep track of it.
+  - **very imp** - why we can't initiate traffic to these private devices??
+    - because there is no entry into the NAT table (router table) for public IP to Private IP, untill a communication starts from private IP.
+    - thats how NAT Gateway secures the environment.
