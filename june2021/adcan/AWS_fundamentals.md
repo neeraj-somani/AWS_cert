@@ -10,7 +10,7 @@
 
 
 
-### AWS Global Infrastructure
+### AWS Global Infrastructure - https://www.infrastructure.aws/
 - AWS have created a global public cloud platform which consists of isolated 'regions' connected together by high speed global networking.
 - Regions
 - Availability Zones
