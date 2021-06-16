@@ -158,5 +158,17 @@
 - Route - where to forward this packet
 - Route tables - mulktiple routes
 - Router - moves packets from SRC to DST - Encapsulating in L2 on the way
-- No method for channels of communications .. SRC IP to DST IP only, meaning multiple applications can't communicate at the same time on the same device. (hence need layer 4)
-- Can be delivered out of order (hence need layer 4)
+- No method for channels of communications .. we have SRC IP to DST IP only, meaning multiple applications can't communicate at the same time on the same device. (hence need layer 4). How will you identify which packet (data) is requested by which application.
+- packets Can be delivered out of order (hence need layer 4)
+
+
+### layer4&5 - Transport and Session Layer
+- The transport layer adds Ports, error correction, retransmission, flow control and a connection orientated architecture.
+- Why its needed?? What problems it solves??
+  - L3 provides no ordering of the packets, send from SRC to Dest.
+  - L3 doesn't guaranteed to be reliable. Packets can be lost en-route.
+  - L3 per packet routing can introduce delays to packets en-route. Different packets can experience different delays.
+  - With L3, there are no communication channels - packets have a source and destination OP only but no method of splitting by APP or Channel.
+  - No flow control. If the source trasnmit faster than the destination can receive, it can saturate the destination causing packet loss.
+- How does Layer 4 and 5 resolve this?
+  - testing
