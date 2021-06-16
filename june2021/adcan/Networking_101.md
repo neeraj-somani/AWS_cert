@@ -102,11 +102,6 @@
   - IP packets are moved step-by-step from source to destination via intermediate networks. Encapsulated in different frames along the way.
   - Routers are used to perfom this communication.
 
-
-### Summary - layer-3 Network
-- The network layer adds the ability for cross-network addressing (IP Addresses). It allows packets to be routed across different layer 2 networks, via L2 Frame encapsulation and forwarding decisions using routes and route tables. Its Layer 3 which allows the internet to function.
-
-
 ### IP - packet structure
 - two major versions at present
 - IPv4
@@ -146,8 +141,7 @@
 
 ### Address resolution protocol (ARP)
 - you don't initially know the MAC address (for a given IP address) of the destination device 
-- 
-
+- Its a process that runs between layer2 and layer3
 
 ### IPv6 consist of (high imp)
 - Source IP address
@@ -156,4 +150,13 @@
 - Hop limit (time to live) - its used to stop packet looping around forever, in-case of network issues. it defines max number of hops a packet can takes, before being discarded.
 
 
+### Summary - layer-3 Network
+- The network layer adds the ability for cross-network addressing (IP Addresses). It allows packets to be routed across different layer 2 networks, via L2 Frame encapsulation and forwarding decisions using routes and route tables. Its Layer 3 which allows the internet to function.
 
+- IP addresses (IPv4/v6) - cross network addressing
+- ARP - find the MAC address, for this IP
+- Route - where to forward this packet
+- Route tables - mulktiple routes
+- Router - moves packets from SRC to DST - Encapsulating in L2 on the way
+- No method for channels of communications .. SRC IP to DST IP only, meaning multiple applications can't communicate at the same time on the same device. (hence need layer 4)
+- Can be delivered out of order (hence need layer 4)
