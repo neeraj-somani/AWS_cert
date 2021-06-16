@@ -259,3 +259,81 @@
   - **very imp** - why we can't initiate traffic to these private devices??
     - because there is no entry into the NAT table (router table) for public IP to Private IP, untill a communication starts from private IP.
     - thats how NAT Gateway secures the environment.
+
+
+
+### IPv4 Addressing & Subnetting 
+- all public IPv4 addressing is allocated.
+- Intenet Assigned numbers authority
+- part of the address space is private and can be used/reused freely
+- class A addresses -- start 0.0.0.0 and ends at 127.255.255.255, allocated to popular companies
+- class B addresses -- start 128.0.0.0 and ends at 191.255.255.255 -- medium range enterprises
+- class C addresses range - start 192.0.0.0 and ends at 223.255.255.255 -- small businesses
+- class D - used for multi-cast
+- class E - is reserved
+
+- **Private IP defination and usage**
+  - it can be used internally with-in network but can't be used over the public internet
+  - 10.0.0.0 - 10.255.255.255 (1 x class A network)
+  - 172.16.0.0 - 172.31.255.255 (16 x class B network) -- used by AWS or other cloud providers
+  - 192.168.0.0 - 192.168.255.255 (256 x class C network) -- used in home and small office network
+
+### IP Subnetting
+- Subnetting means, breaking larger network into more smaller networks.
+- (Classless Inter-Domain Routing) CIDR help in break them down.
+- CIDR - defines a way of expressing the size of a network
+- the size of a network also known as prefix.
+- example of prefix, "/16" in 10.15.0.0./16
+- this means, "10.15" is reserved for "network", it can't be changed within network and "0.0" to "255.255" makes host or subneting part of the network.
+- the larger the prefix value, the smaller the network.
+- hence, the network IP address range, start from 10.15.0.0 and ends at 10.15.255.255. 
+- Now, lets say we want to have 4 small network out of this one large network, subnetting will help in that
+- example, 
+  - subnet range 1 - start 10.15.0.0 to 10.15.127.255 -- also can be written as (10.15.0.0/17)
+    - subnet range 1 - start 10.15.0.0 to 10.15.63.255 -- also can be written as (10.15.0.0/18)
+    - subnet range 2 - start 10.15.64.0 to 10.15.127.255 -- also can be written as (10.15.64.0/18)
+  - subnet range 2 - start 10.15.128.0 to 10.15.255.255 -- also can be written as (10.15.128.0/17)
+    - subnet range 3 - start 10.15.128.0 to 10.15.191.255 -- also can be written as (10.15.128.0/18)
+    - subnet range 4 - start 10.15.192.0 to 10.15.255.255 -- also can be written as (10.15.192.0/18)
+
+### Distributed Denial of Service (DDOS)
+- (DDOS) attacks are effective at disrupting web applications no matter their size.
+- They are generally initiated from networks of compromised machines known as Botnets.
+- They come in 3 common types...
+   - Application Layer - HTTP flood
+      - this takes advantages of imbalancing of processing between client and server.
+   - Protocol Attacks - SYN Flood
+      - takes advatage of connection based nature of requests
+      - SYN flood spoof a source IP address and try to initiate a connection attempt with the server. The server tries to perform the step two of the handshake, but can't contact to source address, because it is spoofed/fake addresses. hence, connection hungs and disturb the 3-way handshake connection establishment. This consumes network resources for fake resources.
+   - Volumetric Attacks - DNS Amplification
+      - In general, DNS protocol requires a very small of data to make a request but in case of attack a large amount of data has been delivered to DNS server. hence, DNS server wouldn't return timely response to legitimate request.
+      - In this attack, our data servers gets majority attacks in compare to application server.
+- Attacks designed to overload websites
+- compete against 'legitimate connections'
+- Distributed -- hard to block individual IPs/Ranges
+- these kind of attacks can't be handled by blocking few network IP addresses.
+
+
+### SSL (Secure Socket Layer) / TLS (Transport Layer Security)
+- They provides the encrypted communications for HTTPS and other encrypted connection oriented protocols. 
+- TLS is more advanced and more secure version on SSL
+- It provides privacy and Data integrity between client and server.
+- privacy - communications are encrypted
+- communication starts with asymmetric and then symmetric for acknowledgment.
+- computationally symmetric is better than asymmetric, and hence SSL/TLS helps in achiving it as and when needed.
+- Identity (server or client/server) verified - SSL/TLS helps in achiving it
+- Reliable connection - protect against alteration
+- Whenever TLS is used, and TCP connection established, the process happens in 3 stages
+  - cipher suites are agreed, --> meaning which types of encryption algorithms should be used. Public and private key needs to be generated using the same by both parties.
+  - Authentication ---> the client needs to be able to validate the server with whom its trying to establish a connection. Hence, client valid, server certificate, public key, etc. Certificate Authorities (CA) helps in this verification. Usually, browser or OS trust few CAs and perform this verification.
+  - key exchange - in this step we move from Asymmetric to symmetric method
+    - a pre-master key generated by client and sent to server, before sending actual data.
+    - master secret are generated using this pre-master key at both side seperately
+    - this master secret is used to create session keys which is used to encrypt and decrypt data
+    - that can be easily and fastly communicated between these parties.
+
+
+
+
+
+
