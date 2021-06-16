@@ -12,12 +12,32 @@
 
 ### AWS Global Infrastructure - https://www.infrastructure.aws/
 - AWS have created a global public cloud platform which consists of isolated 'regions' connected together by high speed global networking.
-- Regions
-- Availability Zones
-- Edge Locations
+- Regions -->  area of the world that AWS selected and deployed full AWS infrastructure
+  - benefits -
+    - Geographic separation - isolated fault domain
+    - geopolitical seperation - different goverance
+    - location control - performance
+- Availability Zones (AZ)
+  - isolated infrastrure inside a region
+  - one region can have one or more AZ
+  - AZ could be one or more Data centers
+  - All AZ with-in a region connected with High speed low latency (redundant) networking.
+- Edge Locations --> (local) smaller than region, and numbers of EL is more than region
 
 ### Globally Resilient
+- example, IAM, Route53
+- if one part of the world has any disaster or issue, it wouldn't affect service or application running on it much.
+- in terms of AWS, we don't select region for these services
 
 ### Regional Resilient
+- services that are operate in single region
+- seperate services in each region
+- example, RDS instance running in Sydeny and North Virginia
+- if region fails then only it impact, otherwise, AZs will take care of regional issues.
 
 ### AZ resilient
+- these services completely depends on the infrasture part of that AZ.
+- if AZ fails or issues occure, it can impact the service or application
+
+
+
