@@ -48,4 +48,6 @@
 
 
 
-### testing
+### exam questions
+- What is cloudformation logical resource and physical resource
+- 
