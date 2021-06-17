@@ -8,4 +8,7 @@
   - stores records (recordsets)
 - global service ... single database
 - globally resilience
+- name servers 
+  - the entries that AWS (DNS provider) created in nameserver and shared it to top level domain resigtrar (eg: .org)
+  - thats how they are linked and delegated
 
