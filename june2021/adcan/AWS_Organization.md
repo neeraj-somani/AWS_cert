@@ -13,3 +13,16 @@
   - Organization Units (OU) --> 
     - it can contain other AWS accounts (members) or other Organizational Units.
 - you can create new AWS account with-in the organization. Just need a unique email address for this and invition to that email.
+
+### Service Control Policies (SCP)
+- a feature of AWS Organizations which allow restrictions to be placed on MEMBER accounts in the form of boundaries.
+- SCPs can be applied to the organization, to OU's or to individual accounts.
+- Member accounts can be affected, the MANAGEMENT account cannot.
+- SCPs DON'T GIVE permission - they just control what an account CAN and CANNOT grant via identity policies.
+- One exception for management account - even if SCP is attached to Management Account (master), its never affected by the SCP. It has all permissions for Organizational effects. 
+- So, management account can't be restricted by SCP.
+- SCPs are account permission boundaries
+- They limit what the account (including account root user) can do. Since SCP limits the boundry of account, it indirectly affecting root user limit as well.
+- SCP don't grant any permissions, for that we use IAM. SCP just limits the boundry of account.
+- SCP establish which permissions can be granted by IAM.
+- 
