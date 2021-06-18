@@ -13,4 +13,3 @@
   - Organization Units (OU) --> 
     - it can contain other AWS accounts (members) or other Organizational Units.
 - you can create new AWS account with-in the organization. Just need a unique email address for this and invition to that email.
-- Below point applies only when we invite already existing account into the Organization.
