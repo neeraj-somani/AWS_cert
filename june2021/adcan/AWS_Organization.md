@@ -1,0 +1,16 @@
+# AWS Organization
+- benefits for businesses managing larger numbers of AWS Accounts.
+- Enterprize should have only one master or standard account and can have zero or more member accounts.
+- At initial step first we create Master account and then we invite or create other AWS accounts to become member of organization.
+- Consolidated billing - payer account, master account, standard account, all member account bills comes to this consolidated bill.
+- Consolidation of reservations and volume discounts
+- We can also create a hierarchical structure of these accounts to make it more easily managable. These various accounts can be group together.
+- This concept brings few key terms
+  - Organization Root --> 
+    - its just a container for AWS accounts, which exist at the top of this hierarchical structure. 
+    - This is not AWS account root user. its just container in AWS Organizations.
+    - it can contain other AWS accounts (members) or other Organizational Units.
+  - Organization Units (OU) --> 
+    - it can contain other AWS accounts (members) or other Organizational Units.
+- you can create new AWS account with-in the organization. Just need a unique email address for this and invition to that email.
+- Below point applies only when we invite already existing account into the Organization.
