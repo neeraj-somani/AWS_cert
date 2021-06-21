@@ -25,4 +25,5 @@
 - They limit what the account (including account root user) can do. Since SCP limits the boundry of account, it indirectly affecting root user limit as well.
 - SCP don't grant any permissions, for that we use IAM. SCP just limits the boundry of account.
 - SCP establish which permissions can be granted by IAM.
+- There are 2 kind of architecture can be used, Allow list (means, by default everything is allowed) or Deny list (means, by default everything is denied)
 - 
