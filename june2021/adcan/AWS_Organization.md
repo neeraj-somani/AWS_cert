@@ -14,6 +14,12 @@
     - it can contain other AWS accounts (members) or other Organizational Units.
 - you can create new AWS account with-in the organization. Just need a unique email address for this and invition to that email.
 
+### Supported policy types
+- AI services opt-out policies
+- Backup policies
+- Service Control Policies (SCP)
+- Tag policies
+
 ### Service Control Policies (SCP)
 - a feature of AWS Organizations which allow restrictions to be placed on MEMBER accounts in the form of boundaries.
 - SCPs can be applied to the organization, to OU's or to individual accounts.
@@ -26,4 +32,3 @@
 - SCP don't grant any permissions, for that we use IAM. SCP just limits the boundry of account.
 - SCP establish which permissions can be granted by IAM.
 - There are 2 kind of architecture can be used, Allow list (means, by default everything is allowed) or Deny list (means, by default everything is denied)
-- 
