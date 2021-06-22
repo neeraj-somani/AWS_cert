@@ -29,3 +29,14 @@
       - Name=InstanceID, value = i-xxxxxx
       - Name=InstanceType, value = t3.small
     
+### Cloudwatch Logs
+- CloudWatch Logs is a service which can accept logging data, store it and monitor it.
+- CloudWatch Logs is a public service and can also be utilised in an on-premises environment and even from other public cloud platforms.
+- This easily integrate with AWS services like - EC2, VPC Flow Logs, Lambda, CloudTrail, R53, and more
+- Can generate metrics based on logs - can perform metric filter actions
+- Its a regional service
+- Few terminologies 
+  - Log events - contains timestamp and message
+  - Log Streams - log events are stored in it, Log stream is a sequence of log events from the same source
+  - Log Groups - contains multiple log streams from the same source for the same type of logging but at different intervals.
+    - Under log groups, configuration settings can also be defined. like, retention period, permissions, metric filters
