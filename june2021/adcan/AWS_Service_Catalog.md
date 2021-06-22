@@ -10,3 +10,11 @@
 - key product information gets stored in this document or DB - example, product owner, cost, requirements, support information, dependancies, etc
 - In this it defines approval of provisioning from IT and Customer side as well.
 - A central place to get collection of all high level details/overview of services provided by an individual team and that can be consumed by other teams.
+- Its easy to manage cost and scale service delivery
+
+### What is AWS Service Catalog
+- self-service portal for 'end-users', its basically a way, a department or team can share their product or service with other team members to use. Either it be non-technical or technical.
+- End user permissions can be controlled, meaning who can see and use
+- build products into portfolio
+
+**Exam Question** -- if there is a question that talk about a need for end users or customers to deploy infrastructure with tight controls (meaning, who can deploy what and how) in a self-service way, then think about using service catalog.
