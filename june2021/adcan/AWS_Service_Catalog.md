@@ -9,7 +9,4 @@
 - it is used to re-use services created by other team, and across organizations
 - key product information gets stored in this document or DB - example, product owner, cost, requirements, support information, dependancies, etc
 - In this it defines approval of provisioning from IT and Customer side as well.
-- A central place to get collection of all high level details/overview of services provides by an individual team and that can be consumed by other teams.
-- 
-- 
-- 
+- A central place to get collection of all high level details/overview of services provided by an individual team and that can be consumed by other teams.
