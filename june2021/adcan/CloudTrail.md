@@ -9,3 +9,4 @@ CloudTrail Is a product which logs API calls and account events, also known as C
 - Its a regional service
 - A Trail can be set as One region or all regions
 - The way it works in case of all regions trail is, it collect individual trails from each region and manage collection of all individual regional trail as one logical trail.
+-  
