@@ -72,5 +72,9 @@
 - large orgs & org merges
 - IAM roles & Identity Federation fix this (more later)
 
+### What is Role Switching?
+- Assuming a role in another AWS account to access that account via the console UI.
+
+
 
 
