@@ -9,3 +9,8 @@
   - example, cost effective, security best practice
   - highest performance, meaning a trade-off between performance vs cost, and you need to choose performance
   - timeframe restriction (how long a solution will take to implement)
+
+
+### New 2021 SAA exam -
+- why things done specific way, how things fit together
+- Think of every question in a way why you perform specific action in a specific way
