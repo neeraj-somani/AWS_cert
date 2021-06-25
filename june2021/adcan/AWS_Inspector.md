@@ -1,0 +1,31 @@
+# AWS_Inspector
+- Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS.
+- Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
+- importance
+- this is designed specifically for scanning EC2 instances and the OS running on those instances and any other networking components involved with-in it.
+- specifically for any vulnerabilities and deviations against best practices
+- The idea is to run an assessment of varying length, say 15 mins, 1 or 8 hours, 12 hours, or 1 day
+- and identify any unusual traffic or configurations, which put applications on those instances or instances themselves at risk.
+- Once this process or assessment gets completed, a report get generated of findings ordered by priority of critical issues / severity
+- **exam imp** - if any question talk about security report then this could be a possible answer
+- Inspector is not checking AMI's or applications themselves
+- two major type of assessments possible
+  - Network Assessment (Agentless)
+    - no need to install any inspector agent on EC2 instance
+    - Although, if you install an agent then you can get more detailed network infomation
+    - Network reachability (no agent required)
+  - Network & Host Assessment (Agent)
+    - OS level vulnerabilities
+    - imp packages that help this
+      - Common vulnerabilities and exposures (CVE)
+        - its a databases that has known cyber-security vulnerability details, stores their CVE-Ids 
+      - Center for Internet Security (CIS) Benchmarks
+        - best parctices to help organizations assess and improve their security
+      - Security Best practices for Amazon Inspector
+        - collection of best practices provided by amazon, including things like disabling root logins over SSH, password complexity checks, etc...
+- How is work?
+  - Agent is packaged with rules that is checked against instances and what is surrounding an instance
+  - It checks is the instance reachable time to time.
+  - it checks end to end reachability, Ec2, ALB, DX, ELB, ENI, IGW, ACLs, RT's, SG's, Subnets, VPCs, VGWs, VPC peering
+  - Following details can be received from this check
+    - RecognizedPortWithListener, RecognizedPortNoListener, RecognizedPortNoAgent, UnrecognizedPortWithListener.
