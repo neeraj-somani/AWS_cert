@@ -75,6 +75,35 @@
 ### What is Role Switching?
 - Assuming a role in another AWS account to access that account via the console UI.
 
+### IAM Policy Interpretation Deep Dive
+- exam test you with different scenarios and impact of policy on the scenario.
+- permissions always works in this priority fashion
+  - explicit deny
+  - explicit allow
+  - default/implicit deny
+- Link to understand various components of IAM policy that can be used
+  - https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html
 
+### Policy Evaluation
+- steps through the policy evaluation process which AWS uses for single and multi-account access scenarios
+- The same process is used each and every time an identity attempts to access a resource.
+- hierarchy of policies in the sequencial manner
+  - Organization SCPs
+  - Resource Policies
+  - IAM Identity Boundaries
+  - IAM role permissions or Session policies (using assume IAM role)
+  - Identity policies (IAM User)
+  - This is also follows in combination with different accounts, if applicable
+- Same Account - Policy Evaluation logic
+  - Explicit Deny
+  - SCPs
+  - Resource policies
+  - Permissions Boundaries
+  - Session Policies
+  - Identity Policies
+- Multiple-account (different account) - Policy Evaluation logic
+  - Both account should allow access to each other
+  - if any of the account deny any access, then overall thats a deny logically
+  - 
 
 
