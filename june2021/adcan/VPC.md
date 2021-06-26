@@ -126,4 +126,8 @@
   - you can create them but you can't edit them. So, if any changes required, you need to create new one and re-configure your VPC to use new one.
 - You can also configure VPC subnet to auto assign public IPv4 to itself
 - Also, auto assign IPv6
--  
+-  Subnet Calculator : https://www.site24x7.com/tools/ipv4-subnetcalculator.html
+- Subnets.txt : https://github.com/acantril/aws-sysops-associate/blob/main/09-VPC-Basics/03_vpc_subnets/subnets.txt
+
+
+
