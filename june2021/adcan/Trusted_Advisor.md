@@ -1,0 +1,40 @@
+# AWS Trusted Advisor
+- AWS Trusted Advisor is an online tool that provides you real time guidance to help you provision your resources following AWS best practices.
+- Trusted Advisor checks help optimize your AWS infrastructure, increase security and performance, reduce your overall costs, and monitor service limits.
+- Its an account level products - no agents to install, it just works
+- It provides check in five major areas 
+  - Cost Optimization
+  - Performance
+  - Security
+  - Fault Tolerance
+  - Service Limits
+- This service is not free if you use this product to a great extend.
+- Although, there is a free version, that comes with 7 core checks with basic & developer support plans.
+- Anything beyond these 7 core checks requires business or enterprise support plans.
+- **exam imp** what are these 7 core free checks in basic or developer support plan?
+  - S3 bucket permissions -- (Not objects)
+    - this checks anything that goes agaist best practice permissions
+  - Security Groups -- Specific ports Unrestricted
+    - it checks for ports where access is given to 0.0.0.0/0 (to the entire world)
+  - IAM Use
+    - check basic usage of IAM user, atleast one user other than root
+  - MFA on Root Account
+  - EBS Public Snapshots
+    - Alerts you if you marked any snapshots as public
+  - RDS Public Snapshots
+    - Alerts you if you marked any snapshots as public
+  - 50 Service limit checks
+    - checks for 80% limit of those services, alerts you as soon as you reach 80% limit on those services
+- **exam imp** what are special in Business or enterprise support plan?
+  - you get the same core 7 basic check, plus..
+  - you get 115 further additional checks (14 cost, 17 security, 24 fault tolerant, 10 performance and 50 service limit)
+  - you also get access to these checks via the AWS support APIs
+    - this gives more convenience to allow programmatically access to summaries and detailed information for the trusted advisor checks.
+    - you can even get the status of these checks, when it was done last time, etc..
+    - hence, you can build your own account check support system with programatic access to Trusted advisor.
+    - it also allows you to programmatically open a support case, get list and detailed information about support cases, perform some of kind of search or filtering in support cases by dates or identifiers,
+    - it even allows you to add communications or attachment to your existing support cases, add additional email receipients for any current cases
+    - and even allows you to programatically resolve your cases.
+  - there was an exam question based on this -- "checking service limits and logging a service support ticket automatically for an increase in limit"
+  - which service will you use to perform above task, one solution could be Trusted Advisor but with business or enterprise level support.
+  - with this support plan you get "CloudWatch Integration" -- means you can build a event driven system in response to any changes in your account.
