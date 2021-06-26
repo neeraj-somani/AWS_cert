@@ -173,11 +173,96 @@
 - The configuration is done in way to allow inbound traffic only from certain IP addresses, and to authenticate only through SSH or to integrate with your on-premises identity servers.
 - In the History, that was the only way to manage private EC2 instances from internet in a secure way.
 
+### Network Access Control Lists (NACLs) -- stateless
+- Network Access Control Lists (NACLs) are a type of security filter (like firewalls) which can filter traffic as it enters or leaves a subnet.
+- NACLs are attached to subnets and only filter data as it crosses the subnet boundary.
+- NACLs are stateless and so see initiation and response phases of a connection and 1 inbound and 1 outbound stream requiring two roles (one IN one OUT)
+- NACL is a firewall, that surround VPC subnets
+- All VPCs created with default NACL, all subnets inside that VPC is assciated with this default NACL by default
+- NACL are used when traffic leaves or enters a subnet
+- example, if two Ec2 istances interacting with each other that exist within same subnet then NACL has no impact on them
+- but if they are in two different subnets, then traffic needs to flow through NACL
+- NACL consist of Inbound and outbound set of rules
+- every request gets checked against these rules listed in NACL and processed in sequencial order
+- Low rule number has the highest priority
+- **exam imp** NACL can explicitly ALLOW or DENY traffic Inbound and Outbound rules.
+  - NACL are stateless, meaning initiation and response seen as different operations, streams, hence need to add both inbound and outbound rules
+  - They only impacts data crossing subnet border
+  - can excplicitly ALLOW or DENY
+  - NACL only support using IPs/Networks, ports & protocols
+  - They don't support AWS logical resources
+  - NACL can't be assigned to AWS resources ... can only be assigned to subnets
+  - best way to use NACL with Security Groups to add explicit DENY (Bad IPs/Nets)
+  - One subnet == One NACL at a time
 
 
+### Security Groups (SG) -- stateful
+- unlike NACLs they are attached to AWS resources, not VPC subnets.
+- SGs offer a few advantages vs NACLs in that they can recognize AWS resources and filter based on them, they can reference other SGs and also themselves.
+- But.. SGs are not capable of explicitly blocking traffic - so often require assistance from NACLs
+- example, an EC2 instance has one or more attached network interfaces
+  - its the network interfaces rather than EC2 instance itself, which is given the private IP addresses to the instance users. 
+  - when the instance sends data, it originates from this network interface.
+  - when data arrives for the instance, it arrives at this network interface.
+  - and this network interface is located in one and only one AZ
+- SG's just like NACLs are boundaries, which can filter traffic
+- unlike NACLs they are attached to AWS resources, not VPC subnets.
+- specifically to a network interface of an AWS product.
+- SG is a Stateful product, meaning a request and response is considered as same state of communication
+- Hence, in SG we just need to specify the inbound rule, 
+- outbound to the specific user as a response is automatically handled by SG
+- SG are not completely dependent on IPs, they can integrate with AWS resources as well
+- anything that is not explicitly mentioned in the rules, then its implicitly denied. 
+- they can't explicitly deny
+- **exam imp** 
+  - stateful - Traffic and response == same rule
+  - SGs can filter based on AWS logical resources
+  - AWS resources, other SGs and even themselves
+  - implicit Deny and explicit allow
+  - No explicit deny possible
 
+### SG vs NACL -- exam Imp
+- NACLs on subnet for any products which don't work with SG's, example: NAT Gateways
+- NACLs also used when adding explicit DENY (bad IP's, bad actors)
+- SG as the default almost everywhere else
 
+### Network Address Translation (NAT) & NAT Gateway
+- Its a set of different processes which can adjust IP packets by changing (remapping) their source and destination IP addresses
+- IG is also known as Static NAT, meaning you have predefined set of static mapping between IPs and you can use it when traffic flows.
+- IP masquerading -- hiding private CIDR blocks behind one public IP
+  - so in contrast to Internet gateway where you map one private IP to one public IP
+  - in NAT, we map multiple private IP behind a single public IP
+- NAT gives a whole private IP CIDR range outgoing only access to public internet and AWS public zone (S3, SQS, SNS, etc)
+- Here, incoming access doesn't work directly, meaning you can't initiate connections from the public internet to these private IP address when NAT is used.
+- Historically there are 2 ways to utilize this NAT service
+  - first, old way, use EC2 instance configured to provide NAT
+  - second, AWS managed way, using NAT Gateway
+- NAT Gateway maintance something called transalation table, thats how it tracks the mapping of IPs
+- Question?? when you need IG and when you need both IG and NAT Gateway??
+  - if you need to give an instance its own public IPv4 address, then only IG is required.
+  - if you want to give private instances, outgoing access to the internet and the AWS public zone services (S3, SQS, SNS, IG etc) then you need both the NAT gateway and IG.
+- Our home internet router also works as NAT gateway, because all of our home devices private IP address communicate with internet using only one public IP address.
+- As we know NAT Gatway converts Private IP address to its public IP address, and as we know NAT gateway is within AWS, we need to convert NAT Gateway IP address to a public IP address, the flow between NAT Gateway and Internet Gateway (IG) performs a specific task. meaning, IG converts NAT Gateway IP address into public facing IP address, and an outbound connectivity establishes between NAT Gateway and public internet.
+- Also, remember, IG itself is an AWS service that resides in a AWS public zone. Hence, every request that needs access to internet needs to go through IG inside a AWS public zone.
 
+### Some logical facts about NAT Gateway for exam
+- It needs to run from a public subnet
+- NAT Gateway uses a special type of public IPv4 address, called elastic IP (they are static IPv4 public)
+- Its an AZ resilient service (HA in that AZ), meaning if an AZ fails then NAT Gateway also fails. They are resilient inside AZ. Not across region.
+- In-order to make NAT gateway region resilience, need to launch NAT Gateway in each AZ and then have a route table for private subnets in that AZ pointing at the NAT gateway of that specific AZ
+- NAT Gatewat in general is a managed service, AWS handles the maintainance
+- They scales to 45 GBps, and billed for duration hourly and data volume processing charge 
+
+**read through once NAT Instance vs NAT Gateway**
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
+
+### In what cases you can consider / prefer NAT instances
+- NAT Gateway - if you value availability, bandwidth, low levels of maintenance and high performance
+- NAT instance -
+  - its a single EC2 instance, running inside a AZ, hence availability is dependent to that AZ
+  - this can be used for testing some functionality, POC because its comparatively cheaper in that sense
+
+Need to start lecture again from 6:00 
 
 
 
