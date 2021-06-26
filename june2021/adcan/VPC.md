@@ -129,5 +129,55 @@
 -  Subnet Calculator : https://www.site24x7.com/tools/ipv4-subnetcalculator.html
 - Subnets.txt : https://github.com/acantril/aws-sysops-associate/blob/main/09-VPC-Basics/03_vpc_subnets/subnets.txt
 
+### VPC Routing, Internet Gateway & Bastion Hosts
+
+### VPC Router
+- A highly available device available in every VPC
+- This device helps in moving traffic from somewhere to somewhere else
+- can handle all the traffic across all AZs
+- The traffic control can be handled by configuring 'route tables' in each subnet. So, if you don't want any specific subnet not to have access in another specific subnet, that control can be done using route table.
+- A VPC is created with "main route table" for each subnet, so if you don't explicitly associate a custom route table with a subnet, by default it uses the main route table of VPC.
+- When a custom route table is associated with a subnet, the main route table of VPC is disassociated.
+- A subnet can have only one route table associated with it at a time.
+- but one route table can be associated with many subnets at a time.
+- The way that route works is it matches a destination IP, that is listed in route table, that it directs traffic towards a spcific target.
+- if multiple match found, that more specific "/32" takes priority.
+
+### Internet Gateway
+- Highly available (resilient) regional service attached to a VPC
+- you don't need IG per AZ, one IG can cover all AZs in a Region within a VPC
+- 1 VPC = 0 or 1 IGW, 1 IGW = 0 or 1 VPC
+- It runs from within the AWS Public zone
+- Gateways traffic between the VPC and the internet or AWS Public Zone (S3, SNS, SQS, etc)
+- Its a managed gateway -- meaning AWS handles the performance
+
+### Lots of exam questions on IPv4 address
+- how it works inside a VPC
+- each EC2 instance in a VPC is assigned with a private IPv4 address by default. 
+- A public IPv4 address also get assigned to EC2 instance, but this public IPv4 address is maintained at IGW level. A record gets created and maintained at IGW level.
+- So, EC2 instance itself was never configured with public IPv4 address, and hence at Operation Systems (OS) level of EC2, you never sees this IPv4 public address.
+- Hence, this public IPv4 address never touch any services inside a VPC
+- Every packet that traverse with-in VPC or outside VPC is through some kind of route, and often we create a default route, which indicates, if non of the specific route matches then the packet can use this default route.
+- And thats how every packet goes from private Ec2 instance to IGW and moves on further.
+
+### whats the case with IPv6
+- all IPv6, all addresses that AWS uses are natively publicly routable by default.
+- Hence, in case of IPv6, the OS of EC2 instance does have the IPv6 association at OS level
+
+### Bastion Host / Jumpbox
+- Essentially its just an EC2 instance sitting in a public subnet inside a VPC
+- the importance is, they are used to allow all incoming management connection to a bastion host and then securely internal-only VPC resources connection happens from this bastion host. 
+- Its kind of heavy work done which IGW can handle easily
+- Hence, it acts as a middle man between private instance of a VPC to a public internet route
+- This is mostly used when you setup a highly secure private VPC and wants to have only bastion host as your only point of access from internet to private services of VPC.
+- The configuration is done in way to allow inbound traffic only from certain IP addresses, and to authenticate only through SSH or to integrate with your on-premises identity servers.
+- In the History, that was the only way to manage private EC2 instances from internet in a secure way.
+
+
+
+
+
+
+
 
 
