@@ -25,4 +25,105 @@
 - each subnet is of "/20" CIDR range, which is sub-part of original "/16" CIDR.
 
 
+### VPC Sizing and Structure (System Design lecture)
+- the design choices around VPC design and IP planning.
+- Lesson Links
+  - https://aws.amazon.com/answers/networking/aws-single-vpc-design/
+  - https://cloud.google.com/vpc/docs/vpc
+- How to design a well-structured and scalable network inside AWS using VPC?
+  - apart from VPC core functionality, this also needs to be understood
+  - How to design an IP plan for a business, which includes how to design an individual network.
+  - As a good Solution Architect, you should know what IP range a VPC will use in advance. Before even creating a VPC.
+  - As a good Solution Architect, deciding on an IP plan and VPC structure is most imp thing to do in advance.
+- VPC Considerations (things to avoid)
+  - what size should the VPC be.. How many services needs to be fit into that VPC
+  - Are there any network that we can or can't use
+  - IP ranges can be used by other VPC's, other cloud, on-premises, partners & vendors
+  - try to predict some aspects of future situations in advance
+  - VPC structure - Tiers (web, application, DB) & Resiliency (Availability) Zones
+  - prepare a list of systems that your application is going to interact with and what IP address range those systems currently using. This will avoid any overalap.
+  - Also, what kind of application utility required, who is user of application and how many ways are they going to interact with this applications.
+- VPC Considerations (things to pick)
+  - VPC minimum "/28" (16 IP), maximum "/16" (65456 IPs) -- this is AWS limitations 
+  - avoid common ranges - to avoid future issues
+  - A good way to start planning for how many IP ranges is needed
+    - is by answering, how many AWS regions the business will operate in
+    - always plan for worst case, and even if needed add a few as a buffer
+    - a suggession would be, reserve 2+ networks per region being used per account
+    - example, 3 regions in US, 1 region in Europe, 1 region in Australia and need 2 ranges in each region
+    - and in total we assume to have 4 accounts (so in total need 40 IP ranges)
+- VPC Sizing
+  - AWS provides 5 different options for VPC sizing
+  - micro -- "/24" -- 
+  - small -- "/21" --
+  - medium -- "19" --
+  - large -- "/18" --
+  - extra large -- "/16" --
+  - two imp questions needs to be answered here
+    - How many subnets will you need?
+    - How many IPs total? How many IPs per subnet?
 
+### Designing a custom VPC
+- **important for exam**
+- VPC Limits https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html
+- VPC is a regional service - it operate from all AZs in that region
+- allows user to create isolated network
+- Nothing IN or OUT without explicit configuration
+- flexible configuration - simple or muti-tier
+- allows hybrid networking - other cloud and on-premises
+- you also get controls of deciding default tenancy or dedicated tenancy, meaning do you want to provision resources on shared hardware or dedicated hardware.
+- a VPC can use IPv4 private CIDR blocks & public IPs
+- the private CIDR block is main method of IP communication for VPC.
+- by default, when you create a VPC, 1 Primary private IPv4 CIDR block already configured.
+  - it has 2 main restrictions
+    - min "/28" (16 IP) and Max "/16" (65536 IPs)
+    - optionally you can get secondary IPv4 blocks by raising a support ticket
+- VPC can also be configured to use IPv6 (optional), by default single IPv6 "/56" CIDR block is assigned
+- with IPv6 you can't pick a block, same as you picked with IPv4. 
+- Incase of IPv6, you can only use the range either alocated by AWS or only the IPv6s addresses that you already own.
+- In IPv6 there is no concept of private and public IP addresses. By default all IPv6 addresses are publicly routable.
+- but you still have to explicitly allow connectivity to and from the public internet.
+- DNS in VPC
+  - provided by Route53
+  - its available inside the VPC on the base IP address of the VPC +2 address
+  - example, if VPC is 10.0.0.0 then DNS IP will be 10.0.0.2
+  - **exam imp** - Two options that defines how DNS works/behaves in VPC
+    - enableDnsHostnames - if this sets to True, it gives instances with public IPs in a VPC a public DNS host names
+    - enableDnsSupport - This indicates, DNS is enables or disabled in a VPC. If enabled, the instances in the VPC can use DNS IP address, so the VPC +2 IP address. if disabled (or default) then this is not available.
+    - **exam question on this** -- if question indicates that you are having DNS issues, then these settings could be a solution.
+  - DNS Resolution - The DNS resolution attribute determines whether DNS resolution through the Amazon DNS server is supported for the VPC. Helps in fast mapping of IPs with there corresponding DNS (domains).
+
+### VPC Subnets
+- In most AWS documentations, blue color on subnet diagram indicates private subnets, and green color indicates public subnets.
+- By defaut the subnet in VPC is private, and you can configure them to make them public.
+- Its a AZ resilient feature of VPC
+- A sub-network of a VPC, within a particular AZ
+- Hence, as a good solution architect, we design our systems in such a way that if one system fails in a AZ or subnet, its not affect the entire application. Other AZ can handle the fail-over and support the application functionality.
+- one subnet = 1 AZ, One subnet can never be in multiple AZs
+- but 1 AZ can have zero or one or more subnets.
+- Subnet is nothing but a IPv4 CIDR, which is a subset of the VPC CIDR
+- CIDR that a subnet uses, can not overlap with any other subnets in that VPC, all subnet CIDR should be non-overlapping
+- Optional IPv6 CIDR can be allocated, if VPC IPv6 is enabled (/64 subnet of the /56 VPC - space for 256)
+- by default, subnets can communicate with each other subnets in the same VPC
+- Some IPs in every subnet is reserved. Lets understand what those are
+  - In total 5 - Reserved IP addresses in every subnet, that can't be used by user. 
+  - These are reserved for AWS usage
+  - example, CIDR 10.16.16.0/20 (10.16.16.0 => 10.16.31.255)
+  - first reserverd for Network address (10.16.16.0)
+  - second reserved is for AWS VPC router (10.16.16.1) - also known as 'network +1'
+    - a VPC router is a logical network device, which moves data between subnets, and in and out of the VPC if its configured to allow that.
+    - a VPC router has a network interface in every subnet and it uses this network +1 address to communicate.
+   - Third reserved is for AWS VPC DNS (10.16.16.2) - also known as 'network +2'
+   - fourth reserved is for future unknown requirement (10.16.16.3) - also known as 'network +3'
+   - fifth reserved is network Broadcast address (10.16.31.255) - also known as 'last network IP in a subnet'
+    - broadcast feature is not supported inside VPC, but this IP is still reserved regardless.  
+- DHCP options set
+  - its a configuration object applied to VPC
+  - it stands for Dynamic Host configuration protocol
+  - its how computing devices receive IP addresses automatically
+  - This configuration option applied one time at VPC level and it flows through to subnet level.
+  - it controls things like DNS servers, NTP servers, NET bile servers, and few other things of network.
+  - you can create them but you can't edit them. So, if any changes required, you need to create new one and re-configure your VPC to use new one.
+- You can also configure VPC subnet to auto assign public IPv4 to itself
+- Also, auto assign IPv6
+-  
