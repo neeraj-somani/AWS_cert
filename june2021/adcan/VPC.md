@@ -248,21 +248,35 @@
 ### Some logical facts about NAT Gateway for exam
 - It needs to run from a public subnet
 - NAT Gateway uses a special type of public IPv4 address, called elastic IP (they are static IPv4 public)
-- Its an AZ resilient service (HA in that AZ), meaning if an AZ fails then NAT Gateway also fails. They are resilient inside AZ. Not across region.
+- **exam imp** Its an AZ resilient service (HA in that AZ), meaning if an AZ fails then NAT Gateway also fails. They are resilient inside AZ. Not across region.
 - In-order to make NAT gateway region resilience, need to launch NAT Gateway in each AZ and then have a route table for private subnets in that AZ pointing at the NAT gateway of that specific AZ
 - NAT Gatewat in general is a managed service, AWS handles the maintainance
-- They scales to 45 GBps, and billed for duration hourly and data volume processing charge 
+- They scales to 45 GBps, and billed for duration hourly and data volume processing charge.
+- **exam imp** -- NAT Gateway can't be used as Bastion Host, it can't do port forwarding, because you can't connect to its operating system.
 
 **read through once NAT Instance vs NAT Gateway**
 https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
+https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/
 
 ### In what cases you can consider / prefer NAT instances
 - NAT Gateway - if you value availability, bandwidth, low levels of maintenance and high performance
+  - NAT Gateway don't support security groups.
 - NAT instance -
   - its a single EC2 instance, running inside a AZ, hence availability is dependent to that AZ
   - this can be used for testing some functionality, POC because its comparatively cheaper in that sense
+  - EC2 instance filter all traffic that it receives and sends, when configured as NAT instance
 
-Need to start lecture again from 6:00 
+### What about IPv6??
+- The primary purpose of NAT is to allow private IPv4 addresses to be used to connect in an outgoing only way to AWS public zone and public internet.
+- Inside AWS all IPv6 address are by default publicly routable, NAT isn't required for IPv6.
+- Hence, internet gateway can directly work with IPv6
+- IPv6 address in route table and connected to IGW give bi-directional connectivity to that address.
+- IPv6 address + Egress-only IGW - outbound only
+- Egress-only IGW is the specific type of IGW, that works only with IPv6 and use it only when you allow outbound only access.
+
+
+- 
+ 
 
 
 
