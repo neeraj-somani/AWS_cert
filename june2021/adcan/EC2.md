@@ -34,7 +34,6 @@
 - 2 types - System status check and Instance status check
 - system status check -- make sure the traffic can reach the hardware that instance is running on. This check does not validate that your OS and applications are accepting traffic. This check verifies that your instance is reachable.
 - Instance status check -- It verifies that instance OS is accepting traffic. in-case of issue, reboot should or OS configuration check can resolve the issue.
-- 
 
 ### Security Groups 
 - can be considered as Mini firewall
