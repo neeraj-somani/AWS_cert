@@ -333,7 +333,14 @@
   - you can also enable/disable source and destination check. meaning, if traffic is on ENI, it will be discarded if its not from one of the IP addresses on the interfaces that are configured as source or destination IPs.
     - Hence, we want EC2 to work with NAT instance, this option needs to be disabled. 
 - Any additional ENI that you attached to an EC2 instance can be dittached and re-attached to another EC2 instance. At minimum of EC2 instance should always have one ENI attached.
-- 
+- **Exam imp**
+  - Secondary ENI +  Mac Address = Licensing, this allows you to move your licensing from one instance to another
+  - multiple interfaces can be used for multi-homed systems (subnets), one for management and one for data
+  - different security groups -- multiple interfaces
+  - OS of EC2 never sees public IPv4 address
+  - IPv4 public IPs are dynamic.. stop & start == change IPv4
+  - public DNS == private IP in VPC, 
+  - but public DNS == public IP address everywhere else for the outside communications
 
 
 
