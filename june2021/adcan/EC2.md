@@ -342,8 +342,25 @@
   - public DNS == private IP in VPC, 
   - but public DNS == public IP address everywhere else for the outside communications
 
-
-
+### Amazon Machine Images (AMI)
+- Amazon Machine Images (AMI) 's are the images which can create EC2 instances of a certain configuration.
+- In addition to using AMI's to launch instances, you can customize an EC2 instance to your bespoke business requirements and then generate a template AMI which can be used to create any number of customized EC2 instances.
+- AWS or community provided
+- marketplace (can include commercial software)
+- Its a regional ... unique ID... eg: ami-0a89798595ghgjhk676
+- permissions (public or your account or specific accounts)
+- Its just a logical container, which has associated information.
+  - This container not only contains any configuration of EC2 instance but also snapshots of EBS for AMI to use use in future.
+  - Hence, we get the entire package, when we create an AMI from EC2, boot volume and EBS volume configuration.
+  - These EBS volume snapshot is configured back to AMI as block device mapping
+  - what is block device mapping? -- its just a table of data, it links snapshot IDs and device ID of original EC2 instance from which it gets created. example, two lines one fro "boot /dev/xvda" and other one for "data /dev/xvdf"
+  - Hence, now you can use this AMI to create exactly same configuration in future.
+- **exam power-up**
+  - AMI == One region, only works in that one region
+  - AMI Baking .. creating an AMI from a configuraed instance+ application
+  - An AMI can't be edited... launch instance, update configuration and make a new AMI
+  - can be copied between regions (includes its snapshots)
+  - Remember permission ... default = your account
 
 
 
