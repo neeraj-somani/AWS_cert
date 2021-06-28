@@ -160,9 +160,146 @@
   - rate of data a storage system can store on a particular piece of storage, either physical disk or volume.
   - generally, measured in XX MB/sec
 
+### Elastic Block Store (EBS)
+- Amazon Elastic Block Store (Amazon EBS) provides block level storage volumes for use with EC2 instances. 
+- EBS volumes behave like raw, unformatted block devices.
+- You can mount these volumes as devices on your instances.
+- EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
+- You can create a file system on top of these volumes, or use them in any way you would use a block device (such as a hard drive).
+- block storage -- raw disk allocations (volume) -- can be encrypted using KMS
+- **exam imp** storage is provisioned in one AZ (resilient in that AZ)
+- attached to one or more EC2 instances (or other services) over a storage network.
+- This can also be used for clusters, but cluster application should be able to manage it, to avoid issues
+- snapshot (backup) into S3. Create volume from snapshot (migrate between AZs)
+- different physical storage types, different sizes, different performance profiles
+- billed based on GB-month (and in some cases performance)
+- EBS replicates within an AZ. Failure of an AZ means failure of a volume. for back and HA, needs to be planned better.
+- hence, a solution to above problem is to create a snapshot of volume and store it in S3.
+- snapshots can be copied across region provide global resilience
+
+### EBS Volume types 
+### General Purpose SSD 
+  — Provides a balance of price and performance. We recommend these volumes for most workloads.
+  - GP2 and GP3
+  - volumes can be between 1 GB to 16 TB
+  - GP2 is default
+  - IOP, volume is created with IO credit allocation, 
+    - one IO means, one Input Output operation
+    - An IO credit is a 16KB chunk of data.
+    - So, an IOP is one chunk of 16 KB in one second.
+    - example, if we transferring 160 KB of data, that represents 10 IO blocks of data, so 10 blocks of 16 KB.
+    - if device do that in one second, then thats 10 credits in one second, so 10 IOPs.
+    - If you don't have any credit on this IO bucket, then you can't perform any IO operations on the disc.
+    - The IO bucket has a capacity of 5.4 million IO credits, fills at rate of baseline performance.
+    - every volume has a baseline performance based on its size with a minimum, 
+    - so streaming in a bucket, refills rate with 100 IO credits per second regardless of volume size
+    - Actual credit is depends on volume size
+    - for GP2, beyond the 100 minimum the bucket fills with 3 IO credits per second, per GB of volume size (Baseline performance)
+    - by default, GP2 can burst up to 3000 IOPs by depleting the bucket credits.
+    - but in reality, All volumes get an initial 5.4 million IO credits by default. Bucket start with full credits. This allows 30 minutes @ 3000 IOPS. and even bucket is continously filling up with new credits as well, which means ideally you could burst for more than 30 min.
+    - Great for boots and initial heavy workloads.
+    - but this credit system is only used for volumes less or equal to 1 TB.
+    - For any volume larger than 1 TB or 1000 GB, baseline is above burst. Credit system isn't used & you always achieve baseline. Baseline performance is up to max of 16,000 IO credits per second incase of GP2.
+   - GP3 is newer relatively
+    - GP3 removes the credit bucket architecture with something much simpler.
+    - Every GP3 volume, regardless of size, starts with 3000 IOPs & data trasfer rate of 125 MB/s
+    - GP3 is cheaper (~20%) vs GP2
+    - extra cost for up to 16,000 IOPs or 1000 MB/s
+    - overall 4x faster max throughput 1000 MB/s vs GP2 250 MB/s
+  - These volume is mostly useful for virtual desktops, medium sized single instance databases such as MSSQL server and Oracle DB, low-latency interactive apps, dev & test, boot volumes
+
+### EBS - Provisioned IOPS (IO1,IO2, blockExpress) (9:05)
+- Provisioned IOPS SSD — Provides high performance for mission-critical, low-latency, or high-throughput workloads.
+- with this EBS type IOPS can be adjusted independently of size.
+- also, its designed to give performance with consistent low latency & even in the situation of jitter or uneasiness.
+- EBS volume size --> 4 GB to 16 TB with IO1 and IO2
+- but with BlockExpress - 4 GB to 64 TB
+- Throughput
+  - upto 4000 MB/s with BlockExpress
+  - upto 256,000 IOPS per volume with BlockExpress
+  - upto 1000 MB/s with IO1/IO2
+  - upto 64,000 IOPS per volume with IO1/IO2 (4x GP2/GP3)
+- there is some restrictions to understand
+  - io1 50 IOPS/GB (max)
+  - io2 500 IOPS/GB (max)
+  - BlockExpress 1000 IOPS/GB (max)
+  - there is also restrictions on per instance performance, which is influenced by below 3 choices
+    - types of volumes
+    - size of instance
+    - type of the instance
+  - In-order to deal with this above situation, you need to attach multiple EBS volumes and adjust EC2 instance type/size accordingly
+- These volume is mostly useful for High performance, very low-level latency sensitive workloads. I/O-intensive NoSQL & relational DBs.
+- one common usecase, when you have smaller volume but need super high performance
+
+### EBS Volume Types - HDD-Based
+- HDD means, moving bits, platters which spin little robot arms known as heads, which move across those spinning platters.
+- Moving parts means slower, thats why use it cautiously
+- Throughput Optimized HDD (st1) 
+  — A low-cost HDD designed for frequently accessed, throughput-intensive workloads.
+  - cheap
+  - 125 GB to 16 TB
+  - max 500 IOPS, but here block size is considered as 1 MB,
+  - so Max 500 MB/s IOPS throughput
+  - baseline throughput performance - 40MB/s/TB
+  - and can burst upto 250MB/s/TB
+  - This is designed when cost is concern but need frequent access throughput-intensive sequential process
+  - These volume is mostly useful for Big-data, data warehouses, log processing
+  - 
+- Cold HDD (sc1) 
+  — The lowest-cost HDD design for less frequently accessed workloads.
+  - even cheaper
+  - 125 GB to 16 TB
+  - max 250 IOPS, but here block size is considered as 1 MB,
+  - so Max 250 MB/s IOPS throughput
+  - baseline throughput performance - 12MB/s/TB
+  - and can burst upto 80MB/s/TB
+  - This is designed when you want to store lots of data and doesn't care much about performance, means designed for less frequently accessed workloads
+  - colder data or archieve requiring fewer scans per day
 
 
+### Instance Store Volumes
+- An instance store provides temporary block-level storage for your instance.
+- This storage is located on disks that are physically attached to the host computer.
+- Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers.
+- An instance store consists of one or more instance store volumes exposed as block devices.
+- The size of an instance store as well as the number of devices available varies by instance type.
+- The virtual devices for instance store volumes are ephemeral[0-23].
+- Instance types that support one instance store volume have ephemeral0. Instance types that support two instance store volumes have ephemeral0 and ephemeral1, and so on.
+- Highest data performance on AWS
+- Included in instance price
+- **exam imp** -- this needs to be attached at launch time, you can't attach instance store to a EC2 instance after launch. not like EBS.
+- one instance can have one or more
+- If an instance moves from one host to another, data has been lost on instance store volume, because its ephemeral.
+- more IOPS and throughput vs EBS
 
+### Choosing Between the EC2 Instance Store and EBS
+- cheap == ST1 or SC1
+- if throughput ... streaming ... ST1
+- Bootable then no to ST1 or SC1
+- GP2/3 - up to 16,000 IOPS
+- IO1/2 - up to 64,000 IOPS (blockExpress - 256,000 IOPS)
+- RAID0 + EBS - up to 260,000 IOPS (io1/2-BE/GP2/3)
+  - here RAID0 set is a set of lots of EBS volumes
+- what if you need more than 260,000 IOPS
+  - then use instance store volumes and EBS and EC2 combinations
+
+### Snapshots, Restore & Fast Snapshot Restore (FSR)
+- EBS Snapshots are backups of data consumed within EBS Volumes - Stored on S3.
+- Snapshots are incremental, the first being a full backup - and any future snapshots being incremental.
+- Snapshots can be used to migrate data to different availability zones in a region, or to different regions of AWS.
+- snapshots are incremental volume copies to S3.
+- **exam imp** -- snapshot is a full copy of 'data' on the volume. Snashots just copies the data used.
+- EBS snapshots are smart enough, so if you do delete an incremental snapshot, it make sure the data is moved so that all the snapshots after that point still function.
+- each snapshot even though its incremental, can be thought of as self-sufficient.
+- snapshots are great way to create volumes if needed.
+- some performance related facts
+  - NEW EBS volume = full performance immediately
+  - if volume restore from snapshot, it happen lazily, means fetched gradually. So performance gets impacted if some request come for data which is not yet restore from snapshot. Although requested block are fetched immidiately from snapshot upon request but still some performance impact can be observed.
+  - To avoid this issue, many application perform a force read on all data block immidiately after snapshot restore. This will fetch data fast and minimize the user performance impact.
+- FSR (Fast Snapshot restore) - is designed to resolve above problem and it can immidiately restore volume from snapshot.
+- up to 50 snaps per region ... set on snap & AZ.
+- FSR cost extra compare to read block on snap restore.
+- Snaps are billed at GB/month
 
 
 
