@@ -1,7 +1,7 @@
 # EC2-EBS-commands
 
 ## Instance 1
-
+```
 lsblk ## used to list all block devices attached to EC2 instance.
 sudo file -s /dev/xvdf ## to list any file system available on EC2 instance, if response of this command is "data" then there is no file system available. We need to create one if needed.
 sudo mkfs -t xfs /dev/xvdf  ## this will create "xfs" type file system on this EBS volume
@@ -14,7 +14,7 @@ sudo nano amazingtestfile.txt
 add a message in this text file
 save and exit
 ls -la
-
+```
 ## Reboot Instance 1
 
 sudo reboot
