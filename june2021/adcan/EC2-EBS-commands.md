@@ -20,9 +20,10 @@ ls -la
 sudo reboot
 
 ## Instance 1 After Reboot
+- below commands mount our file system automatically while we launch instance 
 
 df -k
-sudo blkid
+sudo blkid ## this command provides Unique ID for all the EBS volumes attached to instance
 sudo nano /etc/fstab
   ADD LINE 
   UUID=YOURUUIDHEREREPLACEME  /ebstest  xfs  defaults,nofail
