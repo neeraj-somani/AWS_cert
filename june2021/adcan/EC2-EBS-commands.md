@@ -4,13 +4,14 @@
 
 lsblk ## used to list all block devices attached to EC2 instance.
 sudo file -s /dev/xvdf ## to list any file system available on EC2 instance, if response of this command is "data" then there is no file system available. We need to create one if needed.
-sudo mkfs -t xfs /dev/xvdf
-sudo file -s /dev/xvdf
-sudo mkdir /ebstest
-sudo mount /dev/xvdf /ebstest
+sudo mkfs -t xfs /dev/xvdf  ## this will create "xfs" type file system on this EBS volume
+sudo file -s /dev/xvdf ## This command returns "xfs", if there is file system on EBS else "data" same as above.
+sudo mkdir /ebstest ## create directory
+sudo mount /dev/xvdf /ebstest ## mount file system to this newly created directory
+df -k ## this command list all the file system mounted on the instance
 cd /ebstest
 sudo nano amazingtestfile.txt
-add a message
+add a message in this text file
 save and exit
 ls -la
 
