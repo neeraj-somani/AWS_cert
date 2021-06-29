@@ -362,13 +362,81 @@
   - can be copied between regions (includes its snapshots)
   - Remember permission ... default = your account
 
+### Copying & Sharing an AMI
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html
 
 
+### EC2 Purchase Options (launch types)
+- On-Demand
+  - its default and perfectly balanced types, from cost and resources perspective
+  - instances of different sizes run on the same EC2 hosts, consuming a defined allocation of resources
+  - per-second billing while an instance is running. Associated resources such as storage consume capacity, so bill, regardless of instance state.
+  - No interruption, no capacity reservation, no capacity management required, predictable pricing, no upfront cost, no discount
+  - good for short-term workloads, unknown workloads, apps which can't be interrupted
+- Spot
+  - cheapest way to get instance
+  - SPOT pricing is AWS selling unused EC2 host capacity for up to 90% discount - the spot price is based on the spare capacity at a given time.
+  - Never use SPOT for workloads which can't tolerate interruptions
+  - this is mostly used for Non-time critical workloads, Anything which can re-run processes, bursty capacity needs, cost sensitive workloads, anything which is stateless.
+- Reserved (also known as Standard reserve)
+  - this is mostly used for long-term consistent usage of EC2.
+  - This reduced per second cost or completely remove that per second, which is used to be the case in on-demand
+  - unused reservation still billed, once you commited to reserve the capacity you have to pay for it
+  - if you reserve smaller instance type but need to use in some case the larger size of same type of instance then partial coverage of larger instance is covered under reserve capacity discount.
+  - Reservations are 1 year or 3 years
+  - these are ideal for consistent access and long-term usage basis need and can't tolerate interruptions.
+  - pay term has different options
+    - No-upfront, some saving for agreeiing to the term but billed as per second fee. 
+    - pay All upfront, means no per second fee, greatest discount
+    - partial upfront, some discount, reduced per second fee billed
+- Dedicated host
+  - you pay for the host for specific family of instance type
+  - No extra cost for running instances, you can run as many instances as you wish
+  - idealy, use this when you have software which is licensed based on sockets or cores in physical machine.
+  - it also has feature called host affinity -- means linking instances to certain EC2 hosts. Hence, if you start and stop instance, it remains on the same host.
+  - capacity management is required
+- Dedicated Instance
+  - No other customers use the same hardware
+  - all of your instances runs on the Dedicated host
+  - but you don't own or share the host. Extra charges for instances but you get dedicated hardware
+  - this comes with extra cost, you pay a one-off hourly fee for any regions where you are using dedicated instances, regardless of utilization, and the dedicated instance fee as well
+  - no capacity management required, thats why you pay some extra cost
 
+### Additional details on Reserved instances
+- Scheduled Reserved Instances
+  - ideally for long-term usage but that doesn't need to run constantly. 
+  - Example, bigdata, machine learning, etc
+  - Batch processing, daily for 5 hours, hence its long-term but don't use this instance for remaining time of the day
+  - you specify the frequency, the duartion and the time
+  - this is slightly cheaper than on-demand
+  - some limitations/restrcitions, This doesn't support all instance types or regions. 
+  - also, you need to purchase a minimum of 1200 hours per year and atleast 1 year term commitment is required
+- the differences between zonal and regional reservations
+  - regional reservation provides a billing discount for valid instances launched in any AZ in that region
+  - but while flexible they don't reserve capacity with-in an AZ - which is risky during major faults when capacity can be limited. 
+  - Zonal reservations only apply to one AZ providing billing discounts and capacity reservation in that AZ
+  - but if you launched an instance in another region, then you pay full price and no capacity reservation.
+  - This also requires atleast 1 or 3 years commitment to AWS
+- on-demand capacity Reservations
+  - there are 2 components in every reservation, billing component and capacity component
+  - the combination or only one of this component is used for this type
+  - meaning, sometime you need to reserve some capacity for short-period but can't do long-term commitment
+  - this can be booked to ensure you always have access to capacity in an AZ when you need it. But at full on-demand price. No term limits - but you pay regardless of if you consume it or not.
+  - No billing discount applied in this, no commitment for one or three years
 
-
-
-
+### EC2 savings plan
+- A hourly commitment for 1 or 3 year term, in return you get some discount
+- this has 2 types
+  - a reservation of "general compute dollar amount" (eg: $20 per hour for 3 years)
+    - approx 60% saving compare to on-demand
+  - or a specific EC2 savings plan - flexibility on size & OS 
+    - approx 70% saving compare to on-demand
+- This is currently application for only few AWS services
+  - Currently, EC2, Fargate and Lambda
+- the way this works is, products have an on-demand rate and a savings plan rate
+- resource usage consumes upto saving plan commitment at a reduced price (saving plan rate)
+- any consumption after that commitment period over charges at on-demand rate
+- Hence, a general compute saving plan gives better discount and benefit on long term
 
 
 
