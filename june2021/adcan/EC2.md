@@ -183,6 +183,7 @@
   - GP2 and GP3
   - volumes can be between 1 GB to 16 TB
   - GP2 is default
+  - How many instances can a GP2 volume be attached to at the same time?? (answer - 1)
   - IOP, volume is created with IO credit allocation, 
     - one IO means, one Input Output operation
     - An IO credit is a 16KB chunk of data.
@@ -210,6 +211,7 @@
 
 ### EBS - Provisioned IOPS (IO1,IO2, blockExpress) (9:05)
 - Provisioned IOPS SSD — Provides high performance for mission-critical, low-latency, or high-throughput workloads.
+- choose this, If you need to be able to specify performance requirements (IOPS) independent of volume size
 - with this EBS type IOPS can be adjusted independently of size.
 - also, its designed to give performance with consistent low latency & even in the situation of jitter or uneasiness.
 - EBS volume size --> 4 GB to 16 TB with IO1 and IO2
@@ -244,7 +246,6 @@
   - and can burst upto 250MB/s/TB
   - This is designed when cost is concern but need frequent access throughput-intensive sequential process
   - These volume is mostly useful for Big-data, data warehouses, log processing
-  - 
 - Cold HDD (sc1) 
   — The lowest-cost HDD design for less frequently accessed workloads.
   - even cheaper
@@ -502,4 +503,3 @@
 - anyone who can connect to an instance and gain access to it linux command line shell can by default access to meta-data.
 - This can be restricted by local firewall rules, but thats an additional admin task required if needed.
 - Generally, its assumed that meta-data can get exposed.
-- 
