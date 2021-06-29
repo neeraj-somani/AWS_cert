@@ -438,6 +438,68 @@
 - any consumption after that commitment period over charges at on-demand rate
 - Hence, a general compute saving plan gives better discount and benefit on long term
 
+### Instance Status Checks & Auto Recovery
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html
+- 2 types of checks:
+  - System status checks: (this is for Host)
+    - loss of system power
+    - loss of network connectivity
+    - host software issues
+    - host hardware issues
+  - Instance status checks: (this is for instance)
+    - corrupted file system
+    - incorrect instance networking
+    - OS kernel issues
+
+### Shutdown, Terminate & Termination Protection
+- Termination Protection is a feature which adds an attribute to EC2 instances meaning they cannot be terminated while the flag is enabled.
+- "disableApiTermination" instance attribute (api) is used to all enable/disable this termination.
+- Similarly, you can also configure, "change shutdown behavior". Meaning, when you shutdown an instance, do you want to Stop it or terminate it.
 
 
+### Horizontal & Vertical Scaling
+- are two ways which systems have to deal with increasing or decreasing user-side load.
+- Each has pros and cons but handles the act of scaling radically differently.
+- Scaling means, when systems needs to grow or shrink in response to increases or decreases of load.
+- from technical perspective, adding or removing resources to a system, such as EC2 instance
+- Why need scaling:
+  - Each resize requires a reboot - hence disruption
+  - also, scaling for large instances ofter carry a premium cost
+  - hence, it better to manage instance properly, means increase as the demands increase and descrease as demands goes down
+- vertical scaling
+  - in this you increase the size and type of instance, instead of adding more instances to handle the load
+  - meaning, if you are using t3.large --> then you move to t3.xlarge ---> if needs you move to t3.2xlarge
+  - The benefit is no application modification required
+  - This works for all type of applications, even monolithic's one as well
+  - but horizontal scaling resolves some issues of vertical scaling
+- Horizontal scaling
+  - in this you add more resources to handle the load, meaning add more EC2 instances
+  - in this architecture, you are going to run multiple copies of your application on these multiple instances
+  - hence, when request comes, some kind of request management is needed to distribute traffic across these instances
+  - Hence, Load banacer service is introduced
+  - some key concepts to keep in mind, while designing this
+    - Sessions are everything to handle this load in horizontal scaling
+    - It requires application support or off-host sessions (externally hosted sessions, no dependency on instance host), because you continously shifting between different instances to balance the load. Hence, everything is handled by application session and it doesn't matter which instance you connect to.
+    - these sessions are stored in a DB or in some other way to use it by application
+  - Hence, benefit of this 
+    - no application disruption while scaling
+    - no real limits to scaling
+    - often less expensive - no large instance premium required mostly
+    - more granular scaling can be performed, because it completely adds new instance as per need.
 
+### Instance Metadata
+- Instance metadata is data about your instance that you can use to configure or manage the running instance.
+- Instance metadata is divided into categories, for example, host name, events, and security groups.
+- **exam imp** Instance metadata is accessed from an EC2 instance using - http://169.254.169.254/latest/meta-data/
+- accessible inside all instance
+- usually, below details are available in meta-data
+  - instance environment details, 
+  - instance networking details, 
+  - authentication related details
+  - user-data (scripts that can be run on instance as and when needed)
+  - even public IPv4 address of instance which is not visible at EC2 instance level
+- There are no authentication or encryption done for this meta-data information
+- anyone who can connect to an instance and gain access to it linux command line shell can by default access to meta-data.
+- This can be restricted by local firewall rules, but thats an additional admin task required if needed.
+- Generally, its assumed that meta-data can get exposed.
+- 
