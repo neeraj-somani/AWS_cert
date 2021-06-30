@@ -46,18 +46,6 @@
   - percentile -- states relative standing of a value in a dataset, and it helps in removing outliers. eg: p95, p97.5 
 - Certain AWS metrics allow aggregation across dimensions, for example CPUUtilization by instance type. but doesn't include ALL EC2 type and Not allowed in Cutom metrics
 
-### Cloudwatch Logs
-- CloudWatch Logs is a service which can accept logging data, store it and monitor it.
-- CloudWatch Logs is a public service and can also be utilised in an on-premises environment and even from other public cloud platforms.
-- This easily integrate with AWS services like - EC2, VPC Flow Logs, Lambda, CloudTrail, R53, and more
-- Can generate metrics based on logs - can perform metric filter actions
-- Its a regional service
-- Few terminologies 
-  - Log events - contains timestamp and message
-  - Log Streams - log events are stored in it, Log stream is a sequence of log events from the same source
-  - Log Groups - contains multiple log streams from the same source for the same type of logging but at different intervals.
-    - Under log groups, configuration settings can also be defined. like, retention period, permissions, metric filters
-
 ### CloudWatch Architecture
 - provide services to Ingestion, storage and management of metrics
 - Public service -- public space AWS endpoints. Meaning, it can be accessible from AWS and on-premises environments.
@@ -66,5 +54,37 @@
 - For anything that is private for AWS service, requires cloudwatch Agent install/integration to get richer metric details. Example, in case of EC2 instance
 - CloudWatch can also be used as Cloudwatch as a service for On-premises integrations via Agent/API (custom metrics)
 
+### Cloudwatch Logs
+- CloudWatch Logs is a service which can accept logging data, store it and monitor it.
+- CloudWatch Logs is a public service and can also be utilised in an on-premises environment and even from other public cloud platforms. store, monitor, access logging data.
+- This easily integrate with AWS services like - EC2, VPC Flow Logs, Lambda, CloudTrail, R53, and more
+- Can generate metrics based on logs - can perform metric filter actions
+- Its a regional service
+- Few terminologies 
+  - Log events - contains timestamp and raw message
+  - Log Streams - log events are stored in it, Log stream is a sequence of log events from the same source
+  - Log Groups - contains multiple log streams from the same source for the same type of logging but at different intervals.
+    - Under log groups, configuration settings can also be defined. like, retention period, permissions, metric filters
+- Cloudwatch logs divided into 2 parts
+  - ingestion side
+    - This means getting the logs into the system
+  - subscription side
+    - what other products can use those logs for other activities
+- There are multiple ways by which you can export this data from cloudwatch log groups
+  - one way is S3 export - Create-export-task, it can take upto 12 hours to extract data and its not Realtime.
+    - Remember, you can't encrypt this data with SSE-KMS, you can only encrypt it with SSE-S3
+  - For real-time delivery of cloudwatch log data, subscription model is used
+    - other services who wants to consume cloudwatch log data can subscribe to it and receive data in a real-time fashion
+    - This real-time data can be subscribed per log-group basis
+
+### exam review
+- For any log management scenarios default to cloudwatch logs.
+- On-premises and AWS
+- Export to S3.. createExportTask - 12 hours
+- Near realtime or persist logs -- Kinesis Firehose
+- Firehose for any 'firehose destinations'
+- Realtime - Lambda or Kinesis Data Stream (KCL consumers)
+- Elasticsearch - AWS Managed lambda
+- Metric filters -- scan log data, generate a cloudwatch metric.
 
 
