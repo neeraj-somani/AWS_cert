@@ -87,4 +87,8 @@
 - Elasticsearch - AWS Managed lambda
 - Metric filters -- scan log data, generate a cloudwatch metric.
 
+### Quiz question --
+- question -- Which two products can be used together for real time processing of CloudWatch Logs
+- answer -- Subscription + lambda
+
 
