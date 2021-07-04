@@ -11,9 +11,35 @@
 - Container Engine (Docker)
   - A continer conceptually very similar to VM, but with a small twick.
   - a container runs as a process within the host OS. Hence, opposite of vitualization which runs multiple OS on top of host OS and hypervisor.
-  - A container Engine can utilized the host OS capability to deal with networking and file I/O.
-  - 
+  - A container process inside container engine can utilized the host OS capability to deal with networking and file I/O.
+  - This container would run a single process within that OS, potentially one of many but inside that process its like an isolated OS. It has its own file system, it can run child processes inside it, etc... 
+  - Example, a container could run a web-server, or an application server, and do so in a completely isolated way.
+  - In this way it consumes very limited memory and computation from host, that is used for application annd any runtime environment elements, example libraries and dependencies. 
+  - This is one of the most imp benefit of containers, that we can run multiple applications on a single piece of hardware.
 
+### Docker Images (Container images)
+- its made of multiple independent layers.
+- its created by using a docker file.
+- Each line creates file system layer inside docker image.
+- images are created from a base image or scratch.
+- images contain readonly layers, changes are layered onto the image using a differential architecture.
+- A docker image is how we create a docker container. 
 
-container computing, container images, fs layers, containers, and container registries.
+### Docker Containers
+- Its just a running copy of a docker image, with one difference, it also has one read-write file system layer.
+- This read/write layer allows containers to run, example, if log file are generated or if application generates or reads data, all that gets stored in read/write layer of container.
+- Remember, each layer is differential and it stores only the changes made against it versus the layer below.
+
+### Container Registry
+- its a registry or hub of container images.
+
+### Refresher notes
+- Dockerfiles are used to build images
+- Portable - self-contained, always run as expected
+- lightweight - parent OS used, fs layers are shared
+- container only runs the application & environment it needs
+- provides much of the isolation VM's do
+- ports are 'exposed' to the host and behond...
+- Application stacks can be multi-container...
+
 
