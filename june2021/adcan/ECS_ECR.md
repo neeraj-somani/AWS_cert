@@ -43,3 +43,26 @@
 - Application stacks can be multi-container...
 
 
+### Elastic Container Service (ECS)
+- Its a product which allows users to use the containers running on infrastructure, which AWS fully manage or partially manage. 
+- Users get benefit of managed container hosts. Reduce admin overhead.
+- ECS is to containers what EC2 is to virtual machines.
+- ECS users, clusters, which run in one of two modes, 
+  - EC2 mode and Fargate mode.
+- EC2 mode 
+  - This uses EC2 mode as container hosts. They are just normal EC2 hosts running the ECS software.
+- Fargate Mode
+  - Its a serverless way of running docker containers, in which AWS manages the container host part.
+  - you just need to define an architect to your env using containers.
+- ECS takes instructions and orchestrates where and how to run those containers. 
+- ECS allows you to create clusters
+- ECR (Elastic Container Registry)
+  - it just container image registry/repository. 
+  - Very similar to docker hub.
+- Few things that we mention in **container definition**
+  - example, which port container image is running on host
+  - task definition
+    - a task in ECS is self-contained application. A task could have one container defined inside it or many.
+    - A simple application can use a single container but you can build complex application by using multiple containers in a task. example, web application container and a database container.
+    - 3:53
+
