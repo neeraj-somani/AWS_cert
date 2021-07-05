@@ -512,3 +512,9 @@
 - http://169.254.169.254/latest/user-data
 - Anything in User Data is executed by the instance only on Launch time. This doesn't work if you stop/start or restart the instance.
 - EC2 doesn't interpret, the OS needs to understand the User Data.
+- Its not secure - don't use it for passwords or long term credentials (ideally)
+- User data is limited to 16 KB in size
+- can be modified when instance stopped
+- but only executed once at launch
+
+
