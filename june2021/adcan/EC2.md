@@ -503,3 +503,12 @@
 - anyone who can connect to an instance and gain access to it linux command line shell can by default access to meta-data.
 - This can be restricted by local firewall rules, but thats an additional admin task required if needed.
 - Generally, its assumed that meta-data can get exposed.
+
+### Advance EC2
+### Bootstrapping EC2 using User Data
+- EC2 Bootstrapping is the process of configuring an EC2 instance to perform automated install & configuration steps 'post launch' before an instance is brought into service.
+- With EC2 this is accomplished by passing a script via the User Data part of the Meta-data service - which is then executed by the EC2 Instance OS
+- User Data - Accessed via the meta-data IP
+- http://169.254.169.254/latest/user-data
+- Anything in User Data is executed by the instance only on Launch time. This doesn't work if you stop/start or restart the instance.
+- EC2 doesn't interpret, the OS needs to understand the User Data.
