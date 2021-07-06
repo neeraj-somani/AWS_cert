@@ -548,7 +548,38 @@
 
 ### System and Application Logging on EC2
 - Cloudwatch Agent needs to be installed to perform this task
-- 
+
+### EC2 Placement Groups
+- this specicifes how instances are arranged within host
+- Cluster Placement Groups (PERFORMANCE)
+  - pack instances close together
+  - This provides highest level of performance possible in the AWS
+  - Generally, launch together and use same Datacenter Rack and sometimes same host.
+  - launch at the same time (recommended ... not mandatory)
+  - Mostly launched in same AZ
+  - All memebers have direct connections to each other
+  - Lowest latency and max PPS possible in AWS
+  - Can span VPC peers - but impacts performance
+  - Requires a supported instance type in that specific AZ
+  - 10GBps single stream performance
+  - use cases - Very high performance, low latency, scitific research or high compute tasks
+- Spread Placement Groups (Resilience)
+  - ensures instances use different underlying hardware, keeps instances seperate
+  - Distinct Datacenter racks
+  - limitation of 7 instances per AZ - Isolated infrastructure limit
+  - provide infrastructure isolation
+  - Each rack has its own network and power source
+  - not supported for dedicated instances or hosts
+  - Use case:- small number of critical instances that need to be kept seperated from each other
+- Partition Placement Groups (Topology Awareness)
+  - groups of instances spread apart
+  - This is mostly used when you have a requirement to use more than 7 instances per AZ but still needs to follow spread placesment group architecture
+  - A concept of partition has been used to launch more than 7 instance per AZ
+  - each partition can have at max 7 instances per AZ
+  - but each AZ can have more than 1 partition
+  - Each partition has its own racks - no sharing between partitions
+  - you need to adminster the instance topology architecture
+- More details on this link - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
 
 
 
