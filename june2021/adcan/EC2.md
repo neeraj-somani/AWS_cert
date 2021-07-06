@@ -581,7 +581,18 @@
   - you need to adminster the instance topology architecture
 - More details on this link - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
 
-
+### Enhanced Networking & EBS Optimized
+- These 2 features significantly improves EC2 performance
+- Enhanced networking is the AWS implementation of SR-IOV, a standard allowing a physical host network card to present many logical devices which can be directly utilized by instances.
+- NIC is virtualization aware using Enhanced Networking
+- Higher I/O & lower Host CPU usage in host, hence more bandwidth
+- you can achieve higher packets-per-second (PPS)
+- Because of this it rovides consistent lower latency
+- This means lower host CPU usage, better throughput, lower and consistent latency
+- EBS optimisation on instances means dedicated bandwidth for storage networking - separate from data networking.
+- most mordern instances support and have enabled by default
+- some older types of instances needs to be enabled and do costs extra.
+- https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enhanced-networking.html
 
 
 
