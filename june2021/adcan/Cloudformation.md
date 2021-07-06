@@ -42,12 +42,31 @@
     - can be viewed at cloudFormation console. 
     - (example:- “aws cloudformation describe-stacks” AWS CLI command can be used to see these details)
  
- 
  ### Imp links
  - [CloudFormation Resource Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 
-
-
 ### exam questions
 - What is cloudformation logical resource and physical resource
-- 
+- CloudFormation defines logical resources within templates (using YAML or JSON).
+- The logical resource defines the WHAT, and leaves the HOW up to the CFN product. 
+- A CFN stack creates a physical resource for every logical resource - updating or deleting them as a template changes.
+
+### Template Parameters and Pseudo Parameters
+- Template and Pseudo Parameters are two methods to provide input to a template, which can influence what resources are provisioned, and the configuration of those resources.
+- Pseudo Parameters : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html
+- Template parameters accept input - console/CLI/API
+- parameters can be referenced from within logical resources
+- it also influence physical resources and/or configuration
+- **exam imp** can be configured with Defaults, allowedValues, Min and Max length & allowedPatterns, NoEcho & Type (string, number, list)
+- Pseudo parameters
+  - these are injected by AWS into the template at the time of creating stack from template, these are account and region specific.
+  - You don't specify these inside the template
+  - example, "aws::region" -- this always injected by default by AWS
+  - Hence, "aws::region" will always reflect the region is being created in. "aws::stackName" and "aws::stackid" will match the specific stack being created and "aws::accountid" will be set by AWS to the actual accountID the stack is being created within.
+
+###  Intrinsic Functions
+- AWS CloudFormation provides several built-in functions that help you manage your stacks. Use intrinsic functions in your templates to assign values to properties that are not available until runtime.
+- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html
+
+
+
