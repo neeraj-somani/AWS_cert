@@ -72,7 +72,58 @@
 - !GetAtt LogicalResource.Attribute -- GetAtt can be used to retrieve any attribute associated with the resource. Most logical resources return detailed configuration of the physical resource.
 - !select function returns an object from a list of objects. List starts with index 0.
 - !GetAZs -- returns a list of AZs in the explicit region, or the current region.
-- 
-- 
+
+### Cloudformation Mapping
+- The optional Mappings section matches a key to a corresponding set of named values.
+- For example, if you want to set values based on a region, you can create a mapping that uses the region name as a key and contains the values you want to specify for each specific region. 
+- You use the Fn::FindInMap intrinsic function to retrieve values in a map.
+- Template can contain a mapping object
+- which can contain many mappings
+- which map keys to values, allowing lookup
+- can have one key, or Top & second level
+- Common use... retrieve AMI for a given region & architecture
+- **exam imp** Improve Template portability
+- because, it allows you to design how the template should behave for a given input.
+
+### Cloudformation Outputs
+- The optional Outputs section declares output values that you can import into other stacks (to create cross-stack references), return in response (to describe stack calls), or view on the AWS CloudFormation console. 
+- For example, you can output the S3 bucket name for a stack to make the bucket easier to find.
+
+### CloudFormation Conditions
+- The optional Conditions section contains statements that define the circumstances under which entities are created or configured.
+- You might use conditions when you want to reuse a template that can create resources in different contexts, such as a test environment versus a production environment
+-  In your template, you can add an EnvironmentType input parameter, which accepts either prod or test as inputs. Conditions are evaluated based on predefined pseudo parameters or input parameter values that you specify when you create or update a stack.
+-  Within each condition, you can reference another condition, a parameter value, or a mapping. After you define all your conditions, you can associate them with resources and resource properties in the Resources and Outputs sections of a template.
+-  use the other intrinsic functions AND, EQUALS, IF, NOT, OR
+-  conditions can also be nested in a template
+
+
+### Cloudformation DependsOn
+- With the DependsOn attribute you can specify that the creation of a specific resource follows another. 
+- When you add a DependsOn attribute to a resource, that resource is created only after the creation of the resource specified in theDependsOn attribute.
+- "!Ref" intrinsic function gives only implicit dependency, but "DependsOn" function can give explicit dependency.
+- for example, when we want to create an "EIP" for a VPC, it requires IGW should be attached to VPC before EIP attached to IGW.
+- Hence, we can achive this by creating implicit dependency between VPC and IGW
+- **exam imp** and explicit dependency between EIP and IGW. Hence, EIP will be created after IGW is complete.
+
+### CloudFormation Wait Conditions, creation policy & cfn-signal
+- CreationPolicy, WaitConditions and cfn-signal can all be used together to prevent the status if a resource from reaching create complete until AWS CloudFormation receives a specified number of success signals or the timeout period is exceeded.
+- The cfn-signal helper script signals AWS CloudFormation to indicate whether Amazon EC2 instances have been successfully created or updated.
+- Configure cloudFormation to hold
+- wait for 'X' number of success signals
+- wait for timeout H:M:S for those signals (12 hour max)
+- If success signals received... CREATE_COMPLETE
+- If failure signal received .. creation fails
+- if timeout is reached.. creation fails
+- CreationPolicy or WaitCondition.
+- CreationPolicy applies signal requirement (eg: 3) and timeout (eg: 15 min)
+- CreationPolicy generally used for creating EC2 instance and for auto-scaling group
+- WaitCondition can depend on other resources, or vice versa.
+- WaitCondition relies on "WaitHandle", which is another logical resource, whose job is to generate pre-signed URL which can be used to send signals too.
+- its pre-signed, hence doesn't need AWS credentials.
+- Generally used when you have some external system dependency or resource dependency
+- cfn-signal used to send and receive signal between these resources.
+
+
 
 
