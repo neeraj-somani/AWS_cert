@@ -546,4 +546,18 @@
 6. Instance profile credentials – You can associate an IAM role with each of your Amazon Elastic Compute Cloud (Amazon EC2) instances. Temporary credentials for that role are then available to code running in the instance. The credentials are delivered through the Amazon EC2 metadata service. For more information, see IAM Roles for Amazon EC2 in the Amazon EC2 User Guide for Linux Instances and Using Instance Profiles in the IAM User Guide.
 
 
+### System and Application Logging on EC2
+- Cloudwatch Agent needs to be installed to perform this task
+- 
+
+
+
+
+
+
+
+
+
+
+
 
