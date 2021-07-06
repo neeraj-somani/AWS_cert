@@ -124,6 +124,56 @@
 - Generally used when you have some external system dependency or resource dependency
 - cfn-signal used to send and receive signal between these resources.
 
+### Nested Stack
+- Nested stacks allow for a hierarchy of related templates to be combined to form a single product
+- A root stack can contain and create nested stacks .. each of which can be passed parameters and provide back outputs.
+- Nested stacks should be used when the resources being provisioned share a lifecycle and are related.
+- **exam imp** Resources in a **single stack share a lifecycle**. Hence, nested stack can be helpful.
+- Also, there is stack resource limits (500). Nested stack can help in this situation as well
+- Single stack resources can't be reuse in another stack. Can't easily reference in other stack. Hence, nested stack.
+- multi-stack can be done in two ways - nested stack and cross-stack referencing
+- Root stack & parent stack -- first stack that gets created.
+- When to use this -- When you want to divide your template in a way to re-use it for other purposes. Generic template idea.
+- The biggest difference is, we are using stack template in Nested stack and not reusing the resources.
+- But in-case of cross-stack referenceing, we reuse resources.
+
+### Cross-stack references 
+- Cross stack references allow one stack to reference another
+- Outputs in one stack reference logical resources or attributes in that stack
+- They can be exported, and then using the **!ImportValue** intrinsic function, referenced from another stack.
+- CFN stacks are designed to be isolated and self-contained
+- example, you want to use same VPC and launch multiple resources inside the one VPC using various CFN stack.
+- Outputs from one stack are normally not visible from other stacks, example, using "!Ref" function
+- But nested stack can reference that way
+- Outputs can be exported... making them visible from other stacks
+- Exports must have a unique name in the region
+- **"Fn::ImportValue** function can be used instead of "Ref", to import the exported value from another stack
+- export is used to export the output of a stack... to a unique name in that region
+- Exports -- per region + per account
+- These exported values can be imported in another stack.
+- This is mostly used in **service-orientated architecture** and different lifecycles of stack resources, and stack reuse capability
+
+### Stack Sets
+- allowing infrastructure to be deployed and managed across multiple regions and multiple accounts from a single location.
+- Additionally it adds a dynamic architecture - allowing automatic operations based on accounts being added or removed from the scope of a StackSet.
+- stacksets are containers in an admin account..
+- contains stack instances ... which reference stacks
+- stack instances & stacks are in 'target accounts'
+- Each stack == 1 region in 1 account
+- security == self-managed or service-managed (using IAM role)
+- Concurrent Accounts -- in how many aws accounts these stack gets created concurrently
+- Failure Tolerance -- how many resources failed status can be tolerated
+- Retain stack -- by default delete stack is on, but you can change the settings to retain stack as and when needed.
+- Use-cases and scenarios --
+  - Enable AWS config in multi-region, multi-account, like MFA, EIPs, EBS Encryption settings
+  - or create IAM roles for cross-account access
+
+### Deletion Policy
+
+
+
+
+
 
 
 
