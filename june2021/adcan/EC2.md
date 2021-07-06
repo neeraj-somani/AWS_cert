@@ -518,3 +518,32 @@
 - but only executed once at launch
 
 
+### EC2 Instance Roles & Profile
+- EC2 Instance roles and Instance Profiles are how applications running on an EC2 instance can be given permissions to access AWS resources on your behalf.
+- Short Term Temporary credentials are available via the EC2 Instance Metadata and are renewed automatically by the EC2 and STS Services.
+- Instance profile -- when you create an instance role in the console, an instance profile is created with same name, but you use the CLI or cloudformation, you need to create these 2 things seperately.
+- Its instance profile that gets attached to an EC2 instance, when we attach an IAM role to an instance.
+- Credentials are inside meta-data
+- iam --> security-credentials --> role-name
+  - http://169.254.169.254/latest/meta-data/iam/security-credentials
+- Automatically rotated - Always valid
+- Should always be used rather than adding access keys into instance
+- CLI tools will use ROLE credentials automatically
+
+### Configuration settings and precedence
+- The AWS CLI uses credentials and configuration settings located in multiple places, such as the system or user environment variables, local AWS configuration files, or explicitly declared on the command line as a parameter. Certain locations take precedence over others. The AWS CLI credentials and configuration settings take precedence in the following order:
+
+1. Command line options – Overrides settings in any other location. You can specify --region, --output, and --profile as parameters on the command line.
+
+2. Environment variables – You can store values in your system's environment variables.
+
+3. CLI credentials file – The credentials and config file are updated when you run the command aws configure. The credentials file is located at ~/.aws/credentials on Linux or macOS, or at C:\Users\USERNAME\.aws\credentials on Windows. This file can contain the credential details for the default profile and any named profiles.
+
+4. CLI configuration file – The credentials and config file are updated when you run the command aws configure. The config file is located at ~/.aws/config on Linux or macOS, or at C:\Users\USERNAME\.aws\config on Windows. This file contains the configuration settings for the default profile and any named profiles.
+
+5. Container credentials – You can associate an IAM role with each of your Amazon Elastic Container Service (Amazon ECS) task definitions. Temporary credentials for that role are then available to that task's containers. For more information, see IAM Roles for Tasks in the Amazon Elastic Container Service Developer Guide.
+
+6. Instance profile credentials – You can associate an IAM role with each of your Amazon Elastic Compute Cloud (Amazon EC2) instances. Temporary credentials for that role are then available to code running in the instance. The credentials are delivered through the Amazon EC2 metadata service. For more information, see IAM Roles for Amazon EC2 in the Amazon EC2 User Guide for Linux Instances and Using Instance Profiles in the IAM User Guide.
+
+
+
