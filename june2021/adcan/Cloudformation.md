@@ -67,6 +67,12 @@
 ###  Intrinsic Functions
 - AWS CloudFormation provides several built-in functions that help you manage your stacks. Use intrinsic functions in your templates to assign values to properties that are not available until runtime.
 - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html
-
+- physical attributes can be referenced in the template. The attributes depends on the resource type.
+- !Ref Instance -- using !Ref on template or pseudo parameters returns their value. When used with logical resources - the physical ID is usually returned.
+- !GetAtt LogicalResource.Attribute -- GetAtt can be used to retrieve any attribute associated with the resource. Most logical resources return detailed configuration of the physical resource.
+- !select function returns an object from a list of objects. List starts with index 0.
+- !GetAZs -- returns a list of AZs in the explicit region, or the current region.
+- 
+- 
 
 
