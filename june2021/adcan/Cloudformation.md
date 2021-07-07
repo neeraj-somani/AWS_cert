@@ -169,6 +169,70 @@
   - or create IAM roles for cross-account access
 
 ### Deletion Policy
+- With the DeletionPolicy attribute you can preserve or (in some cases) backup a resource when its stack is deleted. 
+- You specify a DeletionPolicy attribute for each resource that you want to control.
+- If a resource has no DeletionPolicy attribute, AWS CloudFormation deletes the resource by default.
+
+### Stack Roles
+- Stack roles allow an IAM role to be passed into the stack via PassRole
+- A stack uses this role, rather than the identity interacting with the stack to create, update and delete AWS resources.
+- It allows role separation and is a powerful security feature.
+- When you create a stack - CFN creates physical resources
+- **exam imp** -- CFN uses the permissions of the logged in identity
+- **exam imp** -- which means you need permissions for AWS to create, update and delete AWS resources.
+- Hence there are 2 seperate permissions here, one the person who can create stack, second other team or person to update or support them. Example, L1, L2, L3, level support teams etc
+- CFN can assume a role to gain the permission
+- This lets you implement role seperation
+- The identity creating the stack .. doesn't need resource permissions -- only PassRole
+
+### aws::cloudformation::init and cfn-init
+- its a tool used to perform some tasks as part of bootstraping process
+- CloudFormationInit and cfn-init are tools which allow a desired state "configuration management system" to be implemented within CloudFormation
+- Use the AWS::CloudFormation::Init type to include metadata on an Amazon EC2 instance for the cfn-init helper script. 
+- If your template calls the cfn-init script, the script looks for resource metadata rooted in the AWS::CloudFormation::Init metadata key. cfn-init supports all metadata types for Linux systems & It supports some metadata types for Windows
+- configuration directives stored in template
+- UserData Script is procedural, meaning you give step-by-step script to perform tasks, you tell how you want to configure the system
+- while, cfn-init is a desired state configuration, you just define what you want, AWS tasks care of how.
+- example, different version script compatibility can be easily handled.
+- cfn-init helper script - installed on EC2 OS (makes it so)
+- In configSets -- we can define which configKeys to use and in which order to apply
+- example of configKeys --> packages, groups, users, sources, files, commands, services, etc
+
+### cfn-hub
+- The cfn-hup helper is a daemon that detects changes in resource metadata and runs user-specified actions when a change is detected. 
+- This allows you to make configuration updates on your running Amazon EC2 instances through the UpdateStack API action.
+- cfn-init is run only once as part of bootstrapping (user-data process)
+- if cloudformation::init is updated, the part doesn't re-run, even if you restart the instance.
+- cfn-hub helper is a daemon which can be installed on EC2 instance
+- this can also be used as a bootstraping tool
+- UpdateStack API ==> updated config on EC2 instance
+- in case of any changes in the config, cfn-hub executes cfn-init, which then applies new configurations
+- cfn-hub just checks the metadata periodically
+
+- cfn more complex techniques
+- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html
+- **exam imp** -- by default cloudformation has no idea/info about bootstraping process and its status that is running on EC2 instance.
+- Hence, signal statement used to notify cfn for such bootstrapping process and its status.
+- Userdata
+- Userdata + cfn-signal
+- cfn-init + cfn-signal
+- cfn-init + cfn-signal + cfn-hup
+
+
+### Cloudformation change-sets
+- When you need to update a stack, understanding how your changes will affect running resources before you implement them can help you update stacks with confidence. 
+- Change sets allow you to preview how proposed changes to a stack might impact your running resources, for example, whether your changes will delete or replace any critical resources,
+- AWS CloudFormation makes the changes to your stack only when you decide to execute the change set, allowing you to decide whether to proceed with your proposed changes or explore other changes by creating another change set.
+
+### Cloudformation Custom Resources
+- Custom resources enable you to write custom provisioning logic in templates that AWS CloudFormation runs anytime you create, update (if you changed the custom resource), or delete stacks
+- By default, cloudformation doesn't support everything that AWS offers
+- custom resources let cfn integrate with anything it doesn't yet or doesn't natively support
+- you can even use custom resources to provision non-aws resources, as long as you have all needed permissions
+- The process is really simple, passes data to something, gets back data from something
+- 
+
+
 
 
 
