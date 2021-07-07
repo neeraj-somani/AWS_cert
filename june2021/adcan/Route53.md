@@ -45,3 +45,12 @@ DNS is capable of handling a number of different record types - which perform di
 ### DNS TTL (time-to-live)
 - TTL set on DNS records
 - this is used by authoritative people to indicate how long this can be cached at resolver server , to have faster response to domain query.
+
+
+### R53 Public Hosted Zones
+- A public hosted zone is a container that holds information about how you want to route traffic on the internet for a specific domain which is accessible from the public internet.
+- A R53 hosted zone is a DNS DB for a domain eg: animals4life.org
+- These records in DB are referenced via delegation using name server records.
+- Globally resilient (multiple DNS servers)
+- cretaed with domain registration via R53 - can be created seperately
+- Host DNS record (eg: A, AAAA, MX, NS, TXT ...)
