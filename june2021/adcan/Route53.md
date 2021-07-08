@@ -91,6 +91,24 @@ DNS is capable of handling a number of different record types - which perform di
   - The status of an Amazon CloudWatch alarm
 - Health checks are seperate from records, but are used by records
 - health checkers are located globally
+- with health checkers you can check anything that is accessible over the internet, its not limited to AWS
+- by default, health checkers check every 30 sec (but every 10sec costs extra)
+- checks can be TCP, HTTP/HTTPS, HTTP/HTTPS with string matching
+- status can be Healthy or unhealthy
+- These checks can be endpoint checks, cloudwatch alarm check or calculated checks (meaning, checks status of other health checks). 
+- Cloudwatch alarm checks are for what happens when you checks fails... you want some SNS events or perform some specific tasks based on checks,
+
+### Failover Routing
+- Failover routing lets you route traffic to a resource when the resource is healthy or to a different resource when the first resource is unhealthy
+- If the target of the health check is 'Healthy' the primary record is used
+- If the target of the health check is 'Unhealthy'.. any queries return the secondary record of the same name
+- **exam imp** use this when you want to configure active/passive failover. (primary/secondary failover)
+- 
+- 
+
+
+
+
 
 
 
