@@ -103,8 +103,50 @@ DNS is capable of handling a number of different record types - which perform di
 - If the target of the health check is 'Healthy' the primary record is used
 - If the target of the health check is 'Unhealthy'.. any queries return the secondary record of the same name
 - **exam imp** use this when you want to configure active/passive failover. (primary/secondary failover)
-- 
-- 
+
+### Multi-value routing
+- Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries.
+- You can specify multiple values for almost any record, but multivalue answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy resources.
+- its a middle-way between simple and failover routing technique
+- **exam imp** - multi-value routing improves availability. It is Not a replacement for load balancing.
+
+### R53 weighted Routing
+- Weighted routing lets you associate multiple resources with a single domain name (catagram.io) and choose how much traffic is routed to each resource. 
+- **exam imp** - This can be useful for a variety of purposes, **including load balancing and testing new versions of software**.
+- A '0' weight means a record is never returned unless all are '0' then all are considered.
+- if a chosen record is Unhealthy, the process of selection is repeated until a healthy record is chosen.
+
+### Latency Rounting
+- If your application is hosted in multiple AWS Regions, you can improve performance for your users by serving their requests from the AWS Region that provides the lowest latency and healthy.
+- **exam imp** Use this when optimising for performance & user experience
+- AWS maintains a database of latency between the users general location and the regions tagged in records
+- latency-based routing supports one record with same name in each AWS region
+
+### Geolocation routing
+- lets you choose the resources that serve your traffic based on the geographic location of your users, meaning the location that DNS queries originate from. 
+- **exam imp** It doesn't return "closest" records, only relevant (location) records.
+- An IP check verifies the location of the user (normally the resolver)
+- Either "US state", "country", "continent" or "default" or "no answer"
+- **exam imp** 
+- can be used for regional restrictions, language specific content, or load balancing across regional endpoints
+
+### Geoproximity Routing
+- Geoproximity routing lets Amazon Route 53 route traffic to your resources based on the geographic location of your users and your resources.
+- You can also optionally choose to route more traffic or less to a given resource by specifying a value, known as a bias. 
+- A bias expands or shrinks the size of the geographic region from which traffic is routed to a resource.
+- the difference between this and latency based is distance vs time
+- in this it returns based on distance using lat & long co-ordinates, but latency it depends on time
+- Routing is distance based (including bias). Meaning, "+" or "-" bias can be added to rules. "+" increases a region size and decreases neighbouring regions.
+
+### R53 Interoperability
+- R53 normally has 2 jobs - domain registrar and domain hosting
+- R53 can do both or either Domain registrar or domain hosting
+- R53 accepts your money (domain registration fee)
+- R53 allocates 4 name servers (NS) (domain hosting)
+- R53 creates a zone file (domain hosting) on the above NS
+- R53 communicates with the registry of the TLD (Domain Registrar)
+- ... sets the NS records for the domain to point at the 4 NS above
+- Registration fee, domain name and 4 x NS provided to registry.
 
 
 
