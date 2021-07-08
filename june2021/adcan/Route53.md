@@ -91,7 +91,6 @@ DNS is capable of handling a number of different record types - which perform di
   - The status of an Amazon CloudWatch alarm
 - Health checks are seperate from records, but are used by records
 - health checkers are located globally
-- 
 
 
 
