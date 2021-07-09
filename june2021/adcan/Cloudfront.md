@@ -47,5 +47,35 @@
   - in S3 object versioning, object name is same, but under the hood S3 creates versions for the same object
   - in cloudfront, you use different object names, to avoid invalidation.
 
+### CloudFront and SSL/TLS & SNI
+- SSL certificate is a way to authenticate that you own a specific domain that you claim you want to use in cloudfront
+- This also proof on internet that your domain is secure for any users to access your application
+- **exam imp** for cloudfront if you want to add any SSL/TLS certificate, it should always needs to be added in us-east-1 region, why becoz cloudfront is global service. Its not regional service.
+- on the other hand, normally, if you distribute your application in multiple regions, then you need to generate or import your SSL/TLS cert to individual region and use it through ACM or some other 3rd part cert manager.
+- Remember, if you use cloudfront with ACM, certificate must be in us-east-1 region
+- cloudfront always provides default domain name that can be configured as CNAME in the R53, if needed.
+- https://6976jhlkjjk.cloudfront.net
+- **exam imp** SSL supported by default by cloudfront..... \*cloudfront.net cert
+- http or https, http ==> https, https only
+- every cloudfront has Two part SSL connections: viewer ==> cloudfront and cloudfront => origin, meaning traffic always flows through cloudfront.
+- **exam imp** -- important to remember that both above parts need **valid public certificates and intermediate certificate**
+- remember here, self-signed certificate will not work with cloudfront in this case, they need to be **publicly trusted certificate**
+- how Pricing work for SSL over cloudfront (SNI helps in this)
+
+- SNI
+  - Server Name Indication (SNI) allows the server to safely host multiple TLS Certificates for multiple sites, all under a single IP address. It adds the hostname of the server (website) in the TLS handshake as an extension in the CLIENT HELLO message.
+  - Server Name Indication is an extension to the Transport Layer Security computer networking protocol by which a client indicates which hostname it is attempting to connect to at the start of the handshaking process.
+- old browsers don't support SNI.. Cloudfront charges extra for dedicated IP
+- but if you use SNI, its free as part of the product
+- SNI gets support in almost all modern browsers, and SSL/TLS helps in identifying application security in public internet
+- Certificate issued by trusted certificate authority (CA) must match the DNS name used by application
+- Origins need to have certificates issued by a trusted authority (CA).
+  - in case of S3 origins handle certificates natively. Hence, no need to implement it seperately
+  - In case of ALB its needs and can be done using ACM
+  - In case of EC2 or other custom origins, external generated cert needs to be used, and no self-signed certs used.
+
+
+
+
 
 
