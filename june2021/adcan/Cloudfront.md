@@ -130,7 +130,34 @@
 - signed cookies is also used, when you want to maintain same URLs within your application
   - so a combination of normal URL and signed cookies can allow more roburst security
 
-### CloudFront Geo-Restriction
+### **exam imp** CloudFront Geo-Restriction
+- The build in feature set - CloudFront Geo Restriction -- allows for White or Black list restrictions based on ONLY **Country Code**.
+- 3rd Party Geolocation -- completely customisable -- requires a compute instance, a private distribution and the generation of signed URLs or Cookies - but can restrict based on almost anything (licensing, user login status, user profile fields and much more)
+
+### CloudFront Field Level Encryption
+- Field-Level encryption allows CloudFront to encrypt certain sensitive data at the edge using a public key, ensuring its protection through all levels of an application stack.
+- Only the corresponding private key can decrypt the data, meaning you have complete control over who has access.
+- Client <==> Origin communication can be encrypted using HTTPS
+- Information is processed at the web server as HTTP.... i.e. plaintext
+- Field level encryption happens at the edge
+- Happens seperately from the HTTPS tunnel
+- A private key is needed to decrypt individual fields
+- If we only use https technique, then data at transit will be encrypted by data at-store wouldn't be. In order to secure data in transit and at-store, we use field level encryption on top of https transit security feature.
+
+### Lambda@Edge
+- Lambda@Edge allows CloudFront to run lambda function at CloudFront edge locations to modify traffic between the viewer and edge location and edge locations and origins.
+- https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html#lambda-examples-redirecting-examples
+- Currently supports only Node.js and Python
+- Run in the AWS public space (Not inside VPC)
+- also, lambda layers feature is not supported in this. Hence, only light-weight lambda functions can be useful.
+- Additionally, it has different limits vs Normal Lambda functions
+- Few examples how to use Lambda@Edge
+  - to perform A/B testing -- at viewer request path
+  - Migration between S3 Origins - Origin Request (meaning, you can slowly and steadly migrate traffic from one S3 origin to other in a controlled way)
+  - Different objects based on Device - Origin Request (meaning, laptop vs mobile, different size and quality of object)
+  - Content by country - Origin Request
+
+
 
 
 
