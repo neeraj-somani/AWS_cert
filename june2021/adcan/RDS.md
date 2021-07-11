@@ -1,5 +1,5 @@
 # RDS (Relational Database systems)
-
+- Relational Database Service (RDS) is a Database(server) as a service product from AWS which allows the creation of managed databases instances.
 
 ### Database Refresher & MODELS
 - SQL vs NoSQL
@@ -30,3 +30,11 @@
   - EC2 is ON or OFF - no serverless, no easy scaling
   - Replication - skills, setup time, monitoring & effectiveness
   - performance ... AWS invest time into optimization & features
+
+### RDS
+- managed database instance (1+ DBs)
+- multiple engines MySQL, MariaDB, etc....
+
+
+
+
