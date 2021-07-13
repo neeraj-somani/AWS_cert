@@ -91,5 +91,50 @@
 - with snapshots the risk of corruption data failure can be easily avoided.
 
 ### RDS Read-Replicas
-
+- RDS Read Replicas can be added to an RDS Instance - 5 direct per primary instance.
+- They can be in the same region, or cross-region replicas.
+- They provide read performance scaling for the instance, but also offer low RTO recovery for any instance failure issues
+- **exam imp** they don't help with data corruption as the corruption will be replicated to the RR.
+- They have there own database endpoint address
+- they are kept in sync using asynchronous replication
+- **exam imp** asynchronous means RDS Read replication
+- **exam imp** synchronous means multi-AZ
+- benefits
+  - (read) performance improvements
+    - 5x direct read-replicas per DB instance
+    - each providing an additional instance of read performance
+    - read-replicas can have read-replicas - but lag starts to be a problem
+    - global performance improvements
+  - Availability improvements
+    - snapshots & backups improve RPO
+    - RTO's are a problem
+    - RR's offer near 0 RPO
+    - RR's can be promoted quickly - low RTO
+    - Failure only - watch for data corruption
+    - Read only - until promoted
+    - Global availability improvements .. global resilience
+- **exam imp** RDS Data Security
+  - Authentications - How users can login to RDS
+    - usually done using local LDAP users and not created using IAM 
+    - Policies attached to Users or Roles maps that IAM identity onto the local RDS user
+    - "generate-db-auth-token" API, creates a token with 15 min validity which can be used in place of a DB user password, token can be used for login
+  - Authorization - How access is controlled
+    - Authorization is controlled by DB engine. 
+    - Permissions are assigned to local DB user.
+    - IAM is not used to authorize, IAM used only for authentication.
+  - Encryption in Transit - between clients and RDS
+    - SSL/TLS (in transit) is available for RDS, can be mandatory
+  - Encryption at Rest
+    - RDS supports EBS volume encryption - KMS
+    - Handled by Host/EBS
+    - AWS or customer managed CMK generates data keys
+    - data keys used for encryption operations and its loaded onto hosts as required
+    - storage, logs, snapshots & replicas are all encrypted using this key
+    - **exam imp** encryption can't be removed once its added
+    - **exam imp** RDS MSSQL and Oracle support TDE
+    - Transparent Data Encryption
+    - This encryption handled within the DB engine
+    - RDS Oracle even supports integration with CloudHSM, provies more security
+    - much stornger key controls (even from AWS, because key is managed by customer and its not even exposed to AWS)
+    - snapshots of encrypted RDS instance are also encrypted using the same key
 
