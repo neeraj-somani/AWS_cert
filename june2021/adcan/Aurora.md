@@ -57,7 +57,7 @@
   - multi-tenant applications
 
 
-
+### Aurora global databases
 
 
 
