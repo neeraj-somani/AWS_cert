@@ -58,8 +58,25 @@
 
 
 ### Aurora global databases
+- a feature of Aurora Provisioned clusters which allow data to be replicated globally providing significant RPO and RTO improvements for BC and DR planning. 
+- Additionally global databases can provide performance improvements for customers .. with data being located closer to them, in a read-only form.
+- Replication occurs at the storage layer and is generally ~1second between all AWS regions.
+- upto 5 AWS region other than the master or main region
+- secondary region can have upto 16 replicas
+- no impact on DB performance, because it happens at the storage layer
 
-
+### Aurora Multi-master writes
+- Multi-master write is a mode of Aurora Provisioned Clusters which allows multiple instances to perform reads and writes at the same time - rather than only one primary instance having write capability in a single-master cluster. 
+- Default Aurora mode is Single-master
+  - Which provides one R/W and 0+ read only replicas
+  - cluster endpoint can be used for read/write, read endpoint is used for load balanced reads only
+  - failover takes time - replica promoted to R/W
+- In multi-master mode all instances are Read/write
+  - hence there is no concept of lengthy fail-over
+  - there is no concept of load-balanced endpoint, application can directly connect to individual node endpoint of cluster. hence application manage that endpoint configuration.
+  - whenever there is a write operation occurs, it always write simultaneously to all copies of storage volume together.
+  - if all volumes accepts this write operation that it gets commited, otherwise error out
+  - another important feature that this mode provides, all nodes of cluster replicates same in-memory cache objects based on read patterns. This improves performance across all nodes of cluster.
 
 
 
