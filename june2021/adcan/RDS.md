@@ -138,3 +138,5 @@
     - much stornger key controls (even from AWS, because key is managed by customer and its not even exposed to AWS)
     - snapshots of encrypted RDS instance are also encrypted using the same key
 
+### Kept Aurora in seperate file
+
