@@ -11,3 +11,14 @@
 - public parameters - latest AMIs per region
 - changes can create events..
 
+### Example when SSM parameter store is preferable compared to AWS Secret manager
+- if you need to store hierarchical configuration info
+- or configuration for cloudwatch agent,
+- and some encrypted strings
+- then SSM parameter store is better choice
+
+- But if you just want to store secrets 
+- and get automatically rotated
+- and product integration is possible
+- then AWS secrete manager is better choice
+
