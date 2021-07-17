@@ -48,6 +48,10 @@
 - internet-facing means nodes have public IPv4 IPs
 - internal is private only IPs
 - EC2 doesn't need to be public to work with a LB.
+- listener configuration controls what the LB does
+- LB require 8+ free IPs per subnet, and /27 or /28 subnet to allow scaling
+
+### Application Load balancing (ALB) vs Network Load Balancing (NLB)
 
 
 
