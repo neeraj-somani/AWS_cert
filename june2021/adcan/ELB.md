@@ -52,7 +52,30 @@
 - LB require 8+ free IPs per subnet, and /27 or /28 subnet to allow scaling
 
 ### Application Load balancing (ALB) vs Network Load Balancing (NLB)
-
+- Consolidation of Load Balancer
+  - CLB don't scale.... every unique https name requires an individual CLB because SNI isn't supported.
+  - But ALB/NLB support rules and target groups. Host based rules using SNI and an ALB allows consolidation.
+- ALB
+  - Layer 7 load balancer ... listens on http and/or https
+  - no other layer 7 protocols (like, SMTP, SSH, Gaming, etc)
+  - and no TCP/UDP/TLS listeners
+  - It can understand layer 7 content type, cookies, custom headers, user location and app behaviour
+  - http/https (SSL/TLS) always terminated on the ALB - no unbroken SSL (security teams!)
+  - a new connection is made between ALB and to the application, for greater security
+    - NLB needs to be used if you need to make direct secure connection to application itself
+  - ALBs must have SSL certs installed if HTTPS is used
+  - ALBs are slower than NLB... more levels of network stack to process
+  - health checks evaluate application health ... at layer 7 level
+  - ALB Rules
+    - Rules direct connections which arrive at a listener
+    - Rules are processed in priority order
+    - last rule is default rule == Catchall rule
+    - Rule conditions :- host-header, http-header, http-request-method, path-pattern, query-string & source-ip address
+    - Rule Actions :- forward, redirect, fixed-response, authenticate-oidc, & authenticate-cognito
+    -  
+    - 
+- NLB
+  - 
 
 
 
