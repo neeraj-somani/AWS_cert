@@ -72,10 +72,18 @@
     - last rule is default rule == Catchall rule
     - Rule conditions :- host-header, http-header, http-request-method, path-pattern, query-string & source-ip address
     - Rule Actions :- forward, redirect, fixed-response, authenticate-oidc, & authenticate-cognito
-    -  
-    - 
 - NLB
-  - 
+  - Its a Layer 4 load balancer... TCP/UDP/TLS/TCP_UDP
+  - No visibility or understanding of http or https
+  - hence, they have no visibility to headers, cookies, and no session stickiness from a HTTP perspective
+  - NLB's are Really... Really... Really fast (millions of requests per sec, 25% of ALB latency)
+  - hence its good to deal with any non-http or non-https protocols
+  - example, SMTP, SSH, Game servers, financial apps , etc
+  - downside of it is that it can't perform health check, as its not aware of application layer, 
+  - it can just check ICMP / TCP handshake
+  - Benefit iof NLB is it can have static IP address, which is useful for whitelisting
+  - **exam imp** another benefit, it can forward TCP traffic to instances directly.... unbroken end-to-end encryption
+  - **exam imp** used with private link to provide services to other VPCs
 
 
 
