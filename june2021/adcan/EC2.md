@@ -595,7 +595,77 @@
 - https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enhanced-networking.html
 
 
+### Launch Configuration and Templates
+- Launch Configurations and Launch Templates provide the WHAT to Auto scaling groups.
+- They define WHAT gets provisioned. The AMI, the Instance Type/size, the networking & security, the key pair to use, the userdata to inject and IAM Role to attach.
+- it allows you to define the configuration of an EC2 instance in advance
+- both are not editable - defined once. LT has versions.
+- LT is superset of LC, and AWS recommends using LT
+- LT provide newer features - including T2/T3 unlimited, placement groups, capacity reservations, elastic graphics
+- LT can be used to directly launch Ec2 instances as well as for configuring Auto scaling group
+- Hence, LT can save time when provisioning Ec2 instances from console UI/CLI
 
+
+### Auto Scaling Groups
+- An Auto Scaling group contains a collection of Amazon EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management. 
+- An Auto Scaling group also enables you to use Amazon EC2 Auto Scaling features such as **health check replacements and scaling policies**.
+- Make sure health check setup is done properly because ASG can also do health check of ALB as well as EC2.
+- Both maintaining the number of instances in an Auto Scaling group and automatic scaling are the core functionality of the Amazon EC2 Auto Scaling service.
+- It uses Launch Templates or configurations
+- It has a minimum, desired and maximum size (eg: 1<2<4)
+- it keep running instances at the desired capacity by provisioning or terminating instances
+- Scaling Policies
+  - Scaling policies used in combination of LC/LT
+  - Scaling policies automate based on metrics
+  - Scaling polcies automatically adjust the desired capacity between the MIN and MAX values
+  - Scaling policies are nothing but the rules, that can adjust the capacity as desired
+  - types of scaling polcies
+    - Manual scaling -- manually adjust the desired capacity
+    - Scheduled Scaling - time based adjustment - e.g. Sales period, or low/high demand.. etc
+    - Dynamic Scaling - 
+      - Simple - "CPU above 50% + 1", "CPU below 50% -1", its a metric based capacity management. Example, based on CPU Utilization
+      - Stepped scaling (recommended) - Bigger +/- based on difference, this allows faster scaling adjustment to the desired changing capacity
+      - Target tracking -- Desired aggregate CPU == 40%... ASG handle it... few examples, CPU utilization, AVG network-in, AVG network-out and ALBRequestCount ......
+  - Cooldown periods -- It controls how long to wait at the end of a scaling action before doing another
+- Scaling processes or Functions performed by ASG
+  - "Status" can be either suspended or resumed.
+  - example, Launch and terminate instances can have status either suspended or resumed
+  - "Status" can also be "AddToLoadBalancer" - this allows any newly provisioned instance by ASG can be added to ALB on launch
+  - "Status" can be "AlarmNotification" -- accept notification from cloudwatch
+  - "status" can be "AZRebalance" -- Balances instances evenly across all of the AZs
+  - "status" can be "HealthCheck" -- instance health checks on/off
+  - "status" can be "ReplaceUnhealthy" -- Terminate unhealthy and replace
+  - "status" can be "scheduledActions" -- allows instanced Scheduled on/off
+  - "Standby" -- use this for instances 'inServuce vs Standby". Usually this is used for maintainance activity.
+- Scaling is also possible based on SQS -- ApproximateNumberOfMessagesVisible
+
+
+### ASG - exam power-ups
+- Autoscaling Groups are free, only cost for the resources
+- Use cool downs to avoid rapid scaling and associated cost
+- cost saving can be achived by more, small types of instances size -- granularity
+- Use ASG with ALB for elasticity -- provides level of abstraction
+- ASG defines when and where instances are launched and which subnets they are launched into
+- LC/LT defines what
+- ASGs don't NEED scaling policies -- ASG can work without scaling policies
+
+### ASG Lifecycle Hooks
+- Lifecycle hooks enable you to perform custom actions by pausing instances as an Auto Scaling group launches or terminates them. 
+- When an instance is paused, it remains in a wait state either until you complete the lifecycle action using the complete-lifecycle-action command or the CompleteLifecycleAction operation, or until the timeout period ends (one hour by default).
+- It can be integrated with EventBridge or SNS notifications
+
+### ASG Health Checks EC2 vs ALB
+- Amazon EC2 Auto Scaling can determine the health status of an instance using one or more of the following:
+  - Status checks provided by Amazon EC2 to identify hardware and software issues that may impair an instance. The default health checks for an Auto Scaling group are EC2 status checks only.
+    - In case of EC2 - any status other than "Running" can be considered as unhealthy, meaning it can any of these -- Stopping, Stopped, Terminated, Shutting Down or Impaired (not 2/2 status) == UNHEALTHY
+  - Health checks provided by Elastic Load Balancing (ELB). These health checks are disabled by default but can be enabled.
+    - ELB - HEALTHY means -- EC2 should be Running and passing ELB health check
+    - Since, ELB is application aware (Layer 7), hence health check can be done for an specific web-page, text pattern matching, etc
+  - Your custom health checks.
+    - Instances marked healthy & unhealthy by an external system
+    - this can be integrated with other external systems using SQS / SNS/ etc
+  - **exam imp** Health check grace period (default 300s) - Delay before starting checks
+    - this allows system launch, bootstraping and application start. Grace period needs to be adjusted accordingly. 
 
 
 
