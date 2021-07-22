@@ -48,8 +48,11 @@
 - Interface endpoint uses DNS and a private IP address for communication.
 
 ### VPC Peering
-- VPC peering is a software define and logical networking connection between two VPC's
+- VPC peering is a software define and logical networking connection between two VPC's.
 - They can be created between VPCs in the same or different accounts and the same or different regions.
+- **exam imp** it can only create one direct encrypted network link between only two VPCs, remember that no more than two.
+- (optinal) public hostnames resolve to private IPs
+- Same region SG's can reference peer SGs
 - 
 
 
