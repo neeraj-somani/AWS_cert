@@ -60,8 +60,10 @@
 - VPC peering communication is encrypted and trasits over the AWS global network when using cross-region peering connections.
 
 
-
-
+### Border Gateway Protocol 101
+- which is used by some AWS services such as Direct Connect and Dynamic Site to Site VPNs.
+- It controls how data flows from point A to point B, C, D...
+- 
 
 
 
