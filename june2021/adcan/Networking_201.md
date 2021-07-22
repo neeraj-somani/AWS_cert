@@ -60,13 +60,43 @@
 - VPC peering communication is encrypted and trasits over the AWS global network when using cross-region peering connections.
 
 
-### Border Gateway Protocol 101
+### Border Gateway Protocol (BGP) 101
 - which is used by some AWS services such as Direct Connect and Dynamic Site to Site VPNs.
-- It controls how data flows from point A to point B, C, D...
-- 
+- Its a routing protocol, meaning It controls how data flows from point A to point B, C, D...
+- Autonomous System (AS) - Routers controlled by one entity .... a network in BGP
+- BGP is controlled by one entity known as Black Box, which abstract away the network
+- ASN are unique and allocated by IANA (0-65535), 64512 - 65534 are private
+- BGP operates over tcp/179 - its reliable
+- its not automatic -- peering is manually configured
+- BGP is a path-vector protocol it exchanges the best path to a destination between peers... the path is called the ASPATH (autonomous system path)
+- Its BGPs responsibility to create network topology between devices and perform best communication
+- iBGP == Internal BGP -- Routing within an AS
+- eBGP == External BGP - Routing between AS's
+- BGP exchanges the shortest ASPATH between peers. Brisbane -> Alice Springs would default to satellite link.. even though the longer fiber would provide better performance
+- AS Path pretending can be used to artificially make the satellite path look longer making the fiber path preferred.
+- An AS will advertise all the shortest paths it knows to all its peers, the AS pretends its own AS number onto the path -- this creates a source to destination path which BGP routers can learn & propagate.
 
+### AWS Site-to-Site VPN
+- AWS Site-to-Site VPN is a hardware VPN solution which creates a highly available IPSEC VPN between an AWS VPN and external network such as on-premises traditional networks. - - VPNs are quick to setup vs direct connect, don't offer the same high performance, but do encrypt data in transit. 
+- A logical connection between a VPC and on-premises network encrypted using IPSec, running over the (default) public internet (untill specificed otherwise)
+- **exam imp** Full Highly Available (HA) - if you design and implement it correctly
+- Its quick to provision... less than an hour
+- components of VPN connection
+  - VPC
+  - VGW (virtual private Gateway)
+  - CGW (Customer Gateway)
+  - VPN connection between the VGW and CGW
+- **exam imp** VPN consideration before using them
+  - all below points are imp for exam
+  - Speed limitations --- 1.25 Gbps
+  - Latency considerations -- inconsistent, uses public internet
+  - cost -- AWS hourly cost, per GB out going cost, data cap (on-premises)
+  - speed of setup - hours... all software configuration (VPN are fast setup comparatively)
+  - can be used as a backup for Direct Connect (DX), because VPN setup is easy and fast comparatively
+  - Can be used with Direct Connect (DX), as an additional layer of encryption
 
-
+### AWS Global Accelerator
+- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using Anycast IP addresses
 
 
 
