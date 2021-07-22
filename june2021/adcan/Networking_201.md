@@ -53,7 +53,11 @@
 - **exam imp** it can only create one direct encrypted network link between only two VPCs, remember that no more than two.
 - (optinal) public hostnames resolve to private IPs
 - Same region SG's can reference peer SGs
-- 
+- **exam imp** -- VPC peering does NOT support transitive peering, meaning if VPC-A connects to VPC-B and VPC-B connects to VPC-C, that doesn't mean VPC-A can also connects to VPC-C. if you need a connection between VPC-A and VPC-C, a seperate connection needs to be establish.
+- For VPC Peering, Routing configuration is needed, SGs & NACLs can filter.
+- Route tables at both sides of the peering connection are needed, directing traffic flow for the remote CIDR at the peer gateway object.
+- VPC peering connections cannot be created where there is overlap in the VPC CIDRs - ideally NEVER use the same IP address ranges in the multiple VPCs
+- VPC peering communication is encrypted and trasits over the AWS global network when using cross-region peering connections.
 
 
 
