@@ -96,9 +96,73 @@
   - Can be used with Direct Connect (DX), as an additional layer of encryption
 
 ### AWS Global Accelerator
-- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using Anycast IP addresses
+- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using Anycast IP addresses.
+- key thing to understand is when to use cloudfront and when to use Global Accelerator
+  - GA starts with two anycast IP addresses (1.2.3.4 & 4.3.2.1)
+  - In general, the IP addresses that we learned so far are known as Unicast IP addresses. they are generally defined for one device.
+  - On the other side, Anycast IP's allow a single IP to be in multiple locations (devices), Routing moves traffic to closets location.
+- Users connects to GA through public internet but from these edge locations, the data transits globally across the AWS global backbone network. Less hops, directly under AWS control, significantly better performance. This AWS own in-built network uses fiber optics cables to perform any data transfer operations.
+- when and where to use:
+- **exam imp** connections enter at the edge.. using anycast IPs
+- **exam imp** Transit over AWS backbone to 1+ locations
+- **exam imp** Global Accelerator is a network product, it works on any TCP or UDP applications, including web apps, 
+- **exam imp** while cloudfront can only work on http/https protocols
+- **exam imp** GA doesn't cache anything on the other side cloudfront is mostly used for caching scenario
+ 
+- Summary
+  - If you want global TCP or UDP network optimization, then its going to be global accelerator.
+  - if you need to do caching, or deal with web or secure web or anything involved with delivery of content or the manipulation of that content, its going to be cloudfront.
 
 
+### Direct Connect (DX)
+- Direct Connect is AWS's physical private link connecting your business premises to its public and private services.
+- It has many pros and cons vs Site-to-Site VPN and its one of those products which is impossible to DEMO without using.
+- the difference between DX and site-to-site VPN:
+  - DX is more of a physical connection between AWS and on-premises devices
+  - site-to-site VPN is an encrypted logical connection between AWS and on-premises devices
+- In specific term its not any physical device but instead a dedicated port with special features
+  - Its 1 Gbps or 10 Gbps Network port into an AWS account
+  - the port is allocated to you at a DX location (1000-base-lx or 10GBASE-LR) which is at a major AWS Data center.
+  - you router also needs to be capable of using VLANS/BGP
+  - if needed some company works with telecom business company to setup a cable or rent partner router from them for this setup and connectivity
+  - in nutshell its fiber optics cable connection end-to-end
+  - One physical connection can have multiple VIFS running (virtual interfaces) over one DX
+  - two types of VIFs
+    - Private VIF (VPC) -- using VPG
+    - Public VIF (Public Zone services) --  
+  - VIF can be think as seperate private network
+- **exam key take-aways**
+  - DX takes MUCH longer to provision vs VPN
+  - because DX requires a complete physical setup between on-premises and AWS Data Center
+  - **exam imp** DX can't be set-up in one day, it requires days or weeks or months
+  - **exam imp** DX is capable of much high bandwidth and its faster.. upto 40 Gbps with Aggregation
+  - **exam imp** DX setup provides consistent low latency, and doesn't use business bandwidth
+  - **exam imp** DX doesn't provides any native encryption technique on its own, users needs to take care of encryption at their end
+- Direct Connect Resilience
+  - AWS region and Direct connect are physically two seperate thing
+  - DX locations are connected to the AWS region via highly available (redundant) high speed connections
+  - each AWS Regions have multiple Direct Connect (DX) locations. These are normally major metro DC's
+  - DX is not resilient by default and it can have multiple single points of failure
+  - Hence, to make the architecture more resilient, use multiple devices at both the DX location and customer premises locations. Hence, hardware failure can be handled this way. Also, we can add multiple DX location and customer location routers to the architecture.
+
+
+### AWS Transit Gateway (TGW)
+- The AWS Transit gateway is a network gateway which can be used to significantly simplify networking between VPC's, VPN and Direct Connect.
+- It can be used to peer VPCs in the same account, different account, same or different region and supports transitive routing between networks.
+- it provides hybrid network capabilities
+- Also known as Network Transit Hub
+- Significantly reduces network complexity
+- Single network object - HA and scalable
+- provides attachments to other network types
+- VPC attachments are configured with a subnet in each AZ where service is required.
+- TGW can even connect to another TGW to simplify network topology for cross-region or cross-account systems
+- TGW can integrate with direct connect gateway using a transit VIF
+- **exam powerup**
+  - supports transitive routing (meaning, if A, B, C, D connects to TGW, then they all can talk to each other)
+  - can be used to create global networks
+  - share between accounts using AWS RAM
+  - Peer with different regions ... same or cross account
+  - less complexity in network
 
 
 
