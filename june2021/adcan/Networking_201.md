@@ -165,7 +165,66 @@
   - less complexity in network
 
 
+### Advanced VPC Routing - PART1
+- Subnets are associated with 1 route table (RT) only
+- Either the VPC MAIN RT or a custom RT
+- RT can also be associated with an IGW or VGW
+- IPv4 and IPv6 handled separately within a RT
+- Routes send traffic based on destination to a target
+- All routes evaluated - highest-priority matching is used
+- All VPC subnets have a Route Table (RT) attached - the MAIN RT of the VPC is implicitly applied to all subnets within the VPC by default
+- A subnet can be explicitly assigned a custom RT which removes the implicit MAIN RT. If this is ever removed, the MAIN RT applies again automatically
+- Subnet Route Tables determine what the VPC router does with IP traffic
+- RT priority
+  - Longest Prefix wins
+  - Static Routes
+  - Propogated Routes
+    - DX
+    - VPN Static
+    - VPN BGP
+    - AS_PATH
+- **exam imp** Ingress Routing
+  - by default, within a VPC, route tables control outgoing or egress routing.
+  - Gateway route tables can be used to direct a gateway (e.g. IGW) to take actions on inbound traffic - such as forwarding it to a security appliance
+  - without gateway route tables the IGW would forward any return traffic directly using the 10.16.0.0/16 local route
+  - Gateway route tables applies to internet gateway or VPGW, that allows us to handle ingress traffic.
+  - on the other side, a normal route table attached to subnet and allows us to handle how the egress traffic flows, as it leaves the subnet.
 
+### Accelerated Site2Site VPN
+- the evolution of the Site-to-Site VPN architecture.
+- "Accelerated Site2Site VPN" is a performance enhancement product to Site-to-Site VPN
+- Moving from VGW <-> CGW
+- to CGW -> TGW -> VPC (n)
+- to CGW -> Global Accelerator -> TGW -> VPC (n)
+- Accelerated VPN provides performance enhancements by routing traffic over a more direct and efficient path between CGW and AWS, avoiding the public internet as much as possible.
+- VPN Tunnel IPs are global, and connections are routed to the closest global accelerator edge location
+- Low latency, less jitter (variance in latency) & high throughput
+- **exam imp** 
+  - Acceleration can be enabled when creating a TGW VPN attachment. Not compatible with VPNs using VGW.
+  - There is fixed accelerator cost and a data transfer fee
+  - In short, the AWS network has been extended closer to your premises so the benefits appear earlier, public internet is reduced
+
+### Advanced VPC DNS & DNS Endpoints
+- https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html
+- DNS via the VPC .2 address 10.16.0.2 (A4L)
+- ".2" address is also reserved in every subnet
+- Now called the Route53 resolver
+- Provides R53 public & associated private Zones
+- Only accessible from within a VPC
+- Hybrid network integration is problematic - IN and OUT
+- Queries for records which aren't in R53 public or private hosted zones are forwarded out to public DNS
+- AWS Instances use the R53 resolver. Historically this had no ability to forward queries onto on-premises resolvers
+- DNS Resolver forwards anything non-local out to the public internet
+- DNS boundary between the two environment improsed by the lackof communication between DNS infrastructure.
+- Route53 Endpoints
+  - VPC Interfaces (ENIs) - accessible over VPN or DX
+  - Inbound and Outbound
+  - Inbound == On-premises can forward to the R53 resolver
+    - On-premises DNS is configured to forward queries to the R53 Inbound interfaces (ENI's in VPC subnets)
+  - Outbound == Conditional forwarders, R53 to on-premises
+    - outbound endpoints forward queries based on defined rules to other DNS servers
+  - Rules control what requests are forwarded
+  - corp.animals4life.org ==> On-premises DNS Nameservers.
 
 
 
